@@ -21,5 +21,4 @@ export class MyApp {
 }
 
 
-//Testing if I can cross platform files between mac and windows!
-//It works!
+//Initial Commit
