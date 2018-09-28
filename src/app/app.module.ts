@@ -27,4 +27,20 @@ import { HomePage } from '../pages/home/home';
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
-export class AppModule {}
+export class AppModule { }
+
+//Import the AF2 Module
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
+
+// Initialize Firebase // AF2 Settings
+export const firebaseConfig = {
+  apiKey: "AIzaSyBHFzkJ5JJORLY5c3oOlLBI3WTQQ__qDKA",
+  authDomain: "washcolibrary-b1f71.firebaseapp.com",
+  databaseURL: "https://washcolibrary-b1f71.firebaseio.com",
+  projectId: "washcolibrary-b1f71",
+  storageBucket: "washcolibrary-b1f71.appspot.com",
+  messagingSenderId: "62541126789"
+};
+
+
