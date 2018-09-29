@@ -9,6 +9,15 @@
 <ion-content padding>
   The world is your oyster.
   <p>
-    <test-component></test-component>
+    <!-- Call test-component and set myText to a dynamic value by enclosing it in square brackets  
+         myText was the input parameter for the component -->
+
+    <!-- "myHomeText" is now a variable which can be set within the home.ts file -->
+
+    <!-- We can also create a custom event (somethingHappned = "doSomething()" which is a function name ") 
+    the function is then defined in the home.ts -->
+
+    <!-- You can pass through and $event in the function -->
+    <test-component  [myText]="myHomeText" (somethingHappened)="doSomething($event)"></test-component>
   </p>
 </ion-content>
