@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
  * Components.
  */
 @Component({
-  selector: 'test',
+  selector: 'test-component',
   templateUrl: 'test.html'
 })
 export class TestComponent {
@@ -16,7 +16,7 @@ export class TestComponent {
 
   constructor() {
     console.log('Hello TestComponent Component');
-    this.text = 'Hello World';
+    this.text = 'It works! What up son!';
   }
 
 }
