@@ -4,8 +4,9 @@
     "\\src",
     "\\src\\app",
     "\\src\\pages",
+    "\\src\\pages\\calendar",
     "\\src\\pages\\home"
   ],
-  "SelectedNode": "\\src\\pages",
+  "SelectedNode": "\\src\\app\\app.module.ts",
   "PreviewInSolutionExplorer": false
 }
