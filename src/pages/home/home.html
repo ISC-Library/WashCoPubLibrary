@@ -18,6 +18,22 @@
     the function is then defined in the home.ts -->
 
     <!-- You can pass through and $event in the function -->
-    <test-component  [myText]="myHomeText" (somethingHappened)="doSomething($event)"></test-component>
+    <!-- <test-component  [myText]="myHomeText" (somethingHappened)="doSomething($event)"></test-component> -->
   </p>
+
+  <ion-list>
+    <ion-item>
+      <ion-label fixed>Username</ion-label>
+      <!-- You use the ngModel directive and set it equal to the variable defined in the home.ts -->
+      <ion-input [(ngModel)]="username" type="text"></ion-input>
+    </ion-item>
+
+    <test-component [myText]="username"></test-component>
+    
+    <button (click)="submitUser()" ion-button>Save</button>
+      
+  </ion-list>
+  
+  <h2>TestUsername: {{username}}</h2>
+
 </ion-content>

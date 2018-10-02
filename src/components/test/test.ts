@@ -35,9 +35,9 @@ export class TestComponent {
 
     //For testing sake
     //Set an interval to 3seconds ... 3000ms ... and emit a value every time it fires 
-    let interval = setInterval(() => {
-      this.somethingHappened.emit("its time");
-    }, 3000);
+    
+      this.somethingHappened.emit("wtf");
+
   }
 
 }
