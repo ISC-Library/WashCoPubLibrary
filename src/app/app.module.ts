@@ -14,6 +14,9 @@ import { TestPage } from '../pages/test/test';
 //Import Custom Component 
 import { ComponentsModule } from '../components/components.module';
 
+//Import Providers 
+import { TestProvider } from '../providers/test/test';
+
 // Import the AF2 Module
 //Note, module has been updated... all angularfire2 references are now at '@angular/fire'
 import { AngularFireModule } from '@angular/fire';
@@ -41,7 +44,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
     IonicModule.forRoot(MyApp),
     ComponentsModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireModule
+    AngularFireModule,
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -52,7 +56,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    TestProvider
   ]
 })
 export class AppModule {}

@@ -6,6 +6,12 @@
     <!-- ^^^ The value of the @input "myText" is set equal to a variable in the page that is calling this component-->
       <!-- ^^^ A two way data binding (seen below) is being used to bind that value to an element within the component view -->
         <!-- this allows the value to be displayed instantly as the user types it on the view that is calling this component -->
-<h4>{{textToUse}}</h4>
 
+        <!-- <h4>{{textToUse}}</h4> -->
+
+<button (click)="callTestProvider()" ion-button>Call Test Provider</button>
+
+<div *ngFor="let user of users | async">
+    <h2>{{user.firstname}}</h2>
+</div>
 
