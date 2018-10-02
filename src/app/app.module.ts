@@ -8,12 +8,21 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { CalendarPage } from '../pages/calendar/calendar';
+import { AdminPage } from '../pages/admin/admin';
+import { LoginPage } from '../pages/login/login';
+import { AboutPage } from '../pages/about/about';
+
+
+
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    CalendarPage
+    CalendarPage,
+    AdminPage,
+    LoginPage,
+    AboutPage
   ],
   imports: [
     BrowserModule,
@@ -23,7 +32,10 @@ import { CalendarPage } from '../pages/calendar/calendar';
   entryComponents: [
     MyApp,
     HomePage,
-    CalendarPage
+    CalendarPage,
+    AdminPage,
+    LoginPage,
+    AboutPage
   ],
   providers: [
     StatusBar,
