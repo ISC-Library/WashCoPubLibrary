@@ -4,8 +4,12 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+
 import { MyApp } from './app.component';
+
+//Import Pages
 import { HomePage } from '../pages/home/home';
+import { TestPage } from '../pages/test/test';
 
 //Import Custom Component 
 import { ComponentsModule } from '../components/components.module';
@@ -29,7 +33,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    TestPage
   ],
   imports: [
     BrowserModule,
@@ -41,7 +46,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    TestPage
   ],
   providers: [
     StatusBar,

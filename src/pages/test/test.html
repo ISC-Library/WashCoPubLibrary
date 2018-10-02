@@ -1,0 +1,41 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title>
+        Ionic Blank
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+    The world is your oyster.
+    <p>
+      <!-- Call test-component and set myText to a dynamic value by enclosing it in square brackets  
+           myText was the input parameter for the component -->
+  
+      <!-- "myTestText" is now a variable which can be set within the test.ts file -->
+  
+      <!-- We can also create a custom event (somethingHappned = "doSomething()" which is a function name ") 
+      the function is then defined in the test.ts -->
+  
+      <!-- You can pass through and $event in the function -->
+      <!-- <test-component  [myText]="myTestText" (somethingHappened)="doSomething($event)"></test-component> -->
+    </p>
+  
+    <ion-list>
+      <ion-item>
+        <ion-label fixed>Username</ion-label>
+        <!-- You use the ngModel directive and set it equal to the variable defined in the test.ts -->
+        <ion-input [(ngModel)]="username" type="text"></ion-input>
+      </ion-item>
+  
+      <test-component [myText]="username"></test-component>
+  
+      <button (click)="navigateToHomePage()" ion-button>Navigate to Home Page</button>
+      <button (click)="submitUser()" ion-button>Save</button>
+      
+    </ion-list>
+    
+    <h2>TestUsername: {{username}}</h2>
+  
+  </ion-content>
+  

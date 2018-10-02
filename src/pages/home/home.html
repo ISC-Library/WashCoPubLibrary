@@ -7,33 +7,10 @@
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
+  <h4>This is the home page!</h4>
   <p>
-    <!-- Call test-component and set myText to a dynamic value by enclosing it in square brackets  
-         myText was the input parameter for the component -->
-
-    <!-- "myHomeText" is now a variable which can be set within the home.ts file -->
-
-    <!-- We can also create a custom event (somethingHappned = "doSomething()" which is a function name ") 
-    the function is then defined in the home.ts -->
-
-    <!-- You can pass through and $event in the function -->
-    <!-- <test-component  [myText]="myHomeText" (somethingHappened)="doSomething($event)"></test-component> -->
   </p>
 
-  <ion-list>
-    <ion-item>
-      <ion-label fixed>Username</ion-label>
-      <!-- You use the ngModel directive and set it equal to the variable defined in the home.ts -->
-      <ion-input [(ngModel)]="username" type="text"></ion-input>
-    </ion-item>
-
-    <test-component [myText]="username"></test-component>
+    <button (click)="navigateToTestPage()" ion-button>Navigate to Test Page</button>
     
-    <button (click)="submitUser()" ion-button>Save</button>
-      
-  </ion-list>
-  
-  <h2>TestUsername: {{username}}</h2>
-
 </ion-content>

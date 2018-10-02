@@ -1,9 +1,11 @@
 <!-- Generated template for the TestComponent component -->
 
-
-<!-- <div *ngFor = "let user of users | async"></div>
-<h4> {{user.firstname}} </h4> -->
-
+<!-- This header is a two way data bound value -->
+<!-- The "textToUse" value is a variable declared in the test.ts file... -->
+  <!-- ^^^ Its value is set equal to the @input of the component -->
+    <!-- ^^^ The value of the @input "myText" is set equal to a variable in the page that is calling this component-->
+      <!-- ^^^ A two way data binding (seen below) is being used to bind that value to an element within the component view -->
+        <!-- this allows the value to be displayed instantly as the user types it on the view that is calling this component -->
 <h4>{{textToUse}}</h4>
 
 

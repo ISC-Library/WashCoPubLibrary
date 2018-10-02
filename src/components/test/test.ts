@@ -12,19 +12,18 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class TestComponent {
 
-  //Supply an Input called 'myText' and asign it to textToUse
+  //Supply an Input called 'myText' and assign it to textToUse (textToUse is a variable)
   @Input('myText') textToUse;
 
   //Supply and Output called 'somethingHappened'
-  //This Output is of the same name as the custom event we created on the home.ts 
+  //This Output is of the same name as the custom event we created on the test.ts (test page that is)
   // you then set this equal to an event emitter, so the component can now detect that event occuring 
   @Output() somethingHappened = new EventEmitter();
 
   text: string;
 
   constructor() {
-    console.log('Hello TestComponent Component');
-    this.text = 'It works! What up son! ';
+    
   }
 
   //ngAfterViewInit is a method that waits for everything to load before it executes 
