@@ -23,11 +23,10 @@ export class TestProvider {
   constructor(private db: AngularFireDatabase) {}
 
   getUsers(start: BehaviorSubject<string>): Observable<any[]> {
-    console.log(start)
      return start.switchMap(startText => {
       const endText = startText + '\uf8ff';
       return this.db
-        .list('/user', ref =>
+        .list('/users', ref =>
           ref
             .orderByChild('firstName')
             .limitToFirst(10)

@@ -23,7 +23,17 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 // Initialize Firebase // AF2 Settings 
-  var firebaseConfig = {
+  export const firebaseConfig = {
+    //NoCuts Database key: for testing purposes! 
+    // apiKey: "AIzaSyDt_SEzOLkG4b5nD3b773b_7Ob_tz-YHIU",
+    // authDomain: "nocuts-firebase-app.firebaseapp.com",
+    // databaseURL: "https://nocuts-firebase-app.firebaseio.com",
+    // projectId: "nocuts-firebase-app",
+    // storageBucket: "nocuts-firebase-app.appspot.com",
+    // messagingSenderId: "42871486248"
+
+    
+    //WashCo database key:
     apiKey: "AIzaSyBHFzkJ5JJORLY5c3oOlLBI3WTQQ__qDKA",
     authDomain: "washcolibrary-b1f71.firebaseapp.com",
     databaseURL: "https://washcolibrary-b1f71.firebaseio.com",
