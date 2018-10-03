@@ -9,11 +9,22 @@
 
         <!-- <h2>{{users}}</h2> -->
 
-<!-- Calls data based on what the user has already typed -->
-<button (click)="callTestProvider()" ion-button>Call Test Provider</button>
 
-<!-- Dynamic list filter as the user types -->
-<input type="text" (keydown)="userDudes()" placeholder="search users..." class="input">
+<!-- Calls data based on what the user has already typed -->
+<!-- <label>{{textToUse}}</label> -->
+<!-- <button (click)="callTestProvider()" ion-button>Call Test Provider</button> -->
+
+
+
+<!-- link to ion input properties https://ionicframework.com/docs/api/components/input/Input/ -->
+<!-- You use the ngModel directive and set it equal to the variable defined in the test.ts -->
+<ion-item>
+  <ion-input  type="text" placeholder="keydownValue" (keyup)="userDudes()" [(ngModel)]="keydownValue"></ion-input>
+</ion-item>
+
+<br>
+<br>
+<br>
 
 <!-- Displays every portion of data systemmatically that matches the user criteria typed -->
 <div *ngFor="let user of users | async">
@@ -22,7 +33,5 @@
         {{user.firstName}}
       </p>
 </div>
-
-
 
 

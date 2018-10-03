@@ -7,7 +7,7 @@
   </ion-header>
   
   <ion-content padding>
-    The world is your oyster.
+    <h4>This is the test page!</h4>
     <p>
       <!-- Call test-component and set myText to a dynamic value by enclosing it in square brackets  
            myText was the input parameter for the component -->
@@ -22,16 +22,15 @@
     </p>
   
     <ion-list>
-      <ion-item>
-        <ion-label fixed>Username</ion-label>
+      <!-- <ion-item> -->
+        <!-- <ion-label fixed>Username</ion-label> -->
         <!-- You use the ngModel directive and set it equal to the variable defined in the test.ts -->
-        <ion-input [(ngModel)]="username" type="text"></ion-input>
-      </ion-item>
+        <!-- <ion-input [(ngModel)]="username" type="text" placeholder="username" ></ion-input> -->
+      <!-- </ion-item> -->
   
       <test-component [myText]="username"></test-component>
-  
+        
       <button (click)="navigateToHomePage()" ion-button>Navigate to Home Page</button>
-      <button (click)="submitUser()" ion-button>Save</button>
       
     </ion-list>
 

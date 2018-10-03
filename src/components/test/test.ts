@@ -25,33 +25,38 @@ export class TestComponent {
 
   //Class variable to hold the values gathered from the service 
   users: Observable<any[]>;
+  //Class variable to hold the value being typed into the input box by the user (the one tied to the keydown event)
+  keydownValue: Observable<any[]>;
+
+  //Declare the databaseFilter variable, which is the variable the "TestProvider.getUsers" function takes as a parameter 
+  //RXJS is a javascript framework
+  //Behavior subject is a data type that contains multiple elements
+  //Very usefull for passing data to the provider 
+  databaseFilter: BehaviorSubject<string | null> = new BehaviorSubject('');
   
-  //Declare the startAt variable, which is the variable the "TestProvider.getUsers" function takes as a parameter 
-  startAt: BehaviorSubject<string | null> = new BehaviorSubject('');
-  
+
   //Inject the Provider into the constructor *****
   constructor(public testSvc: TestProvider) {}
 
 
 
- //Function to interact with the "TestProvider"
+ //Function to interact with the "TestProvider" via button
   callTestProvider(){
-    //Set the class variable "users" = to the value returned by the function
-    this.users = this.testSvc.getUsers(this.startAt);
+    console.log(this.textToUse);
+    this.databaseFilter.next(this.textToUse);
+    this.users = this.testSvc.getUsers(this.databaseFilter);
   }
 
+//Function to interact with the "TestProvider" via keydown event (aka as the user is typing)
   userDudes(){
-    this.users = this.testSvc.getUsers(this.startAt);
-    //this.songs = this.songsSvc.getSongs(this.startAt);
+    //As the user types in the textbox, take that value into the variable "keydownValue"
+    //The following line uses the ".next" property of behavior subject type to set the "databaseFilter" value to the "keydownValue"
+    this.databaseFilter.next(this.keydownValue)
+    console.log(this.databaseFilter);
+    //Then set the "users" object variable equal to what is returned from the following call to the provider...
+      //The arguement being passed is the filter that was set to what the user typed in the box dynamically
+    this.users = this.testSvc.getUsers(this.databaseFilter);
   }
-
-   // ngOnChanges(changes: SimpleChanges) {
-  //   for (let propertyName in changes) {
-  //     let change = changes[propertyName];
-  //     let currentValue  = JSON.stringify(change.currentValue);
-  //     let previousValue = JSON.stringify(change.previousValue);   
-  //   }
-  // }
 
   //ngAfterViewInit is a method that waits for everything to load before it executes 
   // ngAfterViewInit(){
