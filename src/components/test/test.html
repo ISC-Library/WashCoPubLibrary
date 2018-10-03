@@ -7,14 +7,15 @@
       <!-- ^^^ A two way data binding (seen below) is being used to bind that value to an element within the component view -->
         <!-- this allows the value to be displayed instantly as the user types it on the view that is calling this component -->
 
-        <!-- <h4>{{textToUse}}</h4> -->
+        <!-- <h2>{{users}}</h2> -->
 
+<!-- Calls data based on what the user has already typed -->
 <button (click)="callTestProvider()" ion-button>Call Test Provider</button>
 
-<!-- <h2>{{users}}</h2> -->
-<input type="text" (keydown)="songDudes('yo')" placeholder="search users..." class="input">
+<!-- Dynamic list filter as the user types -->
+<input type="text" (keydown)="userDudes()" placeholder="search users..." class="input">
 
-
+<!-- Displays every portion of data systemmatically that matches the user criteria typed -->
 <div *ngFor="let user of users | async">
     <!-- <h2>{{user.id}}</h2> -->
       <p>
@@ -23,13 +24,5 @@
 </div>
 
 
-<!-- <h1>Song Search Test</h1>
-<input type="text" (keydown)="songDudes('yo')" placeholder="search songs..." class="input">
 
-<div *ngFor="let song of songs | async">
-  <h4>{{song.title}}</h4>
-  <p>
-    {{song.title}}
-  </p>
-</div> -->
 
