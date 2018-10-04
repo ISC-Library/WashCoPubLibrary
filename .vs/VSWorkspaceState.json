@@ -7,6 +7,6 @@
     "\\src\\pages\\calendar",
     "\\src\\pages\\home"
   ],
-  "SelectedNode": "\\src\\app\\app.module.ts",
+  "SelectedNode": "\\src\\pages\\calendar\\calendar.ts",
   "PreviewInSolutionExplorer": false
 }
