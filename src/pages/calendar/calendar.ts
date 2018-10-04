@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {Calendar} from '@ionic-native/calendar';
 
 /**
  * Generated class for the CalendarPage page.

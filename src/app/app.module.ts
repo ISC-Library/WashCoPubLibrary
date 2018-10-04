@@ -3,7 +3,6 @@ import { ErrorHandler, NgModule, Component } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import {Calendar} from '@ionic-native/calendar';
 
 import { MyApp } from './app.component';
 
@@ -64,8 +63,7 @@ export const firebaseConfig = {
     ComponentsModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireModule,
-    AngularFireDatabaseModule,
-    Calendar
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -82,8 +80,7 @@ export const firebaseConfig = {
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     TestProvider,
-    { provide: ErrorHandler, useClass: IonicErrorHandler },
-    Calendar
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
 
   ]
 })
