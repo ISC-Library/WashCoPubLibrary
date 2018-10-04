@@ -3,14 +3,17 @@ import { ErrorHandler, NgModule, Component } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-
+import {Calendar} from '@ionic-native/calendar';
 
 import { MyApp } from './app.component';
 
 //Import Pages
 import { HomePage } from '../pages/home/home';
-
 import { TestPage } from '../pages/test/test';
+import { CalendarPage } from '../pages/calendar/calendar';
+import { AdminPage } from '../pages/admin/admin';
+import { LoginPage } from '../pages/login/login';
+import { AboutPage } from '../pages/about/about';
 
 //Import Custom Component 
 import { ComponentsModule } from '../components/components.module';
@@ -43,10 +46,6 @@ export const firebaseConfig = {
   messagingSenderId: "62541126789"
 };
 
-import { CalendarPage } from '../pages/calendar/calendar';
-import { AdminPage } from '../pages/admin/admin';
-import { LoginPage } from '../pages/login/login';
-import { AboutPage } from '../pages/about/about';
 
 
 @NgModule({
@@ -65,7 +64,8 @@ import { AboutPage } from '../pages/about/about';
     ComponentsModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    Calendar
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -82,7 +82,8 @@ import { AboutPage } from '../pages/about/about';
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     TestProvider,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    Calendar
 
   ]
 })
