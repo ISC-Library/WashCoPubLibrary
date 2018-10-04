@@ -1,0 +1,37 @@
+<!-- Generated template for the TestComponent component -->
+
+<!-- This header is a two way data bound value -->
+<!-- The "textToUse" value is a variable declared in the test.ts file... -->
+  <!-- ^^^ Its value is set equal to the @input of the component -->
+    <!-- ^^^ The value of the @input "myText" is set equal to a variable in the page that is calling this component-->
+      <!-- ^^^ A two way data binding (seen below) is being used to bind that value to an element within the component view -->
+        <!-- this allows the value to be displayed instantly as the user types it on the view that is calling this component -->
+
+        <!-- <h2>{{users}}</h2> -->
+
+
+<!-- Calls data based on what the user has already typed -->
+<!-- <label>{{textToUse}}</label> -->
+<!-- <button (click)="callTestProvider()" ion-button>Call Test Provider</button> -->
+
+
+
+<!-- link to ion input properties https://ionicframework.com/docs/api/components/input/Input/ -->
+<!-- You use the ngModel directive and set it equal to the variable defined in the test.ts -->
+<ion-item>
+  <ion-input  type="text" placeholder="keydownValue" (keyup)="userDudes()" [(ngModel)]="keydownValue"></ion-input>
+</ion-item>
+
+<br>
+<br>
+<br>
+
+<!-- Displays every portion of data systemmatically that matches the user criteria typed -->
+<div *ngFor="let user of users | async">
+    <!-- <h2>{{user.id}}</h2> -->
+      <p>
+        {{user.firstName}}
+      </p>
+</div>
+
+
