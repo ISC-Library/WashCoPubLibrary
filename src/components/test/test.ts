@@ -51,7 +51,12 @@ export class TestComponent {
   userDudes(){
     //As the user types in the textbox, take that value into the variable "keydownValue"
     //The following line uses the ".next" property of behavior subject type to set the "databaseFilter" value to the "keydownValue"
-    this.databaseFilter.next(this.keydownValue)
+    
+    
+    //had to comment this out to run in browser
+    //this.databaseFilter.next(this.keydownValue)
+    
+    
     console.log(this.databaseFilter);
     //Then set the "users" object variable equal to what is returned from the following call to the provider...
       //The arguement being passed is the filter that was set to what the user typed in the box dynamically
