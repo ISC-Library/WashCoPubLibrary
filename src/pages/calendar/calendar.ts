@@ -1,26 +1,47 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { Calendar } from '@ionic-native/calendar';
 
-/**
- * Generated class for the CalendarPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
-@IonicPage()
 @Component({
   selector: 'page-calendar',
   templateUrl: 'calendar.html',
 })
 export class CalendarPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    
+  constructor(public navCtrl: NavController, public navParams: NavParams, private calendar: Calendar, private platform: Platform) {
+    this.platform.ready().then(() => {
+      this.calendar.listCalendars().then(data => { 
+        this.calendar = data;
+      });
+    })
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CalendarPage');
+    //Page Load
+    ionViewDidLoad() {
+      console.log('ionViewDidLoad CalendarPage');
+    }
+
+  //Calendar
+  addEvent(calendar) {
+
+    // if (this.platform.is('cordova')) {
+      
+    // } else {
+      
+    // }
+
+    let date = new Date();
+    let options = { calendarID: calendar.id, calendarName: calendar.name, url: 'https://ionicacademy.com', firstReminderMinutes: 15};
+
+    this.calendar.createEventInteractivelyWithOptions('My new Event', 'Deez', 'Notes', date, date, options).then(res => {
+    }, err => {
+      console.log('err: ', err);
+    });
+  }
+
+  openCalendar(calendar) {
+    this.navCtrl.push('CalDetailsPage', { name: calendar.name })
   }
 
 }

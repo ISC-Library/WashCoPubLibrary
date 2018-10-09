@@ -14,6 +14,9 @@ import { AdminPage } from '../pages/admin/admin';
 import { LoginPage } from '../pages/login/login';
 import { AboutPage } from '../pages/about/about';
 
+//Import Calendar
+import { Calendar } from '@ionic-native/calendar';
+
 //Import Custom Component 
 import { ComponentsModule } from '../components/components.module';
 
@@ -80,8 +83,8 @@ export const firebaseConfig = {
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     TestProvider,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
-
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    Calendar
   ]
 })
 export class AppModule { }
