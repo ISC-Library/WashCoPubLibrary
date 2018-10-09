@@ -9,6 +9,7 @@ import { MyApp } from './app.component';
 
 //Import Pages
 import { HomePage } from '../pages/home/home';
+
 import { TestPage } from '../pages/test/test';
 
 //Import Custom Component 
@@ -42,12 +43,22 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
     messagingSenderId: "62541126789"
   };
 
+import { CalendarPage } from '../pages/calendar/calendar';
+import { AdminPage } from '../pages/admin/admin';
+import { LoginPage } from '../pages/login/login';
+import { AboutPage } from '../pages/about/about';
+
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    TestPage
+    TestPage,
+    CalendarPage,
+    AdminPage,
+    LoginPage,
+    AboutPage,
+    master
   ],
   imports: [
     BrowserModule,
@@ -61,13 +72,36 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
   entryComponents: [
     MyApp,
     HomePage,
-    TestPage
+    TestPage,
+    CalendarPage,
+    AdminPage,
+    LoginPage,
+    AboutPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     TestProvider
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+
   ]
 })
-export class AppModule {}
+export class AppModule { }
+
+//Import the AF2 Module
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
+
+
+// Initialize Firebase // AF2 Settings
+export const firebaseConfig = {
+  apiKey: "AIzaSyBHFzkJ5JJORLY5c3oOlLBI3WTQQ__qDKA",
+  authDomain: "washcolibrary-b1f71.firebaseapp.com",
+  databaseURL: "https://washcolibrary-b1f71.firebaseio.com",
+  projectId: "washcolibrary-b1f71",
+  storageBucket: "washcolibrary-b1f71.appspot.com",
+  messagingSenderId: "62541126789"
+};
+
+
