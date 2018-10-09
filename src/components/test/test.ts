@@ -26,7 +26,8 @@ export class TestComponent {
   //Class variable to hold the values gathered from the service 
   users: Observable<any[]>;
   //Class variable to hold the value being typed into the input box by the user (the one tied to the keydown event)
-  keydownValue: Observable<any[]>;
+  //keydownValue: Observable<any[]>;
+  keydownValue: string;
 
   //Declare the databaseFilter variable, which is the variable the "TestProvider.getUsers" function takes as a parameter 
   //RXJS is a javascript framework
