@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { Calendar } from '@ionic-native/calendar';
 
+//Calendar dependencies installed, and ios emulator installed 
+//Calender updated from master to reflect the branch merge of installing IOS emulator environment
 
 @Component({
   selector: 'page-calendar',
