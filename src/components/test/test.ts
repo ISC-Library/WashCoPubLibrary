@@ -55,7 +55,7 @@ export class TestComponent {
     
     
     //had to comment this out to run in browser
-    //this.databaseFilter.next(this.keydownValue)
+    this.databaseFilter.next(this.keydownValue)
     
     
     console.log(this.databaseFilter);
