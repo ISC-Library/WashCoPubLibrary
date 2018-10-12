@@ -5,6 +5,9 @@ import { Calendar } from '@ionic-native/calendar';
 //Calendar dependencies installed, and ios emulator installed 
 //Calender updated from master to reflect the branch merge of installing IOS emulator environment
 
+//Import Pages
+import { HomePage } from '../home/home';
+
 @Component({
   selector: 'page-calendar',
   templateUrl: 'calendar.html',
@@ -23,6 +26,11 @@ export class CalendarPage {
     ionViewDidLoad() {
       console.log('ionViewDidLoad CalendarPage');
     }
+
+    //Function to navigate to the "HomePage" using the NavController 
+   navigateToHomePage(){
+    this.navCtrl.push(HomePage);
+  }
 
   //Calendar
   addEvent(calendar) {
