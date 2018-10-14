@@ -7,14 +7,16 @@
   </ion-header>
    
   <ion-content>
+   <h4>Testing calendar page for builds</h4>
+   <button (click)="navigateToHomePage()" ion-button>Navigate to Home Page</button>
    
     <ion-list>
       <ion-item *ngFor="let calendar of calendars" tappable>
         <button ion-button icon-only item-start clear (click)="addEvent(calendar)">
           <ion-icon name="add"></ion-icon>
         </button>
-        {{ cal.name }}
-        <p>{{ cal.type }}</p>
+        {{ calendar.name }}
+        <p>{{ calendar.type }}</p>
         <button ion-button icon-only item-end clear (click)="openCal(calendar)">
           <ion-icon name="arrow-forward"></ion-icon>
         </button>
