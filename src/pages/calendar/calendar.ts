@@ -18,17 +18,22 @@ export class CalendarPage {
 
   }
 
-    //Page Load
-    // ionViewDidLoad() {
-    //   console.log('ionViewDidLoad CalendarPage');
-    //   console.log('test value');
-    // }
 
-    //Function to navigate to the "HomePage" using the NavController 
-  //  navigateToHomePage(){
-  //   this.navCtrl.push(HomePage);
-  // }
+ // Function to navigate to the "HomePage" using the NavController 
+   navigateToHomePage(){
+    this.navCtrl.push(HomePage);
+  }
   
+
+
+
+
+
+  // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
+  //////// Everything below this is interaction with the native events on the phone [][[][[][][][][][][][[][][]]]]
+  // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
+
+  //Open Native Calendar 
   openCalendar(){
     this.calendar.openCalendar(new Date()).then(
       (msg) => { console.log(msg); },
@@ -36,23 +41,24 @@ export class CalendarPage {
     )
   }
 
-  addEvent(){
+  //Add an event to your native calendar 
+  addNativeEvent(){
     return this.calendar.createEventInteractively("event title");
 }
 
-
+//Native event scheduler 
 scheduleEvents(){
     this.calendar.hasReadWritePermission().then((result)=>{
     if(result === false){
         this.calendar.requestReadWritePermission().then((v)=>{
-            this.addEvent();
+            this.addNativeEvent();
         },(r)=>{
             console.log("Rejected");
         })
     }
     else
     {
-        this.addEvent();
+        this.addNativeEvent();
     }
     })
 

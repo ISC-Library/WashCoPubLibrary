@@ -15,7 +15,8 @@ import { LoginPage } from '../pages/login/login';
 import { AboutPage } from '../pages/about/about';
 
 //Import Calendar
-import { Calendar } from '@ionic-native/calendar';
+import { Calendar } from '@ionic-native/calendar'; //This is the native cordova portion that allows interaction with the devices 
+import { CalendarModule } from 'ionic3-calendar-en'; //This is the ionic3 calendar which has a view 
 
 //Import Custom Component 
 import { ComponentsModule } from '../components/components.module';
@@ -66,7 +67,8 @@ export const firebaseConfig = {
     ComponentsModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    CalendarModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

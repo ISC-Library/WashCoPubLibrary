@@ -43,7 +43,9 @@
     "date-fns": "^1.29.0",
     "firebase": "^5.5.3",
     "ionic-angular": "^3.9.2",
+    "ionic3-calendar-en": "^1.1.3",
     "ionicons": "^4.4.4",
+    "moment": "^2.22.2",
     "rxjs": "^6.3.3",
     "rxjs-compat": "^6.3.3",
     "sw-toolbox": "3.6.0",
@@ -66,8 +68,7 @@
       "cordova-plugin-camera": {},
       "cordova-plugin-calendar": {
         "CALENDAR_USAGE_DESCRIPTION": " "
-      },
-      "cordova-plugin-camera": {}
+      }
     },
     "platforms": [
       "browser",

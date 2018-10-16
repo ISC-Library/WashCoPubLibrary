@@ -11,12 +11,48 @@
   <ion-content>
       <button (click)="navigateToHomePage()" ion-button>Navigate to Home Page</button>
 
-      <button ion-button (click)="openCalendar()">Open Calendar on Current Date</button>
-      <button ion-button (click)="addEvent()">Add Event</button>
-      <button ion-button (click)="scheduleEvents()">Schedule Events</button>
-   
+      
+
+     <!-- Calendar html -->
+      
+      <!-- <ion-calendar #calendar></ion-calendar> -->
+      <!-- <ion-calendar #calendar lang="es"></ion-calendar> // Spanish support -->
+      <!-- <ion-calendar #calendar lang="en"></ion-calendar>   -->
+
+      <ion-calendar #calendar (onDaySelect)="onDaySelect($event)"></ion-calendar>
+
      
-          <ion-list>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+      <!-- Everything below her is for native functions -->
+    <!-- Formatting for event buttons  -->
+      
+    <!-- <button ion-button (click)="openCalendar()">Open Calendar on Current Date</button>
+      <button ion-button (click)="scheduleEvents()">Schedule Events</button>
+      <button ion-button (click)="addEvent()">Add Event</button> -->
+      
+      <!-- <ion-list>
             <ion-item>
               <ion-input type="text" placeholder="Title"></ion-input>
             </ion-item>
@@ -35,12 +71,12 @@
               <ion-label>All Day?</ion-label>
               <ion-checkbox ></ion-checkbox>
             </ion-item>
-          </ion-list>
+      </ion-list>
          
           <button ion-button full icon-left (click)="addEvent()">
             <ion-icon name="checkmark"></ion-icon> Add Event
           </button>
-       
+        -->
 
   </ion-content>
 
