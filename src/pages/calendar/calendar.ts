@@ -14,44 +14,48 @@ import { HomePage } from '../home/home';
 })
 export class CalendarPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private calendar: Calendar, private platform: Platform) {
-    this.platform.ready().then(() => {
-      this.calendar.listCalendars().then(data => { 
-        this.calendar = data;
-      });
-    })
+  constructor(public navCtrl: NavController, public navParams: NavParams, private calendar: Calendar) {
+
   }
 
     //Page Load
-    ionViewDidLoad() {
-      console.log('ionViewDidLoad CalendarPage');
-    }
-
-    //Function to navigate to the "HomePage" using the NavController 
-   navigateToHomePage(){
-    this.navCtrl.push(HomePage);
-  }
-
-  //Calendar
-  addEvent(calendar) {
-
-    // if (this.platform.is('cordova')) {
-      
-    // } else {
-      
+    // ionViewDidLoad() {
+    //   console.log('ionViewDidLoad CalendarPage');
+    //   console.log('test value');
     // }
 
-    let date = new Date();
-    let options = { calendarID: calendar.id, calendarName: calendar.name, url: 'https://ionicacademy.com', firstReminderMinutes: 15};
-
-    this.calendar.createEventInteractivelyWithOptions('My new Event', 'Deez', 'Notes', date, date, options).then(res => {
-    }, err => {
-      console.log('err: ', err);
-    });
+    //Function to navigate to the "HomePage" using the NavController 
+  //  navigateToHomePage(){
+  //   this.navCtrl.push(HomePage);
+  // }
+  
+  openCalendar(){
+    this.calendar.openCalendar(new Date()).then(
+      (msg) => { console.log(msg); },
+      (err) => { console.log(err); }
+    )
   }
 
-  openCalendar(calendar) {
-    this.navCtrl.push('CalDetailsPage', { name: calendar.name })
-  }
+  addEvent(){
+    return this.calendar.createEventInteractively("event title");
+}
+
+
+scheduleEvents(){
+    this.calendar.hasReadWritePermission().then((result)=>{
+    if(result === false){
+        this.calendar.requestReadWritePermission().then((v)=>{
+            this.addEvent();
+        },(r)=>{
+            console.log("Rejected");
+        })
+    }
+    else
+    {
+        this.addEvent();
+    }
+    })
 
 }
+}
+
