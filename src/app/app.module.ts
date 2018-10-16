@@ -13,6 +13,7 @@ import { CalendarPage } from '../pages/calendar/calendar';
 import { AdminPage } from '../pages/admin/admin';
 import { LoginPage } from '../pages/login/login';
 import { AboutPage } from '../pages/about/about';
+import {AddEventPage} from '../pages/add-event/add-event';
 
 //Import Calendar
 import { Calendar } from '@ionic-native/calendar'; //This is the native cordova portion that allows interaction with the devices 
@@ -59,7 +60,8 @@ export const firebaseConfig = {
     CalendarPage,
     AdminPage,
     LoginPage,
-    AboutPage
+    AboutPage,
+    AddEventPage
   ],
   imports: [
     BrowserModule,
@@ -78,7 +80,8 @@ export const firebaseConfig = {
     CalendarPage,
     AdminPage,
     LoginPage,
-    AboutPage
+    AboutPage,
+    AddEventPage
   ],
   providers: [
     StatusBar,

@@ -7,6 +7,7 @@ import { Calendar } from '@ionic-native/calendar';
 
 //Import Pages
 import { HomePage } from '../home/home';
+import { AddEventPage} from '../add-event/add-event';
 
 @Component({
   selector: 'page-calendar',
@@ -63,5 +64,8 @@ scheduleEvents(){
     })
 
 }
+addEvent() {
+    this.navCtrl.push(AddEventPage);
+  }
 }
 
