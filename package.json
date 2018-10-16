@@ -67,6 +67,7 @@
       "cordova-plugin-calendar": {
         "CALENDAR_USAGE_DESCRIPTION": " "
       }
+      "cordova-plugin-camera": {}
     },
     "platforms": [
       "browser",
