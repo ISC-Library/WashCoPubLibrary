@@ -13,7 +13,7 @@
       </ion-item>
       <ion-item>
         <ion-label floating>Notes</ion-label>
-        <ion-input type="text" [(ngModel)]="event.message" name="message"></ion-input>
+        <ion-input type="text" [(ngModel)]="event.notes" name="notes"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>Start Date</ion-label>
@@ -24,7 +24,7 @@
         <ion-datetime displayFormat="DD MMM YYYY" pickerFormat="MM/DD/YYYY" [(ngModel)]="event.endDate" name="endDate"></ion-datetime>
       </ion-item>
       <ion-item>
-        <button ion-button (click)="save()" full round>Save</button>
+        <button ion-button type="submit" full round>Save</button>
       </ion-item>
     </ion-list>
   </form>

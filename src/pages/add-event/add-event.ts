@@ -1,22 +1,23 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { Calendar } from '@ionic-native/calendar';
-import {AngularFireDatabase} from '@angular/fire/database';
 import { Title } from '@angular/platform-browser';
+import { Observable } from 'rxjs/observable';
 
-/**
- * Generated class for the AddEventPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+//Import AF2 
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
-@IonicPage()
+
 @Component({
   selector: 'page-add-event',
   templateUrl: 'add-event.html',
 })
 export class AddEventPage {
+  
+  //Create the usernames variable: give it the type of "AngularFireList"
+  //This is for database troubleshooting and dummy data entry 
+  eventsRef: AngularFireList<any>;
+  events: Observable<any[]>;
   
   event = { title: "", location: "", notes: "", startDate: "", endDate: "", startTime:"", endTime:"" };
   constructor(public alertCtrl: AlertController,
@@ -24,6 +25,9 @@ export class AddEventPage {
     public navParams: NavParams,
     private calendar: Calendar,
     afDatabase:AngularFireDatabase) {
+      
+      //This is the reference to which portion of the database you want to access 
+      this.eventsRef = afDatabase.list('events');
   }
 
 
@@ -37,13 +41,51 @@ export class AddEventPage {
   //it back to the application and display it on the calendar. I think I have to create a handler to ship the data out
 
   save() {
+    console.log("save invoked");
     this.calendar.createEvent(this.event.title, this.event.location, this.event.notes, new Date(this.event.startDate), new Date(this.event.endDate)).then(
       (msg) => {
         let alert = this.alertCtrl.create({
           title: 'Success!',
           subTitle: 'Event saved successfully',
-          buttons: ['Ok'],
+          // buttons: ['Ok'],
+          buttons: [
+            {
+              text: 'Cancel',
+              handler: data => {
+                console.log('Cancel clicked');
+              }
+            },
+            {
+              //Pushing the data to firebase!!!
+              text: 'Save',
+              handler: data => {
+                const newEventsRef = this.eventsRef.push({});
+       
+                newEventsRef.set({
+                  id: newEventsRef.key,
+                  title: this.event.title,
+                  location: this.event.location,
+                  notes: this.event.notes,
+                  startDate: this.event.startDate,
+                  endDate: this.event.endDate
+                });
+              }
+            }
+          ]
         });
+
+        
+
+
+
+
+
+
+
+
+
+
+
         alert.present();
         this.navCtrl.pop();
       },

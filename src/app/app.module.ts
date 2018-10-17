@@ -29,6 +29,7 @@ import { TestProvider } from '../providers/test/test';
 //Note, module has been updated... all angularfire2 references are now at '@angular/fire'
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { CalenderEventsServiceProvider } from '../providers/calendar-event-service/calendar-event-service';
 
 // Initialize Firebase // AF2 Settings 
 export const firebaseConfig = {
@@ -87,9 +88,10 @@ export const firebaseConfig = {
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    TestProvider,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    Calendar
+    TestProvider,
+    Calendar,
+    CalenderEventsServiceProvider
   ]
 })
 export class AppModule { }
