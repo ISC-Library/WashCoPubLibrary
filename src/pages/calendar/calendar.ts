@@ -15,6 +15,21 @@ import { AddEventPage} from '../add-event/add-event';
 })
 export class CalendarPage {
 
+//Declare date variables 
+date: any;
+daysInThisMonth: any;
+daysInLastMonth: any;
+daysInNextMonth: any;
+monthNames: string[];
+currentMonth: any;
+currentYear: any;
+currentDate: any;
+
+//Declare event variables 
+eventList: any;
+selectedEvent: any;
+isSelected: any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private calendar: Calendar) {
 
   }
@@ -25,6 +40,29 @@ export class CalendarPage {
     this.navCtrl.push(HomePage);
   }
   
+  // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
+  //////// Below this are the portions to display event data  [][[][[][][][][][][][[][][]]]]
+  // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

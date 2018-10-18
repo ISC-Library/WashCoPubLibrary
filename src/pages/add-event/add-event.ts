@@ -39,7 +39,9 @@ export class AddEventPage {
 
   //So all I'm working on now is trying to send the data to FB from this point. Then I guess once the data is sent and stored, we'll see how we're supposed to pull
   //it back to the application and display it on the calendar. I think I have to create a handler to ship the data out
-
+  
+  
+  //Create New Events 
   save() {
     console.log("save invoked");
     this.calendar.createEvent(this.event.title, this.event.location, this.event.notes, new Date(this.event.startDate), new Date(this.event.endDate)).then(
@@ -73,19 +75,6 @@ export class AddEventPage {
             }
           ]
         });
-
-        
-
-
-
-
-
-
-
-
-
-
-
         alert.present();
         this.navCtrl.pop();
       },
