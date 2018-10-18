@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { Calendar } from '@ionic-native/calendar';
+import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 //Calendar dependencies installed, and ios emulator installed 
 //Calender updated from master to reflect the branch merge of installing IOS emulator environment
@@ -8,6 +10,9 @@ import { Calendar } from '@ionic-native/calendar';
 //Import Pages
 import { HomePage } from '../home/home';
 import { AddEventPage} from '../add-event/add-event';
+
+//Import Provider
+import { CalenderEventsServiceProvider } from '../../providers/calendar-event-service/calendar-event-service';
 
 @Component({
   selector: 'page-calendar',
@@ -24,14 +29,24 @@ monthNames: string[];
 currentMonth: any;
 currentYear: any;
 currentDate: any;
+selectedDay: any;
 
 //Declare event variables 
 eventList: any;
 selectedEvent: any;
 isSelected: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private calendar: Calendar) {
+//Class variable to hold the values gathered from the service 
+events: Observable<any[]>;
 
+//Declare the database filter variable 
+databaseFilter: BehaviorSubject<string | null> = new BehaviorSubject('');
+
+
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams, 
+              private calendar: Calendar,
+              public CalendarEventSvc: CalenderEventsServiceProvider) {
   }
 
 
@@ -43,6 +58,34 @@ isSelected: any;
   // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
   //////// Below this are the portions to display event data  [][[][[][][][][][][][[][][]]]]
   // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
+
+  //Call the calendar service 
+  //Function to interact with the "TestProvider" via button
+  callCalendarEventsProvider(){
+    // console.log("selected day");
+    // console.log(this.selectedDay);
+    // this.databaseFilter.next(this.selectedDay);
+    // console.log("filter")
+    // console.log(this.databaseFilter);
+    this.events = this.CalendarEventSvc.getEvents(this.databaseFilter);
+  }
+
+
+  //Get the selected day
+  onDaySelect($event) {
+    // console.log($event);
+    // console.log($event.year);
+    // console.log($event.month);
+    // console.log($event.date);
+
+    //this.selectedDay=$event.date;
+    this.selectedDay=("Test");
+    // this.databaseFilter=this.selectedDay;
+    
+    // console.log(this.databaseFilter);
+  }
+
+
 
   //Load events for the current months 
   loadEventThisMonth() {
@@ -62,7 +105,7 @@ isSelected: any;
   }
 
   //Check Events on a selected day 
-  checkEvent(day) {
+  checkEventDay(day) {
     var hasEvent = false;
     var thisDate1 = this.date.getFullYear()+"-"+(this.date.getMonth()+1)+"-"+day+" 00:00:00";
     var thisDate2 = this.date.getFullYear()+"-"+(this.date.getMonth()+1)+"-"+day+" 23:59:59";
@@ -74,19 +117,7 @@ isSelected: any;
     return hasEvent;
   }
 
-  //Select a day 
-  selectDate(day) {
-    this.isSelected = false;
-    this.selectedEvent = new Array();
-    var thisDate1 = this.date.getFullYear()+"-"+(this.date.getMonth()+1)+"-"+day+" 00:00:00";
-    var thisDate2 = this.date.getFullYear()+"-"+(this.date.getMonth()+1)+"-"+day+" 23:59:59";
-    this.eventList.forEach(event => {
-      if(((event.startDate >= thisDate1) && (event.startDate <= thisDate2)) || ((event.endDate >= thisDate1) && (event.endDate <= thisDate2))) {
-        this.isSelected = true;
-        this.selectedEvent.push(event);
-      }
-    });
-  }
+  
 
 
 
