@@ -44,20 +44,49 @@ isSelected: any;
   //////// Below this are the portions to display event data  [][[][[][][][][][][][[][][]]]]
   // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
 
+  //Load events for the current months 
+  loadEventThisMonth() {
+    this.eventList = new Array();
+    var startDate = new Date(this.date.getFullYear(), this.date.getMonth(), 1);
+    var endDate = new Date(this.date.getFullYear(), this.date.getMonth()+1, 0);
+    this.calendar.listEventsInRange(startDate, endDate).then(
+      (msg) => {
+        msg.forEach(item => {
+          this.eventList.push(item);
+        });
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
 
+  //Check Events on a selected day 
+  checkEvent(day) {
+    var hasEvent = false;
+    var thisDate1 = this.date.getFullYear()+"-"+(this.date.getMonth()+1)+"-"+day+" 00:00:00";
+    var thisDate2 = this.date.getFullYear()+"-"+(this.date.getMonth()+1)+"-"+day+" 23:59:59";
+    this.eventList.forEach(event => {
+      if(((event.startDate >= thisDate1) && (event.startDate <= thisDate2)) || ((event.endDate >= thisDate1) && (event.endDate <= thisDate2))) {
+        hasEvent = true;
+      }
+    });
+    return hasEvent;
+  }
 
-
-
-
-
-
-
-
-
-
-
-
-
+  //Select a day 
+  selectDate(day) {
+    this.isSelected = false;
+    this.selectedEvent = new Array();
+    var thisDate1 = this.date.getFullYear()+"-"+(this.date.getMonth()+1)+"-"+day+" 00:00:00";
+    var thisDate2 = this.date.getFullYear()+"-"+(this.date.getMonth()+1)+"-"+day+" 23:59:59";
+    this.eventList.forEach(event => {
+      if(((event.startDate >= thisDate1) && (event.startDate <= thisDate2)) || ((event.endDate >= thisDate1) && (event.endDate <= thisDate2))) {
+        this.isSelected = true;
+        this.selectedEvent.push(event);
+      }
+    });
+  }
 
 
 
