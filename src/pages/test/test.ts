@@ -44,7 +44,11 @@ export class TestPage {
       inputs: [
         {
           name: 'firstName',
-          placeholder: 'First Name'
+          placeholder: 'First Name',
+        },
+        {
+          name: 'lastName',
+          placeholder: 'Last Name',
         },
       ],
       buttons: [
@@ -61,7 +65,8 @@ export class TestPage {
    
             newUserRef.set({
               id: newUserRef.key,
-              firstName: data.firstName
+              firstName: data.firstName,
+              lastName: data.lastName
             });
           }
         }

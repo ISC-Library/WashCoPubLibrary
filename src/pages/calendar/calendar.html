@@ -25,6 +25,7 @@
   <div *ngFor="let event of events | async">
       
       <p>{{event.title}}</p>
+      <p>{{event.startDate}}</p>
   </div>
 
   <button ion-button (click)="callCalendarEventsProvider()">Display Events for Selected Day</button>

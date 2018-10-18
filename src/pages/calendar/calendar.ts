@@ -64,7 +64,7 @@ databaseFilter: BehaviorSubject<string | null> = new BehaviorSubject('');
   callCalendarEventsProvider(){
     // console.log("selected day");
     // console.log(this.selectedDay);
-    // this.databaseFilter.next(this.selectedDay);
+    this.databaseFilter.next(this.selectedDay);
     // console.log("filter")
     // console.log(this.databaseFilter);
     this.events = this.CalendarEventSvc.getEvents(this.databaseFilter);
@@ -79,10 +79,10 @@ databaseFilter: BehaviorSubject<string | null> = new BehaviorSubject('');
     // console.log($event.date);
 
     //this.selectedDay=$event.date;
-    this.selectedDay=("Test");
-    // this.databaseFilter=this.selectedDay;
+    this.selectedDay="2017";
+    //this.databaseFilter=this.selectedDay;
     
-    // console.log(this.databaseFilter);
+     //console.log(this.databaseFilter);
   }
 
 
