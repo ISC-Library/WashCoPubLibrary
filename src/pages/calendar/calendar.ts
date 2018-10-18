@@ -13,6 +13,7 @@ import { AddEventPage} from '../add-event/add-event';
 
 //Import Provider
 import { CalenderEventsServiceProvider } from '../../providers/calendar-event-service/calendar-event-service';
+import { getLocaleDateTimeFormat, getLocaleDateFormat } from '@angular/common';
 
 @Component({
   selector: 'page-calendar',
@@ -20,15 +21,9 @@ import { CalenderEventsServiceProvider } from '../../providers/calendar-event-se
 })
 export class CalendarPage {
 
-//Declare date variables 
+//Declare Date variables 
 date: any;
-daysInThisMonth: any;
-daysInLastMonth: any;
-daysInNextMonth: any;
-monthNames: string[];
-currentMonth: any;
-currentYear: any;
-currentDate: any;
+currentDay: any;
 selectedDay: any;
 
 //Declare event variables 
@@ -55,9 +50,11 @@ databaseFilter: BehaviorSubject<string | null> = new BehaviorSubject('');
     this.navCtrl.push(HomePage);
   }
   
+
   // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
   //////// Below this are the portions to display event data  [][[][[][][][][][][][[][][]]]]
   // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
+
 
   //Call the calendar service 
   //Function to interact with the "TestProvider" via button
@@ -66,12 +63,30 @@ databaseFilter: BehaviorSubject<string | null> = new BehaviorSubject('');
     this.events = this.CalendarEventSvc.getEvents(this.databaseFilter);
   }
 
-  ionViewDidLoad($event){
-    console.log($event.year + "-" + ($event.month + 1) + "-" + $event.date);
-    this.selectedDay=($event.year + "-" + ($event.month + 1) + "-" + $event.date);
+
+  ionViewDidLoad(){
+    //Set the value of class variable "this.date" to a new date() , which is the current date
+    this.date = new Date();
+    
+    //On load set the value of the "databaseFilter" to the current date by default
+      //^^^ Formatted to the way firebase is storing the date
+    this.databaseFilter.next(this.date.getFullYear() + "-" + (this.date.getMonth() + 1) + "-" + this.date.getDate());
+
+    //Call the calendar service to load the events of the current day by default
+    this.events = this.CalendarEventSvc.getEvents(this.databaseFilter);
+
+
+    // console.log(this.date.getDate() + " day")
+    // console.log(this.date.getMonth() + " month")
+    // console.log(this.date.getFullYear() + " year")
+
+    // //Values to get the timezone offset if necessary
+    // var tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
+    // var localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0,-1);
   }
 
-  //Get the selected day
+
+  //Get the selected day 
   onDaySelect($event) {
     //Properties of $event below::
     // console.log($event);
@@ -79,9 +94,28 @@ databaseFilter: BehaviorSubject<string | null> = new BehaviorSubject('');
     // console.log($event.month);
     // console.log($event.date);
 
+    //Format the date gathered from the event into a string that can be compared to firebase 
     console.log($event.year + "-" + ($event.month + 1) + "-" + $event.date);
+    //Store that formatted string into the "selectedDay" class variable 
     this.selectedDay=($event.year + "-" + ($event.month + 1) + "-" + $event.date);
   }
+
+
+  //Check Events on a selected day 
+  checkEventDay(day) {
+    var hasEvent = false;
+    var thisDate1 = this.date.getFullYear()+"-"+(this.date.getMonth()+1)+"-"+day+" 00:00:00";
+    var thisDate2 = this.date.getFullYear()+"-"+(this.date.getMonth()+1)+"-"+day+" 23:59:59";
+    this.eventList.forEach(event => {
+      if(((event.startDate >= thisDate1) && (event.startDate <= thisDate2)) || ((event.endDate >= thisDate1) && (event.endDate <= thisDate2))) {
+        hasEvent = true;
+      }
+    });
+    return hasEvent;
+  }
+
+
+
 
 
 
@@ -101,21 +135,13 @@ databaseFilter: BehaviorSubject<string | null> = new BehaviorSubject('');
       }
     );
   }
-
-  //Check Events on a selected day 
-  checkEventDay(day) {
-    var hasEvent = false;
-    var thisDate1 = this.date.getFullYear()+"-"+(this.date.getMonth()+1)+"-"+day+" 00:00:00";
-    var thisDate2 = this.date.getFullYear()+"-"+(this.date.getMonth()+1)+"-"+day+" 23:59:59";
-    this.eventList.forEach(event => {
-      if(((event.startDate >= thisDate1) && (event.startDate <= thisDate2)) || ((event.endDate >= thisDate1) && (event.endDate <= thisDate2))) {
-        hasEvent = true;
-      }
-    });
-    return hasEvent;
-  }
-
   
+
+
+
+
+
+
 
 
 
@@ -143,8 +169,8 @@ databaseFilter: BehaviorSubject<string | null> = new BehaviorSubject('');
     return this.calendar.createEventInteractively("event title");
 }
 
-//Native event scheduler 
-scheduleEvents(){
+  //Native event scheduler 
+  scheduleEvents(){
     this.calendar.hasReadWritePermission().then((result)=>{
     if(result === false){
         this.calendar.requestReadWritePermission().then((v)=>{
