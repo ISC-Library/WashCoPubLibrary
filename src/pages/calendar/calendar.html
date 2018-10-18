@@ -23,19 +23,18 @@
   
 
   <div *ngFor="let event of events | async">
-      
       <p>{{event.title}}</p>
       <p>{{event.startDate}}</p>
   </div>
 
   <button ion-button (click)="callCalendarEventsProvider()">Display Events for Selected Day</button>
 
-
-
+  <h4>{{currentDate}}</h4>
+  
 
   <!-- Everything below her is for native functions -->
   <!-- Formatting for event buttons  -->
-
+ 
   <button ion-button (click)="openCalendar()">Open Calendar on Current Date</button>
   <button ion-button (click)="scheduleEvents()">Schedule Events</button>
   <button ion-button (click)="addEvent()">Add Event</button>

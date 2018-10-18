@@ -62,27 +62,25 @@ databaseFilter: BehaviorSubject<string | null> = new BehaviorSubject('');
   //Call the calendar service 
   //Function to interact with the "TestProvider" via button
   callCalendarEventsProvider(){
-    // console.log("selected day");
-    // console.log(this.selectedDay);
     this.databaseFilter.next(this.selectedDay);
-    // console.log("filter")
-    // console.log(this.databaseFilter);
     this.events = this.CalendarEventSvc.getEvents(this.databaseFilter);
   }
 
+  ionViewDidLoad($event){
+    console.log($event.year + "-" + ($event.month + 1) + "-" + $event.date);
+    this.selectedDay=($event.year + "-" + ($event.month + 1) + "-" + $event.date);
+  }
 
   //Get the selected day
   onDaySelect($event) {
+    //Properties of $event below::
     // console.log($event);
     // console.log($event.year);
     // console.log($event.month);
     // console.log($event.date);
 
-    //this.selectedDay=$event.date;
-    this.selectedDay="2017";
-    //this.databaseFilter=this.selectedDay;
-    
-     //console.log(this.databaseFilter);
+    console.log($event.year + "-" + ($event.month + 1) + "-" + $event.date);
+    this.selectedDay=($event.year + "-" + ($event.month + 1) + "-" + $event.date);
   }
 
 
