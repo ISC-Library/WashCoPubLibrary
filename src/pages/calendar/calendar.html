@@ -12,25 +12,38 @@
   <button (click)="navigateToHomePage()" ion-button>Navigate to Home Page</button>
 
 
-
   <!-- Calendar html -->
 
   <!-- <ion-calendar #calendar></ion-calendar> -->
   <!-- <ion-calendar #calendar lang="es"></ion-calendar> // Spanish support -->
   <!-- <ion-calendar #calendar lang="en"></ion-calendar>   -->
 
-  <ion-calendar #calendar (onDaySelect)="onDaySelect($event)"></ion-calendar>
-  
 
-  <div *ngFor="let event of events | async">
+  <!-- Adding (onDaySelect)="callCalendarEventsProvider()" makes it so when you press the days it shows events -->
+  <ion-calendar  #calendar [events]="[
+  {
+    year: 2018,
+    month: 9,
+    date: 25
+  },
+  {
+    year: 2018,
+    month: 9,
+    date: 26
+  }]
+" (onDaySelect)="onDaySelect($event)" (onDaySelect)="callCalendarEventsProvider()"></ion-calendar>
+
+  <div *ngFor="let event of events | async" >
       <p>{{event.title}}</p>
       <p>{{event.startDate}}</p>
   </div>
 
-  <button ion-button (click)="callCalendarEventsProvider()">Display Events for Selected Day</button>
+
+  <!-- This now happens when you click the days. -->
+  <!-- <button ion-button (click)="callCalendarEventsProvider()">Display Events for Selected Day</button> -->
   
 
-  <!-- Everything below her is for native functions -->
+  <!-- Everything below here is for native functions -->
   <!-- Formatting for event buttons  -->
  
   <button ion-button (click)="openCalendar()">Open Calendar on Current Date</button>
