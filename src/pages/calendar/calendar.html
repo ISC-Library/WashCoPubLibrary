@@ -30,10 +30,15 @@
     year: 2018,
     month: 9,
     date: 26
+  },
+  {
+    year: 2018,
+    month: 9,
+    date: 17
   }]
 " (onDaySelect)="onDaySelect($event)" (onDaySelect)="callCalendarEventsProvider()" ></ion-calendar></div>
 
-  <div *ngFor="let event of events | async" >
+  <div class='listOfEvents' *ngFor="let event of events | async" >
       <p>{{event.title}}</p>
       <p>{{event.startDate}}</p>
   </div>

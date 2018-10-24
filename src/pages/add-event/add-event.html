@@ -1,9 +1,7 @@
 <ion-content padding>
-  <form (ngSubmit)="save()">
+  <form  (ngSubmit)="save()">
     <ion-list>
-      <!-- I had to rename the 'name="event.title"' portions so that I could call them in the TS. For whatever reason it does not like "event.----" when using 
-        it as the variable name. I believe it's because 'event.' is it's own object/handler in JS  -->
-      <ion-item>
+      <ion-item >
         <ion-label floating>Title</ion-label>
         <ion-input type="text" [(ngModel)]="event.title" name="title"></ion-input>
       </ion-item>
