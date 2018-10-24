@@ -1,20 +1,11 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title text-center>
-      Washington County Public Library
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+<ion-content  padding>
 
-<ion-content padding>
 
-  <h4>This is the home page!</h4>
-
-  <button ion-button full color="secondary" (click)= "goToCalendar()"> Check!</button>
-
-  <p>
-  </p>
+  <img src="assets/imgs/WaCoLib_btnEvents.png" class="eventsButtonClass" (click)="goToCalendar()">
+  <img src="assets/imgs/WaCoLib_btnBookShelf.png" class="bookshelfButtonClass" (click)="goToBookShelf()">
+  <img src="assets/imgs/WaCoLib_btnHelp.png" class="helpButtonClass" (click)="goToHelp()">
 
     <button (click)="navigateToTestPage()" ion-button>Navigate to Test Page</button>
     
 </ion-content>
+
