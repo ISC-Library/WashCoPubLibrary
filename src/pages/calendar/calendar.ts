@@ -111,6 +111,10 @@ day: any;
   
   //I don't fucking understand the error I'm getting... the documentatino in the link below says to do it this way
   //https://www.npmjs.com/package/ionic3-calendar-en?activeTab=readme
+
+  //This is an apparent solution, but I have work in 30 mins and my brain is shot to hell
+  //https://github.com/angular-ui/ui-select/issues/519
+
   //Uncaught(in promise): TypeError: Cannot read property 'length' of undefined TypeError: Cannot read property 'length' of undefined at Calendar.isInEvents
   }
 
