@@ -34,9 +34,14 @@ isSelected: any;
 //Class variable to hold the values gathered from the service 
 events: Observable<any[]>;
 
+//Declare list (array) to hold dateparts, used to pass event dates to calendar for CSS purposes (THE DOTS!)
+currentEvents: any;
+
 //Declare the database filter variable 
 databaseFilter: BehaviorSubject<string | null> = new BehaviorSubject('');
-
+year: any; 
+month: any;
+day: any;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams, 
@@ -57,10 +62,10 @@ databaseFilter: BehaviorSubject<string | null> = new BehaviorSubject('');
 
 
   //Call the calendar service 
-  //Function to interact with the "TestProvider" via button
   callCalendarEventsProvider(){
     this.databaseFilter.next(this.selectedDay);
     this.events = this.CalendarEventSvc.getEvents(this.databaseFilter);
+    console.log(this.events);
   }
 
 
@@ -75,14 +80,38 @@ databaseFilter: BehaviorSubject<string | null> = new BehaviorSubject('');
     //Call the calendar service to load the events of the current day by default
     this.events = this.CalendarEventSvc.getEvents(this.databaseFilter);
 
-
-    // console.log(this.date.getDate() + " day")
-    // console.log(this.date.getMonth() + " month")
-    // console.log(this.date.getFullYear() + " year")
-
     // //Values to get the timezone offset if necessary
     // var tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
     // var localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0,-1);
+
+    //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+    //Reset the "databaseFilter" to a value which will allow all values to be pulled from the database
+    this.databaseFilter.next("")
+    //Reset the "events" BehaviorSubject (behaves like an array) to the  values of all events
+    //this.events = this.CalendarEventSvc.getEvents(this.databaseFilter)
+
+    //Populate the different members in the array dynamically
+    //This can be bound to the .html decorator 
+    this.currentEvents = [
+      {
+        year: 2018,
+        month: 9,
+        date: 25
+      },
+      {
+        year: 2017,
+        month: 9,
+        date: 20
+      }
+    ];
+
+    console.log(this.currentEvents)
+
+  
+  //I don't fucking understand the error I'm getting... the documentatino in the link below says to do it this way
+  //https://www.npmjs.com/package/ionic3-calendar-en?activeTab=readme
+  //Uncaught(in promise): TypeError: Cannot read property 'length' of undefined TypeError: Cannot read property 'length' of undefined at Calendar.isInEvents
   }
 
 
@@ -95,10 +124,13 @@ databaseFilter: BehaviorSubject<string | null> = new BehaviorSubject('');
     // console.log($event.date);
 
     //Format the date gathered from the event into a string that can be compared to firebase 
-    console.log($event.year + "-" + ($event.month + 1) + "-" + $event.date);
+    //console.log($event.year + "-" + ($event.month + 1) + "-" + $event.date);
     //Store that formatted string into the "selectedDay" class variable 
     this.selectedDay=($event.year + "-" + ($event.month + 1) + "-" + $event.date);
   }
+
+
+
 
 
   //Check Events on a selected day 

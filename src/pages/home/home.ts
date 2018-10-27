@@ -6,7 +6,8 @@ import { CalendarPage } from '../calendar/calendar';
  import { TestPage } from '../test/test';
  import { AboutPage } from '../about/about';
 
-@Component({
+ 
+ @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })

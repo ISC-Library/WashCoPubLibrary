@@ -20,11 +20,11 @@
 
 
   <!-- Adding (onDaySelect)="callCalendarEventsProvider()" makes it so when you press the days it shows events -->
-  <div class='calendarBackground'><ion-calendar #calendar [events]="[
+  <!-- <div class='calendarBackground'><ion-calendar #calendar [events]="[
   {
-    year: 2018,
-    month: 9,
-    date: 25
+    eventDates.year,
+    eventDates.month,
+    eventDates.day
   },
   {
     year: 2018,
@@ -34,9 +34,13 @@
   {
     year: 2018,
     month: 9,
-    date: 17
-  }]
-" (onDaySelect)="onDaySelect($event)" (onDaySelect)="callCalendarEventsProvider()" ></ion-calendar></div>
+    date: 22
+  }]" 
+  (onDaySelect)="onDaySelect($event)" (onDaySelect)="callCalendarEventsProvider()" ></ion-calendar></div> -->
+
+
+  <ion-calendar #calendar [events]="currentEvents" (onDaySelect)="onDaySelect($event)" (onMonthSelect)="onMonthSelect($event)"></ion-calendar>
+
 
   <div class='listOfEvents' *ngFor="let event of events | async" >
       <p>{{event.title}}</p>
