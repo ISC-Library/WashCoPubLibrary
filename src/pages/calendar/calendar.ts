@@ -93,7 +93,7 @@ export class CalendarPage {
 
     //Populate the different members in the array dynamically
     //This can be bound to the .html decorator 
-    console.log(this.year)
+    console.log(this.events.source)
 
     // for(let event of this.events) {
     //   // Do something.
@@ -117,18 +117,17 @@ export class CalendarPage {
   //Get the selected day 
   onDaySelect($event) {
     // Properties of $event below::
-    console.log($event);
-    console.log($event.year);
-    console.log($event.month);
-    console.log($event.date);
+    // console.log($event);
+    // console.log($event.year);
+    // console.log($event.month);
+    // console.log($event.date);
 
     //Format the date gathered from the event into a string that can be compared to firebase 
-    console.log($event.year + "-" + ($event.month + 1) + "-" + $event.date);
+    // console.log($event.year + "-" + ($event.month + 1) + "-" + $event.date);
     //Store that formatted string into the "selectedDay" class variable 
     this.selectedDay = ($event.year + "-" + ($event.month + 1) + "-" + $event.date);
-     //this.selectedDay = ($event.year + "-" + ($event.month + 1) + "-" + "10");
-    // this.selectedDay = ("2018-10-10");
-    console.log(this.selectedDay)
+    
+    //Call the database filtered by the selected day
     this.databaseFilter.next(this.selectedDay);
     this.events = this.CalendarEventSvc.getEvents(this.databaseFilter);
   }
