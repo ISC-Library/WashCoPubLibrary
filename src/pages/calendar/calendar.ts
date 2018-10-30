@@ -90,21 +90,22 @@ day: any;
 
     //Populate the different members in the array dynamically
     //This can be bound to the .html decorator 
+    
     this.currentEvents = [
       {
         year: 2018,
         month: 9,
-        date: 25
+        date: 7
       },
       {
-        year: 2017,
+        year: 2018,
         month: 9,
-        date: 20
+        date: 10
       }
     ];
 
-    console.log(this.currentEvents)
-
+    //this.currentEvents = "year: 2018, month: 9, date: 20"
+    
   
   //I don't fucking understand the error I'm getting... the documentatino in the link below says to do it this way
   //https://www.npmjs.com/package/ionic3-calendar-en?activeTab=readme
