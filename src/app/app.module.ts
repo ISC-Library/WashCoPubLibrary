@@ -13,7 +13,9 @@ import { CalendarPage } from '../pages/calendar/calendar';
 import { AdminPage } from '../pages/admin/admin';
 import { LoginPage } from '../pages/login/login';
 import { AboutPage } from '../pages/about/about';
-import {AddEventPage} from '../pages/add-event/add-event';
+import { AddEventPage} from '../pages/add-event/add-event';
+import { ViewSuggestedEventsPage } from '../pages/view-suggested-events/view-suggested-events';
+import { AddSuggestedEventsPage } from '../pages/add-suggested-events/add-suggested-events';
 
 //Import Calendar
 import { Calendar } from '@ionic-native/calendar'; //This is the native cordova portion that allows interaction with the devices 
@@ -24,12 +26,13 @@ import { ComponentsModule } from '../components/components.module';
 
 //Import Providers 
 import { TestProvider } from '../providers/test/test';
+import { SuggestedEventsServiceProvider } from '../providers/add-suggested-events/add-suggested-events';
+import { CalenderEventsServiceProvider } from '../providers/calendar-event-service/calendar-event-service';
 
 // Import the AF2 Module
 //Note, module has been updated... all angularfire2 references are now at '@angular/fire'
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { CalenderEventsServiceProvider } from '../providers/calendar-event-service/calendar-event-service';
 
 // Initialize Firebase // AF2 Settings 
 export const firebaseConfig = {
@@ -62,7 +65,9 @@ export const firebaseConfig = {
     AdminPage,
     LoginPage,
     AboutPage,
-    AddEventPage
+    AddEventPage,
+    AddSuggestedEventsPage,
+    ViewSuggestedEventsPage
   ],
   imports: [
     BrowserModule,
@@ -82,7 +87,9 @@ export const firebaseConfig = {
     AdminPage,
     LoginPage,
     AboutPage,
-    AddEventPage
+    AddEventPage,
+    AddSuggestedEventsPage,
+    ViewSuggestedEventsPage
   ],
   providers: [
     StatusBar,
@@ -91,7 +98,8 @@ export const firebaseConfig = {
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     TestProvider,
     Calendar,
-    CalenderEventsServiceProvider
+    CalenderEventsServiceProvider,
+    SuggestedEventsServiceProvider
   ]
 })
 export class AppModule { }

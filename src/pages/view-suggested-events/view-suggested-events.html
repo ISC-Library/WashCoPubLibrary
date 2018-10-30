@@ -1,0 +1,21 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>ViewSuggestedEvents</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+
+<ion-content padding>
+
+    <button (click)="callAddSuggestedEventsServiceProvider()" ion-button>Call Provider</button>
+
+    <div class='listOfEvents' *ngFor="let event of events | async" >
+      <p>{{event.title}}</p>
+      <p>{{event.startDate}}</p>
+    </div>
+
+</ion-content>

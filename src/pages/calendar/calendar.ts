@@ -4,9 +4,6 @@ import { Calendar } from '@ionic-native/calendar';
 import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-//Calendar dependencies installed, and ios emulator installed 
-//Calender updated from master to reflect the branch merge of installing IOS emulator environment
-
 //Import Pages
 import { HomePage } from '../home/home';
 import { AddEventPage} from '../add-event/add-event';

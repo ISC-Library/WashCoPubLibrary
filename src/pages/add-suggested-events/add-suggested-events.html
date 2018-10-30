@@ -1,0 +1,38 @@
+
+<ion-header>
+    <ion-navbar>
+      <ion-title>
+        Add Suggested Event Page
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+
+<ion-content padding>
+  <form  (ngSubmit)="save()">
+    <ion-list>
+      <ion-item >
+        <ion-label floating>Title</ion-label>
+        <ion-input type="text" [(ngModel)]="event.title" name="title"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Location</ion-label>
+        <ion-input type="text" [(ngModel)]="event.location" name="location"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Notes</ion-label>
+        <ion-input type="text" [(ngModel)]="event.notes" name="notes"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Start Date</ion-label>
+        <ion-datetime displayFormat="MMM DD, YYYY HH:mm" pickerFormat="MMM DD, YYYY HH:mm" [(ngModel)]="event.startDate" name="startDate"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>End Date</ion-label>
+        <ion-datetime displayFormat="DD MMM YYYY" pickerFormat="MM/DD/YYYY" [(ngModel)]="event.endDate" name="endDate"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <button ion-button type="submit" full round>Save</button>
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>

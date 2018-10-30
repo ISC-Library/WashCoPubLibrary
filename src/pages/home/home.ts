@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { CalendarPage } from '../calendar/calendar';
 
 //Import any other pages you need to reference
- import { TestPage } from '../test/test';
- import { AboutPage } from '../about/about';
+import { TestPage } from '../test/test';
+import { AboutPage } from '../about/about';
+import { CalendarPage } from '../calendar/calendar';
+import { AddSuggestedEventsPage } from '../add-suggested-events/add-suggested-events'
+import { ViewSuggestedEventsPage } from '../view-suggested-events/view-suggested-events'
 
- 
  @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -20,7 +21,17 @@ export class HomePage {
   navigateToTestPage(){
     this.navCtrl.push(TestPage);
   }
-  
+
+  //Function to navigate to the "SuggestEventsPage"
+  navigateToAddSuggestEventsPage(){
+    this.navCtrl.push(AddSuggestedEventsPage);
+  }
+
+   //Function to navigate to the "SuggestEventsPage"
+  navigateToViewSuggestEventsPage(){
+    this.navCtrl.push(ViewSuggestedEventsPage);
+  }
+
   goToCalendar() {
     this.navCtrl.push(CalendarPage);
   }
