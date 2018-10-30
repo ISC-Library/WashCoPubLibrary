@@ -44,14 +44,9 @@ export class CalendarPage {
     public navParams: NavParams,
     private calendar: Calendar,
     public CalendarEventSvc: CalenderEventsServiceProvider) {
-    //Apparently if we want to pass an array to an element in HTML it has to be defined at the class level as a part of the constructor
-    // https://stackoverflow.com/questions/45792074/ngfor-array-to-ion-list-in-ionic-2
-    this.currentEvents = [{
-      year: 2018, month: 9, date: 26
-    },
-    {
-      year: 2018, month: 9, date: 22
-    }];
+    
+    //This.currentEvents needs to be converted to any array in the constructor 
+    this.currentEvents = [];
   }
 
 
@@ -69,9 +64,8 @@ export class CalendarPage {
 
   //Call the calendar service 
   callCalendarEventsProvider() {
-    this.databaseFilter.next(this.selectedDay);
-    this.events = this.CalendarEventSvc.getEvents(this.databaseFilter);
-    console.log(this.events);
+    // this.databaseFilter.next(this.selectedDay);
+    // this.events = this.CalendarEventSvc.getEvents(this.databaseFilter);
   }
 
 
@@ -95,72 +89,48 @@ export class CalendarPage {
     //Reset the "databaseFilter" to a value which will allow all values to be pulled from the database
     this.databaseFilter.next("")
     //Reset the "events" BehaviorSubject (behaves like an array) to the  values of all events
-    //this.events = this.CalendarEventSvc.getEvents(this.databaseFilter)
+    this.events = this.CalendarEventSvc.getEvents(this.databaseFilter)
 
     //Populate the different members in the array dynamically
     //This can be bound to the .html decorator 
-<<<<<<< HEAD
-    
+    console.log(this.year)
+
+    // for(let event of this.events) {
+    //   // Do something.
+    // }
+
     this.currentEvents = [
       {
         year: 2018,
         month: 9,
-        date: 7
+        date: 1
       },
       {
         year: 2018,
         month: 9,
-        date: 10
+        date: 23
       }
     ];
 
-    //this.currentEvents = "year: 2018, month: 9, date: 20"
-    
-  
-  //I don't fucking understand the error I'm getting... the documentatino in the link below says to do it this way
-  //https://www.npmjs.com/package/ionic3-calendar-en?activeTab=readme
-
-  //This is an apparent solution, but I have work in 30 mins and my brain is shot to hell
-  //https://github.com/angular-ui/ui-select/issues/519
-
-  //Uncaught(in promise): TypeError: Cannot read property 'length' of undefined TypeError: Cannot read property 'length' of undefined at Calendar.isInEvents
-=======
-    // this.currentEvents = [
-    //   {
-    //     year: 2018,
-    //     month: 10,
-    //     date: 25
-    //   },
-    //   {
-    //     year: 2018,
-    //     month: 10,
-    //     date: 28
-    //   }
-    // ];
-
-
-    //I don't fucking understand the error I'm getting... the documentatino in the link below says to do it this way
-    //https://www.npmjs.com/package/ionic3-calendar-en?activeTab=readme
-
-    //This is an apparent solution, but I have work in 30 mins and my brain is shot to hell
-    //https://github.com/angular-ui/ui-select/issues/519
-
-    //Uncaught(in promise): TypeError: Cannot read property 'length' of undefined TypeError: Cannot read property 'length' of undefined at Calendar.isInEvents
->>>>>>> 9554de175870de5b36033009550376ab194bb648
-  }
+   }
 
   //Get the selected day 
   onDaySelect($event) {
-    //Properties of $event below::
-    // console.log($event);
-    // console.log($event.year);
-    // console.log($event.month);
-    // console.log($event.date);
+    // Properties of $event below::
+    console.log($event);
+    console.log($event.year);
+    console.log($event.month);
+    console.log($event.date);
 
     //Format the date gathered from the event into a string that can be compared to firebase 
-    //console.log($event.year + "-" + ($event.month + 1) + "-" + $event.date);
+    console.log($event.year + "-" + ($event.month + 1) + "-" + $event.date);
     //Store that formatted string into the "selectedDay" class variable 
     this.selectedDay = ($event.year + "-" + ($event.month + 1) + "-" + $event.date);
+     //this.selectedDay = ($event.year + "-" + ($event.month + 1) + "-" + "10");
+    // this.selectedDay = ("2018-10-10");
+    console.log(this.selectedDay)
+    this.databaseFilter.next(this.selectedDay);
+    this.events = this.CalendarEventSvc.getEvents(this.databaseFilter);
   }
 
 

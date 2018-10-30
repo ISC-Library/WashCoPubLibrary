@@ -19,39 +19,10 @@
   <!-- <ion-calendar #calendar lang="en"></ion-calendar>   -->
 
 
-  <!-- Adding (onDaySelect)="callCalendarEventsProvider()" makes it so when you press the days it shows events -->
-<<<<<<< HEAD
-  <!-- <div class='calendarBackground'><ion-calendar #calendar [events]="[
-  {
-    year: 2018,
-    month: 9,
-    date: 7
-  },
-  {
-    year: 2018,
-    month: 9,
-    date: 22
-  }]" 
-  (onDaySelect)="onDaySelect($event)" (onDaySelect)="callCalendarEventsProvider()" ></ion-calendar></div> -->
-
-  <!-- <app-name-child *ngFor="let name of names" [name]="name"></app-name-child> -->
-
-  <!-- https://stackoverflow.com/questions/46595327/how-to-pass-array-of-the-object-from-page-to-component-in-ionic-3 -->
-  <!-- https://angular.io/guide/component-interaction
-   -->
-  <div class='calendarBackground'><ion-calendar #calendar *ngFor="let event of currentEvents" [events]="event"
-    
-    (onDaySelect)="onDaySelect($event)" (onDaySelect)="callCalendarEventsProvider()" ></ion-calendar></div>
-
-
-  <!-- <ion-calendar #calendar [events]="currentEvents" (onDaySelect)="onDaySelect($event)" (onMonthSelect)="onMonthSelect($event)"></ion-calendar> -->
-=======
+<!-- Adding (onDaySelect)="callCalendarEventsProvider()" makes it so when you press the days it shows events -->
 <div class='calendarBackground'><ion-calendar #calendar [events]="this.currentEvents"
-  (onDaySelect)="onDaySelect($event)" (onDaySelect)="callCalendarEventsProvider()"></ion-calendar></div>
->>>>>>> 9554de175870de5b36033009550376ab194bb648
+  (onDaySelect)="onDaySelect($event)"></ion-calendar></div>
 
-<!-- <div class='calendarBackground'><ion-calendar #calendar [events]="[{year:2018,month:9,date:26},{year:2018,month:9,date:22}]"
-  (onDaySelect)="onDaySelect($event)" (onDaySelect)="callCalendarEventsProvider()" ></ion-calendar></div> -->
 
   <div class='listOfEvents' *ngFor="let event of events | async" >
       <p>{{event.title}}</p>
