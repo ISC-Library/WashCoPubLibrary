@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 //Import Pages
 import { HomePage } from '../home/home';
-import { AddEventPage} from '../add-event/add-event';
+import { AddEventPage } from '../add-event/add-event';
 
 //Import Provider
 import { CalenderEventsServiceProvider } from '../../providers/calendar-event-service/calendar-event-service';
@@ -18,40 +18,49 @@ import { getLocaleDateTimeFormat, getLocaleDateFormat } from '@angular/common';
 })
 export class CalendarPage {
 
-//Declare Date variables 
-date: any;
-currentDay: any;
-selectedDay: any;
+  //Declare Date variables 
+  date: any;
+  currentDay: any;
+  selectedDay: any;
 
-//Declare event variables 
-eventList: any;
-selectedEvent: any;
-isSelected: any;
+  //Declare event variables 
+  eventList: any;
+  selectedEvent: any;
+  isSelected: any;
 
-//Class variable to hold the values gathered from the service 
-events: Observable<any[]>;
+  //Class variable to hold the values gathered from the service 
+  events: Observable<any[]>;
 
-//Declare list (array) to hold dateparts, used to pass event dates to calendar for CSS purposes (THE DOTS!)
-currentEvents: any;
+  //Declare list (array) to hold dateparts, used to pass event dates to calendar for CSS purposes (THE DOTS!)
+  currentEvents: any;
 
-//Declare the database filter variable 
-databaseFilter: BehaviorSubject<string | null> = new BehaviorSubject('');
-year: any; 
-month: any;
-day: any;
+  //Declare the database filter variable 
+  databaseFilter: BehaviorSubject<string | null> = new BehaviorSubject('');
+  year: any;
+  month: any;
+  day: any;
 
-  constructor(public navCtrl: NavController, 
-              public navParams: NavParams, 
-              private calendar: Calendar,
-              public CalendarEventSvc: CalenderEventsServiceProvider) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private calendar: Calendar,
+    public CalendarEventSvc: CalenderEventsServiceProvider) {
+    //Apparently if we want to pass an array to an element in HTML it has to be defined at the class level as a part of the constructor
+    // https://stackoverflow.com/questions/45792074/ngfor-array-to-ion-list-in-ionic-2
+    this.currentEvents = [{
+      year: 2018, month: 9, date: 26
+    },
+    {
+      year: 2018, month: 9, date: 22
+    }];
   }
 
 
- // Function to navigate to the "HomePage" using the NavController 
-   navigateToHomePage(){
+
+  // Function to navigate to the "HomePage" using the NavController 
+  navigateToHomePage() {
     this.navCtrl.push(HomePage);
   }
-  
+
 
   // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
   //////// Below this are the portions to display event data  [][[][[][][][][][][][[][][]]]]
@@ -59,19 +68,19 @@ day: any;
 
 
   //Call the calendar service 
-  callCalendarEventsProvider(){
+  callCalendarEventsProvider() {
     this.databaseFilter.next(this.selectedDay);
     this.events = this.CalendarEventSvc.getEvents(this.databaseFilter);
     console.log(this.events);
   }
 
 
-  ionViewDidLoad(){
+  ionViewDidLoad() {
     //Set the value of class variable "this.date" to a new date() , which is the current date
     this.date = new Date();
-    
+
     //On load set the value of the "databaseFilter" to the current date by default
-      //^^^ Formatted to the way firebase is storing the date
+    //^^^ Formatted to the way firebase is storing the date
     this.databaseFilter.next(this.date.getFullYear() + "-" + (this.date.getMonth() + 1) + "-" + this.date.getDate());
 
     //Call the calendar service to load the events of the current day by default
@@ -90,6 +99,7 @@ day: any;
 
     //Populate the different members in the array dynamically
     //This can be bound to the .html decorator 
+<<<<<<< HEAD
     
     this.currentEvents = [
       {
@@ -114,8 +124,30 @@ day: any;
   //https://github.com/angular-ui/ui-select/issues/519
 
   //Uncaught(in promise): TypeError: Cannot read property 'length' of undefined TypeError: Cannot read property 'length' of undefined at Calendar.isInEvents
-  }
+=======
+    // this.currentEvents = [
+    //   {
+    //     year: 2018,
+    //     month: 10,
+    //     date: 25
+    //   },
+    //   {
+    //     year: 2018,
+    //     month: 10,
+    //     date: 28
+    //   }
+    // ];
 
+
+    //I don't fucking understand the error I'm getting... the documentatino in the link below says to do it this way
+    //https://www.npmjs.com/package/ionic3-calendar-en?activeTab=readme
+
+    //This is an apparent solution, but I have work in 30 mins and my brain is shot to hell
+    //https://github.com/angular-ui/ui-select/issues/519
+
+    //Uncaught(in promise): TypeError: Cannot read property 'length' of undefined TypeError: Cannot read property 'length' of undefined at Calendar.isInEvents
+>>>>>>> 9554de175870de5b36033009550376ab194bb648
+  }
 
   //Get the selected day 
   onDaySelect($event) {
@@ -128,7 +160,7 @@ day: any;
     //Format the date gathered from the event into a string that can be compared to firebase 
     //console.log($event.year + "-" + ($event.month + 1) + "-" + $event.date);
     //Store that formatted string into the "selectedDay" class variable 
-    this.selectedDay=($event.year + "-" + ($event.month + 1) + "-" + $event.date);
+    this.selectedDay = ($event.year + "-" + ($event.month + 1) + "-" + $event.date);
   }
 
 
@@ -138,10 +170,10 @@ day: any;
   //Check Events on a selected day 
   checkEventDay(day) {
     var hasEvent = false;
-    var thisDate1 = this.date.getFullYear()+"-"+(this.date.getMonth()+1)+"-"+day+" 00:00:00";
-    var thisDate2 = this.date.getFullYear()+"-"+(this.date.getMonth()+1)+"-"+day+" 23:59:59";
+    var thisDate1 = this.date.getFullYear() + "-" + (this.date.getMonth() + 1) + "-" + day + " 00:00:00";
+    var thisDate2 = this.date.getFullYear() + "-" + (this.date.getMonth() + 1) + "-" + day + " 23:59:59";
     this.eventList.forEach(event => {
-      if(((event.startDate >= thisDate1) && (event.startDate <= thisDate2)) || ((event.endDate >= thisDate1) && (event.endDate <= thisDate2))) {
+      if (((event.startDate >= thisDate1) && (event.startDate <= thisDate2)) || ((event.endDate >= thisDate1) && (event.endDate <= thisDate2))) {
         hasEvent = true;
       }
     });
@@ -157,7 +189,7 @@ day: any;
   loadEventThisMonth() {
     this.eventList = new Array();
     var startDate = new Date(this.date.getFullYear(), this.date.getMonth(), 1);
-    var endDate = new Date(this.date.getFullYear(), this.date.getMonth()+1, 0);
+    var endDate = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0);
     this.calendar.listEventsInRange(startDate, endDate).then(
       (msg) => {
         msg.forEach(item => {
@@ -169,17 +201,6 @@ day: any;
       }
     );
   }
-  
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -191,7 +212,7 @@ day: any;
   // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
 
   //Open Native Calendar 
-  openCalendar(){
+  openCalendar() {
     this.calendar.openCalendar(new Date()).then(
       (msg) => { console.log(msg); },
       (err) => { console.log(err); }
@@ -199,28 +220,27 @@ day: any;
   }
 
   //Add an event to your native calendar 
-  addNativeEvent(){
+  addNativeEvent() {
     return this.calendar.createEventInteractively("event title");
-}
+  }
 
   //Native event scheduler 
-  scheduleEvents(){
-    this.calendar.hasReadWritePermission().then((result)=>{
-    if(result === false){
-        this.calendar.requestReadWritePermission().then((v)=>{
-            this.addNativeEvent();
-        },(r)=>{
-            console.log("Rejected");
+  scheduleEvents() {
+    this.calendar.hasReadWritePermission().then((result) => {
+      if (result === false) {
+        this.calendar.requestReadWritePermission().then((v) => {
+          this.addNativeEvent();
+        }, (r) => {
+          console.log("Rejected");
         })
-    }
-    else
-    {
+      }
+      else {
         this.addNativeEvent();
-    }
+      }
     })
 
-}
-addEvent() {
+  }
+  addEvent() {
     this.navCtrl.push(AddEventPage);
   }
 }
