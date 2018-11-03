@@ -29,7 +29,7 @@ export class CalenderEventsServiceProvider {
       return this.db
         .list('/events', ref =>
           ref
-            .orderByChild('title')
+            .orderByChild('startDate')
             .limitToFirst(10)
             .startAt(startText)
             .endAt(endText)
