@@ -25,11 +25,11 @@ export class CalenderEventsServiceProvider {
 
   getEvents(start: BehaviorSubject<string>): Observable<any[]> {
      return start.switchMap(startText => {
-      const endText = startText; + '\uf8ff';
+      const endText = startText + '\uf8ff';
       return this.db
         .list('/events', ref =>
           ref
-            .orderByChild('startDate')
+            .orderByChild('title')
             .limitToFirst(10)
             .startAt(startText)
             .endAt(endText)

@@ -23,7 +23,20 @@
 <div class='calendarBackground'><ion-calendar #calendar [events]="this.currentEvents"
   (onDaySelect)="onDaySelect($event)"></ion-calendar></div>
 
-  
+  <ion-item>
+    <ion-input  type="text" placeholder="keydownValue" (keyup)="fuckingShit()" [(ngModel)]="keydownValue"></ion-input>
+  </ion-item>
+
+  <h3>{{ this.databaseFilter.value }}</h3>
+
+  <div *ngFor="let event of events | async">
+    <!-- <h2>{{user.id}}</h2> -->
+      <p>
+        {{event.firstName}} {{event.lastName}}
+      </p>
+</div>
+
+<h4>events follow</h4>
 
   <div class='listOfEvents' *ngFor="let event of events | async" >
       <p>{{event.title}}</p>

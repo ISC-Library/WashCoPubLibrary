@@ -67,81 +67,90 @@ export class CalendarPage {
   callCalendarEventsProvider() {
     //this.databaseFilter.next(this.selectedDay);
     console.log("cal events svc ()");
+    //this.databaseFilter.next("0");
     console.log(this.databaseFilter);
     this.events = this.CalendarEventSvc.getEvents(this.databaseFilter);
   }
 
 
   ionViewDidLoad() {
-    //Set the value of class variable "this.date" to a new date() , which is the current date
-    this.date = new Date();
+  //   this.events = this.CalendarEventSvc.getEvents(this.databaseFilter);
+  //   this.events.subscribe(data => this.currentEvents = data);
+    
+  //   //Set the value of class variable "this.date" to a new date() , which is the current date
+  //   this.date = new Date();
  
-    //On load set the value of the "databaseFilter" to the current date by default
-    //^^^ Formatted to the way firebase is storing the date
+  //   //On load set the value of the "databaseFilter" to the current date by default
+  //   //^^^ Formatted to the way firebase is storing the date
 
-    //For full explanation of if structure: See "onDaySelect()" subproceedure
-    let appendedDate: string;
-    let appendedMonth: string;
+  //   //For full explanation of if structure: See "onDaySelect()" subproceedure
+  //   let appendedDate: string;
+  //   let appendedMonth: string;
 
-    //Both
-    if ((String(this.date.getMonth() + 1).length < 2 ) && (String(this.date.getDate()).length < 2 )){
-      //Save each change as an "appeneded" version
-      appendedMonth = ("0" + (this.date.getMonth() + 1));
-      appendedDate = ("0" + this.date.getDate());
-      //Format the date gathered from the event into a string that can be compared to firebase 
-      //Set the "dataBaseFilter" according to the newly values, in the specified format
-      this.databaseFilter.next(this.date.getFullYear() + "-" + appendedMonth + "-" + appendedDate);
-    } else if(String(this.date.getMonth() + 1).length < 2 ){
-      //Month
-      //For some reason we have to add a 1, because the months are always behind
-      appendedMonth = ("0" + (this.date.getMonth() + 1));
-      this.databaseFilter.next(this.date.getFullYear() + "-" + appendedMonth + "-" + this.date.getDate());
-    } else if (String(this.date.getDate()).length < 2 ){
-      //Day ... "date"
-      appendedDate = ("0" + this.date.getDate());
-      this.databaseFilter.next(this.date.getFullYear() + "-" + (this.date.getMonth() + 1) + "-" + appendedDate);
-    } else {
-      //If both the day and the month had double digit values
-        //Do not modify the values 
-      this.databaseFilter.next(this.date.getFullYear() + "-" + (this.date.getMonth() + 1) + "-" + this.date.getDate());
-    }
+  //   //Both
+  //   if ((String(this.date.getMonth() + 1).length < 2 ) && (String(this.date.getDate()).length < 2 )){
+  //     //Save each change as an "appeneded" version
+  //     appendedMonth = ("0" + (this.date.getMonth() + 1));
+  //     appendedDate = ("0" + this.date.getDate());
+  //     //Format the date gathered from the event into a string that can be compared to firebase 
+  //     //Set the "dataBaseFilter" according to the newly values, in the specified format
+  //     this.databaseFilter.next(this.date.getFullYear() + "-" + appendedMonth + "-" + appendedDate);
+  //   } else if(String(this.date.getMonth() + 1).length < 2 ){
+  //     //Month
+  //     //For some reason we have to add a 1, because the months are always behind
+  //     appendedMonth = ("0" + (this.date.getMonth() + 1));
+  //     this.databaseFilter.next(this.date.getFullYear() + "-" + appendedMonth + "-" + this.date.getDate());
+  //   } else if (String(this.date.getDate()).length < 2 ){
+  //     //Day ... "date"
+  //     appendedDate = ("0" + this.date.getDate());
+  //     this.databaseFilter.next(this.date.getFullYear() + "-" + (this.date.getMonth() + 1) + "-" + appendedDate);
+  //   } else {
+  //     //If both the day and the month had double digit values
+  //       //Do not modify the values 
+  //     this.databaseFilter.next(this.date.getFullYear() + "-" + (this.date.getMonth() + 1) + "-" + this.date.getDate());
+  //   }
 
-    console.log("database filter");
-    console.log(this.databaseFilter);
+  //   this.CalendarEventSvc.getEvents(this.databaseFilter);
+  //   // console.log("database filter");
+  //   // console.log(this.databaseFilter);
 
-    //Call the calendar service to load the events of the current day by default
-    this.events = this.CalendarEventSvc.getEvents(this.databaseFilter);
+  //   //Call the calendar service to load the events of the current day by default
+  //   //this.events = this.CalendarEventSvc.getEvents(this.databaseFilter);
+  //   // this.events.subscribe(data => this.currentEvents = data);
+    
+  //   // console.log("current Events 1");
+  //   // console.log(this.currentEvents);
+    
+  //   // //Values to get the timezone offset if necessary
+  //   // var tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
+  //   // var localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0,-1);
 
-    // //Values to get the timezone offset if necessary
-    // var tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
-    // var localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0,-1);
+  //   //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-    //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  //   //Reset the "databaseFilter" to a value which will allow all values to be pulled from the database
+  //   //this.databaseFilter.next("")
+  //   //Reset the "events" BehaviorSubject (behaves like an array) to the  values of all events
+  //   //this.events = this.CalendarEventSvc.getEvents(this.databaseFilter)
 
-    //Reset the "databaseFilter" to a value which will allow all values to be pulled from the database
-    //this.databaseFilter.next("")
-    //Reset the "events" BehaviorSubject (behaves like an array) to the  values of all events
-    //this.events = this.CalendarEventSvc.getEvents(this.databaseFilter)
-
-    //Populate the different members in the array dynamically
-    //This can be bound to the .html decorator 
+  //   //Populate the different members in the array dynamically
+  //   //This can be bound to the .html decorator 
     
     
 
-    this.currentEvents = [
-      {
-        year: 2018,
-        month: 9,
-        date: 1
-      },
-      {
-        year: 2018,
-        month: 9,
-        date: 23
-      }
-    ];
+  //   // this.currentEvents = [
+  //   //   {
+  //   //     year: 2018,
+  //   //     month: 9,
+  //   //     date: 1
+  //   //   },
+  //   //   {
+  //   //     year: 2018,
+  //   //     month: 9,
+  //   //     date: 23
+  //   //   }
+  //   // ];
 
-   }
+ }
 
 
   //Get the selected day 
@@ -190,17 +199,23 @@ export class CalendarPage {
       this.selectedDay = ($event.year + "-" + ($event.month + 1) + "-" + $event.date);
     }
 
-    console.log("selected day")
-    console.log(this.selectedDay)
-    
     //Set the database filter to the "selectedDay"
     this.databaseFilter.next(this.selectedDay);
-    console.log(this.databaseFilter)
+  
     //Call the database filtered by the selected day
     this.events = this.CalendarEventSvc.getEvents(this.databaseFilter);
+    
   }
 
+  keydownValue: string;
 
+  fuckingShit(){
+    this.databaseFilter.next(this.keydownValue)
+    
+    
+    console.log(this.databaseFilter);
+    this.events = this.CalendarEventSvc.getEvents(this.databaseFilter);
+  }
 
 
 
