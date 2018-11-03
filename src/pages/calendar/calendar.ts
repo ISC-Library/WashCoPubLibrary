@@ -78,7 +78,34 @@ export class CalendarPage {
  
     //On load set the value of the "databaseFilter" to the current date by default
     //^^^ Formatted to the way firebase is storing the date
-    this.databaseFilter.next(this.date.getFullYear() + "-" + (this.date.getMonth() + 1) + "-" + this.date.getDate());
+
+    //For full explanation of if structure: See "onDaySelect()" subproceedure
+    let appendedDate: string;
+    let appendedMonth: string;
+
+    //Both
+    if ((String(this.date.getMonth() + 1).length < 2 ) && (String(this.date.getDate()).length < 2 )){
+      //Save each change as an "appeneded" version
+      appendedMonth = ("0" + (this.date.getMonth() + 1));
+      appendedDate = ("0" + this.date.getDate());
+      //Format the date gathered from the event into a string that can be compared to firebase 
+      //Set the "dataBaseFilter" according to the newly values, in the specified format
+      this.databaseFilter.next(this.date.getFullYear() + "-" + appendedMonth + "-" + appendedDate);
+    } else if(String(this.date.getMonth() + 1).length < 2 ){
+      //Month
+      //For some reason we have to add a 1, because the months are always behind
+      appendedMonth = ("0" + (this.date.getMonth() + 1));
+      this.databaseFilter.next(this.date.getFullYear() + "-" + appendedMonth + "-" + this.date.getDate());
+    } else if (String(this.date.getDate()).length < 2 ){
+      //Day ... "date"
+      appendedDate = ("0" + this.date.getDate());
+      this.databaseFilter.next(this.date.getFullYear() + "-" + (this.date.getMonth() + 1) + "-" + appendedDate);
+    } else {
+      //If both the day and the month had double digit values
+        //Do not modify the values 
+      this.databaseFilter.next(this.date.getFullYear() + "-" + (this.date.getMonth() + 1) + "-" + this.date.getDate());
+    }
+
     console.log("database filter");
     console.log(this.databaseFilter);
 
@@ -99,9 +126,7 @@ export class CalendarPage {
     //Populate the different members in the array dynamically
     //This can be bound to the .html decorator 
     
-    // for(let event of this.events) {
-    //   // Do something.
-    // }
+    
 
     this.currentEvents = [
       {
@@ -117,6 +142,7 @@ export class CalendarPage {
     ];
 
    }
+
 
   //Get the selected day 
   onDaySelect($event) {
