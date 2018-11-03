@@ -23,10 +23,12 @@
 <div class='calendarBackground'><ion-calendar #calendar [events]="this.currentEvents"
   (onDaySelect)="onDaySelect($event)"></ion-calendar></div>
 
+  
 
   <div class='listOfEvents' *ngFor="let event of events | async" >
       <p>{{event.title}}</p>
       <p>{{event.startDate}}</p>
+      <p>{{event.endDate}}</p>
   </div>
 
   <!-- This now happens when you click the days. -->
@@ -35,7 +37,8 @@
 
   <!-- Everything below here is for native functions -->
   <!-- Formatting for event buttons  -->
- 
+  <button ion-button (click)="callCalendarEventsProvider()">Call Calendar Events Provider</button>
+
   <button ion-button (click)="openCalendar()">Open Calendar on Current Date</button>
   <button ion-button (click)="scheduleEvents()">Schedule Events</button>
   <button ion-button (click)="addEvent()">Add Event</button>

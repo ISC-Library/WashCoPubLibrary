@@ -11,6 +11,7 @@ import { AddEventPage } from '../add-event/add-event';
 //Import Provider
 import { CalenderEventsServiceProvider } from '../../providers/calendar-event-service/calendar-event-service';
 import { getLocaleDateTimeFormat, getLocaleDateFormat } from '@angular/common';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({
   selector: 'page-calendar',
@@ -64,18 +65,22 @@ export class CalendarPage {
 
   //Call the calendar service 
   callCalendarEventsProvider() {
-    // this.databaseFilter.next(this.selectedDay);
-    // this.events = this.CalendarEventSvc.getEvents(this.databaseFilter);
+    //this.databaseFilter.next(this.selectedDay);
+    console.log("cal events svc ()");
+    console.log(this.databaseFilter);
+    this.events = this.CalendarEventSvc.getEvents(this.databaseFilter);
   }
 
 
   ionViewDidLoad() {
     //Set the value of class variable "this.date" to a new date() , which is the current date
     this.date = new Date();
-
+ 
     //On load set the value of the "databaseFilter" to the current date by default
     //^^^ Formatted to the way firebase is storing the date
     this.databaseFilter.next(this.date.getFullYear() + "-" + (this.date.getMonth() + 1) + "-" + this.date.getDate());
+    console.log("database filter");
+    console.log(this.databaseFilter);
 
     //Call the calendar service to load the events of the current day by default
     this.events = this.CalendarEventSvc.getEvents(this.databaseFilter);
@@ -87,14 +92,13 @@ export class CalendarPage {
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
     //Reset the "databaseFilter" to a value which will allow all values to be pulled from the database
-    this.databaseFilter.next("")
+    //this.databaseFilter.next("")
     //Reset the "events" BehaviorSubject (behaves like an array) to the  values of all events
-    this.events = this.CalendarEventSvc.getEvents(this.databaseFilter)
+    //this.events = this.CalendarEventSvc.getEvents(this.databaseFilter)
 
     //Populate the different members in the array dynamically
     //This can be bound to the .html decorator 
-    console.log(this.events.source)
-
+    
     // for(let event of this.events) {
     //   // Do something.
     // }
@@ -116,19 +120,57 @@ export class CalendarPage {
 
   //Get the selected day 
   onDaySelect($event) {
+    //************************************************** 
+    //For testing: 
     // Properties of $event below::
     // console.log($event);
+    // console.log("event data")
     // console.log($event.year);
     // console.log($event.month);
     // console.log($event.date);
-
-    //Format the date gathered from the event into a string that can be compared to firebase 
-    // console.log($event.year + "-" + ($event.month + 1) + "-" + $event.date);
-    //Store that formatted string into the "selectedDay" class variable 
-    this.selectedDay = ($event.year + "-" + ($event.month + 1) + "-" + $event.date);
+    //************************************************** 
     
-    //Call the database filtered by the selected day
+
+    //Firebase has dates stored with leading zeros for months and days 
+    //This causes the database provider not to be able to filter correctly unless a leading 0 is added to days with a single digit
+    
+    //Process::
+    //The ($event) is not passed as a string so we must convert it before we take its "length" property
+      //Then measure the length, if it is 1 this  means we are dealing with a single digit number
+      //If so, append "0" to the beginning of the single digit portion
+    let appendedEventDate: string;
+    let appendedEventMonth: string;
+
+      //Both
+    if ((String($event.month + 1).length < 2 ) && (String($event.date).length < 2 )){
+      //Save each change as an "appeneded" version
+      appendedEventMonth = ("0" + ($event.month + 1));
+      appendedEventDate = ("0" + $event.date);
+      //Format the date gathered from the event into a string that can be compared to firebase 
+      //Set the "selectedDay" according to the newly values, in the specified format
+      this.selectedDay = ($event.year + "-" + appendedEventMonth + "-" + appendedEventDate);
+    } else if(String($event.month + 1).length < 2 ){
+      //Month
+      //For some reason we have to add a 1, because the months are always behind
+      appendedEventMonth = ("0" + ($event.month + 1));
+      this.selectedDay = ($event.year + "-" + appendedEventMonth + "-" + $event.date);
+    } else if (String($event.date).length < 2 ){
+      //Day ... "date"
+      appendedEventDate = ("0" + $event.date);
+      this.selectedDay = ($event.year + "-" + ($event.month + 1) + "-" + appendedEventDate);
+    } else {
+      //If both the day and the month had double digit values
+        //Do not modify the values 
+      this.selectedDay = ($event.year + "-" + ($event.month + 1) + "-" + $event.date);
+    }
+
+    console.log("selected day")
+    console.log(this.selectedDay)
+    
+    //Set the database filter to the "selectedDay"
     this.databaseFilter.next(this.selectedDay);
+    console.log(this.databaseFilter)
+    //Call the database filtered by the selected day
     this.events = this.CalendarEventSvc.getEvents(this.databaseFilter);
   }
 

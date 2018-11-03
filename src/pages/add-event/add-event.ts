@@ -19,7 +19,16 @@ export class AddEventPage {
   eventsRef: AngularFireList<any>;
   events: Observable<any[]>;
   
-  event = { title: "", location: "", notes: "", startDate: "", endDate: "", startTime:"", endTime:"" };
+  event = { 
+    title: "", 
+    location: "", 
+    notes: "", 
+    startDate: "",
+    endDate: "", 
+    startTime: "", 
+    endTime: "" 
+  };
+
   constructor(public alertCtrl: AlertController,
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -43,8 +52,21 @@ export class AddEventPage {
   
   //Create New Events 
   save() {
+    //Seperate the date and time in the "event.startDate" and "event.endDate" variables 
+    this.event.startTime = this.event.startDate.split("T").pop();
+    this.event.endTime = this.event.endDate.split("T").pop();
+
+    //Re-declare the "event.startDate" and "event.endDate" to be just the date, not removing the time portion
+    this.event.startDate= this.event.startDate.split("T", 1).pop();
+    this.event.endDate = this.event.endDate.split("T", 1).pop();
+
     console.log("save invoked");
-    this.calendar.createEvent(this.event.title, this.event.location, this.event.notes, new Date(this.event.startDate), new Date(this.event.endDate)).then(
+    this.calendar.createEvent(
+      this.event.title, 
+      this.event.location, 
+      this.event.notes, 
+      new Date(this.event.startDate), 
+      new Date(this.event.endDate)).then(
       (msg) => {
         let alert = this.alertCtrl.create({
           title: 'Success!',
@@ -69,7 +91,9 @@ export class AddEventPage {
                   location: this.event.location,
                   notes: this.event.notes,
                   startDate: this.event.startDate,
-                  endDate: this.event.endDate
+                  endDate: this.event.endDate,
+                  startTime: this.event.startTime,
+                  endTime: this.event.endTime
                 });
               }
             }
