@@ -31,12 +31,21 @@ export class CalendarPage {
 
   //Class variable to hold the values gathered from the service 
   events: Observable<any[]>;
+  //Class variable to hold the values gathered from th service
+    //There must be a variable that holds all of the events, (non-filtered)
+      //This is so that we can populate the CSS for any day with an event
+        //The other "events" Observable changes according to current Date, or user's selecting a day, etc.
+  eventsForCSS: Observable<any[]>;
 
   //Declare list (array) to hold dateparts, used to pass event dates to calendar for CSS purposes (THE DOTS!)
-  currentEvents: any;
+  allEvents: any;
 
-  //Declare the database filter variable 
-  databaseFilter: BehaviorSubject<string | null> = new BehaviorSubject('');
+  //Declare the database filter variable
+    //Dynamic: Can change so that dynamic filters can be passed to the database 
+  databaseFilterDynamic: BehaviorSubject<string | null> = new BehaviorSubject('');
+    //Static: Stays as default ('') so that the 
+      //Used for the "eventsForCSS" Observable so that it will hold all events (unfiltered), which is default
+  databaseFilterStatic: BehaviorSubject<string | null> = new BehaviorSubject('');
   year: any;
   month: any;
   day: any;
@@ -46,18 +55,17 @@ export class CalendarPage {
     private calendar: Calendar,
     public CalendarEventSvc: CalenderEventsServiceProvider) {
     
-    //This.currentEvents needs to be converted to any array in the constructor 
-    this.currentEvents = [];
+    //This.allEvents needs to be converted to any array in the constructor 
+    this.allEvents = [];
 
-    //Set the "events" Observable equal to a call to the database 
-    //By default there is not a filter applied, so it will be a list of every part of the database
-      //We may need to change this to enhance performance later
-    this.events = this.CalendarEventSvc.getEvents(this.databaseFilter);
+    //Set the "events" Observable equal to a call to the database
+      //Use the "databaseFilterStatic" to allow it to retrieve the default / unfiltered set (all events)
+    this.eventsForCSS = this.CalendarEventSvc.getEvents(this.databaseFilterStatic);
 
-    //Now that the "events" are populated, we may .subscribe to them
+    //Now that the "eventsForCSS" are populated, we may .subscribe to them
       //This cannot be done if is empty or it will give an undefined error
-        //Set the .subscription "data" values that are returned to the array "currentEvents[]"
-    this.events.subscribe(data => this.currentEvents = data);
+        //Set the .subscription "data" values that are returned to the array "allEvents[]"
+    this.eventsForCSS.subscribe(data => this.allEvents = data);
   }
 
 
@@ -75,77 +83,59 @@ export class CalendarPage {
 
   //Call the calendar service 
   callCalendarEventsProvider() {
-    //this.databaseFilter.next(this.selectedDay);
     console.log("cal events svc ()");
-    this.databaseFilter.next('');
-    this.CalendarEventSvc.getEvents(this.databaseFilter);
+    this.databaseFilterDynamic.next('');
+    this.CalendarEventSvc.getEvents(this.databaseFilterDynamic);
   }
 
 
   ionViewDidLoad() {
-    
-    //Set the value of class variable "this.date" to a new date() , which is the current date
-
-    // this.date = new Date();
+    // Set the value of class variable "this.date" to a new date() , which is the current date
+    this.date = new Date();
  
-    // //On load set the value of the "databaseFilter" to the current date by default
-    // //^^^ Formatted to the way firebase is storing the date
+    //On load set the value of the "databaseFilterDynamic" to the current date by default
+    //^^^ Formatted to the way firebase is storing the date
 
-    // //For full explanation of if structure: See "onDaySelect()" subproceedure
-    // let appendedDate: string;
-    // let appendedMonth: string;
+    //For full explanation of if structure: See "onDaySelect()" subproceedure
+    let appendedDate: string;
+    let appendedMonth: string;
 
-    // //Both
-    // if ((String(this.date.getMonth() + 1).length < 2 ) && (String(this.date.getDate()).length < 2 )){
-    //   //Save each change as an "appeneded" version
-    //   appendedMonth = ("0" + (this.date.getMonth() + 1));
-    //   appendedDate = ("0" + this.date.getDate());
-    //   //Format the date gathered from the event into a string that can be compared to firebase 
-    //   //Set the "dataBaseFilter" according to the newly values, in the specified format
-    //   this.databaseFilter.next(this.date.getFullYear() + "-" + appendedMonth + "-" + appendedDate);
-    // } else if(String(this.date.getMonth() + 1).length < 2 ){
-    //   //Month
-    //   //For some reason we have to add a 1, because the months are always behind
-    //   appendedMonth = ("0" + (this.date.getMonth() + 1));
-    //   this.databaseFilter.next(this.date.getFullYear() + "-" + appendedMonth + "-" + this.date.getDate());
-    // } else if (String(this.date.getDate()).length < 2 ){
-    //   //Day ... "date"
-    //   appendedDate = ("0" + this.date.getDate());
-    //   this.databaseFilter.next(this.date.getFullYear() + "-" + (this.date.getMonth() + 1) + "-" + appendedDate);
-    // } else {
-    //   //If both the day and the month had double digit values
-    //     //Do not modify the values 
-    //   this.databaseFilter.next(this.date.getFullYear() + "-" + (this.date.getMonth() + 1) + "-" + this.date.getDate());
-    // }
+    //Both
+    if ((String(this.date.getMonth() + 1).length < 2 ) && (String(this.date.getDate()).length < 2 )){
+      //Save each change as an "appeneded" version
+      appendedMonth = ("0" + (this.date.getMonth() + 1));
+      appendedDate = ("0" + this.date.getDate());
+      //Format the date gathered from the event into a string that can be compared to firebase 
+      //Set the "dataBaseFilter" according to the newly values, in the specified format
+      this.databaseFilterDynamic.next(this.date.getFullYear() + "-" + appendedMonth + "-" + appendedDate);
+    } else if(String(this.date.getMonth() + 1).length < 2 ){
+      //Month
+      //For some reason we have to add a 1, because the months are always behind
+      appendedMonth = ("0" + (this.date.getMonth() + 1));
+      this.databaseFilterDynamic.next(this.date.getFullYear() + "-" + appendedMonth + "-" + this.date.getDate());
+    } else if (String(this.date.getDate()).length < 2 ){
+      //Day ... "date"
+      appendedDate = ("0" + this.date.getDate());
+      this.databaseFilterDynamic.next(this.date.getFullYear() + "-" + (this.date.getMonth() + 1) + "-" + appendedDate);
+    } else {
+      //If both the day and the month had double digit values
+        //Do not modify the values 
+      this.databaseFilterDynamic.next(this.date.getFullYear() + "-" + (this.date.getMonth() + 1) + "-" + this.date.getDate());
+    }
 
-    //this.CalendarEventSvc.getEvents(this.databaseFilter);
-    // console.log("database filter");
-    // console.log(this.databaseFilter);
-
-    //Call the calendar service to load the events of the current day by default
-    //this.events = this.CalendarEventSvc.getEvents(this.databaseFilter);
-    // this.events.subscribe(data => this.currentEvents = data);
+    this.CalendarEventSvc.getEvents(this.databaseFilterDynamic);
     
-    // console.log("current Events 1");
-    // console.log(this.currentEvents);
     
-    // //Values to get the timezone offset if necessary
-    // var tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
-    // var localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0,-1);
+    //Values to get the timezone offset if necessary
+    //var tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
+    //var localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0,-1);
 
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-    //Reset the "databaseFilter" to a value which will allow all values to be pulled from the database
-    //this.databaseFilter.next("")
-    //Reset the "events" BehaviorSubject (behaves like an array) to the  values of all events
-    //this.events = this.CalendarEventSvc.getEvents(this.databaseFilter)
-
     //Populate the different members in the array dynamically
     //This can be bound to the .html decorator 
-    
-    
-
-    // this.currentEvents = [
+  
+    // this.allEvents = [
     //   {
     //     year: 2018,
     //     month: 9,
@@ -209,22 +199,22 @@ export class CalendarPage {
     }
 
     //Set the database filter to the "selectedDay"
-    this.databaseFilter.next(this.selectedDay);
+    this.databaseFilterDynamic.next(this.selectedDay);
   
     //Call the database filtered by the selected day
-    this.events = this.CalendarEventSvc.getEvents(this.databaseFilter);
-    console.log(this.currentEvents)
+    this.events = this.CalendarEventSvc.getEvents(this.databaseFilterDynamic);
+    console.log(this.allEvents)
     
   }
 
   keydownValue: string;
 
   fuckingShit(){
-    this.databaseFilter.next(this.keydownValue)
+    this.databaseFilterDynamic.next(this.keydownValue)
     
     
-    console.log(this.databaseFilter);
-    this.events = this.CalendarEventSvc.getEvents(this.databaseFilter);
+    console.log(this.databaseFilterDynamic);
+    this.events = this.CalendarEventSvc.getEvents(this.databaseFilterDynamic);
   }
 
 
