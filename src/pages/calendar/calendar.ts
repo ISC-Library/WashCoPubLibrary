@@ -37,8 +37,12 @@ export class CalendarPage {
         //The other "events" Observable changes according to current Date, or user's selecting a day, etc.
   eventsForCSS: Observable<any[]>;
 
-  //Declare list (array) to hold dateparts, used to pass event dates to calendar for CSS purposes (THE DOTS!)
+  //Declare list (array) to hold all events, used to pass event dates to calendar for CSS purposes (THE DOTS!)
   allEvents: any;
+  //Declare formatted dates (array)
+    //holds formatted dates {year, month, date} abstracted from the "startDate" of the "allEvents" (array)
+  formattedForCSS: any;
+  testArray: any;
 
   //Declare the database filter variable
     //Dynamic: Can change so that dynamic filters can be passed to the database 
@@ -49,25 +53,36 @@ export class CalendarPage {
   year: any;
   month: any;
   day: any;
+  testString: any;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private calendar: Calendar,
     public CalendarEventSvc: CalenderEventsServiceProvider) {
     
-    //This.allEvents needs to be converted to any array in the constructor 
+    //This.allEvents needs to be converted to any array 
     this.allEvents = [];
+    //This.formattedForCSS needs to be converted to any array 
+    this.formattedForCSS = [];
+    this.testArray = [];
 
-    //Set the "events" Observable equal to a call to the database
+    //Set the "eventsForCSS" Observable equal to a call to the database unfiltered (all events)
       //Use the "databaseFilterStatic" to allow it to retrieve the default / unfiltered set (all events)
     this.eventsForCSS = this.CalendarEventSvc.getEvents(this.databaseFilterStatic);
-
-    //Now that the "eventsForCSS" are populated, we may .subscribe to them
-      //This cannot be done if is empty or it will give an undefined error
-        //Set the .subscription "data" values that are returned to the array "allEvents[]"
-    this.eventsForCSS.subscribe(data => this.allEvents = data);
+    
+    //We must .subscribe to the "eventsForCSS" Observable before attempting to do anything with its values
+      //This is because the code is being run asynchronously... meaning the line of code may not complete directly after it is called
+        //.Subscribe will let us know when the code is finished executing, by not allowing its inner portion to execute until then
+          //This allows us to only attempt to access "eventsForCSS" data once it has "promised" us that the data is now there  
+    this.eventsForCSS.subscribe((data) => {
+      //Set the .subscription "data" values that are returned to the array "allEvents[]"
+      this.allEvents = data;
+      
+      //Once we know that "allEvents[]" has data, reformat the values 
+      this.reformatAllEventsArray()
+    });
+    
   }
-
 
 
   // Function to navigate to the "HomePage" using the NavController 
@@ -132,24 +147,84 @@ export class CalendarPage {
 
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-    //Populate the different members in the array dynamically
-    //This can be bound to the .html decorator 
-  
-    // this.allEvents = [
-    //   {
-    //     year: 2018,
-    //     month: 9,
-    //     date: 1
-    //   },
-    //   {
-    //     year: 2018,
-    //     month: 9,
-    //     date: 23
-    //   }
-    // ];
 
  }
+ 
+  
 
+  reformatAllEventsArray(){
+    console.log(this.allEvents.length);
+    //Set the length of "formattedForCSS" to that of "allEvents" since it will have many indices, just different properties
+    //this.formattedForCSS.length = this.allEvents.length;
+    //console.log(this.formattedForCSS.length);
+
+    //For Loop Syntax:
+      //Let "iteration variable" = initialized value;
+      //While "condition";
+      //Increment "iteration variable"
+    for (let i = 0; i < this.allEvents.length; i++) {
+      console.log(i)
+      //console.log(this.allEvents)
+      //console.log(this.allEvents[i].startDate);
+      //console.log(this.allEvents[i].startDate.split("-"))
+      
+      //Declare an 'object' data type to hold the formatted "date" abstracted from the "allEvents.startDate[i]"
+      let dateObject = {
+        year: 0,
+        month: 0,
+        date: 0
+      };
+
+      //The "string.split" function creates an array for each value split via the delimiter
+        //We will store those values in a temporary array
+      let tempArray = this.allEvents[i].startDate.split("-");
+      //TempArray: [0] = year, [1] = month, [2] = date
+        //Set each property of the object respective to the portion of the "tempArray" it should hold
+      dateObject.year = parseInt(tempArray[0]);
+      dateObject.month = parseInt(tempArray[1]);
+      dateObject.date = parseInt(tempArray[2]);
+      //console.log(dateObject);
+
+      this.formattedForCSS = [{
+        year:parseInt(tempArray[0]), 
+        month:parseInt(tempArray[1]), 
+        date:parseInt(tempArray[2])
+      }];
+
+      //this.formattedForCSS = [{year:2018, month:10, date:30}];
+      
+      //Use the ".push" method of array data types on the "formattedForCSS" array...
+        //To push the formatted "dateObject" into the array, at the current index of
+      // this.formattedForCSS.push({dateObject})
+      // console.log(this.formattedForCSS);
+    } 
+
+    
+    // this.formattedForCSS[0] = {year:2018, month: 10, date: 26};
+    // //this.formattedForCSS[1] = {year:2018, month: 10, date: 7};
+    // console.log("first")
+     console.log(this.formattedForCSS);
+
+    // this.formattedForCSS = [{year:2018, month: 10, date: 25}];
+    // console.log("second")
+    // console.log(this.formattedForCSS);
+
+    // Example formatted array for calendar events 
+    // this.formattedForCSS = [
+    // {
+    //   year: 2018,
+    //   month: 10,
+    //   date: 30
+    // }];
+    // ,
+    // {
+    //   year: 2018,
+    //   month: 10,
+    //   date: 22
+    // }];
+    // console.log(this.formattedForCSS);
+    // console.log(this.testArray);
+  }
 
 
   //Get the selected day 
@@ -203,19 +278,11 @@ export class CalendarPage {
   
     //Call the database filtered by the selected day
     this.events = this.CalendarEventSvc.getEvents(this.databaseFilterDynamic);
-    console.log(this.allEvents)
-    
   }
 
-  keydownValue: string;
 
-  fuckingShit(){
-    this.databaseFilterDynamic.next(this.keydownValue)
-    
-    
-    console.log(this.databaseFilterDynamic);
-    this.events = this.CalendarEventSvc.getEvents(this.databaseFilterDynamic);
-  }
+
+
 
 
 

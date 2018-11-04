@@ -30,7 +30,11 @@ export class CalenderEventsServiceProvider {
         .list('/events', ref =>
           ref
             .orderByChild('startDate')
-            .limitToFirst(10)
+            //To the best of my knowledge:
+              //We will either need all events (unfiltered) 
+                //Or the filters will need a full list as it applies to the filter
+                  //So we need not limit the amount of events displayed
+            //.limitToFirst(10)
             .startAt(startText)
             .endAt(endText)
         )

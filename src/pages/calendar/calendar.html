@@ -20,15 +20,14 @@
 
 
 <!-- Adding (onDaySelect)="callCalendarEventsProvider()" makes it so when you press the days it shows events -->
-<div class='calendarBackground'><ion-calendar #calendar [events]="this.allEvents"
+<div class='calendarBackground'><ion-calendar #calendar [events]="this.formattedForCSS"
   (onDaySelect)="onDaySelect($event)"></ion-calendar></div>
 
+  <h4>Test String Below:</h4>
+  <h1>{{ this.testString }}</h1>
  
   <h4>Database Filter Dynamic Below:</h4>
   <h1>{{ this.databaseFilterDynamic.value }}</h1>
-
-  <h4>Database Filter Static Below:</h4>
-  <h1>{{ this.databaseFilterStatic.value }}</h1>
 
   <h4>All Events Below:</h4>
   <h1>{{ this.allEvents }}</h1>
