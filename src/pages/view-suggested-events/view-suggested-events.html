@@ -1,4 +1,64 @@
+<ion-header>
 
+    <ion-navbar>
+      <ion-title>Item Sliding</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content class="outer-content">
+  
+    <ion-list class="event-sliding-demo">
+      <ion-list-header>
+        Chats
+      </ion-list-header>
+  
+      <ion-item-sliding *ngFor="let event of events | async" #item>
+        <ion-item>
+          <ion-avatar item-start>
+            <img [src]="event.img">
+          </ion-avatar>
+          <h2>{{event.title}}</h2>
+          <p>{{event.notes}}</p>
+          <ion-note item-end>
+            {{event.startDate}}
+            {{event.startTime}}
+          </ion-note>
+        </ion-item>
+  
+        <ion-item-options>
+          <button ion-button color="secondary" (click)="more(item)">
+            <ion-icon name="menu"></ion-icon>
+            More
+          </button>
+          <button ion-button color="dark" (click)="mute(item)">
+            <ion-icon name="volume-off"></ion-icon>
+            Mute
+          </button>
+          <button ion-button color="danger" (click)="delete(item)">
+            <ion-icon name="trash"></ion-icon>
+            Delete
+          </button>
+        </ion-item-options>
+  
+        <ion-item-options side="left" (ionSwipe)="archive(item)">
+          <button ion-button color="primary" expandable (click)="archive(item)">
+            <ion-icon name="archive" class="expand-hide"></ion-icon>
+            <div class="expand-hide">Archive</div>
+            <ion-spinner id="archive-spinner"></ion-spinner>
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+
+  </ion-content>
+
+
+
+
+
+<!-- 
 <ion-header>
 
   <ion-navbar>
@@ -13,10 +73,33 @@
 
     <button (click)="callAddSuggestedEventsServiceProvider()" ion-button>Call Provider</button>
 
+    <ion-list>
+        <ion-item-sliding #item>
+          <ion-item>
+            Item 
+          </ion-item>
+
+          <ion-item-options side="left">
+            <button ion-button color="secondary" (click)="addEvent(item)">Add Event</button>
+            <button ion-button (click)="addEventWithModification(item)">Modify Suggested Event</button>
+          </ion-item-options>
+      
+          <ion-item-options side="right">
+            <button ion-button expandable color="danger" 
+            (click)="deleteSuggestedEvent(item)">Delete Suggested Event
+            
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+
+
+
+
+
     <div class='listOfEvents' *ngFor="let event of events | async" >
       <p>{{event.title}}</p>
       <p>{{event.startDate}}
-      
     </div>
 
-</ion-content>
+</ion-content> -->
