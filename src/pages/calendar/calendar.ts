@@ -168,41 +168,20 @@ export class CalendarPage {
       //console.log(this.allEvents[i].startDate);
       //console.log(this.allEvents[i].startDate.split("-"))
       
-      //Declare an 'object' data type to hold the formatted "date" abstracted from the "allEvents.startDate[i]"
-      let dateObject = {
-        year: 0,
-        month: 0,
-        date: 0
-      };
-
+  
       //The "string.split" function creates an array for each value split via the delimiter
         //We will store those values in a temporary array
       let tempArray = this.allEvents[i].startDate.split("-");
       //TempArray: [0] = year, [1] = month, [2] = date
         //Set each property of the object respective to the portion of the "tempArray" it should hold
-      dateObject.year = parseInt(tempArray[0]);
-      dateObject.month = parseInt(tempArray[1]);
-      dateObject.date = parseInt(tempArray[2]);
-      //console.log(dateObject);
+
+      let convert = parseInt(tempArray[1])
 
       this.formattedForCSS[i] = {
         year:parseInt(tempArray[0]), 
-        month:parseInt(tempArray[1]), 
+        month:(convert - 1), 
         date:parseInt(tempArray[2])
       };
-      console.log(this.formattedForCSS);
-
-      // console.log("seperator")
-      // this.formattedForCSS = [{year:2018, month:10, date:29}];
-      // console.log(this.formattedForCSS);
-
-      // this.formattedForCSS = [
-      //   {
-      //     year:2018,
-      //     month:10,
-      //     date:30
-      //   }
-      // ];
 
       //Use the ".push" method of array data types on the "formattedForCSS" array...
         //To push the formatted "dateObject" into the array, at the current index of
