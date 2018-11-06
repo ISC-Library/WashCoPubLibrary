@@ -77,10 +77,11 @@ export class CalendarPage {
     this.eventsForCSS.subscribe((data) => {
       //Set the .subscription "data" values that are returned to the array "allEvents[]"
       this.allEvents = data;
-      
+      //console.log(this.allEvents)
       //Once we know that "allEvents[]" has data, reformat the values 
-      this.reformatAllEventsArray()
+      this.reformatAllEventsArray();
     });
+
     
   }
 
@@ -153,67 +154,41 @@ export class CalendarPage {
   
 
   reformatAllEventsArray(){
-    console.log(this.allEvents.length);
-    //Set the length of "formattedForCSS" to that of "allEvents" since it will have many indices, just different properties
-    //this.formattedForCSS.length = this.allEvents.length;
-    //console.log(this.formattedForCSS.length);
-
     //For Loop Syntax:
       //Let "iteration variable" = initialized value;
       //While "condition";
       //Increment "iteration variable"
     for (let i = 0; i < this.allEvents.length; i++) {
-      console.log(i)
       //console.log(this.allEvents)
       //console.log(this.allEvents[i].startDate);
       //console.log(this.allEvents[i].startDate.split("-"))
       
-  
+
       //The "string.split" function creates an array for each value split via the delimiter
         //We will store those values in a temporary array
       let tempArray = this.allEvents[i].startDate.split("-");
       //TempArray: [0] = year, [1] = month, [2] = date
         //Set each property of the object respective to the portion of the "tempArray" it should hold
 
-      let convert = parseInt(tempArray[1])
+      //The month is always  -1 from what it should be, so add the value back to it 
+      let appendedMonth = parseInt(tempArray[1]);
+      appendedMonth = (appendedMonth -1)
 
+      
       this.formattedForCSS[i] = {
         year:parseInt(tempArray[0]), 
-        month:(convert - 1), 
+        month:appendedMonth, 
         date:parseInt(tempArray[2])
       };
-
+     
       //Use the ".push" method of array data types on the "formattedForCSS" array...
         //To push the formatted "dateObject" into the array, at the current index of
       // this.formattedForCSS.push({dateObject})
       // console.log(this.formattedForCSS);
     } 
 
+    //return this.formattedForCSS;
     
-    // this.formattedForCSS[0] = {year:2018, month: 10, date: 26};
-    // //this.formattedForCSS[1] = {year:2018, month: 10, date: 7};
-    // console.log("first")
-     //console.log(this.formattedForCSS);
-
-    // this.formattedForCSS = [{year:2018, month: 10, date: 25}];
-    // console.log("second")
-    // console.log(this.formattedForCSS);
-
-    // Example formatted array for calendar events 
-    // this.formattedForCSS = [
-    // {
-    //   year: 2018,
-    //   month: 10,
-    //   date: 30
-    // }];
-    // ,
-    // {
-    //   year: 2018,
-    //   month: 10,
-    //   date: 22
-    // }];
-    // console.log(this.formattedForCSS);
-    // console.log(this.testArray);
   }
 
 
