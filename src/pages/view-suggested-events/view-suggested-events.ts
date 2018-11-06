@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams} from 'ionic-angular';
+import { IonicPage, NavController, LoadingController, NavParams} from 'ionic-angular';
 import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ItemSliding } from 'ionic-angular';
@@ -23,48 +23,64 @@ databaseFilter: BehaviorSubject<string | null> = new BehaviorSubject('');
 
 constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
-    public SuggestedEventSvc: SuggestedEventsServiceProvider ) {
+    public SuggestedEventSvc: SuggestedEventsServiceProvider,
+    public loadingCtrl: LoadingController ) {
 
     this.events = this.SuggestedEventSvc.addEvents(this.databaseFilter)
 }
 
+$
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ViewSuggestedEventsPage');
-
-    
+    //Show a loading spinner to ensure the data is loaded rather than just coming into a blank page 
+    this.presentLoadingDefault()
   };
 
-  // share(slidingItem: ItemSliding) {
-  //   slidingItem.close();
-  // }
+  //Loading Spinner
+  presentLoadingDefault() {
+    let loading = this.loadingCtrl.create({
+      content: 'Suggested Events are loading...'
+    });
+  
+    loading.present();
+  
+    setTimeout(() => {
+      loading.dismiss();
+    }, 2000);
+  };
 
-  ondrag(item) {
-    let percent = item.getSlidingPercent();
-    if (percent > 0) {
-      // positive
-      console.log('right side');
-    } else {
-      // negative
-      console.log('left side');
-    }
-    if (Math.abs(percent) > 1) {
-      console.log('overscroll');
-    }
-  }
+  //Custom Spinner code for when we decide to tailor make one.
+  // presentLoadingCustom() {
+  //   let loading = this.loadingCtrl.create({
+  //     spinner: 'hide',
+  //     content: `
+  //       <div class="custom-spinner-container">
+  //         <div class="custom-spinner-box"></div>
+  //       </div>`,
+  //     duration: 5000
+  //   });
+  
+  //   loading.onDidDismiss(() => {
+  //     console.log('Dismissed loading');
+  //   });
+  
+  //   loading.present();
+  // };
 
-  addEvent(item) {
-    console.log("add Event");
+
+  addSuggestedEvent(item) {
+    console.log("Add");
   };
 
 
-  addEventWithModification(item) {
-    console.log("add with modification");
+  modifySuggestedEvent(item) {
+    console.log("Modify");
   };
 
 
   deleteSuggestedEvent(item) {
-    console.log("delete");
+    console.log("Delete");
   };
+  
 
-}
+};
