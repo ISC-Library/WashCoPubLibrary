@@ -185,14 +185,25 @@ export class CalendarPage {
       dateObject.date = parseInt(tempArray[2]);
       //console.log(dateObject);
 
-      this.formattedForCSS = [{
+      this.formattedForCSS[i] = {
         year:parseInt(tempArray[0]), 
         month:parseInt(tempArray[1]), 
         date:parseInt(tempArray[2])
-      }];
+      };
+      console.log(this.formattedForCSS);
 
-      //this.formattedForCSS = [{year:2018, month:10, date:30}];
-      
+      // console.log("seperator")
+      // this.formattedForCSS = [{year:2018, month:10, date:29}];
+      // console.log(this.formattedForCSS);
+
+      // this.formattedForCSS = [
+      //   {
+      //     year:2018,
+      //     month:10,
+      //     date:30
+      //   }
+      // ];
+
       //Use the ".push" method of array data types on the "formattedForCSS" array...
         //To push the formatted "dateObject" into the array, at the current index of
       // this.formattedForCSS.push({dateObject})
@@ -203,7 +214,7 @@ export class CalendarPage {
     // this.formattedForCSS[0] = {year:2018, month: 10, date: 26};
     // //this.formattedForCSS[1] = {year:2018, month: 10, date: 7};
     // console.log("first")
-     console.log(this.formattedForCSS);
+     //console.log(this.formattedForCSS);
 
     // this.formattedForCSS = [{year:2018, month: 10, date: 25}];
     // console.log("second")
