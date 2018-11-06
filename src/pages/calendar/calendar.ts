@@ -74,7 +74,6 @@ export class CalendarPage {
   callCalendarEventsProvider() {
     this.databaseFilter.next(this.selectedDay);
     this.events = this.CalendarEventSvc.getEvents(this.databaseFilter);
-    console.log(this.events);
   }
 
 
