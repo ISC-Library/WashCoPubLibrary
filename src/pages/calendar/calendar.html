@@ -20,7 +20,7 @@
 
 
 <!-- Adding (onDaySelect)="callCalendarEventsProvider()" makes it so when you press the days it shows events -->
-<div class='calendarBackground'><ion-calendar #calendar [events]="this.formattedForCSS"
+<div id='calendarDiv' class='calendarBackground'><ion-calendar #calendar [events]="this.formattedForCSS"
   (onDaySelect)="onDaySelect($event)"></ion-calendar></div>
 
   <h4>Test String Below:</h4>
@@ -39,6 +39,7 @@
       <p>{{event.startDate}}</p>
       <p>{{event.endDate}}</p>
   </div>
+
 
   <!-- This now happens when you click the days. -->
   <!-- <button ion-button (click)="callCalendarEventsProvider()">Display Events for Selected Day</button> -->

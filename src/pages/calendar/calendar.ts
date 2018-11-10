@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, NavController, LoadingController, NavParams, Platform, Loading } from 'ionic-angular';
 import { Calendar } from '@ionic-native/calendar';
 import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -58,7 +58,8 @@ export class CalendarPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private calendar: Calendar,
-    public CalendarEventSvc: CalenderEventsServiceProvider) {
+    public CalendarEventSvc: CalenderEventsServiceProvider,
+    public loadingCtrl:LoadingController) {
     
     //This.allEvents needs to be converted to any array 
     this.allEvents = [];
@@ -106,6 +107,25 @@ export class CalendarPage {
 
 
   ionViewDidLoad() {
+
+    //Show a loading spinner to ensure the data is loaded rather than just coming into a blank page 
+    this.presentLoadingDefault()
+  };
+
+  //Loading Spinner
+  presentLoadingDefault() {
+    let loading = this.loadingCtrl.create({
+      content: 'Calendar is loading...'
+    });
+
+    loading.present();
+
+    setTimeout(() => {
+      loading.dismiss();
+    }, 2000);
+
+    
+
     // Set the value of class variable "this.date" to a new date() , which is the current date
     this.date = new Date();
  
@@ -150,8 +170,6 @@ export class CalendarPage {
 
 
  }
- 
-  
 
   reformatAllEventsArray(){
     //For Loop Syntax:
