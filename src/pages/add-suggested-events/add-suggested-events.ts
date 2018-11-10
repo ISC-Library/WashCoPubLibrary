@@ -14,9 +14,12 @@ import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
 export class AddSuggestedEventsPage {
 
+  //Create the eventsRef variable: give it the type of "AngularFireList" 
   eventsRef: AngularFireList<any>;
+  //The events observable holds all the data pulled from the database 
   events: Observable<any[]>;
   
+  //The "event" is an object that is used to format the data being pushed into the database 
   event = { 
     title: "", 
     location: "", 

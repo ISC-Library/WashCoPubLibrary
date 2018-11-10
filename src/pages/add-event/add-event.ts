@@ -7,18 +7,19 @@ import { Observable } from 'rxjs/observable';
 //Import AF2 
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
-
 @Component({
   selector: 'page-add-event',
   templateUrl: 'add-event.html',
 })
+
 export class AddEventPage {
   
-  //Create the usernames variable: give it the type of "AngularFireList"
-  //This is for database troubleshooting and dummy data entry 
+  //Create the eventsRef variable: give it the type of "AngularFireList" 
   eventsRef: AngularFireList<any>;
+  //The events observable holds all the data pulled from the database 
   events: Observable<any[]>;
   
+  //The "event" is an object that is used to format the data being pushed into the database 
   event = { 
     title: "", 
     location: "", 
@@ -35,21 +36,11 @@ export class AddEventPage {
     private calendar: Calendar,
     afDatabase:AngularFireDatabase) {
       
-      //This is the reference to which portion of the database you want to access 
-      this.eventsRef = afDatabase.list('events');
+    //This is the reference to which portion of the database you want to access 
+    this.eventsRef = afDatabase.list('events');
   }
 
-
-  // So this is the next portion of the walkthrough on https://www.djamware.com/post/5a0bb8f780aca75eadc12d6b/build-ionic-3-angular-5-calendar-ui-with-event-integration , 
-  // I stopped with it at this point to try and figure out how to send the data on to firebase. Still working on that.
-  // I was looking at using the button on the page that calls the save() function to also call for a fbPushData() function. I read that you might able to run two or more if you
-  // go with:
-  //(ng-click) ="save(); fbPushData()". However, there may be a way to push the data inside of the save() function that I'm just not aware of.
-
-  //So all I'm working on now is trying to send the data to FB from this point. Then I guess once the data is sent and stored, we'll see how we're supposed to pull
-  //it back to the application and display it on the calendar. I think I have to create a handler to ship the data out
-  
-  
+ 
   //Create New Events 
   save() {
     //Seperate the date and time in the "event.startDate" and "event.endDate" variables 

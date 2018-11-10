@@ -71,6 +71,10 @@ export class CalendarPage {
       //Use the "databaseFilterStatic" to allow it to retrieve the default / unfiltered set (all events)
     this.eventsForCSS = this.CalendarEventSvc.getEvents(this.databaseFilterStatic);
     
+    //Set the "events" Observable equal to a call to the database unfiltered by default (all events)
+      //Use the "databaseFilterDynamic" to allow it to retrieve data dynamically
+    this.events = this.CalendarEventSvc.getEvents(this.databaseFilterDynamic);
+
     //We must .subscribe to the "eventsForCSS" Observable before attempting to do anything with its values
       //This is because the code is being run asynchronously... meaning the line of code may not complete directly after it is called
         //.Subscribe will let us know when the code is finished executing, by not allowing its inner portion to execute until then
