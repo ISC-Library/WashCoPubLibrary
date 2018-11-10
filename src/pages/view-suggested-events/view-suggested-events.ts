@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController, Item } from 'ionic-angular';
 import { Calendar } from '@ionic-native/calendar';
 import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -77,6 +77,7 @@ constructor(public alertCtrl: AlertController,
   ionViewDidLoad() {
     //Show a loading spinner to ensure the data is loaded rather than just coming into a blank page 
     this.presentLoadingDefault()
+    console.log("suggested load")
   };
 
   //Loading Spinner
@@ -115,15 +116,12 @@ constructor(public alertCtrl: AlertController,
     console.log("Add");
     //The "item" has a property called "id" nested under "item.item.id"
       //We can use this property to see which item in the list was selected 
-    console.log(item.item.id);
-    
-    //However the "allEvents" variable is an array which is 0 indexed
-      //The items (events) displayed are in the same order as they are in the array
-        //So we must take the "id" of the item being passed and subtract 1 from it to get the index of it in the array
-    let index = (item.item.id - 1);
-    
+        //The item.item.id is a list, which is in the same order as the array of events, but not 0 indexed
+          //Set the index to the value of the "item.item.id" - 1, to account for the non-zero indexing
+          let index = (item.item.id -1);
+        
     //Call the save function, passing in the newly calculated index for the array 
-    this.save(index);
+    this.save(item, index);
   };
 
   modifySuggestedEvent(item) {
@@ -137,7 +135,13 @@ constructor(public alertCtrl: AlertController,
   
 
   //Create New Events 
-  save(index) {
+  save(item, index) {
+    console.log("save")
+    console.log("index")
+    console.log(index)
+    console.log("item id")
+    console.log(item.item.id)
+
     //Set the values of event object to those of the "allEvents" array...
       //Specified by the re-calculated "index" passed in from the user selection when they chose to add an event
     this.event.title = this.allEvents[index].title, 
@@ -148,6 +152,10 @@ constructor(public alertCtrl: AlertController,
     this.event.startTime = this.allEvents[index].startTime, 
     this.event.endTime = this.allEvents[index].endTime
 
+    //The item.itme.id is apparently global, so its value moves around from each page that uses it 
+      //This means if we do not set it back to 0 after it is used, it will mess up the other pages uses of it
+      item.item.id = 0
+    
     this.calendar.createEvent(
       this.event.title, 
       this.event.location, 

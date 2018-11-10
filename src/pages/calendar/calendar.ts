@@ -29,6 +29,8 @@ export class CalendarPage {
   selectedEvent: any;
   isSelected: any;
 
+  item: any;
+
   //Class variable to hold the values gathered from the service 
   events: Observable<any[]>;
   //Class variable to hold the values gathered from th service
@@ -100,13 +102,9 @@ export class CalendarPage {
   //////// Below this are the portions to display event data  [][[][[][][][][][][][[][][]]]]
   // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
 
-
-  //Call the calendar service 
-  callCalendarEventsProvider() {
-    console.log("cal events svc ()");
-    this.databaseFilterDynamic.next('');
-    this.CalendarEventSvc.getEvents(this.databaseFilterDynamic);
-  }
+  displayItem() {
+    console.log(this.item)
+  };
 
 
   ionViewDidLoad() {
@@ -153,7 +151,7 @@ export class CalendarPage {
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
- }
+ };
  
   
 
@@ -248,8 +246,6 @@ export class CalendarPage {
     //Call the database filtered by the selected day
     this.events = this.CalendarEventSvc.getEvents(this.databaseFilterDynamic);
   }
-
-
 
 
 
