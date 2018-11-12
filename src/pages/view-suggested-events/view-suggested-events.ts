@@ -33,7 +33,7 @@ databaseFilter: BehaviorSubject<string | null> = new BehaviorSubject('');
 allEvents: any;
 
 //The "event" is an object that is used to format the data being pushed into the database 
-event = { 
+suggestedEvent = { 
   title: "", 
   location: "", 
   notes: "", 
@@ -90,7 +90,7 @@ constructor(public alertCtrl: AlertController,
   
     setTimeout(() => {
       loading.dismiss();
-    }, 2000);
+    }, 1000);
   };
 
   //Custom Spinner code for when we decide to tailor make one.
@@ -112,16 +112,12 @@ constructor(public alertCtrl: AlertController,
   // };
 
 
-  addSuggestedEvent(item) {
+  addSuggestedEvent(event) {
     console.log("Add");
-    //The "item" has a property called "id" nested under "item.item.id"
-      //We can use this property to see which item in the list was selected 
-        //The item.item.id is a list, which is in the same order as the array of events, but not 0 indexed
-          //Set the index to the value of the "item.item.id" - 1, to account for the non-zero indexing
-          let index = (item.item.id -1);
-        
+    //console.log(event)
+
     //Call the save function, passing in the newly calculated index for the array 
-    this.save(item, index);
+    this.save(event);
   };
 
   modifySuggestedEvent(item) {
@@ -135,33 +131,29 @@ constructor(public alertCtrl: AlertController,
   
 
   //Create New Events 
-  save(item, index) {
-    console.log("save")
-    console.log("index")
-    console.log(index)
-    console.log("item id")
-    console.log(item.item.id)
+  save(event) {
 
-    //Set the values of event object to those of the "allEvents" array...
+  for (let i = 0; i < this.allEvents.length; i++) {
+
+    if (event.id == this.allEvents[i].id) {
+      //Set the values of event object to those of the "allEvents" array...
       //Specified by the re-calculated "index" passed in from the user selection when they chose to add an event
-    this.event.title = this.allEvents[index].title, 
-    this.event.location = this.allEvents[index].location, 
-    this.event.notes = this.allEvents[index].notes, 
-    this.event.startDate = this.allEvents[index].startDate,
-    this.event.endDate = this.allEvents[index].endDate, 
-    this.event.startTime = this.allEvents[index].startTime, 
-    this.event.endTime = this.allEvents[index].endTime
-
-    //The item.itme.id is apparently global, so its value moves around from each page that uses it 
-      //This means if we do not set it back to 0 after it is used, it will mess up the other pages uses of it
-      item.item.id = 0
+    this.suggestedEvent.title = this.allEvents[i].title, 
+    this.suggestedEvent.location = this.allEvents[i].location, 
+    this.suggestedEvent.notes = this.allEvents[i].notes, 
+    this.suggestedEvent.startDate = this.allEvents[i].startDate,
+    this.suggestedEvent.endDate = this.allEvents[i].endDate, 
+    this.suggestedEvent.startTime = this.allEvents[i].startTime, 
+    this.suggestedEvent.endTime = this.allEvents[i].endTime
+    }
+  };
     
     this.calendar.createEvent(
-      this.event.title, 
-      this.event.location, 
-      this.event.notes, 
-      new Date(this.event.startDate), 
-      new Date(this.event.endDate)).then(
+      this.suggestedEvent.title, 
+      this.suggestedEvent.location, 
+      this.suggestedEvent.notes, 
+      new Date(this.suggestedEvent.startDate), 
+      new Date(this.suggestedEvent.endDate)).then(
       (msg) => {
         let alert = this.alertCtrl.create({
           title: 'Success!',
@@ -182,13 +174,13 @@ constructor(public alertCtrl: AlertController,
        
                 newEventsRef.set({
                   id: newEventsRef.key,
-                  title: this.event.title,
-                  location: this.event.location,
-                  notes: this.event.notes,
-                  startDate: this.event.startDate,
-                  endDate: this.event.endDate,
-                  startTime: this.event.startTime,
-                  endTime: this.event.endTime
+                  title: this.suggestedEvent.title,
+                  location: this.suggestedEvent.location,
+                  notes: this.suggestedEvent.notes,
+                  startDate: this.suggestedEvent.startDate,
+                  endDate: this.suggestedEvent.endDate,
+                  startTime: this.suggestedEvent.startTime,
+                  endTime: this.suggestedEvent.endTime
                 });
               }
             }

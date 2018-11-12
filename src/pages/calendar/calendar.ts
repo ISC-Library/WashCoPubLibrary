@@ -245,6 +245,8 @@ export class CalendarPage {
   
     //Call the database filtered by the selected day
     this.events = this.CalendarEventSvc.getEvents(this.databaseFilterDynamic);
+
+    console.log(this.events)
   }
 
 

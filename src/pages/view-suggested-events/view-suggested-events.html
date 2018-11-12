@@ -37,9 +37,9 @@
 
         <!-- Right Side Options -->
         <!-- Dont make the button able to activate when slid really far, instead force clicking of add button -->
-        <!-- <ion-item-options side="left" (ionSwipe)="deleteSuggestedEvent(item)"></ion-item-options> -->
+        <!-- <ion-item-options side="left" (ionSwipe)="deleteSuggestedEvent(event)"></ion-item-options> -->
         <ion-item-options side="right">
-          <button ion-button color="danger" expandable (click)="deleteSuggestedEvent(item)">
+          <button ion-button color="danger" expandable (click)="deleteSuggestedEvent(event)">
             <ion-icon name="trash"></ion-icon>
             Delete
           </button>
@@ -47,15 +47,15 @@
   
         <!-- Left Side Options -->
         <!-- Dont make the button able to activate when slid really far, instead force clicking of add button -->
-        <!-- <ion-item-options side="left" (ionSwipe)="addSuggestedEvent(item)"></ion-item-options> -->
+        <!-- <ion-item-options side="left" (ionSwipe)="addSuggestedEvent(event)"></ion-item-options> -->
         <ion-item-options side="left">
-          <button ion-button color="secondary" expandable (click)="addSuggestedEvent(item)">
+          <button ion-button color="secondary" expandable (click)="addSuggestedEvent(event)">
             <ion-icon name="archive" class="expand-hide"></ion-icon>
             <div class="expand-hide">Add</div>
             <!-- <ion-spinner name="crescent"></ion-spinner> -->
           </button>
 
-          <button ion-button color="dark" (click)="modifySuggestedEvent(item)">
+          <button ion-button color="dark" (click)="modifySuggestedEvent(event)">
             <ion-icon name="volume-off"></ion-icon>
             <div>Modify</div>
           </button>
