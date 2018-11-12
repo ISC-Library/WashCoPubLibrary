@@ -23,6 +23,8 @@ export class ViewSuggestedEventsPage {
 
 //Create the eventsRef variable: give it the type of "AngularFireList" 
 eventsRef: AngularFireList<any>;
+suggestedEventsRef: AngularFireList<any>;
+
 //The events observable holds all the data pulled from the database 
 events: Observable<any[]>;
 //Declare the database filter variable
@@ -56,6 +58,7 @@ constructor(public alertCtrl: AlertController,
 
     //This is the reference to which portion of the database you want to access 
     this.eventsRef = afDatabase.list('events');
+    this.suggestedEventsRef = afDatabase.list('suggestedEvents');
 
     //Set the "events" Observable equal to a call to the database unfiltered (all events)
       //Use the "databaseFilter" to allow it to retrieve the default / unfiltered set (all events)
@@ -120,13 +123,15 @@ constructor(public alertCtrl: AlertController,
     this.save(event);
   };
 
-  modifySuggestedEvent(item) {
+  modifySuggestedEvent(event) {
     console.log("Modify");
   };
 
 
-  deleteSuggestedEvent(item) {
+  deleteSuggestedEvent(event) {
     console.log("Delete");
+    //Call the database via the "suggestedEventsRef" and delete the item corresponding to the event.id passed
+    this.suggestedEventsRef.remove(event.id);
   };
   
 
@@ -138,13 +143,13 @@ constructor(public alertCtrl: AlertController,
     if (event.id == this.allEvents[i].id) {
       //Set the values of event object to those of the "allEvents" array...
       //Specified by the re-calculated "index" passed in from the user selection when they chose to add an event
-    this.suggestedEvent.title = this.allEvents[i].title, 
-    this.suggestedEvent.location = this.allEvents[i].location, 
-    this.suggestedEvent.notes = this.allEvents[i].notes, 
-    this.suggestedEvent.startDate = this.allEvents[i].startDate,
-    this.suggestedEvent.endDate = this.allEvents[i].endDate, 
-    this.suggestedEvent.startTime = this.allEvents[i].startTime, 
-    this.suggestedEvent.endTime = this.allEvents[i].endTime
+      this.suggestedEvent.title = this.allEvents[i].title, 
+      this.suggestedEvent.location = this.allEvents[i].location, 
+      this.suggestedEvent.notes = this.allEvents[i].notes, 
+      this.suggestedEvent.startDate = this.allEvents[i].startDate,
+      this.suggestedEvent.endDate = this.allEvents[i].endDate, 
+      this.suggestedEvent.startTime = this.allEvents[i].startTime, 
+      this.suggestedEvent.endTime = this.allEvents[i].endTime
     }
   };
     
@@ -157,7 +162,7 @@ constructor(public alertCtrl: AlertController,
       (msg) => {
         let alert = this.alertCtrl.create({
           title: 'Success!',
-          subTitle: 'Event saved successfully',
+          subTitle: 'Finalize your changes?',
           // buttons: ['Ok'],
           buttons: [
             {
@@ -182,6 +187,9 @@ constructor(public alertCtrl: AlertController,
                   startTime: this.suggestedEvent.startTime,
                   endTime: this.suggestedEvent.endTime
                 });
+
+                //Call the database via the "suggestedEventsRef" and delete the item corresponding to the event.id passed
+                this.suggestedEventsRef.remove(event.id);
               }
             }
           ]
