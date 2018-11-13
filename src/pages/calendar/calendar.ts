@@ -8,6 +8,7 @@ import { getLocaleDateTimeFormat, getLocaleDateFormat } from '@angular/common';
 //Import Pages
 import { HomePage } from '../home/home';
 import { AddEventPage } from '../add-event/add-event';
+import { ModifyEventsPage } from '../modify-events/modify-events'
 
 //Import Provider
 import { CalenderEventsServiceProvider } from '../../providers/calendar-event-service/calendar-event-service';
@@ -86,25 +87,33 @@ export class CalendarPage {
       //console.log(this.allEvents)
       //Once we know that "allEvents[]" has data, reformat the values 
       this.reformatAllEventsArray();
-    });
-
-    
+    });  
   }
 
 
-  // Function to navigate to the "HomePage" using the NavController 
+  // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
+  //////// Below are navigation functions  [][[][[][][][][][][][[][][]]]]
+  // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
+
+
+  // Navigate to the "HomePage" using the NavController 
   navigateToHomePage() {
     this.navCtrl.push(HomePage);
   }
 
+  // Navigate to the "ModifyEvent" page
+    //The user selects modify button on the event which they wish to modify 
+      //The event data for that specific event is passed, which we will forward to the "ModifyEvent" page
+  modifyEvent(event) {
+    this.navCtrl.push(ModifyEventsPage, {
+      event
+    });
+  }
 
   // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
   //////// Below this are the portions to display event data  [][[][[][][][][][][][[][][]]]]
   // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
 
-  displayItem() {
-    console.log(this.item)
-  };
 
 
   ionViewDidLoad() {
@@ -149,8 +158,6 @@ export class CalendarPage {
     //var localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0,-1);
 
     //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-
  };
  
   
@@ -189,8 +196,7 @@ export class CalendarPage {
       // console.log(this.formattedForCSS);
     } 
 
-    //return this.formattedForCSS;
-    
+    //return this.formattedForCSS;  
   }
 
 
@@ -248,49 +254,6 @@ export class CalendarPage {
 
     console.log(this.events)
   }
-
-
-
-
-
-  //Check Events on a selected day 
-  checkEventDay(day) {
-    var hasEvent = false;
-    var thisDate1 = this.date.getFullYear() + "-" + (this.date.getMonth() + 1) + "-" + day + " 00:00:00";
-    var thisDate2 = this.date.getFullYear() + "-" + (this.date.getMonth() + 1) + "-" + day + " 23:59:59";
-    this.eventList.forEach(event => {
-      if (((event.startDate >= thisDate1) && (event.startDate <= thisDate2)) || ((event.endDate >= thisDate1) && (event.endDate <= thisDate2))) {
-        hasEvent = true;
-      }
-    });
-    return hasEvent;
-  }
-
-
-
-
-
-
-  //Load events for the current months 
-  loadEventThisMonth() {
-    this.eventList = new Array();
-    var startDate = new Date(this.date.getFullYear(), this.date.getMonth(), 1);
-    var endDate = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0);
-    this.calendar.listEventsInRange(startDate, endDate).then(
-      (msg) => {
-        msg.forEach(item => {
-          this.eventList.push(item);
-        });
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-  }
-
-
-
-
 
 
   // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]

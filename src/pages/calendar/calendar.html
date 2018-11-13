@@ -66,8 +66,6 @@
         <p text-wrap>{{event.notes}}</p>
 
       </ion-item>
-    </ion-item-sliding>
-  </ion-list>
     
       <!-- Right Side Options -->
       <!-- Dont make the button able to activate when slid really far, instead force clicking of add button -->
@@ -80,23 +78,20 @@
         </button>
       </ion-item-options> -->
 
+
       <!-- Left Side Options -->
       <!-- Dont make the button able to activate when slid really far, instead force clicking of add button -->
       <!-- <ion-item-options side="left" (ionSwipe)="addSuggestedEvent(item)"></ion-item-options> -->
-      <!-- <ion-item-options side="left">
-        <button ion-button color="secondary" expandable (click)="addSuggestedEvent(item)">
-          <ion-icon name="archive" class="expand-hide"></ion-icon>
-          <div class="expand-hide">Add</div>
-          <ion-spinner name="crescent"></ion-spinner>
-        </button>
-
-        <button ion-button color="dark" (click)="modifySuggestedEvent(item)">
+      
+      <ion-item-options side="left">
+        <button ion-button color="dark" expandable (click)="modifyEvent(event)">
           <ion-icon name="volume-off"></ion-icon>
-          <div>Modify</div>
+          Modify
         </button>
-      </ion-item-options> -->
+      </ion-item-options> 
 
-    <!-- </ion-item-sliding>
-  </ion-list> -->
+    </ion-item-sliding>
+  </ion-list>
+
 
 </ion-content>
