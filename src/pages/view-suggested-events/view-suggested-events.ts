@@ -138,12 +138,20 @@ constructor(public alertCtrl: AlertController,
     this.suggestedEventsRef.remove(event.id);
   };
   
+  displayMore() {
+  //   let elements = document.getElementsByClassName("additionalInfo")
+
+  //   for(var i=0; i<elements.length; i++) {
+  //     elements[i].hidden = false 
+  // }
+  document.getElementById("additionalInfo").hidden = false 
+  }
 
   //Create New Events 
   save(event) {
 
   console.log(event.id)
-  
+
   for (let i = 0; i < this.allEvents.length; i++) {
 
     if (event.id == this.allEvents[i].id) {
