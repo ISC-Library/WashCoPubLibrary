@@ -23,11 +23,15 @@ export class AddSuggestedEventsPage {
   event = { 
     title: "", 
     location: "", 
-    notes: "", 
+    category: "",
+    notes: "",
     startDate: "",
     endDate: "", 
     startTime: "", 
-    endTime: "" 
+    endTime: "",
+    contactName: "",
+    contactEmail: "",
+    contactPhone: ""
   };
 
   constructor(public alertCtrl: AlertController,
@@ -55,7 +59,7 @@ export class AddSuggestedEventsPage {
     this.calendar.createEvent(
       this.event.title, 
       this.event.location, 
-      this.event.notes, 
+      this.event.notes,
       new Date(this.event.startDate), 
       new Date(this.event.endDate)).then(
       (msg) => {
@@ -80,11 +84,15 @@ export class AddSuggestedEventsPage {
                   id: newEventsRef.key,
                   title: this.event.title,
                   location: this.event.location,
+                  category: this.event.category,
                   notes: this.event.notes,
                   startDate: this.event.startDate,
                   endDate: this.event.endDate,
                   startTime: this.event.startTime,
-                  endTime: this.event.endTime
+                  endTime: this.event.endTime,
+                  contactName: this.event.contactName,
+                  contactEmail: this.event.contactEmail,
+                  contactPhone: this.event.contactPhone
                 });
               }
             }

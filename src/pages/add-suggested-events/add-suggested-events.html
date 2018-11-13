@@ -19,7 +19,17 @@
         <ion-label floating>Location</ion-label>
         <ion-input type="text" [(ngModel)]="event.location" name="location"></ion-input>
       </ion-item>
-
+  
+      <ion-item>
+        <ion-label floating>Select Event Category</ion-label>
+        <ion-select [(ngModel)]="event.category" interface="action-sheet" name="category">
+          <ion-option value="community">Community Event</ion-option>
+          <ion-option value="sporting">Sporting Event</ion-option>
+          <ion-option value="business">Business Event</ion-option>
+          <ion-option value="art">Art Event</ion-option>
+        </ion-select>
+      </ion-item>
+      
       <ion-item>
         <ion-label floating>Notes</ion-label>
         <ion-input type="text" [(ngModel)]="event.notes" name="notes"></ion-input>
@@ -37,14 +47,23 @@
       </ion-item>
 
       <ion-item>
+        <ion-label floating>Contact Name</ion-label>
+        <ion-input type="text" [(ngModel)]="event.contactName" name="contactName"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Contact Email</ion-label>
+        <ion-input type="text" [(ngModel)]="event.contactEmail" name="contactEmail"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Contact Phone Number</ion-label>
+        <ion-input type="text" [(ngModel)]="event.contactPhone" name="contactPhone"></ion-input>
+      </ion-item>
+
+      <ion-item>
         <button ion-button type="submit" full round>Save</button>
       </ion-item>
     </ion-list>
   </form>
-
-  <p>{{ event.startDate }} </p>
-  <p>{{ event.endDate }} </p>
-  <br>
-  <p>{{ event.startTime }}</p>
-  <p>{{ event.endTime }}</p>
 </ion-content>

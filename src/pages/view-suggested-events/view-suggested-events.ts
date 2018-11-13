@@ -37,12 +37,16 @@ allEvents: any;
 //The "event" is an object that is used to format the data being pushed into the database 
 suggestedEvent = { 
   title: "", 
-  location: "", 
-  notes: "", 
-  startDate: "",
-  endDate: "", 
-  startTime: "", 
-  endTime: "" 
+    location: "", 
+    category: "",
+    notes: "",
+    startDate: "",
+    endDate: "", 
+    startTime: "", 
+    endTime: "",
+    contactName: "",
+    contactEmail: "",
+    contactPhone: ""
 };
 
 constructor(public alertCtrl: AlertController,
@@ -138,6 +142,8 @@ constructor(public alertCtrl: AlertController,
   //Create New Events 
   save(event) {
 
+  console.log(event.id)
+  
   for (let i = 0; i < this.allEvents.length; i++) {
 
     if (event.id == this.allEvents[i].id) {
@@ -185,7 +191,10 @@ constructor(public alertCtrl: AlertController,
                   startDate: this.suggestedEvent.startDate,
                   endDate: this.suggestedEvent.endDate,
                   startTime: this.suggestedEvent.startTime,
-                  endTime: this.suggestedEvent.endTime
+                  endTime: this.suggestedEvent.endTime,
+                  contactName: this.suggestedEvent.contactName,
+                  contactEmail: this.suggestedEvent.contactEmail,
+                  contactPhone: this.suggestedEvent.contactPhone
                 });
 
                 //Call the database via the "suggestedEventsRef" and delete the item corresponding to the event.id passed
