@@ -15,15 +15,22 @@
       </ion-item>
       <ion-item>
         <ion-label floating>Start Date</ion-label>
-        <ion-datetime displayFormat="MMM DD, YYYY HH:mm" pickerFormat="MMM DD, YYYY HH:mm" [(ngModel)]="event.startDate" name="startDate"></ion-datetime>
+        <!-- https://ionicframework.com/docs/api/components/datetime/DateTime/ -->
+        <ion-datetime displayFormat="MMM DD, YYYY h:mm A" pickerFormat="MMM-DD-YYYY h:mm:A" [(ngModel)]="event.startDate" name="startDate"></ion-datetime>
       </ion-item>
       <ion-item>
         <ion-label floating>End Date</ion-label>
-        <ion-datetime displayFormat="DD MMM YYYY" pickerFormat="MM/DD/YYYY" [(ngModel)]="event.endDate" name="endDate"></ion-datetime>
+        <ion-datetime displayFormat="MMM DD, YYYY h:mm A" pickerFormat="MMM-DD-YYYY h:mm:A" [(ngModel)]="event.endDate" name="endDate"></ion-datetime>
       </ion-item>
       <ion-item>
         <button ion-button type="submit" full round>Save</button>
       </ion-item>
     </ion-list>
   </form>
+
+  <p>{{ event.startDate }} </p>
+  <p>{{ event.endDate }} </p>
+  <br>
+  <p>{{ event.startTime }}</p>
+  <p>{{ event.endTime }}</p>
 </ion-content>

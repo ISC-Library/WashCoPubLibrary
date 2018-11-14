@@ -14,6 +14,7 @@ import { HomePage } from '../home/home';
   selector: 'page-test',
   templateUrl: 'test.html'
 })
+
 export class TestPage {
 
   //Variable we are going to use in our two way data binding 

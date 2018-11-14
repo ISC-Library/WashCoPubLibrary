@@ -8,12 +8,12 @@ import { Observable } from 'rxjs/observable';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
 @Component({
-  selector: 'page-add-event',
-  templateUrl: 'add-event.html',
+  selector: 'page-add-suggested-events',
+  templateUrl: 'add-suggested-events.html',
 })
 
-export class AddEventPage {
-  
+export class AddSuggestedEventsPage {
+
   //Create the eventsRef variable: give it the type of "AngularFireList" 
   eventsRef: AngularFireList<any>;
   //The events observable holds all the data pulled from the database 
@@ -23,11 +23,15 @@ export class AddEventPage {
   event = { 
     title: "", 
     location: "", 
-    notes: "", 
+    category: "",
+    notes: "",
     startDate: "",
     endDate: "", 
     startTime: "", 
-    endTime: "" 
+    endTime: "",
+    contactName: "",
+    contactEmail: "",
+    contactPhone: ""
   };
 
   constructor(public alertCtrl: AlertController,
@@ -36,11 +40,11 @@ export class AddEventPage {
     private calendar: Calendar,
     afDatabase:AngularFireDatabase) {
       
-    //This is the reference to which portion of the database you want to access 
-    this.eventsRef = afDatabase.list('events');
+      //This is the reference to which portion of the database you want to access 
+      this.eventsRef = afDatabase.list('suggestedEvents');
   }
 
- 
+
   //Create New Events 
   save() {
     //Seperate the date and time in the "event.startDate" and "event.endDate" variables 
@@ -55,7 +59,7 @@ export class AddEventPage {
     this.calendar.createEvent(
       this.event.title, 
       this.event.location, 
-      this.event.notes, 
+      this.event.notes,
       new Date(this.event.startDate), 
       new Date(this.event.endDate)).then(
       (msg) => {
@@ -80,11 +84,15 @@ export class AddEventPage {
                   id: newEventsRef.key,
                   title: this.event.title,
                   location: this.event.location,
+                  category: this.event.category,
                   notes: this.event.notes,
                   startDate: this.event.startDate,
                   endDate: this.event.endDate,
                   startTime: this.event.startTime,
-                  endTime: this.event.endTime
+                  endTime: this.event.endTime,
+                  contactName: this.event.contactName,
+                  contactEmail: this.event.contactEmail,
+                  contactPhone: this.event.contactPhone
                 });
               }
             }
