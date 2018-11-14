@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController, Item } from 'ionic-angular';
 import { Calendar } from '@ionic-native/calendar';
 import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -23,6 +23,8 @@ export class ViewSuggestedEventsPage {
 
 //Create the eventsRef variable: give it the type of "AngularFireList" 
 eventsRef: AngularFireList<any>;
+suggestedEventsRef: AngularFireList<any>;
+
 //The events observable holds all the data pulled from the database 
 events: Observable<any[]>;
 //Declare the database filter variable
@@ -33,14 +35,18 @@ databaseFilter: BehaviorSubject<string | null> = new BehaviorSubject('');
 allEvents: any;
 
 //The "event" is an object that is used to format the data being pushed into the database 
-event = { 
+suggestedEvent = { 
   title: "", 
-  location: "", 
-  notes: "", 
-  startDate: "",
-  endDate: "", 
-  startTime: "", 
-  endTime: "" 
+    location: "", 
+    category: "",
+    notes: "",
+    startDate: "",
+    endDate: "", 
+    startTime: "", 
+    endTime: "",
+    contactName: "",
+    contactEmail: "",
+    contactPhone: ""
 };
 
 constructor(public alertCtrl: AlertController,
@@ -56,6 +62,7 @@ constructor(public alertCtrl: AlertController,
 
     //This is the reference to which portion of the database you want to access 
     this.eventsRef = afDatabase.list('events');
+    this.suggestedEventsRef = afDatabase.list('suggestedEvents');
 
     //Set the "events" Observable equal to a call to the database unfiltered (all events)
       //Use the "databaseFilter" to allow it to retrieve the default / unfiltered set (all events)
@@ -77,6 +84,7 @@ constructor(public alertCtrl: AlertController,
   ionViewDidLoad() {
     //Show a loading spinner to ensure the data is loaded rather than just coming into a blank page 
     this.presentLoadingDefault()
+    console.log("suggested load")
   };
 
   //Loading Spinner
@@ -89,7 +97,7 @@ constructor(public alertCtrl: AlertController,
   
     setTimeout(() => {
       loading.dismiss();
-    }, 2000);
+    }, 1000);
   };
 
   //Custom Spinner code for when we decide to tailor make one.
@@ -111,53 +119,64 @@ constructor(public alertCtrl: AlertController,
   // };
 
 
-  addSuggestedEvent(item) {
+  addSuggestedEvent(event) {
     console.log("Add");
-    //The "item" has a property called "id" nested under "item.item.id"
-      //We can use this property to see which item in the list was selected 
-    console.log(item.item.id);
-    
-    //However the "allEvents" variable is an array which is 0 indexed
-      //The items (events) displayed are in the same order as they are in the array
-        //So we must take the "id" of the item being passed and subtract 1 from it to get the index of it in the array
-    let index = (item.item.id - 1);
-    
+    //console.log(event)
+
     //Call the save function, passing in the newly calculated index for the array 
-    this.save(index);
+    this.save(event);
   };
 
-  modifySuggestedEvent(item) {
+  modifySuggestedEvent(event) {
     console.log("Modify");
   };
 
 
-  deleteSuggestedEvent(item) {
+  deleteSuggestedEvent(event) {
     console.log("Delete");
+    //Call the database via the "suggestedEventsRef" and delete the item corresponding to the event.id passed
+    this.suggestedEventsRef.remove(event.id);
   };
   
+  displayMore() {
+  //   let elements = document.getElementsByClassName("additionalInfo")
+
+  //   for(var i=0; i<elements.length; i++) {
+  //     elements[i].hidden = false 
+  // }
+  document.getElementById("additionalInfo").hidden = false 
+  }
 
   //Create New Events 
-  save(index) {
-    //Set the values of event object to those of the "allEvents" array...
-      //Specified by the re-calculated "index" passed in from the user selection when they chose to add an event
-    this.event.title = this.allEvents[index].title, 
-    this.event.location = this.allEvents[index].location, 
-    this.event.notes = this.allEvents[index].notes, 
-    this.event.startDate = this.allEvents[index].startDate,
-    this.event.endDate = this.allEvents[index].endDate, 
-    this.event.startTime = this.allEvents[index].startTime, 
-    this.event.endTime = this.allEvents[index].endTime
+  save(event) {
 
+  console.log(event.id)
+
+  for (let i = 0; i < this.allEvents.length; i++) {
+
+    if (event.id == this.allEvents[i].id) {
+      //Set the values of event object to those of the "allEvents" array...
+      //Specified by the re-calculated "index" passed in from the user selection when they chose to add an event
+      this.suggestedEvent.title = this.allEvents[i].title, 
+      this.suggestedEvent.location = this.allEvents[i].location, 
+      this.suggestedEvent.notes = this.allEvents[i].notes, 
+      this.suggestedEvent.startDate = this.allEvents[i].startDate,
+      this.suggestedEvent.endDate = this.allEvents[i].endDate, 
+      this.suggestedEvent.startTime = this.allEvents[i].startTime, 
+      this.suggestedEvent.endTime = this.allEvents[i].endTime
+    }
+  };
+    
     this.calendar.createEvent(
-      this.event.title, 
-      this.event.location, 
-      this.event.notes, 
-      new Date(this.event.startDate), 
-      new Date(this.event.endDate)).then(
+      this.suggestedEvent.title, 
+      this.suggestedEvent.location, 
+      this.suggestedEvent.notes, 
+      new Date(this.suggestedEvent.startDate), 
+      new Date(this.suggestedEvent.endDate)).then(
       (msg) => {
         let alert = this.alertCtrl.create({
           title: 'Success!',
-          subTitle: 'Event saved successfully',
+          subTitle: 'Finalize your changes?',
           // buttons: ['Ok'],
           buttons: [
             {
@@ -174,14 +193,20 @@ constructor(public alertCtrl: AlertController,
        
                 newEventsRef.set({
                   id: newEventsRef.key,
-                  title: this.event.title,
-                  location: this.event.location,
-                  notes: this.event.notes,
-                  startDate: this.event.startDate,
-                  endDate: this.event.endDate,
-                  startTime: this.event.startTime,
-                  endTime: this.event.endTime
+                  title: this.suggestedEvent.title,
+                  location: this.suggestedEvent.location,
+                  notes: this.suggestedEvent.notes,
+                  startDate: this.suggestedEvent.startDate,
+                  endDate: this.suggestedEvent.endDate,
+                  startTime: this.suggestedEvent.startTime,
+                  endTime: this.suggestedEvent.endTime,
+                  contactName: this.suggestedEvent.contactName,
+                  contactEmail: this.suggestedEvent.contactEmail,
+                  contactPhone: this.suggestedEvent.contactPhone
                 });
+
+                //Call the database via the "suggestedEventsRef" and delete the item corresponding to the event.id passed
+                this.suggestedEventsRef.remove(event.id);
               }
             }
           ]

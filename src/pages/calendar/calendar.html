@@ -52,12 +52,12 @@
       Events
     </ion-list-header>
 
-    <ion-item-sliding *ngFor="let event of events | async" #item>
+    <ion-item-sliding *ngFor="let event of events | async">
       <ion-item>
         <ion-avatar item-start>
           <img [src]="event.img">
         </ion-avatar>
-
+        
         <h2 text-wrap>
           {{event.title}}
         </h2>
@@ -65,35 +65,39 @@
         <h4 class="startInfo">{{event.startDate}} &nbsp;&nbsp;&nbsp; {{event.startTime}}</h4>
         <h4 class="endInfo">{{event.endDate}} &nbsp;&nbsp;&nbsp; {{event.endTime}}</h4>
         <p text-wrap>{{event.notes}}</p>
-      </ion-item>
 
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+    
       <!-- Right Side Options -->
       <!-- Dont make the button able to activate when slid really far, instead force clicking of add button -->
       <!-- <ion-item-options side="left" (ionSwipe)="deleteSuggestedEvent(item)"></ion-item-options> -->
-      <ion-item-options side="right">
+      
+      <!-- <ion-item-options side="right">
         <button ion-button color="danger" expandable (click)="deleteSuggestedEvent(item)">
           <ion-icon name="trash"></ion-icon>
           Delete
         </button>
-      </ion-item-options>
+      </ion-item-options> -->
 
       <!-- Left Side Options -->
       <!-- Dont make the button able to activate when slid really far, instead force clicking of add button -->
       <!-- <ion-item-options side="left" (ionSwipe)="addSuggestedEvent(item)"></ion-item-options> -->
-      <ion-item-options side="left">
+      <!-- <ion-item-options side="left">
         <button ion-button color="secondary" expandable (click)="addSuggestedEvent(item)">
           <ion-icon name="archive" class="expand-hide"></ion-icon>
           <div class="expand-hide">Add</div>
-          <!-- <ion-spinner name="crescent"></ion-spinner> -->
+          <ion-spinner name="crescent"></ion-spinner>
         </button>
 
         <button ion-button color="dark" (click)="modifySuggestedEvent(item)">
           <ion-icon name="volume-off"></ion-icon>
           <div>Modify</div>
         </button>
-      </ion-item-options>
+      </ion-item-options> -->
 
-    </ion-item-sliding>
-  </ion-list>
+    <!-- </ion-item-sliding>
+  </ion-list> -->
 
 </ion-content>
