@@ -62,9 +62,9 @@ export class HomePage {
       //console.log(this.allEvents)
       //Once we know that "allEvents[]" has data, reformat the values 
       this.reformatAllEventsArray();
-    });  
+    });
+    
   }
-
 
   //Function to navigate to the "TestPage" using the NavController 
   navigateToTestPage(){
@@ -132,6 +132,5 @@ export class HomePage {
     } 
 
     //return this.formattedForCSS;  
-    console.log(this.formattedForCSS)
   }
 }

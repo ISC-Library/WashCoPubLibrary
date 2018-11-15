@@ -126,7 +126,7 @@ export class CalendarPage {
   ionViewDidLoad() {
 
     //Show a loading spinner to ensure the data is loaded rather than just coming into a blank page 
-    this.presentLoadingDefault()
+    this.presentLoadingDefault();
   };
 
   //Loading Spinner
@@ -140,8 +140,6 @@ export class CalendarPage {
     setTimeout(() => {
       loading.dismiss();
     }, 2000);
-
-    
 
     // Set the value of class variable "this.date" to a new date() , which is the current date
     this.date = new Date();
@@ -318,5 +316,7 @@ export class CalendarPage {
   addEvent() {
     this.navCtrl.push(AddEventPage);
   }
+
+
 }
 
