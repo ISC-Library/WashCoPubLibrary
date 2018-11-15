@@ -30,6 +30,8 @@ export class CalendarPage {
   //Declare formatted dates (array)
     //holds formatted dates {year, month, date} abstracted from the "startDate" of the "allEvents" (array)
   formattedForCSS: any;
+
+  categoryArray: any;
   
   //Declare the database filter variable
     //Dynamic: Can change so that dynamic filters can be passed to the database 
@@ -46,6 +48,8 @@ export class CalendarPage {
     
     //This.formattedForCSS needs to be converted to any array 
     this.formattedForCSS = [];
+
+    this.categoryArray = [];
 
     //Set the value of the class variable "event" to the event passed 
     this.formattedForCSS = this.navParams.get('formattedForCSS');
@@ -80,12 +84,21 @@ export class CalendarPage {
   //////// Below this are the portions to display event data  [][[][[][][][][][][][[][][]]]]
   // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
 
+formatCategoryArray() {
 
+  this.categoryArray[0] = {
+    category: "sporting"
+  };
+
+  console.log(this.formattedForCSS)
+  console.log(this.categoryArray)
+}
 
   ionViewDidLoad() {
 
     //Show a loading spinner to ensure the data is loaded rather than just coming into a blank page 
     this.presentLoadingDefault()
+    this.formatCategoryArray()
   };
 
   //Loading Spinner

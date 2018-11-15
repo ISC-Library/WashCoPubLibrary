@@ -139,7 +139,7 @@ constructor(public alertCtrl: AlertController,
   };
   
   displayMore() {
-  //   let elements = document.getElementsByClassName("additionalInfo")
+   // let elements = document.getElementsByClassName("additionalInfo")
 
   //   for(var i=0; i<elements.length; i++) {
   //     elements[i].hidden = false 

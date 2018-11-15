@@ -22,6 +22,7 @@
 <!-- Adding (onDaySelect)="callCalendarEventsProvider()" makes it so when you press the days it shows events -->
 
 <div id='calendarDiv' class='calendarBackground'><ion-calendar #calendar [events]="this.formattedForCSS"
+  [categories]="this.categoryArray"
   (onDaySelect)="onDaySelect($event)"></ion-calendar></div>
 
   <!-- Everything below here is for native functions -->
