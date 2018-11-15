@@ -11,6 +11,10 @@ page-calendar {
         visibility: hidden;
     }
 
+    .eventBlip {
+        color: blue;
+    }
+
     @keyframes cssAnimation {
         to {visibility: visible;
         }

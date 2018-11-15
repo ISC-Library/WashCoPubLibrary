@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/observable';
 
 //Import AF2 
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'page-add-event',
@@ -23,6 +24,7 @@ export class AddEventPage {
   event = { 
     title: "", 
     location: "", 
+    category: "",
     notes: "", 
     startDate: "",
     endDate: "", 
@@ -80,6 +82,7 @@ export class AddEventPage {
                   id: newEventsRef.key,
                   title: this.event.title,
                   location: this.event.location,
+                  category: this.event.category,
                   notes: this.event.notes,
                   startDate: this.event.startDate,
                   endDate: this.event.endDate,

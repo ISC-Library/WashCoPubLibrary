@@ -31,7 +31,6 @@ export class HomePage {
   //Declare formatted dates (array)
     //holds formatted dates {year, month, date} abstracted from the "startDate" of the "allEvents" (array)
     formattedForCSS: any;
-    testArray: any;
 
   //Static: Stays as default ('') so that the 
     //Used for the "eventsForCSS" Observable so that it will hold all events (unfiltered), which is default
@@ -45,9 +44,7 @@ export class HomePage {
     this.allEvents = [];
     //This.formattedForCSS needs to be converted to any array 
     this.formattedForCSS = [];
-    this.testArray = [];
-    this.testArray = this.formattedForCSS
-
+    
     //Set the "eventsForCSS" Observable equal to a call to the database unfiltered (all events)
       //Use the "databaseFilterStatic" to allow it to retrieve the default / unfiltered set (all events)
       this.eventsForCSS = this.CalendarEventSvc.getEvents(this.databaseFilterStatic);
@@ -84,7 +81,7 @@ export class HomePage {
   goToCalendar() {
     //this.navCtrl.push(CalendarPage);
     this.navCtrl.push(CalendarPage, {
-      testArray: this.testArray
+      formattedForCSS: this.formattedForCSS
     });
   }
 
@@ -122,7 +119,8 @@ export class HomePage {
       this.formattedForCSS[i] = {
         year:parseInt(tempArray[0]), 
         month:appendedMonth, 
-        date:parseInt(tempArray[2])
+        date:parseInt(tempArray[2]),
+        category: this.allEvents[i].category
       };
      
       //Use the ".push" method of array data types on the "formattedForCSS" array...
@@ -132,6 +130,5 @@ export class HomePage {
     } 
 
     //return this.formattedForCSS;  
-    console.log(this.formattedForCSS)
   }
 }
