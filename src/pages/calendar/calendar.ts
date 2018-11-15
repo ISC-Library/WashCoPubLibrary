@@ -34,7 +34,7 @@ export class CalendarPage {
 
   //Class variable to hold the values gathered from the service 
   events: Observable<any[]>;
-  //Class variable to hold the values gathered from th service
+  //Class variable to hold the values gathered from the service
     //There must be a variable that holds all of the events, (non-filtered)
       //This is so that we can populate the CSS for any day with an event
         //The other "events" Observable changes according to current Date, or user's selecting a day, etc.
@@ -53,9 +53,7 @@ export class CalendarPage {
     //Static: Stays as default ('') so that the 
       //Used for the "eventsForCSS" Observable so that it will hold all events (unfiltered), which is default
   databaseFilterStatic: BehaviorSubject<string | null> = new BehaviorSubject('');
-  year: any;
-  month: any;
-  day: any;
+ 
   testString: any;
 
   constructor(public navCtrl: NavController,
@@ -68,7 +66,15 @@ export class CalendarPage {
     this.allEvents = [];
     //This.formattedForCSS needs to be converted to any array 
     this.formattedForCSS = [];
+
+
+
+
     this.testArray = [];
+    //Set the value of the class variable "event" to the event passed 
+    this.testArray = this.navParams.get('testArray');
+
+
 
     //Set the "eventsForCSS" Observable equal to a call to the database unfiltered (all events)
       //Use the "databaseFilterStatic" to allow it to retrieve the default / unfiltered set (all events)

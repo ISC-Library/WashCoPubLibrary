@@ -2,10 +2,12 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform, AlertController } from 'ionic-angular';
 import { Calendar } from '@ionic-native/calendar';
 import { Observable } from 'rxjs';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 //Import AF2 
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+
+//Import Pages
+import { CalendarPage } from '../calendar/calendar';
 
 @Component({
   selector: 'page-modify-events',
@@ -47,7 +49,6 @@ export class ModifyEventsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ModifyEventsPage');
-    console.log(this.event)
   }
 
   updateEvent(eventID){
@@ -89,6 +90,8 @@ export class ModifyEventsPage {
               startTime: this.event.startTime,
               endTime: this.event.endTime
             });
+            //Navigate back to calendar once the update is finalized 
+            this.navCtrl.push(CalendarPage);
           }
         }
       ]
