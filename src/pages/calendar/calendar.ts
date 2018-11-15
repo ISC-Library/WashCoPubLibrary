@@ -97,12 +97,9 @@ formatCategoryArray() {
   ionViewDidLoad() {
 
     //Show a loading spinner to ensure the data is loaded rather than just coming into a blank page 
-<<<<<<< HEAD
+    //Dots still
     this.presentLoadingDefault()
     this.formatCategoryArray()
-=======
-    this.presentLoadingDefault();
->>>>>>> d5bbd40705b7ee7ef8e9542e5fe41da8298c8171
   };
 
   //Loading Spinner
