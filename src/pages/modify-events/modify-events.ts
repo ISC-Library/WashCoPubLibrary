@@ -14,13 +14,25 @@ export class ModifyEventsPage {
   //Class variable to hold the values gathered from the service 
   events: Observable<any[]>;
 
+  //Variable to hold the "event" passed from the "calendar" page
+    //The "event" is an object that is used to format the data being pushed into the database 
+  event = { 
+    title: "", 
+    location: "", 
+    notes: "", 
+    startDate: "",
+    endDate: "", 
+    startTime: "", 
+    endTime: "" 
+  };
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.events = this.navParams.get('event');
+    this.event = this.navParams.get('event');
   };
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ModifyEventsPage');
-    console.log(this.events)
+    console.log(this.event)
   }
 
 }

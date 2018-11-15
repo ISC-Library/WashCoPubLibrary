@@ -1,3 +1,83 @@
 page-about {
 
+
+// Admin button and text styling.
+    .adminButton{
+        left:10%;
+        right:10%;
+        top:10%;
+        width:75%;
+    }
+
+    .contactAdminShow{
+        transition: ease .2s;
+        padding:15px;
+        text-align:center;
+        border-radius:20px;
+        background-color: whitesmoke;
+        box-shadow: 4px 4px 4px royalblue;
+        visibility:visible;
+        width:90%;
+    }
+
+    .contactAdminText{
+        visibility: hidden;
+    }
+
+//Important Links Button
+    .importantLinksButton{
+        left:10%;
+        right:10%;
+        top:10%;
+        width:75%;
+    }
+
+    .importantLinksShow{
+            transition: ease .2s;
+            padding:15px;
+            text-align:center;
+            border-radius:20px;
+            background-color: whitesmoke;
+            box-shadow: 4px 4px 4px royalblue;
+            visibility:visible;
+            width:90%;
+    }
+
+    .importantLinksText{
+        visibility: visible;
+    }
+
+
+
+    .userManualButton{
+        // position: absolute;
+        left:10%;
+        right:10%;
+        top:50%;
+        width:75%;
+    }
+    .aboutUsButton{
+        // position: absolute;
+        left:10%;
+        right:10%;
+        top:70%;
+        width:75%;
+    }
+
+    
+
+    .aboutUsText{
+        visibility: hidden;
+    }
+
+    .showAboutUsText{
+        transition: ease .5s;
+        padding:15px;
+        text-align:center;
+        border-radius:20px;
+        background-color: whitesmoke;
+        box-shadow: 4px 4px 4px royalblue;
+        visibility:visible;
+        width:90%;
+    }
 }

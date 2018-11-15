@@ -12,7 +12,35 @@
 
 </ion-header>
 
-
 <ion-content padding>
 
+  <body>
+    <button ion-button round class="adminButton" id="contactAdmin"  (click)="showContactAdmin()" >Contact Administrator</button>
+    <br>
+
+    <div id="contactAdminText" class="contactAdminText"></div>
+
+    <br>
+
+    <button id="importantLinks" (click)="showImportantLinks()" ion-button round class="importantLinksButton">Important Links</button>
+
+    <div id="importantLinksText" class="importantLinksText"></div>
+
+    <br>
+    <button id="userManual" ion-button round class="userManualButton">User Manual</button>
+    <div id="userManualText" class="userManualText"></div>
+    <br>
+    <button id="aboutUs" ion-button round class="aboutUsButton" (click)="showAboutUsText()">About Us</button>
+    <br>
+
+    <div id="aboutUsText" class="aboutUsText">
+      Hello and thank you for using our app!
+      <br>
+      This app was designed by students from the University of South Alabama as a means of a rural community event
+      sharing platform.
+      <br>
+      The Washington County Public Library approached us with an idea to draw rural communities, such as those in
+      Washington County, even closer, and this was the result.
+    </div>
+  </body>
 </ion-content>
