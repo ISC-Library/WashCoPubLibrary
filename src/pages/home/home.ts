@@ -133,19 +133,9 @@ export class HomePage {
 
     //return this.formattedForCSS;  
     //this.formatCategoryArray();
-  }
-
-
-  formatCategoryArray() {
-
-    for (let i = 0; i < this.formattedForCSS.length; i++) {
-      this.categoryArray[i] = {
-        category: "sporting"
-      };
-    }
-
     console.log(this.formattedForCSS)
-    console.log(this.categoryArray)
   }
-
 }
+
+
+  
