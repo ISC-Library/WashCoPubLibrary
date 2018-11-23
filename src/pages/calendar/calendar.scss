@@ -6,25 +6,70 @@ page-calendar {
         background-color: whitesmoke;
     }
 
-    .eventBlips
-    {
-      background: #46b592;
-      width: 6.5px;
-      height: 6.5px;
-      display: inline-block;
-      border-radius: 6.5px;
-      position: absolute;
-      top: 3.5px;
-      right: 3.5px;
+    // Segment Buttons
+    #allSegmentBtn {
+        color: purple;
+        border-top-color: purple;
+        border-bottom-color: purple;
+        border-left-color: purple;
     }
+
+    //All
+    //Have to get the right level of "specificity" to override the "main.css"
+    .segment-ios  #allSegmentBtn.segment-activated {
+        //RGBA allows you to convert a color to transparency
+        background-color: rgba(128,0,128,0.3);
+    }
+
+    //Sporting
+    #sportingSegmentBtn {
+        color: green;
+        border-top-color: green;
+        border-bottom-color: green;
+    }
+
+    .segment-ios  #sportingSegmentBtn.segment-activated {
+        background-color: rgba(0,255,0,0.3);
+    }
+
+    //Community
+    #communitySegmentBtn {
+        color: orange;
+        border-top-color: orange;
+        border-bottom-color: orange;
+    }
+
+    .segment-ios  #communitySegmentBtn.segment-activated {
+        background-color: rgba(255,165,0,0.3);
+    }
+
+    //Business
+    #businessSegmentBtn {
+        color: black;
+        border-top-color: black;
+        border-bottom-color: black;
+    }
+
+    .segment-ios  #businessSegmentBtn.segment-activated {
+        background-color: rgba(0,0,0,0.3);
+    }
+
+    //Art
+    #artSegmentBtn {
+        color: blue;
+        border-top-color: blue;
+        border-bottom-color: blue;
+        border-right-color: blue;
+    }
+
+    .segment-ios  #artSegmentBtn.segment-activated {
+        background-color: rgba(0,0,255,0.3);
+    }
+
 
     #calendarDiv{
         animation: cssAnimation 0s 2s forwards;
         visibility: hidden;
-    }
-
-    .eventBlip {
-        color: blue;
     }
 
     @keyframes cssAnimation {

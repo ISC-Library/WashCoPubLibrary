@@ -1,15 +1,42 @@
+
 <ion-header>
-  <ion-navbar color="primary">
-    <ion-title>
-      My Calendars
-    </ion-title>
+
+  <ion-navbar no-border-bottom>
+    <ion-title>Events</ion-title>
   </ion-navbar>
+
+  <ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="categoryType">
+
+      <ion-segment-button id="allSegmentBtn" value="all">
+        All
+      </ion-segment-button>
+
+      <ion-segment-button id="sportingSegmentBtn" value="sporting">
+        Sporting
+      </ion-segment-button>
+
+      <ion-segment-button id="communitySegmentBtn" value="community">
+        Community
+      </ion-segment-button>
+
+      <ion-segment-button id="businessSegmentBtn" value="business">
+        Business
+      </ion-segment-button>
+
+      <ion-segment-button id="artSegmentBtn" value="art">
+        Art
+      </ion-segment-button>
+
+    </ion-segment>
+  </ion-toolbar>
+
 </ion-header>
 
 <!-- https://devdactic.com/ionic-calendar-angular-calendar/ -->
 
 <ion-content>
-  <button (click)="navigateToHomePage()" ion-button>Navigate to Home Page</button>
+  <!-- <button (click)="navigateToHomePage()" ion-button>Navigate to Home Page</button> -->
 
 
   <!-- Calendar html -->

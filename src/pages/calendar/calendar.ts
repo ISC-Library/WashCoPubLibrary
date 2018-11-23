@@ -103,9 +103,6 @@ export class CalendarPage {
     // Set the value of class variable "this.date" to a new date() , which is the current date
     this.date = new Date();
  
-    //On load set the value of the "databaseFilterDynamic" to the current date by default
-    //^^^ Formatted to the way firebase is storing the date
-
     //For full explanation of if structure: See "onDaySelect()" subproceedure
     let appendedDate: string;
     let appendedMonth: string;
@@ -148,17 +145,6 @@ export class CalendarPage {
 
   //Get the selected day 
   onDaySelect($event) {
-    //************************************************** 
-    //For testing: 
-    // Properties of $event below::
-    // console.log($event);
-    // console.log("event data")
-    // console.log($event.year);
-    // console.log($event.month);
-    // console.log($event.date);
-    //************************************************** 
-    
-
     //Firebase has dates stored with leading zeros for months and days 
     //This causes the database provider not to be able to filter correctly unless a leading 0 is added to days with a single digit
     
