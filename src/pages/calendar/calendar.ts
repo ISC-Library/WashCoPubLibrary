@@ -12,6 +12,8 @@ import { ModifyEventsPage } from '../modify-events/modify-events'
 
 //Import Provider
 import { CalenderEventsServiceProvider } from '../../providers/calendar-event-service/calendar-event-service';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { MaxLengthValidator } from '@angular/forms';
 
 
 @Component({
@@ -89,6 +91,8 @@ export class CalendarPage {
   };
 
   //Loading Spinner
+    //The portion to load the events for today's date are in here...
+        //This prevents them from attempting to load before the event spinner is invoked
   presentLoadingDefault() {
     let loading = this.loadingCtrl.create({
       content: 'Calendar is loading...'
@@ -186,6 +190,73 @@ export class CalendarPage {
 
     console.log(this.events)
   }
+
+
+  // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
+  //////// Everything below changes the event blips displayed (based on categories) [][[][[][][][][][][][[][][]]]]
+  // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
+
+
+  changeCategoriesDisplayed($event) {
+    
+    //Get the length of each set of elements (by classname) 
+      //We will use these to determine the length of the loop corresponding to hiding each collection respectively
+    let multipleLength = document.getElementsByClassName("eventBlip").length;
+    let sportingLength = document.getElementsByClassName("sportingBlip").length;
+    let communityLength = document.getElementsByClassName("communityBlip").length;
+    let businessLength = document.getElementsByClassName("businessBlip").length;
+    let artLength = document.getElementsByClassName("artBlip").length;
+    
+
+    //Get lists of all the elements by classname (their category)
+    let elementsListMultiple= document.getElementsByClassName("eventBlip");
+    let elementsListSporting= document.getElementsByClassName("sportingBlip");
+    let elementsListCommunity= document.getElementsByClassName("communityBlip");
+    let elementsListBusiness= document.getElementsByClassName("businessBlip");
+    let elementsListArt= document.getElementsByClassName("artBlip");
+    
+    if ($event.value == "sporting") {
+      //Multiple
+      for (let i=0; i < multipleLength; i++) {
+          //I cant figure out how to change the visibility of elements by classname... soooo
+          elementsListMultiple[i].id = "temp";
+          document.getElementById("temp").hidden = true;
+          elementsListMultiple[i].id = ""
+      }
+
+      //Community
+      for (let i=0; i < communityLength; i++) {
+          elementsListCommunity[i].id = "temp";
+          document.getElementById("temp").hidden = true;
+          elementsListCommunity[i].id = ""
+      }
+
+      //Business
+      for (let i=0; i < businessLength; i++) {
+          elementsListBusiness[i].id = "temp";
+          document.getElementById("temp").hidden = true;
+          elementsListBusiness[i].id = ""
+      }
+
+      //Art
+      for (let i=0; i < artLength; i++) {
+          elementsListArt[i].id = "temp";
+          document.getElementById("temp").hidden = true;
+          elementsListArt[i].id = ""
+      }
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
 
 
   // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]

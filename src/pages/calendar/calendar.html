@@ -6,7 +6,7 @@
   </ion-navbar>
 
   <ion-toolbar no-border-top>
-    <ion-segment [(ngModel)]="categoryType">
+    <ion-segment [(ngModel)]="categoryType" (ionChange)="changeCategoriesDisplayed($event)">
 
       <ion-segment-button id="allSegmentBtn" value="all">
         All

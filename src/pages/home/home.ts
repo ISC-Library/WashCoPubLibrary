@@ -133,7 +133,7 @@ export class HomePage {
 
     //return this.formattedForCSS;  
     //this.formatCategoryArray();
-    console.log(this.formattedForCSS)
+    //console.log(this.formattedForCSS)
   }
 }
 
