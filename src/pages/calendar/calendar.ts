@@ -215,6 +215,44 @@ export class CalendarPage {
     let elementsListBusiness= document.getElementsByClassName("businessBlip");
     let elementsListArt= document.getElementsByClassName("artBlip");
     
+    if ($event.value == "all") {
+      //Multiple
+      for (let i=0; i < multipleLength; i++) {
+          //I cant figure out how to change the visibility of elements by classname... soooo
+          elementsListMultiple[i].id = "temp";
+          document.getElementById("temp").hidden = false;
+          elementsListMultiple[i].id = ""
+      }
+
+      //Sporting
+      for (let i=0; i < sportingLength; i++) {
+        elementsListCommunity[i].id = "temp";
+        document.getElementById("temp").hidden = false;
+        elementsListCommunity[i].id = ""
+      }
+
+      //Community
+      for (let i=0; i < communityLength; i++) {
+          elementsListCommunity[i].id = "temp";
+          document.getElementById("temp").hidden = false;
+          elementsListCommunity[i].id = ""
+      }
+
+      //Business
+      for (let i=0; i < businessLength; i++) {
+          elementsListBusiness[i].id = "temp";
+          document.getElementById("temp").hidden = false;
+          elementsListBusiness[i].id = ""
+      }
+
+      //Art
+      for (let i=0; i < artLength; i++) {
+          elementsListArt[i].id = "temp";
+          document.getElementById("temp").hidden = false;
+          elementsListArt[i].id = ""
+      }
+    }
+
     if ($event.value == "sporting") {
       //Multiple
       for (let i=0; i < multipleLength; i++) {
@@ -245,6 +283,10 @@ export class CalendarPage {
           elementsListArt[i].id = ""
       }
     }
+
+
+
+
   }
 
 
