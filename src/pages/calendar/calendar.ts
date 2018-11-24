@@ -188,7 +188,7 @@ export class CalendarPage {
     //Call the database filtered by the selected day
     this.events = this.CalendarEventSvc.getEvents(this.databaseFilterDynamic);
 
-    console.log(this.events)
+    //console.log(this.events)
   }
 
 
@@ -198,95 +198,116 @@ export class CalendarPage {
 
 
   changeCategoriesDisplayed($event) {
-    
-    //Get the length of each set of elements (by classname) 
-      //We will use these to determine the length of the loop corresponding to hiding each collection respectively
-    let multipleLength = document.getElementsByClassName("eventBlip").length;
-    let sportingLength = document.getElementsByClassName("sportingBlip").length;
-    let communityLength = document.getElementsByClassName("communityBlip").length;
-    let businessLength = document.getElementsByClassName("businessBlip").length;
-    let artLength = document.getElementsByClassName("artBlip").length;
-    
-
+  
     //Get lists of all the elements by classname (their category)
     let elementsListMultiple= document.getElementsByClassName("eventBlip");
     let elementsListSporting= document.getElementsByClassName("sportingBlip");
     let elementsListCommunity= document.getElementsByClassName("communityBlip");
     let elementsListBusiness= document.getElementsByClassName("businessBlip");
     let elementsListArt= document.getElementsByClassName("artBlip");
-    
+
+      
+    //Get the length of each set of elements (by classname) 
+      //We will use these to determine the length of the loop corresponding to hiding each collection respectively
+      let multipleLength = elementsListMultiple.length
+      let sportingLength = elementsListSporting.length
+      let communityLength = elementsListCommunity.length
+      let businessLength = elementsListBusiness.length
+      let artLength = elementsListArt.length
+      
+
+    //All
     if ($event.value == "all") {
+      //Get lists of all the Hidden elements by classname (their category)
+      let elementsListMultipleHidden= document.getElementsByClassName("eventBlipHidden");
+      let elementsListSportingHidden= document.getElementsByClassName("sportingBlipHidden");
+      let elementsListCommunityHidden= document.getElementsByClassName("communityBlipHidden");
+      let elementsListBusinessHidden= document.getElementsByClassName("businessBlipHidden");
+      let elementsListArtHidden= document.getElementsByClassName("artBlipHidden");
+    
+      //Get the length of each set of elements (by classname) 
+      //We will use these to determine the length of the loop corresponding to hiding each collection respectively
+      let multipleLengthHidden = elementsListMultipleHidden.length
+      let sportingLengthHidden = elementsListSportingHidden.length
+      let communityLengthHidden = elementsListCommunityHidden.length
+      let businessLengthHidden = elementsListBusinessHidden.length
+      let artLengthHidden = elementsListArtHidden.length
+      
       //Multiple
-      for (let i=0; i < multipleLength; i++) {
-          //I cant figure out how to change the visibility of elements by classname... soooo
-          elementsListMultiple[i].id = "temp";
-          document.getElementById("temp").hidden = false;
-          elementsListMultiple[i].id = ""
+      for (let i = (multipleLengthHidden -1); i > -1; i--) {
+        elementsListMultipleHidden[i].className = "eventBlip";
       }
 
       //Sporting
-      for (let i=0; i < sportingLength; i++) {
-        elementsListCommunity[i].id = "temp";
-        document.getElementById("temp").hidden = false;
-        elementsListCommunity[i].id = ""
+      for (let i = (sportingLengthHidden -1); i > -1; i--) {
+        elementsListSportingHidden[i].className = "sportingBlip";
       }
 
       //Community
-      for (let i=0; i < communityLength; i++) {
-          elementsListCommunity[i].id = "temp";
-          document.getElementById("temp").hidden = false;
-          elementsListCommunity[i].id = ""
+      for (let i = (communityLengthHidden -1); i > -1; i--) {
+        elementsListCommunityHidden[i].className = "communityBlip";
       }
 
       //Business
-      for (let i=0; i < businessLength; i++) {
-          elementsListBusiness[i].id = "temp";
-          document.getElementById("temp").hidden = false;
-          elementsListBusiness[i].id = ""
+      for (let i = (businessLengthHidden -1); i > -1; i--) {
+        elementsListBusinessHidden[i].className = "businessBlip";
       }
 
       //Art
-      for (let i=0; i < artLength; i++) {
-          elementsListArt[i].id = "temp";
-          document.getElementById("temp").hidden = false;
-          elementsListArt[i].id = ""
+      for (let i = (artLengthHidden -1); i > -1; i--) {
+        elementsListArtHidden[i].className = "artBlip";
       }
     }
 
+    //Sporting
     if ($event.value == "sporting") {
+    //****** Explanation::
+      //First: the lengths are calculated dynamically, so each time we change the class of an element in the collection...
+        //...the length of the collection is reduced by 1.
+        //So if we attempt to iterate starting at 0 while "i" < length... it will never make it to the end of the array
+        //This is because "i" increments by 1 while the length decrements by 1, so at some point 2 elements get skipped
+
+    //Second: The "length" of any of the given HTML collections is a count, meaning it starts at 1 not 0
+      //However the HTML collection indices start at 0, much like any other array type object
+        //So we let the iterating variable "i" = the length of a given collection - 1, to account for these principles
+
+    //Finally: We will actually decrement "i" starting with the original length of the HTML collection
+      //This allows "i" to start at high end of the index and count down so nothing is missed
+        //We know all arrays begin indexing at "0" so once "i" is at a point where only -1 is below it, we stop
+
       //Multiple
-      for (let i=0; i < multipleLength; i++) {
-          //I cant figure out how to change the visibility of elements by classname... soooo
-          elementsListMultiple[i].id = "temp";
-          document.getElementById("temp").hidden = true;
-          elementsListMultiple[i].id = ""
+      for (let i = (multipleLength -1); i > -1; i--) {
+        //I could not surmise how to change the visibility of an HTML collection of classes
+          //As the "visibility" property is for some reason not accessible even in a loop of elements[i]
+            //The most effective way I saw to change the visiblity was to simply change the class of the elements
+            //The class they are changed too has CSS which makes them "visbility =false"
+        elementsListMultiple[i].className = "eventBlipHidden";
       }
 
       //Community
-      for (let i=0; i < communityLength; i++) {
-          elementsListCommunity[i].id = "temp";
-          document.getElementById("temp").hidden = true;
-          elementsListCommunity[i].id = ""
+      for (let i = (communityLength -1); i > -1; i--) {
+        elementsListCommunity[i].className = "communityBlipHidden";
       }
 
       //Business
-      for (let i=0; i < businessLength; i++) {
-          elementsListBusiness[i].id = "temp";
-          document.getElementById("temp").hidden = true;
-          elementsListBusiness[i].id = ""
+      for (let i = (businessLength -1); i > -1; i--) {
+        elementsListBusiness[i].className = "businessBlipHidden";
       }
 
       //Art
-      for (let i=0; i < artLength; i++) {
-          elementsListArt[i].id = "temp";
-          document.getElementById("temp").hidden = true;
-          elementsListArt[i].id = ""
+      for (let i = (artLength -1); i > -1; i--) {
+        elementsListArt[i].className = "artBlipHidden";
       }
     }
 
 
 
 
+
+
+
+
+     
   }
 
 

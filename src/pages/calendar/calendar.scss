@@ -6,6 +6,31 @@ page-calendar {
         background-color: whitesmoke;
     }
 
+    //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+    s
+    //Hidden Version of Blips
+    .eventBlipHidden {
+        visibility: hidden;
+    }
+
+    .sportingBlipHidden {
+        visibility: hidden;
+    }
+
+    .communityBlipHidden {
+        visibility: hidden;
+    }
+
+    .businessBlipHidden {
+        visibility: hidden;
+    }
+
+    .artBlipHidden {
+        visibility: hidden;
+    }
+
+    //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+
     // Segment Buttons
     #allSegmentBtn {
         color: purple;
@@ -83,6 +108,7 @@ page-calendar {
         background-color: rgba(0,0,255,0.3);
     }
 
+    //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 
     #calendarDiv{
         animation: cssAnimation 0s 2s forwards;
