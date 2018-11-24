@@ -9,9 +9,12 @@ page-calendar {
     // Segment Buttons
     #allSegmentBtn {
         color: purple;
-        border-top-color: purple;
-        border-bottom-color: purple;
-        border-left-color: purple;
+        // border-top-color: purple;
+        // border-bottom-color: purple;
+        // border-left-color: purple;
+        // border-right-color: purple;
+        border-color: purple;
+        border-right-width: .5px; 
     }
 
     //All
@@ -24,8 +27,12 @@ page-calendar {
     //Sporting
     #sportingSegmentBtn {
         color: green;
-        border-top-color: green;
-        border-bottom-color: green;
+        // border-top-color: green;
+        // border-bottom-color: green;
+        // border-left-color: green;
+        border-color: green;
+        border-left-width: .5px;
+        border-right-width: .5px;
     }
 
     .segment-ios  #sportingSegmentBtn.segment-activated {
@@ -35,8 +42,12 @@ page-calendar {
     //Community
     #communitySegmentBtn {
         color: orange;
-        border-top-color: orange;
-        border-bottom-color: orange;
+        // border-top-color: orange;
+        // border-bottom-color: orange;
+        // border-left-color: orange;
+        border-color: orange;
+        border-left-width: .5px;
+        border-right-width: .5px;
     }
 
     .segment-ios  #communitySegmentBtn.segment-activated {
@@ -46,8 +57,11 @@ page-calendar {
     //Business
     #businessSegmentBtn {
         color: black;
-        border-top-color: black;
-        border-bottom-color: black;
+        // border-top-color: black;
+        // border-bottom-color: black;
+        border-color: black;
+        border-left-width: .5px;
+        border-right-width: .5px;
     }
 
     .segment-ios  #businessSegmentBtn.segment-activated {
@@ -57,9 +71,12 @@ page-calendar {
     //Art
     #artSegmentBtn {
         color: blue;
-        border-top-color: blue;
-        border-bottom-color: blue;
-        border-right-color: blue;
+        // border-top-color: blue;
+        // border-bottom-color: blue;
+        // border-right-color: blue;
+        border-color: blue;
+        border-left-width: .5px;
+        border-right-width: .5px;
     }
 
     .segment-ios  #artSegmentBtn.segment-activated {
