@@ -216,7 +216,7 @@ export class CalendarPage {
       let artLength = elementsListArt.length
       
 
-    //All
+    //Show All
     if ($event.value == "all") {
       //Get lists of all the Hidden elements by classname (their category)
       let elementsListMultipleHidden= document.getElementsByClassName("eventBlipHidden");
@@ -233,35 +233,48 @@ export class CalendarPage {
       let businessLengthHidden = elementsListBusinessHidden.length
       let artLengthHidden = elementsListArtHidden.length
       
-      //Multiple
+      //Show Multiple
       for (let i = (multipleLengthHidden -1); i > -1; i--) {
         elementsListMultipleHidden[i].className = "eventBlip";
       }
 
-      //Sporting
+      //Show Sporting
       for (let i = (sportingLengthHidden -1); i > -1; i--) {
         elementsListSportingHidden[i].className = "sportingBlip";
       }
 
-      //Community
+      //Show Community
       for (let i = (communityLengthHidden -1); i > -1; i--) {
         elementsListCommunityHidden[i].className = "communityBlip";
       }
 
-      //Business
+      //Show Business
       for (let i = (businessLengthHidden -1); i > -1; i--) {
         elementsListBusinessHidden[i].className = "businessBlip";
       }
 
-      //Art
+      //Show Art
       for (let i = (artLengthHidden -1); i > -1; i--) {
         elementsListArtHidden[i].className = "artBlip";
       }
     }
 
-    //Sporting
+    //Show Sporting
     if ($event.value == "sporting") {
-    //****** Explanation::
+      //If sporting is already hidden, we need to get a list of the hidden elements
+      let elementsListSportingHidden = document.getElementsByClassName("sportingBlipHidden");
+      //If the 'hidden collection' has length > 0 it is populated with elements
+      if (elementsListSportingHidden.length > 0) {
+        //Get the length of the hidden elements collection (sportingHidden)
+        let sportingLengthHidden = elementsListSportingHidden.length
+
+        //Show Sporting :: If not already shown
+        for (let i = (sportingLengthHidden -1); i > -1; i--) {
+          elementsListSportingHidden[i].className = "sportingBlip";
+        }
+      }
+      
+    //****** Explanation:: for loop logic 
       //First: the lengths are calculated dynamically, so each time we change the class of an element in the collection...
         //...the length of the collection is reduced by 1.
         //So if we attempt to iterate starting at 0 while "i" < length... it will never make it to the end of the array
@@ -275,7 +288,7 @@ export class CalendarPage {
       //This allows "i" to start at high end of the index and count down so nothing is missed
         //We know all arrays begin indexing at "0" so once "i" is at a point where only -1 is below it, we stop
 
-      //Multiple
+      //Hide Multiple
       for (let i = (multipleLength -1); i > -1; i--) {
         //I could not surmise how to change the visibility of an HTML collection of classes
           //As the "visibility" property is for some reason not accessible even in a loop of elements[i]
@@ -284,21 +297,120 @@ export class CalendarPage {
         elementsListMultiple[i].className = "eventBlipHidden";
       }
 
-      //Community
+      //Hide Community
       for (let i = (communityLength -1); i > -1; i--) {
         elementsListCommunity[i].className = "communityBlipHidden";
       }
 
-      //Business
+      //Hide Business
       for (let i = (businessLength -1); i > -1; i--) {
         elementsListBusiness[i].className = "businessBlipHidden";
       }
 
-      //Art
+      //Hide Art
       for (let i = (artLength -1); i > -1; i--) {
         elementsListArt[i].className = "artBlipHidden";
       }
     }
+
+    //Show Community
+    if ($event.value == "community") {
+       let elementsListCommunityHidden= document.getElementsByClassName("communityBlipHidden");
+       if (elementsListCommunityHidden.length > 0) {
+         let communityLengthHidden = elementsListCommunityHidden.length
+ 
+         //Show Community :: If not already shown
+         for (let i = (communityLengthHidden -1); i > -1; i--) {
+           elementsListCommunityHidden[i].className = "communityBlip";
+         }
+       }
+      
+        //Hide Multiple
+        for (let i = (multipleLength -1); i > -1; i--) {
+          elementsListMultiple[i].className = "eventBlipHidden";
+        }
+  
+        //Hide Sporting
+        for (let i = (sportingLength -1); i > -1; i--) {
+          elementsListSporting[i].className = "sportingBlipHidden";
+        }
+
+        //Hide Business
+        for (let i = (businessLength -1); i > -1; i--) {
+          elementsListBusiness[i].className = "businessBlipHidden";
+        }
+  
+        //Hide Art
+        for (let i = (artLength -1); i > -1; i--) {
+          elementsListArt[i].className = "artBlipHidden";
+        }
+      }
+
+    //Show Business
+    if ($event.value == "business") {
+      let elementsListBusinessHidden= document.getElementsByClassName("businessBlipHidden");
+      if (elementsListBusinessHidden.length > 0) {
+        let businessLengthHidden = elementsListBusinessHidden.length
+
+        //Show Business :: If not already shown
+        for (let i = (businessLengthHidden -1); i > -1; i--) {
+          elementsListBusinessHidden[i].className = "businessBlip";
+        }
+      }
+     
+       //Hide Multiple
+       for (let i = (multipleLength -1); i > -1; i--) {
+         elementsListMultiple[i].className = "eventBlipHidden";
+       }
+ 
+       //Hide Sporting
+       for (let i = (sportingLength -1); i > -1; i--) {
+         elementsListSporting[i].className = "sportingBlipHidden";
+       }
+
+       //Hide Community
+       for (let i = (communityLength -1); i > -1; i--) {
+         elementsListCommunity[i].className = "communityBlipHidden";
+       }
+ 
+       //Hide Art
+       for (let i = (artLength -1); i > -1; i--) {
+         elementsListArt[i].className = "artBlipHidden";
+       }
+     }
+
+    //Show Art
+    if ($event.value == "art") {
+      let elementsListArtHidden= document.getElementsByClassName("artBlipHidden");
+      if (elementsListArtHidden.length > 0) {
+        let artLengthHidden = elementsListArtHidden.length
+
+        //Show Art :: If not already shown
+        for (let i = (artLengthHidden -1); i > -1; i--) {
+          elementsListArtHidden[i].className = "artBlip";
+        }
+      }
+     
+       //Hide Multiple
+       for (let i = (multipleLength -1); i > -1; i--) {
+         elementsListMultiple[i].className = "eventBlipHidden";
+       }
+ 
+       //Hide Sporting
+       for (let i = (sportingLength -1); i > -1; i--) {
+         elementsListSporting[i].className = "sportingBlipHidden";
+       }
+
+       //Hide Community
+       for (let i = (communityLength -1); i > -1; i--) {
+         elementsListCommunity[i].className = "communityBlipHidden";
+       }
+ 
+       //Hide Business
+       for (let i = (businessLength -1); i > -1; i--) {
+         elementsListBusiness[i].className = "businessBlipHidden";
+       }
+     }
 
 
 
