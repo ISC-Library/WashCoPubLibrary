@@ -410,16 +410,7 @@ export class CalendarPage {
        for (let i = (businessLength -1); i > -1; i--) {
          elementsListBusiness[i].className = "businessBlipHidden";
        }
-     }
-
-
-
-
-
-
-
-
-     
+     }   
   }
 
 

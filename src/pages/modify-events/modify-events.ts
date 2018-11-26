@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, AlertController, LoadingController, Loading } from 'ionic-angular';
 import { Calendar } from '@ionic-native/calendar';
 import { Observable } from 'rxjs';
 
@@ -27,6 +27,7 @@ export class ModifyEventsPage {
   event = { 
     title: "", 
     location: "", 
+    category: "",
     notes: "", 
     startDate: "",
     endDate: "", 
@@ -37,6 +38,7 @@ export class ModifyEventsPage {
   constructor(public alertCtrl: AlertController,
     public navCtrl: NavController,
     public navParams: NavParams,
+    public loadingCtrl: LoadingController,
     private calendar: Calendar,
     afDatabase:AngularFireDatabase) {
       
@@ -51,6 +53,23 @@ export class ModifyEventsPage {
     console.log('ionViewDidLoad ModifyEventsPage');
   }
 
+  ionViewDidLeave() {
+   
+  }
+
+  presentLoadingDefault() {
+    let loading = this.loadingCtrl.create({
+      content: 'Calendar is loading...'
+    });
+
+    loading.present();
+
+    setTimeout(() => {
+      loading.dismiss();
+    }, 2000);
+  }
+
+
   updateEvent(eventID){
     console.log(eventID)
     //Seperate the date and time in the "event.startDate" and "event.endDate" variables 
@@ -64,13 +83,7 @@ export class ModifyEventsPage {
     let prompt = this.alertCtrl.create({
       // title: 'Song Name',
       message: "Do you wish to make these changes?",
-      // inputs: [
-      //   {
-      //     name: 'title',
-      //     placeholder: 'Title',
-      //     value: eventTitle
-      //   },
-      // ],
+      
       buttons: [
         {
           text: 'Cancel',
@@ -78,25 +91,28 @@ export class ModifyEventsPage {
             console.log('Cancel clicked');
           }
         },
+
         {
           text: 'Save',
           handler: data => {
             this.eventsRef.update(eventID, {
               title: this.event.title,
               location: this.event.location,
+              category: this.event.category,
               notes: this.event.notes,
               startDate: this.event.startDate,
               endDate: this.event.endDate,
               startTime: this.event.startTime,
               endTime: this.event.endTime
             });
-            //Navigate back to calendar once the update is finalized 
-            this.navCtrl.push(CalendarPage);
+            //Build the nav control pop and the loading spinner into the save button
+            this.navCtrl.pop();
+            this.presentLoadingDefault()
           }
         }
       ]
     });
+    //Present the prompt with the buttons which have been built previously
     prompt.present();
   }
-
 }
