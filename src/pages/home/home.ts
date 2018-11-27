@@ -7,8 +7,6 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { TestPage } from '../test/test';
 import { AboutPage } from '../about/about';
 import { CalendarPage } from '../calendar/calendar';
-import { AddSuggestedEventsPage } from '../add-suggested-events/add-suggested-events'
-import { ViewSuggestedEventsPage } from '../view-suggested-events/view-suggested-events'
 
 //Import Provider
 import { CalenderEventsServiceProvider } from '../../providers/calendar-event-service/calendar-event-service';
@@ -66,19 +64,10 @@ export class HomePage {
   }
 
   //Function to navigate to the "TestPage" using the NavController 
-  navigateToTestPage(){
-    this.navCtrl.push(TestPage);
-  }
+  // navigateToTestPage(){
+  //   this.navCtrl.push(TestPage);
+  // }
 
-  //Function to navigate to the "SuggestEventsPage"
-  navigateToAddSuggestEventsPage(){
-    this.navCtrl.push(AddSuggestedEventsPage);
-  }
-
-   //Function to navigate to the "SuggestEventsPage"
-  navigateToViewSuggestEventsPage(){
-    this.navCtrl.push(ViewSuggestedEventsPage);
-  }
 
   goToCalendar() {
     //this.navCtrl.push(CalendarPage);

@@ -10,13 +10,6 @@
 <ion-content>
   <!-- <button (click)="navigateToHomePage()" ion-button>Navigate to Home Page</button> -->
 
-
-  <!-- Calendar html -->
-
-  <!-- <ion-calendar #calendar></ion-calendar> -->
-  <!-- <ion-calendar #calendar lang="es"></ion-calendar> // Spanish support -->
-  <!-- <ion-calendar #calendar lang="en"></ion-calendar>   -->
-
  <!-- Show All Segment -->
 <ion-toolbar no-border>
   <ion-segment [(ngModel)]="categoryType" (ionChange)="changeCategoriesDisplayed($event)">
@@ -25,6 +18,7 @@
     </ion-segment-button>
   </ion-segment>
 </ion-toolbar>
+
 
 <!-- Multiple Choice Segment -->
 <ion-toolbar no-border>
@@ -53,42 +47,104 @@
   </ion-segment>
 </ion-toolbar>
 
-
+<!-- Main Calendar Import // declaration -->
 <div id='calendarDiv' class='calendarBackground'><ion-calendar #calendar [events]="this.formattedForCSS"
   (onDaySelect)="onDaySelect($event)"></ion-calendar></div>
 
-  <!-- Everything below here is for native functions -->
-  <!-- Formatting for event buttons  -->
-  <button ion-button (click)="callCalendarEventsProvider()">Call Calendar Events Provider</button>
+  <!-- Navigate to suggested events pages respectively -->
+  <!-- <button (click)="navigateToAddSuggestEventsPage()" ion-button>Navigate to Add Suggest Events Page</button> -->
+  <!-- <button (click)="navigateToViewSuggestEventsPage()" ion-button>Navigate to  View Suggest Events Page</button> -->
+  
 
-  <button ion-button (click)="openCalendar()">Open Calendar on Current Date</button>
-  <button ion-button (click)="scheduleEvents()">Schedule Events</button>
-  <button ion-button (click)="addEvent()">Add Event</button>
+  <!-- Navigate to add events -->
+  <!-- <button ion-button (click)="addEvent()">Add Event</button> -->
 
- 
-  <!-- <h4>Database Filter Dynamic Below:</h4>
-  <h1>{{ this.databaseFilterDynamic.value }}</h1> -->
 
-  <!-- <h4>All Events Below:</h4>
-  <h1>{{ this.allEvents }}</h1> -->
+  <!-- <button ion-button (click)="openCalendar()">Open Calendar on Current Date</button>
+  <button ion-button (click)="scheduleEvents()">Schedule Events</button> -->
+  
 
-  <!-- <h4>Selected Events Below:</h4>
+  <!-- Suggest Event Slider -->
+  <ion-list class="suggestEventSlider">
+    <ion-item-sliding>
+      <ion-item>
+        <!-- Backward Arrow -->
+        <ion-avatar item-start>
+            <ion-icon class="sliderArrows" name="arrow-back"></ion-icon>
+        </ion-avatar>
 
-  <div class='listOfEvents' *ngFor="let event of events | async" >
-      <p>{{event.title}}</p>
-      <p>{{event.startDate}}</p>
-      <p>{{event.endDate}}</p>
-  </div> -->
+        <!-- Forward Arrow -->
+        <ion-avatar item-end>
+            <ion-icon class="sliderArrows" name="arrow-forward"></ion-icon>
+        </ion-avatar>
+        
+        <h2 class="sliderText" text-wrap>Suggest Event</h2>
+      </ion-item>
 
-  <ion-list class="event-sliding-demo">
-    <ion-list-header>
-      Events
-    </ion-list-header>
+      <!-- Left Side Options -->
+      <ion-item-options side="left" (ionSwipe)="navigateToAddSuggestEventsPage()">
+      <!-- <ion-item-options side="left"> -->
+        <button ion-button color="primary" expandable (click)="navigateToAddSuggestEventsPage()">
+          <ion-icon name="archive" class="expand-hide"></ion-icon>
+          <div class="expand-hide">Suggest Event</div>
+        </button>
+      </ion-item-options> 
 
+    </ion-item-sliding>
+  </ion-list>
+
+
+  <!-- Administrator Options Slider -->
+  <ion-list class="administratorSlider" no-padding>
+    <ion-item-sliding>
+      <ion-item>
+         <!-- Backward Arrow -->
+         <ion-avatar item-start>
+            <ion-icon class="sliderArrows" name="arrow-back"></ion-icon>
+        </ion-avatar>
+
+        <!-- Forward Arrow -->
+        <ion-avatar item-end>
+            <ion-icon class="sliderArrows" name="arrow-forward"></ion-icon>
+        </ion-avatar>
+        
+        <h2 class ="sliderText" text-wrap>Administrator Options</h2>
+      </ion-item>
+
+      <!-- Left Side Options -->
+      <ion-item-options side="left" (ionSwipe)="addEvent()">
+      <!-- <ion-item-options side="left"> -->
+        <button ion-button color="secondary" expandable (click)="addEvent()">
+          <ion-icon name="archive" class="expand-hide"></ion-icon>
+          <div class="expand-hide">Add Event</div>
+        </button>
+      </ion-item-options> 
+
+      <!-- Right Side Options -->
+      <ion-item-options side="right" (ionSwipe)="navigateToViewSuggestEventsPage()">
+      <!-- <ion-item-options side="left"> -->
+         <button ion-button color="primary" expandable (click)="navigateToViewSuggestEventsPage()">
+          <ion-icon name="archive" class="expand-hide"></ion-icon>
+          <div class="expand-hide">View Suggested Events</div>
+        </button>
+      </ion-item-options> 
+
+    </ion-item-sliding>
+  </ion-list>
+
+
+
+  <!-- Event List Slider -->
+  <ion-list class="eventSlider">
     <ion-item-sliding *ngFor="let event of events | async">
       <ion-item>
         <ion-avatar item-start>
           <img [src]="event.img">
+        </ion-avatar>
+
+        <!-- Forward Arrow -->
+        <ion-avatar item-end>
+            <ion-icon class="sliderArrows" name="arrow-forward"></ion-icon>
         </ion-avatar>
         
         <h2 text-wrap>

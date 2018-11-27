@@ -9,6 +9,8 @@ import { getLocaleDateTimeFormat, getLocaleDateFormat } from '@angular/common';
 import { HomePage } from '../home/home';
 import { AddEventPage } from '../add-event/add-event';
 import { ModifyEventsPage } from '../modify-events/modify-events'
+import { AddSuggestedEventsPage } from '../add-suggested-events/add-suggested-events'
+import { ViewSuggestedEventsPage } from '../view-suggested-events/view-suggested-events'
 
 //Import Provider
 import { CalenderEventsServiceProvider } from '../../providers/calendar-event-service/calendar-event-service';
@@ -64,6 +66,16 @@ export class CalendarPage {
   // Navigate to the "HomePage" using the NavController 
   navigateToHomePage() {
     this.navCtrl.push(HomePage);
+  }
+
+  //Function to navigate to the "SuggestEventsPage"
+  navigateToAddSuggestEventsPage(){
+    this.navCtrl.push(AddSuggestedEventsPage);
+  }
+
+   //Function to navigate to the "SuggestEventsPage"
+  navigateToViewSuggestEventsPage(){
+    this.navCtrl.push(ViewSuggestedEventsPage);
   }
 
   // Navigate to the "ModifyEvent" page

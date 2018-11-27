@@ -7,7 +7,7 @@ page-calendar {
     }
 
     //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
-    s
+    
     //Hidden Version of Blips
     .eventBlipHidden {
         visibility: hidden;
@@ -114,6 +114,49 @@ page-calendar {
     .segment-ios  #artSegmentBtn.segment-activated {
         background-color: rgba(0,0,255,0.3);
     }
+
+    //Sporting
+    #suggestEventSegmentButton {
+        color: white;
+        // border-top-color: green;
+        // border-bottom-color: green;
+        // border-left-color: green;
+        border-color: blue;
+        border-left-width: .5px;
+        border-right-width: .5px;
+        background-color: rgba(0,0,255,1);
+    }
+
+    //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+    
+    // Sliders
+    .suggestEventSlider {
+        margin: 0;
+    }
+
+    .administratorSlider {
+        margin: 0;
+    }
+
+    .eventSlider {
+        margin: 0;
+    }
+
+    .sliderText {
+        text-align: center;
+    }
+
+    .sliderArrows {
+
+    }
+
+    //Slider Arrows
+        //We must reposition them here to override the specificity set by default from the ionic main.css
+    .item-ios ion-avatar {
+        min-width: 20px;
+        min-height: 20px;
+    }
+    
 
     //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 
