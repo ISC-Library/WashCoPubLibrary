@@ -9,4 +9,40 @@ page-view-suggested-events {
     .endInfo {
         color:red;
     };
+
+    //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+    
+    //Slidebar Event Dots (The ones on the slidebar)
+
+    .sportingDot {
+        font-size: 25px;
+        color: green;
+        border-radius: 50%;
+        display: inline-block;   
+    }
+
+    .communityDot {
+        font-size: 25px;
+        color: orange;
+        border-radius: 50%;
+        display: inline-block;    
+    }
+
+    .businessDot {
+        font-size: 25px;
+        color: black;
+        border-radius: 50%;
+        display: inline-block;   
+    }
+
+    .artDot {
+        font-size: 25px;
+        color: blue;
+        border-radius: 50%;
+        display: inline-block;  
+    }
+
+
+    //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+    
 };

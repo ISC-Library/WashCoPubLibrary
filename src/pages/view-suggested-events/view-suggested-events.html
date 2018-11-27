@@ -22,14 +22,28 @@
 
       <ion-item-sliding *ngFor="let event of events | async" #item>
         <ion-item>
-          <!-- Item icon Left -->
-          <ion-avatar item-start>
-              <ion-icon name="bookmark"></ion-icon>
-          </ion-avatar>
+          <!-- Event Icon (avatar) -->
+        <ion-avatar item-start>
+            <span *ngIf="event.category === 'sporting'">
+                <ion-icon name="american-football" class="sportingDot"></ion-icon>
+            </span>
+
+            <span *ngIf="event.category === 'community'">
+                <ion-icon name="contacts" class="communityDot"></ion-icon>
+            </span>
+
+            <span *ngIf="event.category === 'business'">
+                <ion-icon name="briefcase" class="businessDot"></ion-icon>
+            </span>
+
+            <span *ngIf="event.category === 'art'">
+              <ion-icon name="brush" class="artDot"></ion-icon>
+            </span>
+        </ion-avatar>
 
           <!-- Display Additional Info Button -->
           <ion-avatar item-end>
-              <ion-icon name="arrow-dropdown-circle" (click)="displayMore()"></ion-icon>
+              <ion-icon name="arrow-dropdown" (click)="displayMore()"></ion-icon>
           </ion-avatar>
           
           <h2 text-wrap>
@@ -64,13 +78,13 @@
         <!-- <ion-item-options side="left" (ionSwipe)="addSuggestedEvent(event)"></ion-item-options> -->
         <ion-item-options side="left">
           <button ion-button color="secondary" expandable (click)="addSuggestedEvent(event)">
-            <ion-icon name="archive" class="expand-hide"></ion-icon>
+            <ion-icon name="calendar" class="expand-hide"></ion-icon>
             <div class="expand-hide">Add</div>
             <!-- <ion-spinner name="crescent"></ion-spinner> -->
           </button>
 
           <button ion-button color="dark" (click)="modifySuggestedEvent(event)">
-            <ion-icon name="volume-off"></ion-icon>
+            <ion-icon name="create"></ion-icon>
             <div>Modify</div>
           </button>
         </ion-item-options>
