@@ -2,14 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BrowserDomAdapter } from '@angular/platform-browser/src/browser/browser_adapter';
 
-/**
- * Generated class for the JoblinksPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
-@IonicPage()
 @Component({
   selector: 'page-joblinks',
   templateUrl: 'joblinks.html',

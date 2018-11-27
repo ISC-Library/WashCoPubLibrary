@@ -107,7 +107,6 @@ export class ModifyEventsPage {
             });
             //Build the nav control pop and the loading spinner into the save button
             this.navCtrl.pop();
-            this.presentLoadingDefault()
           }
         }
       ]

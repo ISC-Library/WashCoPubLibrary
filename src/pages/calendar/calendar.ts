@@ -96,8 +96,12 @@ export class CalendarPage {
 
     //Show a loading spinner to ensure the data is loaded rather than just coming into a blank page 
     //Dots still
-    this.presentLoadingDefault()
+    //this.presentLoadingDefault()
   };
+
+  ionViewDidEnter () {
+    this.presentLoadingDefault()
+  }
 
   //Loading Spinner
     //The portion to load the events for today's date are in here...
