@@ -6,6 +6,7 @@ page-calendar {
         background-color: whitesmoke;
     }
 
+
     //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
     
     //Hidden Version of Blips
@@ -33,12 +34,13 @@ page-calendar {
 
     // Segment Buttons
     #allSegmentBtn {
-        color: purple;
+        color: rgba(120,0,120,1);
         // border-top-color: purple;
         // border-bottom-color: purple;
         // border-left-color: purple;
         // border-right-color: purple;
-        border-color: purple;
+        border-color: rgba(120,0,120,1);
+        border-width: 1px;
         border-left-width: 1px;
         border-radius: 4px;
         border-right-width: .5px; 
@@ -53,45 +55,40 @@ page-calendar {
     //Have to get the right level of "specificity" to override the "main.css"
     .segment-ios  #allSegmentBtn.segment-activated {
         //RGBA allows you to convert a color to transparency
-        background-color: rgba(128,0,128,0.3);
+        background-color: rgba(120,0,120,.3);
     }
 
     //Sporting
     #sportingSegmentBtn {
-        color: green;
-        // border-top-color: green;
-        // border-bottom-color: green;
-        // border-left-color: green;
-        border-color: green;
+        color: rgba(0,136,68,1);
+        border-color: rgba(0,136,68,1);
+        border-width: 1px;
         border-left-width: .5px;
         border-right-width: .5px;
     }
 
     .segment-ios  #sportingSegmentBtn.segment-activated {
-        background-color: rgba(0,255,0,0.3);
+        background-color: rgba(0,136,68,.3);
     }
 
     //Community
     #communitySegmentBtn {
-        color: orange;
-        // border-top-color: orange;
-        // border-bottom-color: orange;
-        // border-left-color: orange;
-        border-color: orange;
+        color: rgba(128,0,0,1);
+        border-color: rgba(128,0,0,1);
+        border-width: 1px;
         border-left-width: .5px;
         border-right-width: .5px;
     }
 
     .segment-ios  #communitySegmentBtn.segment-activated {
-        background-color: rgba(255,165,0,0.3);
+        background-color: rgba(128,0,0,.3);
     }
 
     //Business
     #businessSegmentBtn {
         color: black;
-        // border-top-color: black;
-        // border-bottom-color: black;
         border-color: black;
+        border-width: 1px;
         border-left-width: .5px;
         border-right-width: .5px;
     }
@@ -102,29 +99,14 @@ page-calendar {
 
     //Art
     #artSegmentBtn {
-        color: blue;
-        // border-top-color: blue;
-        // border-bottom-color: blue;
-        // border-right-color: blue;
-        border-color: blue;
+        color: rgba(0,68,136,1);
+        border-color: rgba(0,68,136,1);
+        border-width: 1px;
         border-left-width: .5px;
-        border-right-width: .5px;
     }
 
     .segment-ios  #artSegmentBtn.segment-activated {
-        background-color: rgba(0,0,255,0.3);
-    }
-
-    //Sporting
-    #suggestEventSegmentButton {
-        color: white;
-        // border-top-color: green;
-        // border-bottom-color: green;
-        // border-left-color: green;
-        border-color: blue;
-        border-left-width: .5px;
-        border-right-width: .5px;
-        background-color: rgba(0,0,255,1);
+        background-color: rgba(0,68,136, 0.3);
     }
 
     //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
@@ -133,28 +115,28 @@ page-calendar {
 
     .sportingDot {
         font-size: 25px;
-        color: green;
+        color: rgba(0,136,68,1);
         border-radius: 50%;
         display: inline-block;   
     }
 
     .communityDot {
         font-size: 25px;
-        color: orange;
+        color: rgba(128,0,0,1);
         border-radius: 50%;
         display: inline-block;    
     }
 
     .businessDot {
         font-size: 25px;
-        color: black;
+        color: rgba(52,52,52,1);
         border-radius: 50%;
         display: inline-block;   
     }
 
     .artDot {
         font-size: 25px;
-        color: blue;
+        color: rgba(0,68,136,1);
         border-radius: 50%;
         display: inline-block;  
     }
@@ -189,6 +171,10 @@ page-calendar {
     .item-ios ion-avatar {
         min-width: 20px;
         min-height: 20px;
+    }
+
+    .modifyEventsButton {
+        background-color: rgba(52,52,52,1);
     }
     
 
