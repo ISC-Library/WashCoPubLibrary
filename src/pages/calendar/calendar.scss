@@ -39,8 +39,15 @@ page-calendar {
         // border-left-color: purple;
         // border-right-color: purple;
         border-color: purple;
+        border-left-width: 1px;
+        border-radius: 4px;
         border-right-width: .5px; 
     }
+
+    .toolbar-ios .segment-button {
+        max-width: 500px;
+    }
+
 
     //All
     //Have to get the right level of "specificity" to override the "main.css"

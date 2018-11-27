@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Modify Suggested Event
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <form  (ngSubmit)="updateSuggestedEvent(suggestedEvent.id)">
+      <ion-list>
+        <ion-item >
+          <ion-label floating>Title</ion-label>
+          <ion-input type="text" [(ngModel)]="suggestedEvent.title" name="title"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Location</ion-label>
+          <ion-input type="text" [(ngModel)]="suggestedEvent.location" name="location"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Select Event Category</ion-label>
+          <ion-select [(ngModel)]="suggestedEvent.category" interface="action-sheet" name="category">
+            <ion-option value="community">Community Event</ion-option>
+            <ion-option value="sporting">Sporting Event</ion-option>
+            <ion-option value="business">Business Event</ion-option>
+            <ion-option value="art">Art Event</ion-option>
+          </ion-select>
+      </ion-item>
+
+        <ion-item>
+          <ion-label floating>Notes</ion-label>
+          <ion-input type="text" [(ngModel)]="suggestedEvent.notes" name="notes"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Start Date</ion-label>
+         
+          <ion-datetime displayFormat="MMM DD, YYYY h:mm A" pickerFormat="MMM-DD-YYYY h:mm:A" [(ngModel)]="suggestedEvent.startDate" name="startDate"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>End Date</ion-label>
+          <ion-datetime displayFormat="MMM DD, YYYY h:mm A" pickerFormat="MMM-DD-YYYY h:mm:A" [(ngModel)]="suggestedEvent.endDate" name="endDate"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <button ion-button type="submit" full round>Update</button>
+        </ion-item>
+      </ion-list>
+    </form>
+  
+  </ion-content>

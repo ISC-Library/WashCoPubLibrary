@@ -12,9 +12,6 @@ import { ModifyEventsPage } from '../modify-events/modify-events'
 
 //Import Provider
 import { CalenderEventsServiceProvider } from '../../providers/calendar-event-service/calendar-event-service';
-import { AngularFireDatabase } from '@angular/fire/database';
-import { MaxLengthValidator } from '@angular/forms';
-
 
 @Component({
   selector: 'page-calendar',

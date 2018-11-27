@@ -9,6 +9,7 @@ import { ItemSliding } from 'ionic-angular';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
 //Import Pages
+import { ModifySuggestedEventsPage } from '../modify-suggested-events/modify-suggested-events'
 
 //Import Provider
 import { SuggestedEventsServiceProvider } from '../../providers/add-suggested-events/add-suggested-events'
@@ -79,8 +80,6 @@ constructor(public alertCtrl: AlertController,
           });
 }
 
-
-
   ionViewDidLoad() {
     //Show a loading spinner to ensure the data is loaded rather than just coming into a blank page 
     this.presentLoadingDefault()
@@ -121,15 +120,19 @@ constructor(public alertCtrl: AlertController,
 
   addSuggestedEvent(event) {
     console.log("Add");
-    //console.log(event)
-
     //Call the save function, passing in the newly calculated index for the array 
     this.save(event);
   };
 
-  modifySuggestedEvent(event) {
-    console.log("Modify");
-  };
+  // Navigate to the "ModifyEvent" page
+    //The user selects modify button on the event which they wish to modify 
+      //The event data for that specific event is passed, which we will forward to the "ModifyEvent" page
+      modifySuggestedEvent(event) {
+        this.navCtrl.push(ModifySuggestedEventsPage, {
+          event
+        });
+        //console.log(event)
+      }
 
 
   deleteSuggestedEvent(event) {

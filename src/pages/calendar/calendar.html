@@ -1,36 +1,8 @@
 
 <ion-header>
-
   <ion-navbar no-border-bottom>
     <ion-title>Events</ion-title>
   </ion-navbar>
-
-  <ion-toolbar no-border-top>
-    <ion-segment [(ngModel)]="categoryType" (ionChange)="changeCategoriesDisplayed($event)">
-
-      <ion-segment-button id="allSegmentBtn" value="all">
-        All
-      </ion-segment-button>
-
-      <ion-segment-button id="sportingSegmentBtn" value="sporting">
-        Sporting
-      </ion-segment-button>
-
-      <ion-segment-button id="communitySegmentBtn" value="community">
-        Community
-      </ion-segment-button>
-
-      <ion-segment-button id="businessSegmentBtn" value="business">
-        Business
-      </ion-segment-button>
-
-      <ion-segment-button id="artSegmentBtn" value="art">
-        Art
-      </ion-segment-button>
-
-    </ion-segment>
-  </ion-toolbar>
-
 </ion-header>
 
 <!-- https://devdactic.com/ionic-calendar-angular-calendar/ -->
@@ -45,8 +17,42 @@
   <!-- <ion-calendar #calendar lang="es"></ion-calendar> // Spanish support -->
   <!-- <ion-calendar #calendar lang="en"></ion-calendar>   -->
 
+ <!-- Show All Segment -->
+<ion-toolbar no-border>
+  <ion-segment [(ngModel)]="categoryType" (ionChange)="changeCategoriesDisplayed($event)">
+    <ion-segment-button id="allSegmentBtn" value="all">
+      All
+    </ion-segment-button>
+  </ion-segment>
+</ion-toolbar>
 
-<!-- Adding (onDaySelect)="callCalendarEventsProvider()" makes it so when you press the days it shows events -->
+<!-- Multiple Choice Segment -->
+<ion-toolbar no-border>
+  <ion-segment [(ngModel)]="categoryType" (ionChange)="changeCategoriesDisplayed($event)">
+
+    <!-- <ion-segment-button id="allSegmentBtn" value="all">
+      All
+    </ion-segment-button> -->
+
+    <ion-segment-button id="sportingSegmentBtn" value="sporting">
+      Sporting
+    </ion-segment-button>
+
+    <ion-segment-button id="communitySegmentBtn" value="community">
+      Community
+    </ion-segment-button>
+
+    <ion-segment-button id="businessSegmentBtn" value="business">
+      Business
+    </ion-segment-button>
+
+    <ion-segment-button id="artSegmentBtn" value="art">
+      Art
+    </ion-segment-button>
+
+  </ion-segment>
+</ion-toolbar>
+
 
 <div id='calendarDiv' class='calendarBackground'><ion-calendar #calendar [events]="this.formattedForCSS"
   (onDaySelect)="onDaySelect($event)"></ion-calendar></div>

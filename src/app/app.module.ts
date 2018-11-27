@@ -17,6 +17,7 @@ import { AddEventPage} from '../pages/add-event/add-event';
 import { ViewSuggestedEventsPage } from '../pages/view-suggested-events/view-suggested-events';
 import { AddSuggestedEventsPage } from '../pages/add-suggested-events/add-suggested-events';
 import { ModifyEventsPage } from '../pages/modify-events/modify-events';
+import { ModifySuggestedEventsPage } from '../pages/modify-suggested-events/modify-suggested-events';
 
 //Import Calendar
 import { Calendar } from '@ionic-native/calendar'; //This is the native cordova portion that allows interaction with the devices 
@@ -69,7 +70,8 @@ export const firebaseConfig = {
     AddEventPage,
     AddSuggestedEventsPage,
     ViewSuggestedEventsPage,
-    ModifyEventsPage
+    ModifyEventsPage,
+    ModifySuggestedEventsPage
   ],
   imports: [
     BrowserModule,
@@ -92,7 +94,8 @@ export const firebaseConfig = {
     AddEventPage,
     AddSuggestedEventsPage,
     ViewSuggestedEventsPage,
-    ModifyEventsPage
+    ModifyEventsPage,
+    ModifySuggestedEventsPage
   ],
   providers: [
     StatusBar,

@@ -46,6 +46,21 @@
         </ion-item>
 
         <ion-item>
+          <ion-label floating>Contact Name</ion-label>
+          <ion-input type="text" [(ngModel)]="event.contactName" name="contactName"></ion-input>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label floating>Contact Email</ion-label>
+          <ion-input type="text" [(ngModel)]="event.contactEmail" name="contactEmail"></ion-input>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label floating>Contact Phone Number</ion-label>
+          <ion-input type="text" [(ngModel)]="event.contactPhone" name="contactPhone"></ion-input>
+        </ion-item>
+        
+        <ion-item>
           <button ion-button type="submit" full round>Update</button>
         </ion-item>
       </ion-list>
