@@ -10,6 +10,7 @@ import { CalendarPage } from '../calendar/calendar';
 
 //Import Provider
 import { CalenderEventsServiceProvider } from '../../providers/calendar-event-service/calendar-event-service';
+import { JobLinksPage } from '../joblinks/joblinks';
 
  @Component({
   selector: 'page-home',
@@ -78,6 +79,10 @@ export class HomePage {
 
   goToHelp() {
     this.navCtrl.push(AboutPage);
+  }
+
+  goToJobLinks(){
+    this.navCtrl.push(JobLinksPage)
   }
 
   goToBookShelf(){
