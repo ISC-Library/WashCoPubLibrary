@@ -69,9 +69,9 @@
     <ion-item-sliding>
       <ion-item>
         <!-- Backward Arrow -->
-        <ion-avatar item-start>
+        <!-- <ion-avatar item-start>
             <ion-icon class="sliderArrows" name="arrow-back"></ion-icon>
-        </ion-avatar>
+        </ion-avatar> -->
 
         <!-- Forward Arrow -->
         <ion-avatar item-end>
@@ -85,7 +85,7 @@
       <ion-item-options side="left" (ionSwipe)="navigateToAddSuggestEventsPage()">
       <!-- <ion-item-options side="left"> -->
         <button ion-button color="primary" expandable (click)="navigateToAddSuggestEventsPage()">
-          <ion-icon name="archive" class="expand-hide"></ion-icon>
+          <ion-icon name="chatbubbles" class="suggestEventChatbubbles"></ion-icon>
           <div class="expand-hide">Suggest Event</div>
         </button>
       </ion-item-options> 
@@ -115,7 +115,7 @@
       <ion-item-options side="left" (ionSwipe)="addEvent()">
       <!-- <ion-item-options side="left"> -->
         <button ion-button color="secondary" expandable (click)="addEvent()">
-          <ion-icon name="archive" class="expand-hide"></ion-icon>
+          <ion-icon name="calendar" class="expand-hide"></ion-icon>
           <div class="expand-hide">Add Event</div>
         </button>
       </ion-item-options> 
@@ -124,7 +124,7 @@
       <ion-item-options side="right" (ionSwipe)="navigateToViewSuggestEventsPage()">
       <!-- <ion-item-options side="left"> -->
          <button ion-button color="primary" expandable (click)="navigateToViewSuggestEventsPage()">
-          <ion-icon name="archive" class="expand-hide"></ion-icon>
+          <ion-icon name="eye" class="expand-hide"></ion-icon>
           <div class="expand-hide">View Suggested Events</div>
         </button>
       </ion-item-options> 
@@ -138,8 +138,24 @@
   <ion-list class="eventSlider">
     <ion-item-sliding *ngFor="let event of events | async">
       <ion-item>
+
+        <!-- Event Icon (avatar) -->
         <ion-avatar item-start>
-          <img [src]="event.img">
+            <span *ngIf="event.category === 'sporting'">
+                <ion-icon name="american-football" class="sportingDot"></ion-icon>
+            </span>
+
+            <span *ngIf="event.category === 'community'">
+                <ion-icon name="contacts" class="communityDot"></ion-icon>
+            </span>
+
+            <span *ngIf="event.category === 'business'">
+                <ion-icon name="briefcase" class="businessDot"></ion-icon>
+            </span>
+
+            <span *ngIf="event.category === 'art'">
+              <ion-icon name="brush" class="artDot"></ion-icon>
+            </span>
         </ion-avatar>
 
         <!-- Forward Arrow -->
@@ -148,6 +164,7 @@
         </ion-avatar>
         
         <h2 text-wrap>
+          {{event.category}}
           {{event.title}}
         </h2>
 
@@ -175,7 +192,7 @@
       
       <ion-item-options side="left">
         <button ion-button color="dark" expandable (click)="modifyEvent(event)">
-          <ion-icon name="volume-off"></ion-icon>
+          <ion-icon name="create"></ion-icon>
           Modify
         </button>
       </ion-item-options> 
