@@ -65,9 +65,21 @@ export class AddEventPage {
  
   //Create New Events 
   save() {
-    //Seperate the date and time in the "event.startDate" and "event.endDate" variables 
-    this.event.startTime = this.event.startDate.split("T").pop();
-    this.event.endTime = this.event.endDate.split("T").pop();
+    //Seperate the date and time in the "event.startTime" and "event.endTime" variables 
+    this.event.startTime = this.event.startDate.split("T").pop()
+    this.event.endTime = this.event.endDate.split("T").pop()
+
+    //For now we are not dealing with the timezone offset
+      //Which is currently appending itself to the dateTime as "00Z"
+        //For now we will just cut that off
+    this.event.startTime = this.event.startTime.substring(0, this.event.startTime.length - 4);
+    this.event.endTime = this.event.endTime.substring(0, this.event.endTime.length - 4);
+
+    console.log(this.event.startTime)
+    console.log(this.event.endTime)
+
+    // this.event.startTime = this.event.startDate.split(0).pop();
+    // this.event.endTime = this.event.endDate.split("0").pop();
 
     //Re-declare the "event.startDate" and "event.endDate" to be just the date, not removing the time portion
     this.event.startDate= this.event.startDate.split("T", 1).pop();

@@ -119,13 +119,14 @@ export class CalendarPage {
       
     // } 
     //console.log(this.AdminAuthProvider.currentUser.name)
-    if (this.AdminAuthProvider.isAdmin()) {
-      console.log("true")
-      return true;
-    } else {
-      console.log("false")
-      return false;
-    }
+    // if (this.AdminAuthProvider.isAdmin()) {
+    //   console.log("true")
+    //   return true;
+    // } else {
+    //   console.log("false")
+    //   return false;
+    // }
+    return true;
   }
 
   //Loading Spinner
