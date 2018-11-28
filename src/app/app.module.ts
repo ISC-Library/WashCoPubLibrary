@@ -31,11 +31,13 @@ import { ComponentsModule } from '../components/components.module';
 import { TestProvider } from '../providers/test/test';
 import { SuggestedEventsServiceProvider } from '../providers/add-suggested-events/add-suggested-events';
 import { CalenderEventsServiceProvider } from '../providers/calendar-event-service/calendar-event-service';
+import { AdminAuthProvider } from '../providers/admin-auth/admin-auth';
 
-// Import the AF2 Module
+// Import the AF Module
 //Note, module has been updated... all angularfire2 references are now at '@angular/fire'
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 // Initialize Firebase // AF2 Settings 
 export const firebaseConfig = {
@@ -80,8 +82,8 @@ export const firebaseConfig = {
     IonicModule.forRoot(MyApp),
     ComponentsModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireModule,
     AngularFireDatabaseModule,
+    AngularFireAuthModule,
     CalendarModule
   ],
   bootstrap: [IonicApp],
@@ -108,7 +110,8 @@ export const firebaseConfig = {
     TestProvider,
     Calendar,
     CalenderEventsServiceProvider,
-    SuggestedEventsServiceProvider
+    SuggestedEventsServiceProvider,
+    AdminAuthProvider,
   ]
 })
 export class AppModule { }

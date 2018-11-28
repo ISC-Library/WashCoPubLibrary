@@ -6,7 +6,12 @@ import { Observable } from 'rxjs/observable';
 
 //Import AF2 
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
-import { ThrowStmt } from '@angular/compiler';
+
+//Import Providers
+import { AdminAuthProvider } from '../../providers/admin-auth/admin-auth';
+
+//Import Pages
+import { CalendarPage } from '../calendar/calendar';
 
 @Component({
   selector: 'page-add-event',
@@ -36,10 +41,25 @@ export class AddEventPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private calendar: Calendar,
-    afDatabase:AngularFireDatabase) {
+    afDatabase:AngularFireDatabase,
+    public AdminAuthProvider: AdminAuthProvider) {
       
     //This is the reference to which portion of the database you want to access 
     this.eventsRef = afDatabase.list('events');
+  }
+
+  //Gatekeeper: Checks for authentication of admin
+  ionViewWillEnter() {
+    if (this.AdminAuthProvider.isLoggedIn()) {
+      if (this.AdminAuthProvider.isAdmin()) {
+        //console.log("admin")
+        this.navCtrl.push(AddEventPage);
+      } else {
+        console.log("user")
+        this.navCtrl.push(CalendarPage);
+      }
+    } 
+    //console.log(this.AdminAuthProvider.currentUser.name)
   }
 
  

@@ -95,7 +95,7 @@
 
 
   <!-- Administrator Options Slider -->
-  <ion-list class="administratorSlider" no-padding>
+  <ion-list *ngIf="isAdmin()" class="administratorSlider" no-padding>
     <ion-item-sliding>
       <ion-item>
          <!-- Backward Arrow -->
@@ -112,9 +112,9 @@
       </ion-item>
 
       <!-- Left Side Options -->
-      <ion-item-options side="left" (ionSwipe)="addEvent()">
+      <ion-item-options side="left" (ionSwipe)="navigateToAddEventsPage()">
       <!-- <ion-item-options side="left"> -->
-        <button ion-button style="background-color: rgba(0,136,68,1)" expandable (click)="addEvent()">
+        <button ion-button style="background-color: rgba(0,136,68,1)" expandable (click)="navigateToAddEventsPage()">
           <ion-icon name="calendar"></ion-icon>
           <div class="expand-hide">Add Event</div>
         </button>
@@ -160,7 +160,7 @@
 
         <!-- Forward Arrow -->
         <ion-avatar item-end>
-            <ion-icon class="sliderArrows" name="arrow-forward"></ion-icon>
+            <ion-icon *ngIf="isAdmin()" class="sliderArrows" name="arrow-forward"></ion-icon>
         </ion-avatar>
         
         <h2 text-wrap>
@@ -189,7 +189,7 @@
       <!-- Dont make the button able to activate when slid really far, instead force clicking of add button -->
       <!-- <ion-item-options side="left" (ionSwipe)="addSuggestedEvent(item)"></ion-item-options> -->
       
-      <ion-item-options side="left">
+      <ion-item-options *ngIf="isAdmin()" side="left">
         <button ion-button class="modifyEventsButton" color="dark" expandable (click)="modifyEvent(event)">
           <ion-icon name="create"></ion-icon>
           Modify

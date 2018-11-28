@@ -7,10 +7,11 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { TestPage } from '../test/test';
 import { AboutPage } from '../about/about';
 import { CalendarPage } from '../calendar/calendar';
+import { LoginPage } from '../login/login';
+import { JobLinksPage } from '../joblinks/joblinks';
 
 //Import Provider
 import { CalenderEventsServiceProvider } from '../../providers/calendar-event-service/calendar-event-service';
-import { JobLinksPage } from '../joblinks/joblinks';
 
  @Component({
   selector: 'page-home',
@@ -83,6 +84,10 @@ export class HomePage {
 
   goToJobLinks(){
     this.navCtrl.push(JobLinksPage)
+  }
+
+  goToLogin(){
+    this.navCtrl.push(LoginPage)
   }
 
   goToBookShelf(){

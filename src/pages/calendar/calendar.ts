@@ -14,6 +14,7 @@ import { ViewSuggestedEventsPage } from '../view-suggested-events/view-suggested
 
 //Import Provider
 import { CalenderEventsServiceProvider } from '../../providers/calendar-event-service/calendar-event-service';
+import { AdminAuthProvider } from '../../providers/admin-auth/admin-auth';
 
 @Component({
   selector: 'page-calendar',
@@ -43,7 +44,8 @@ export class CalendarPage {
     public navParams: NavParams,
     private calendar: Calendar,
     public CalendarEventSvc: CalenderEventsServiceProvider,
-    public loadingCtrl:LoadingController) {
+    public loadingCtrl:LoadingController,
+    public AdminAuthProvider: AdminAuthProvider) {
     
     //This.formattedForCSS needs to be converted to any array 
     this.formattedForCSS = [];
@@ -66,6 +68,11 @@ export class CalendarPage {
   // Navigate to the "HomePage" using the NavController 
   navigateToHomePage() {
     this.navCtrl.push(HomePage);
+  }
+
+  //Function to navigate to the "SuggestEventsPage"
+  navigateToAddEventsPage(){
+    this.navCtrl.push(AddEventPage);
   }
 
   //Function to navigate to the "SuggestEventsPage"
@@ -99,8 +106,26 @@ export class CalendarPage {
     //this.presentLoadingDefault()
   };
 
+  ionViewWillEnter() {
+    this.isAdmin()
+  }
+
   ionViewDidEnter () {
     this.presentLoadingDefault()
+  }
+
+  isAdmin () {
+    // if (this.AdminAuthProvider.isLoggedIn()) {
+      
+    // } 
+    //console.log(this.AdminAuthProvider.currentUser.name)
+    if (this.AdminAuthProvider.isAdmin()) {
+      console.log("true")
+      return true;
+    } else {
+      console.log("false")
+      return false;
+    }
   }
 
   //Loading Spinner
@@ -211,7 +236,7 @@ export class CalendarPage {
 
 
   changeCategoriesDisplayed($event) {
-  
+  console.log(event)
     //Get lists of all the elements by classname (their category)
     let elementsListMultiple= document.getElementsByClassName("eventBlip");
     let elementsListSporting= document.getElementsByClassName("sportingBlip");
@@ -219,7 +244,7 @@ export class CalendarPage {
     let elementsListBusiness= document.getElementsByClassName("businessBlip");
     let elementsListArt= document.getElementsByClassName("artBlip");
 
-      
+    
     //Get the length of each set of elements (by classname) 
       //We will use these to determine the length of the loop corresponding to hiding each collection respectively
       let multipleLength = elementsListMultiple.length
@@ -471,9 +496,7 @@ export class CalendarPage {
     })
 
   }
-  addEvent() {
-    this.navCtrl.push(AddEventPage);
-  }
+  
 
 
 }
