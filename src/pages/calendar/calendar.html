@@ -29,7 +29,7 @@
     </ion-segment-button> -->
 
     <ion-segment-button id="sportingSegmentBtn" value="sporting">
-      Sporting
+      Sports
     </ion-segment-button>
 
     <ion-segment-button id="communitySegmentBtn" value="community">
@@ -69,9 +69,9 @@
     <ion-item-sliding>
       <ion-item>
         <!-- Backward Arrow -->
-        <!-- <ion-avatar item-start>
-            <ion-icon class="sliderArrows" name="arrow-back"></ion-icon>
-        </ion-avatar> -->
+        <ion-avatar item-start> 
+            <ion-icon class="sliderArrowsPlaceholder" name="arrow-back"></ion-icon>
+        </ion-avatar>
 
         <!-- Forward Arrow -->
         <ion-avatar item-end>
@@ -84,7 +84,7 @@
       <!-- Left Side Options -->
       <ion-item-options side="left" (ionSwipe)="navigateToAddSuggestEventsPage()">
       <!-- <ion-item-options side="left"> -->
-        <button ion-button color="primary" expandable (click)="navigateToAddSuggestEventsPage()">
+        <button ion-button style="background-color: rgba(0,68,136,1)" expandable (click)="navigateToAddSuggestEventsPage()">
           <ion-icon name="chatbubbles" class="suggestEventChatbubbles"></ion-icon>
           <div class="expand-hide">Suggest Event</div>
         </button>
@@ -114,8 +114,8 @@
       <!-- Left Side Options -->
       <ion-item-options side="left" (ionSwipe)="addEvent()">
       <!-- <ion-item-options side="left"> -->
-        <button ion-button color="secondary" expandable (click)="addEvent()">
-          <ion-icon name="calendar" class="expand-hide"></ion-icon>
+        <button ion-button style="background-color: rgba(0,136,68,1)" expandable (click)="addEvent()">
+          <ion-icon name="calendar"></ion-icon>
           <div class="expand-hide">Add Event</div>
         </button>
       </ion-item-options> 
@@ -123,8 +123,8 @@
       <!-- Right Side Options -->
       <ion-item-options side="right" (ionSwipe)="navigateToViewSuggestEventsPage()">
       <!-- <ion-item-options side="left"> -->
-         <button ion-button color="primary" expandable (click)="navigateToViewSuggestEventsPage()">
-          <ion-icon name="eye" class="expand-hide"></ion-icon>
+         <button ion-button style="background-color: rgba(0,68,136,1)" expandable (click)="navigateToViewSuggestEventsPage()">
+          <ion-icon name="eye"></ion-icon>
           <div class="expand-hide">View Suggested Events</div>
         </button>
       </ion-item-options> 

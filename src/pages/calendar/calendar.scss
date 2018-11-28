@@ -6,6 +6,9 @@ page-calendar {
         background-color: whitesmoke;
     }
 
+    //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+    
+   
 
     //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
     
@@ -34,12 +37,12 @@ page-calendar {
 
     // Segment Buttons
     #allSegmentBtn {
-        color: rgba(120,0,120,1);
+        color: rgba(0,0,0,1);
         // border-top-color: purple;
         // border-bottom-color: purple;
         // border-left-color: purple;
         // border-right-color: purple;
-        border-color: rgba(120,0,120,1);
+        border-color: rgba(0,0,0,1);
         border-width: 1px;
         border-left-width: 1px;
         border-radius: 4px;
@@ -55,7 +58,7 @@ page-calendar {
     //Have to get the right level of "specificity" to override the "main.css"
     .segment-ios  #allSegmentBtn.segment-activated {
         //RGBA allows you to convert a color to transparency
-        background-color: rgba(120,0,120,.3);
+        background-color: rgba(0,0,0,.3);
     }
 
     //Sporting
@@ -73,28 +76,28 @@ page-calendar {
 
     //Community
     #communitySegmentBtn {
-        color: rgba(128,0,0,1);
-        border-color: rgba(128,0,0,1);
+        color: rgba(180,0,0,1);
+        border-color: rgba(180,0,0,1);
         border-width: 1px;
         border-left-width: .5px;
         border-right-width: .5px;
     }
 
     .segment-ios  #communitySegmentBtn.segment-activated {
-        background-color: rgba(128,0,0,.3);
+        background-color: rgba(200,0,0,.3);
     }
 
     //Business
     #businessSegmentBtn {
-        color: black;
-        border-color: black;
+        color: rgba(255,78,0,1);
+        border-color: rgba(255,78,0,1);
         border-width: 1px;
         border-left-width: .5px;
         border-right-width: .5px;
     }
 
     .segment-ios  #businessSegmentBtn.segment-activated {
-        background-color: rgba(0,0,0,0.3);
+        background-color: rgba(255,78,0,.3);
     }
 
     //Art
@@ -122,14 +125,14 @@ page-calendar {
 
     .communityDot {
         font-size: 25px;
-        color: rgba(128,0,0,1);
+        color: rgba(180,0,0,1);
         border-radius: 50%;
         display: inline-block;    
     }
 
     .businessDot {
         font-size: 25px;
-        color: rgba(52,52,52,1);
+        color: rgba(255,78,0,1);
         border-radius: 50%;
         display: inline-block;   
     }
@@ -162,8 +165,9 @@ page-calendar {
         text-align: center;
     }
 
-    .sliderArrows {
-
+    //This element is not needed currently, but serves the purpose of keeping the slide aligned
+    .sliderArrowsPlaceholder {
+        visibility: hidden;
     }
 
     //Slider Arrows
