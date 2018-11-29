@@ -3,8 +3,8 @@ import { ErrorHandler, NgModule, Component } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-
 import { MyApp } from './app.component';
+import { Directive} from 'ionic3-input-mask';
 
 //Import Pages
 import { HomePage } from '../pages/home/home';
@@ -18,7 +18,7 @@ import { ViewSuggestedEventsPage } from '../pages/view-suggested-events/view-sug
 import { AddSuggestedEventsPage } from '../pages/add-suggested-events/add-suggested-events';
 import { ModifyEventsPage } from '../pages/modify-events/modify-events';
 import { ModifySuggestedEventsPage } from '../pages/modify-suggested-events/modify-suggested-events';
-import {JobLinksPage} from '../pages/joblinks/joblinks';
+import { JobLinksPage} from '../pages/joblinks/joblinks';
 
 //Import Calendar
 import { Calendar } from '@ionic-native/calendar'; //This is the native cordova portion that allows interaction with the devices 
@@ -75,7 +75,9 @@ export const firebaseConfig = {
     ViewSuggestedEventsPage,
     ModifyEventsPage,
     ModifySuggestedEventsPage,
-    JobLinksPage
+    JobLinksPage,
+    //Delcare the directive for the ionic 3 input mask
+    Directive
   ],
   imports: [
     BrowserModule,

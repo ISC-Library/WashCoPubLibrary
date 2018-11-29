@@ -34,6 +34,12 @@ export class AddSuggestedEventsPage {
     contactPhone: ""
   };
 
+  //Define Text Masks
+  masks: any;
+  phoneNumber: any = "";
+   
+ 
+
   constructor(public alertCtrl: AlertController,
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -42,8 +48,19 @@ export class AddSuggestedEventsPage {
       
       //This is the reference to which portion of the database you want to access 
       this.eventsRef = afDatabase.list('suggestedEvents');
+
+      this.masks = {
+        phoneNumber: ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
+    };
   }
 
+  saveMasks(){
+    let unmaskedData = {
+      phoneNumber: this.phoneNumber.replace(/\D+/g, ''),
+    };
+    console.log(unmaskedData);
+  }
+  
 
   //Create New Events 
   save() {
