@@ -85,6 +85,12 @@ export class CalendarPage {
     this.navCtrl.push(ViewSuggestedEventsPage);
   }
 
+  gatherChildren(){
+    let capturedChildren = document.getElementsByClassName("center calendar-col col this-month");
+    for(let i = 0; i < capturedChildren.length; i++){
+      console.log(capturedChildren[i].children);
+    }
+  }
   // Navigate to the "ModifyEvent" page
     //The user selects modify button on the event which they wish to modify 
       //The event data for that specific event is passed, which we will forward to the "ModifyEvent" page

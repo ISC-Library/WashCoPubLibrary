@@ -22,7 +22,7 @@
 
 <!-- Multiple Choice Segment -->
 <ion-toolbar no-border>
-  <ion-segment [(ngModel)]="categoryType" (ionChange)="changeCategoriesDisplayed($event)">
+  <ion-segment [(ngModel)]="categoryType" (ionChange)="gatherChildren()">
 
     <!-- <ion-segment-button id="allSegmentBtn" value="all">
       All
