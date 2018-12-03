@@ -1,1 +1,102 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="mycontent">
+    <ion-content>
+        <ion-list>
+            <ion-item class="appItem">
+                In-App Pages
+            </ion-item>
+            <ion-item menuClose (click)="goToHome()">
+                Home Page
+            </ion-item>
+            <ion-item menuClose (click)="goToBookShelf()">
+                Book Shelf
+            </ion-item>
+            <ion-item menuClose (click)="goToJobLinks()">
+                Job Links
+            </ion-item>
+            <ion-item menuClose (click)="goToHelp()">
+                Help Page
+            </ion-item>
+            <ion-item menuClose (click)="goToLogin()">
+                Admin Login
+            </ion-item>
+
+
+            <ion-item class="communityItem">
+                Community Links
+            </ion-item>
+
+            <!-- Button before Child Elements are shown -->
+            <ion-item id="chatomInfoHidden" (click)="openChatom()">
+                Chatom
+                <ion-icon class="dropArrowUp" name="arrow-dropdown" item-right></ion-icon>
+            </ion-item>
+
+            <!-- Button after Child Elements are Shown -->
+            <ion-item id="chatomInfoShown" class="itemListHidden" (click)="closeChatom()">
+                Chatom
+                <ion-icon name="arrow-dropup" item-right></ion-icon>
+            </ion-item>
+            <ion-item class="chatomInfoHidden" (click)="chatomWebsite()">
+                Website
+            </ion-item>
+            <ion-item class="chatomInfoHidden" (click)="chatomFacebook()">
+                Facebook
+            </ion-item>
+
+
+
+
+
+
+
+            <ion-item (click)="openFruitdale()">
+                Fruitdale
+                <ion-icon name="arrow-dropdown" item-right></ion-icon>
+            </ion-item>
+            <ion-item id="fruitdaleInfo" class=fruitdaleInfo>
+                Website
+            </ion-item>
+            <ion-item id="fruitdaleInfo" class=fruitdaleInfo>
+                Facebook
+            </ion-item>
+
+
+            <ion-item (click)="openLeroy()">
+                Leroy
+                <ion-icon name="arrow-dropdown" item-right></ion-icon>
+            </ion-item>
+            <ion-item id="leroyInfo" class=leroyInfo>
+                Website
+            </ion-item>
+            <ion-item id="leroyInfo" class=leroyInfo>
+                Facebook
+            </ion-item>
+
+
+            <ion-item (click)="openMcintosh()">
+                McIntosh
+                <ion-icon name="arrow-dropdown" item-right></ion-icon>
+            </ion-item>
+            <ion-item id="mcintoshInfo" class=mcintoshInfo>
+                Website
+            </ion-item>
+            <ion-item id="mcintoshInfo" class=mcintoshInfo>
+                Facebook
+            </ion-item>
+
+
+            <ion-item (click)="openMillry()">
+                Millry
+                <ion-icon name="arrow-dropdown" item-right></ion-icon>
+            </ion-item>
+            <ion-item id="millryInfo" class=millryInfo>
+                Website
+            </ion-item>
+            <ion-item id="millryInfo" class=millryInfo>
+                Facebook
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+<ion-nav #mycontent [root]="rootPage"></ion-nav>

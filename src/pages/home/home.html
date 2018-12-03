@@ -1,5 +1,15 @@
-<ion-content  padding>
+<ion-header>
+  <ion-navbar>
+    <button ion-button [menuToggle]="activeMenu">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-navbar>
+</ion-header>
 
+<ion-content  padding>
 
   <img src="assets/imgs/WaCoLib_btnEvents.png" class="eventsButtonClass" (click)="goToCalendar()">
   
@@ -9,12 +19,10 @@
 
     <!-- <button (click)="navigateToTestPage()" ion-button>Navigate to Test Page</button> -->
   
-  <img src="assets/imgs/WaCoLib_Logo.png" class="logoClass">
+  <!-- <img src="assets/imgs/WaCoLib_Logo.png" class="logoClass"> -->
   
   <button ion-button full (click)="goToJobLinks()">Job Links Page</button>
 
-  <button ion-button full (click)="goToLogin()">Login</button>
-
-  <span>Washington County Library</span>
+  <!-- <button ion-button full (click)="goToLogin()">Login</button> -->
 </ion-content>
 

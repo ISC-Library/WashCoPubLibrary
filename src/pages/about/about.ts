@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NOT_FOUND_CHECK_ONLY_ELEMENT_INJECTOR } from '@angular/core/src/view/provider';
 
+
+//Import Pages
+import {LoginPage} from '../login/login';
 /**
  * Generated class for the AboutPage page.
  *
@@ -32,7 +35,9 @@ export class AboutPage {
     document.getElementById('contactAdminText').className = 'contactAdminShow'
   };
 
-
+  goToLogin(){
+    this.navCtrl.push(LoginPage)
+  }
   showImportantLinks() {
     if (document.getElementById('importantLinksText').innerHTML==''){document.getElementById('importantLinksText').className='showImportantLinksText'};
     document.getElementById('importantLinksText').innerHTML='<a href="http://www.wcpls.net/">Washington County Public Library</a> <br> <br> <a href="https://chatom.org/">Town of Chatom</a>';

@@ -19,3 +19,114 @@ ion-content{background-image: url(../../assets/imgs/WaCoLibHome_Background.png);
     background-size:cover;
     background-repeat:no-repeat;
    }
+
+   .itemListShown {
+    padding-left: 16px;
+    padding-left: 16px;
+    border-radius: 0;
+    position: relative;
+    font-size: 1.7rem;
+    color: #000;
+    background: linear-gradient(0deg, rgba(0, 68, 136, .9), rgba(255, 255, 255, .5));
+    -webkit-transition: background-color 200ms linear;
+    transition: background-color 200ms linear;
+    color:white;
+
+   }
+
+   .itemListHidden {
+    padding-left: 16px;
+    padding-left: 16px;
+    border-radius: 0;
+    position: relative;
+    font-size: 1.7rem;
+    color: #000;
+    background: linear-gradient(0deg, rgba(0, 68, 136, .9), rgba(255, 255, 255, .5));
+    //box-shadow: inset 0px 0px 7px .5px rgba(0,68,136,);
+    -webkit-transition: background-color 200ms linear;
+    transition: background-color 200ms linear;
+    display:none;
+    color:white;
+}
+
+
+
+
+   .appItem{
+       background-color:rgba(0,68,136,1);
+       text-align:center;
+       color:white;
+   }
+
+   .communityItem{
+       background-color:rgba(0,68,136,1);
+       text-align:center;
+       color:white;
+    }
+
+   .arrowDown{
+       color:black;
+    }
+
+    .chatomInfoShown{
+        color:rgba(0,68,136,1);
+        background:
+        linear-gradient(
+      rgb(255, 255, 255), 
+      rgb(255, 255, 255),
+      rgba(0,68,136,.2)
+      ), 
+      white;
+        text-align:right;
+        display:block;
+        font-size:1.7rem;
+    }
+
+
+    .chatomInfoHidden{
+        display:none;
+    }
+
+   .fruitdaleInfo{
+        text-align:right;
+        display:none;
+    }
+
+   .shownFruitdaleInfo{
+        text-align:right;
+        display:inherit;
+        background:white;
+    }
+
+   .millryInfo{
+        text-align:right;
+        display:none;
+    }
+
+   .shownMillryInfo{
+    text-align:right;
+    display:inherit;
+    background:white;
+   }
+
+   .mcintoshInfo{
+    text-align:right;
+    display:none;
+   }
+
+   .shownMcintoshInfo{
+    text-align:right;
+    display:inherit;
+    background:white;
+   }
+
+   .leroyInfo{
+    text-align:right;
+    display:none;
+   }
+
+   .shownLeroyInfo{
+    text-align:right;
+    display:inherit;
+    background:white;
+   }

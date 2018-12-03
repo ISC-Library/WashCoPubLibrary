@@ -5,12 +5,15 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>about</ion-title>
-  </ion-navbar>
-
-</ion-header>
+    <ion-navbar>
+      <button ion-button [menuToggle]="activeMenu">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>
+        Help Page
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
 
 <ion-content padding>
 
@@ -32,7 +35,6 @@
     <br>
     <button id="aboutUs" ion-button round class="aboutUsButton" (click)="showAboutUsText()">About Us</button>
     <br>
-
     <div id="aboutUsText" class="aboutUsText">
       Hello and thank you for using our app!
       <br>
@@ -42,5 +44,7 @@
       The Washington County Public Library approached us with an idea to draw rural communities, such as those in
       Washington County, even closer, and this was the result.
     </div>
+
+    <button id="adminLogin" ion-button round class="adminButton" (click)="goToLogin()">Administrator Login</button>
   </body>
 </ion-content>

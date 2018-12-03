@@ -4,7 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
-import { Directive} from 'ionic3-input-mask';
+// import { Directive} from 'ionic3-input-mask';
 
 //Import Pages
 import { HomePage } from '../pages/home/home';
@@ -76,8 +76,8 @@ export const firebaseConfig = {
     ModifyEventsPage,
     ModifySuggestedEventsPage,
     JobLinksPage,
-    //Delcare the directive for the ionic 3 input mask
-    Directive
+    // //Delcare the directive for the ionic 3 input mask
+    // Directive
   ],
   imports: [
     BrowserModule,
