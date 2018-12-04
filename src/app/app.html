@@ -36,65 +36,85 @@
                 Chatom
                 <ion-icon name="arrow-dropup" item-right></ion-icon>
             </ion-item>
-            <ion-item class="chatomInfoHidden" (click)="chatomWebsite()">
+            <ion-item class="chatomInfoHidden" menuClose (click)="chatomWebsite()">
                 Website
             </ion-item>
-            <ion-item class="chatomInfoHidden" (click)="chatomFacebook()">
+            <ion-item class="chatomInfoHidden" menuClose (click)="chatomFacebook()">
                 Facebook
             </ion-item>
 
-
-
-
-
-
-
-            <ion-item (click)="openFruitdale()">
+            <!-- Button before Child Elements are shown -->
+            <ion-item id="fruitdaleInfoHidden" (click)="openFruitdale()">
                 Fruitdale
-                <ion-icon name="arrow-dropdown" item-right></ion-icon>
+                <ion-icon class="dropArrowUp" name="arrow-dropdown" item-right></ion-icon>
             </ion-item>
-            <ion-item id="fruitdaleInfo" class=fruitdaleInfo>
+
+            <!-- Button after Child Elements are Shown -->
+            <ion-item id="fruitdaleInfoShown" class="itemListHidden" (click)="closeFruitdale()">
+                Fruitdale
+                <ion-icon name="arrow-dropup" item-right></ion-icon>
+            </ion-item>
+            <ion-item class="fruitdaleInfoHidden" menuClose (click)="fruitdaleWebsite()">
                 Website
             </ion-item>
-            <ion-item id="fruitdaleInfo" class=fruitdaleInfo>
+            <ion-item class="fruitdaleInfoHidden" menuClose (click)="fruitdaleFacebook()">
                 Facebook
             </ion-item>
 
-
-            <ion-item (click)="openLeroy()">
+            <!-- Button before Child Elements are shown -->
+            <ion-item id="leroyInfoHidden" (click)="openLeroy()">
                 Leroy
-                <ion-icon name="arrow-dropdown" item-right></ion-icon>
+                <ion-icon class="dropArrowUp" name="arrow-dropdown" item-right></ion-icon>
             </ion-item>
-            <ion-item id="leroyInfo" class=leroyInfo>
+
+            <!-- Button after Child Elements are Shown -->
+            <ion-item id="leroyInfoShown" class="itemListHidden" (click)="closeLeroy()">
+                Leroy
+                <ion-icon name="arrow-dropup" item-right></ion-icon>
+            </ion-item>
+            <ion-item class="leroyInfoHidden" menuClose (click)="leroyWebsite()">
                 Website
             </ion-item>
-            <ion-item id="leroyInfo" class=leroyInfo>
+            <ion-item class="leroyInfoHidden" menuClose (click)="leroyFacebook()">
                 Facebook
             </ion-item>
 
+            <!-- Button before Child Elements are shown -->
+            <ion-item id="mcintoshInfoHidden" (click)="openMcintosh()">
+                    Mcintosh
+                    <ion-icon class="dropArrowUp" name="arrow-dropdown" item-right></ion-icon>
+                </ion-item>
+    
+                <!-- Button after Child Elements are Shown -->
+                <ion-item id="mcintoshInfoShown" class="itemListHidden" (click)="closeMcintosh()">
+                    Mcintosh
+                    <ion-icon name="arrow-dropup" item-right></ion-icon>
+                </ion-item>
+                <ion-item class="mcintoshInfoHidden" menuClose (click)="mcintoshWebsite()">
+                    Website
+                </ion-item>
+                <ion-item class="mcintoshInfoHidden" menuClose (click)="mcintoshFacebook()">
+                    Facebook
+                </ion-item>
 
-            <ion-item (click)="openMcintosh()">
-                McIntosh
-                <ion-icon name="arrow-dropdown" item-right></ion-icon>
-            </ion-item>
-            <ion-item id="mcintoshInfo" class=mcintoshInfo>
-                Website
-            </ion-item>
-            <ion-item id="mcintoshInfo" class=mcintoshInfo>
-                Facebook
-            </ion-item>
-
-
-            <ion-item (click)="openMillry()">
+            <!-- Button before Child Elements are shown -->
+            <ion-item id="millryInfoHidden" (click)="openMillry()">
                 Millry
-                <ion-icon name="arrow-dropdown" item-right></ion-icon>
+                <ion-icon class="dropArrowUp" name="arrow-dropdown" item-right></ion-icon>
             </ion-item>
-            <ion-item id="millryInfo" class=millryInfo>
+
+            <!-- Button after Child Elements are Shown -->
+            <ion-item id="millryInfoShown" class="itemListHidden" (click)="closeMillry()">
+                Millry
+                <ion-icon name="arrow-dropup" item-right></ion-icon>
+            </ion-item>
+            <ion-item class="millryInfoHidden" menuClose (click)="millryWebsite()">
                 Website
             </ion-item>
-            <ion-item id="millryInfo" class=millryInfo>
+            <ion-item class="millryInfoHidden" menuClose (click)="millryFacebook()">
                 Facebook
             </ion-item>
+
         </ion-list>
     </ion-content>
 </ion-menu>

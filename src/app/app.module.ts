@@ -19,6 +19,7 @@ import { AddSuggestedEventsPage } from '../pages/add-suggested-events/add-sugges
 import { ModifyEventsPage } from '../pages/modify-events/modify-events';
 import { ModifySuggestedEventsPage } from '../pages/modify-suggested-events/modify-suggested-events';
 import { JobLinksPage} from '../pages/joblinks/joblinks';
+import {NoneExistPage} from '../pages/none-exist/none-exist';
 
 //Import Calendar
 import { Calendar } from '@ionic-native/calendar'; //This is the native cordova portion that allows interaction with the devices 
@@ -76,6 +77,7 @@ export const firebaseConfig = {
     ModifyEventsPage,
     ModifySuggestedEventsPage,
     JobLinksPage,
+    NoneExistPage
     // //Delcare the directive for the ionic 3 input mask
     // Directive
   ],
@@ -102,7 +104,8 @@ export const firebaseConfig = {
     ViewSuggestedEventsPage,
     ModifyEventsPage,
     ModifySuggestedEventsPage,
-    JobLinksPage
+    JobLinksPage,
+    NoneExistPage
   ],
   providers: [
     StatusBar,

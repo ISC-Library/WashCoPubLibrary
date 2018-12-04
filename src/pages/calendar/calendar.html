@@ -12,7 +12,7 @@
 
  <!-- Show All Segment -->
 <ion-toolbar no-border>
-  <ion-segment [(ngModel)]="categoryType" (ionChange)="changeCategoriesDisplayed($event)">
+  <ion-segment [(ngModel)]="categoryType" (ionChange)="gatherChildren($event)">
     <ion-segment-button id="allSegmentBtn" value="all">
       All
     </ion-segment-button>
@@ -22,7 +22,7 @@
 
 <!-- Multiple Choice Segment -->
 <ion-toolbar no-border>
-  <ion-segment [(ngModel)]="categoryType" (ionChange)="gatherChildren()">
+  <ion-segment [(ngModel)]="categoryType" (ionChange)="gatherChildren($event)">
 
     <!-- <ion-segment-button id="allSegmentBtn" value="all">
       All
@@ -169,8 +169,6 @@
 
         <h4 class="startInfo">{{event.startDate}} &nbsp;&nbsp;&nbsp; {{event.startTime}}</h4>
         <h4 class="endInfo">{{event.endDate}} &nbsp;&nbsp;&nbsp; {{event.endTime}}</h4>
-        <p text-wrap>{{event.notes}}</p>
-
       </ion-item>
     
       <!-- Right Side Options -->

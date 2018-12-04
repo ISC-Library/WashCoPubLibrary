@@ -87,46 +87,71 @@ ion-content{background-image: url(../../assets/imgs/WaCoLibHome_Background.png);
         display:none;
     }
 
-   .fruitdaleInfo{
+   .fruitdaleInfoShown{
+       color:rgba(0,68,136,1);
+       background:
+       linear-gradient(
+           rgb(255, 255, 255), 
+           rgb(255, 255, 255),
+           rgba(0,68,136,.2)), 
+           white;
+        text-align:right;
+        display:block;
+        font-size:1.7rem;
+    }
+    
+    .fruitdaleInfoHidden{
         text-align:right;
         display:none;
     }
 
-   .shownFruitdaleInfo{
-        text-align:right;
-        display:inherit;
-        background:white;
-    }
-
-   .millryInfo{
-        text-align:right;
-        display:none;
-    }
-
-   .shownMillryInfo{
-    text-align:right;
-    display:inherit;
-    background:white;
+   .mcintoshInfoShown{
+    color:rgba(0,68,136,1);
+    background:
+    linear-gradient(
+        rgb(255, 255, 255), 
+        rgb(255, 255, 255),
+        rgba(0,68,136,.2)), 
+        white;
+     text-align:right;
+     display:block;
+     font-size:1.7rem;
    }
 
-   .mcintoshInfo{
-    text-align:right;
+   .mcintoshInfoHidden{
     display:none;
    }
 
-   .shownMcintoshInfo{
-    text-align:right;
-    display:inherit;
-    background:white;
+   .millryInfoShown{
+    color:rgba(0,68,136,1);
+    background:
+    linear-gradient(
+        rgb(255, 255, 255), 
+        rgb(255, 255, 255),
+        rgba(0,68,136,.2)), 
+        white;
+     text-align:right;
+     display:block;
+     font-size:1.7rem;
    }
 
-   .leroyInfo{
-    text-align:right;
-    display:none;
+   .millryInfoHidden{
+       display:none;
    }
 
-   .shownLeroyInfo{
-    text-align:right;
-    display:inherit;
-    background:white;
+   .leroyInfoShown{
+    color:rgba(0,68,136,1);
+    background:
+    linear-gradient(
+        rgb(255, 255, 255), 
+        rgb(255, 255, 255),
+        rgba(0,68,136,.2)), 
+        white;
+     text-align:right;
+     display:block;
+     font-size:1.7rem;
+   }
+
+   .leroyInfoHidden{
+       display:none
    }
