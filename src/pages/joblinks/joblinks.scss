@@ -1,24 +1,5 @@
 page-joblinks {
 
-    //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
-    
-    //NavBar
-    .toolbar-background-ios {
-        background: linear-gradient(180deg, rgba(0, 68, 136, .9));
-        color:white;
-    }
-
-    .toolbar-title {
-        color: white;
-    }
-
-    .icon {
-        color: white;
-    }
-
-    //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
-
-
     #formClass{
         background:white;
     }
@@ -33,27 +14,4 @@ page-joblinks {
         background:white;
         border-bottom:silver;
     }
-
-    //Segment Buttons
-
-    #fullTime {
-        color: rgba(0,136,68,1);
-        border-color: rgba(0,136,68,1);
-    }
-
-    #partTime {
-        color: rgba(0,136,68,1);
-        border-color: rgba(0,136,68,1);
-    }
-
-    #allJobs {
-        color: rgba(0,136,68,1);
-        border-color: rgba(0,136,68,1);
-    }
-
-    //Range Bar
-    .range-bar {
-        color: rgba(0,136,68,1);
-    }
-
 }

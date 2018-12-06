@@ -1,11 +1,10 @@
 <ion-header>
-    <ion-toolbar>
-        <button ion-button [menuToggle]="activeMenu">
-          <ion-icon name="menu" color="secondary"></ion-icon>
-        </button>
-      <ion-title>Modify Suggested Events</ion-title>
-    </ion-toolbar> 
-  </ion-header>
+  <ion-navbar>
+    <ion-title>
+      Modify Suggested Event
+    </ion-title>
+  </ion-navbar>
+</ion-header>
 
 <ion-content padding>
     <form  (ngSubmit)="updateSuggestedEvent(suggestedEvent.id)">

@@ -1,5 +1,4 @@
-
-  <ion-header>
+<ion-header>
       <ion-toolbar id="toolbar">
           <button ion-button id="hamburgerMenu" [menuToggle]="activeMenu">
             <ion-icon name="menu" color="secondary"></ion-icon>
@@ -21,6 +20,7 @@
     </ion-segment-button>
   </ion-segment>
 </ion-toolbar>
+
 
 
 <!-- Multiple Choice Segment -->
@@ -52,6 +52,7 @@
 
 <!-- Main Calendar Import // declaration -->
 <div id='calendarDiv' class='calendarBackground'><ion-calendar #calendar [events]="this.formattedForCSS"
+  (onload)="gatherChildren($event.all)"
   (onDaySelect)="onDaySelect($event)"></ion-calendar></div>
 
   <!-- Navigate to suggested events pages respectively -->
@@ -68,9 +69,9 @@
   
 
   <!-- Suggest Event Slider -->
-  <ion-list class="suggestEventSlider">
-    <ion-item-sliding>
-      <ion-item class="testItem">
+  <ion-list class="suggestEventSliderMain">
+    <ion-item-sliding #slidingItem ion-long-press style="background-color: rgba(0,68,136,1)" (onPressEnd) = "onDragFalse()" (ionDrag)="suggestEventDrag($event)">
+      <ion-item id="suggestedEventOrigin">
         <!-- Backward Arrow -->
         <ion-avatar item-start> 
             <ion-icon class="sliderArrowsPlaceholder" name="arrow-back"></ion-icon>
@@ -85,9 +86,9 @@
       </ion-item>
 
       <!-- Left Side Options -->
-      <ion-item-options side="left" (ionSwipe)="navigateToAddSuggestEventsPage()">
+      <ion-item-options side="left" (ionSwipe)="navigateToAddSuggestEventsPage(slidingItem)">
       <!-- <ion-item-options side="left"> -->
-        <button ion-button style="background-color: rgba(0,68,136,1)" expandable (click)="navigateToAddSuggestEventsPage()">
+        <button ion-button style="background-color: rgba(0,68,136,1)" expandable (click)="navigateToAddSuggestEventsPage(slidingItem)">
           <ion-icon name="chatbubbles" class="suggestEventChatbubbles"></ion-icon>
           <div class="expand-hide">Suggest Event</div>
         </button>
@@ -95,12 +96,10 @@
 
     </ion-item-sliding>
   </ion-list>
-
-
   <!-- Administrator Options Slider -->
   <ion-list *ngIf="isAdmin()" class="administratorSlider" no-padding>
-    <ion-item-sliding>
-      <ion-item>
+    <ion-item-sliding #slidingItem>
+      <ion-item id="administratorOrigin">
          <!-- Backward Arrow -->
          <ion-avatar item-start>
             <ion-icon class="sliderArrows" name="arrow-back"></ion-icon>
@@ -115,18 +114,18 @@
       </ion-item>
 
       <!-- Left Side Options -->
-      <ion-item-options side="left" (ionSwipe)="navigateToAddEventsPage()">
+      <ion-item-options side="left" (ionSwipe)="navigateToAddEventsPage(slidingItem)">
       <!-- <ion-item-options side="left"> -->
-        <button ion-button style="background-color: rgba(0,136,68,1)" expandable (click)="navigateToAddEventsPage()">
+        <button ion-button style="background-color: rgba(0,136,68,1)" expandable (click)="navigateToAddEventsPage(slidingItem)">
           <ion-icon name="calendar"></ion-icon>
           <div class="expand-hide">Add Event</div>
         </button>
       </ion-item-options> 
 
       <!-- Right Side Options -->
-      <ion-item-options side="right" (ionSwipe)="navigateToViewSuggestEventsPage()">
+      <ion-item-options side="right" (ionSwipe)="navigateToViewSuggestEventsPage(slidingItem)">
       <!-- <ion-item-options side="left"> -->
-         <button ion-button style="background-color: rgba(0,68,136,1)" expandable (click)="navigateToViewSuggestEventsPage()">
+         <button ion-button style="background-color: rgba(0,68,136,1)" expandable (click)="navigateToViewSuggestEventsPage(slidingItem)">
           <ion-icon name="eye"></ion-icon>
           <div class="expand-hide">View Suggested Events</div>
         </button>
@@ -139,7 +138,7 @@
 
   <!-- Event List Slider -->
   <ion-list class="eventSlider">
-    <ion-item-sliding *ngFor="let event of events | async">
+    <ion-item-sliding #slidingItem *ngFor="let event of events | async">
       <ion-item>
 
         <!-- Event Icon (avatar) -->
@@ -199,6 +198,4 @@
 
     </ion-item-sliding>
   </ion-list>
-
-
 </ion-content>

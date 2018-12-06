@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, LoadingController, NavParams, Platform, Loading } from 'ionic-angular';
+import { IonicPage, NavController, LoadingController, NavParams, Platform, Loading, ItemSliding } from 'ionic-angular';
 import { Calendar } from '@ionic-native/calendar';
 import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -33,7 +33,6 @@ export class CalendarPage {
   //holds formatted dates {year, month, date} abstracted from the "startDate" of the "allEvents" (array)
   formattedForCSS: any;
 
-
   //Declare the database filter variable
   //Dynamic: Can change so that dynamic filters can be passed to the database 
   databaseFilterDynamic: BehaviorSubject<string | null> = new BehaviorSubject('');
@@ -62,31 +61,76 @@ export class CalendarPage {
 
 
 
-
   // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
   //////// Below are navigation functions  [][[][[][][][][][][][[][][]]]]
   // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
 
 
   // Navigate to the "HomePage" using the NavController 
-  navigateToHomePage() {
+  navigateToHomePage(slidingItem:ItemSliding) {
     this.navCtrl.push(HomePage);
+    slidingItem.close();
   }
 
   //Function to navigate to the "SuggestEventsPage"
-  navigateToAddEventsPage() {
+  navigateToAddEventsPage(slidingItem: ItemSliding) {
     this.navCtrl.push(AddEventPage);
+    slidingItem.close();
   }
 
   //Function to navigate to the "SuggestEventsPage"
-  navigateToAddSuggestEventsPage() {
+  navigateToAddSuggestEventsPage(slidingItem: ItemSliding) {
     this.navCtrl.push(AddSuggestedEventsPage);
+    slidingItem.close();
   }
 
   //Function to navigate to the "SuggestEventsPage"
-  navigateToViewSuggestEventsPage() {
+  navigateToViewSuggestEventsPage(slidingItem: ItemSliding) {
     this.navCtrl.push(ViewSuggestedEventsPage);
+    slidingItem.close()
   }
+
+  onDragBoolean: boolean;
+  percent: any;
+
+  //The percentage shown is relative to the size of the button that becomes visible
+  suggestEventDrag(item, slidingItem: ItemSliding) {
+    
+    this.percent = item.getSlidingPercent();
+
+    //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+    //Everything here changes the CSS of the slider to give an increasing fade feature
+    //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+    if (this.percent < -.0000001) {
+      document.getElementById("suggestedEventOrigin").className = "sliderSuggest01 item item-block item-md"
+    }
+
+    if (this.percent < -.05) {
+      document.getElementById("suggestedEventOrigin").className = "sliderSuggest05 item item-block item-md"
+    }
+
+    if (this.percent < -.10) {
+      document.getElementById("suggestedEventOrigin").className = "sliderSuggest10 item item-block item-md"
+    }
+
+    if (this.percent < -.15) {
+      document.getElementById("suggestedEventOrigin").className = "sliderSuggest15 item item-block item-md"
+    }
+
+    if (this.percent < -.20) {
+      document.getElementById("suggestedEventOrigin").className = "sliderSuggest20 item item-block item-md"
+    }
+  }
+    //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+
+
+  //When the user does not drag the slider far enough to go over 50% of the button, it resets to it's original position
+  onDragFalse() {
+    document.getElementById("suggestedEventOrigin").className = "sliderOrigin item item-block item-md";
+  }
+  //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+
+
 
 
   // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
@@ -99,7 +143,7 @@ export class CalendarPage {
     //Cuts the month from the month shown, gives it a value coresponding to the index of months
     let month = document.getElementById("displayMonthDiv").innerText.split("- ").pop();
 
-    //Sport to hold Sport Events
+        //Sport to hold Sport Events
     let sportingArray = []
 
     //Community to hold Community Events
@@ -110,7 +154,7 @@ export class CalendarPage {
 
     //ArtArray to hold Art Events
     let artArray = [];
-
+    
     if (month == "January") {
       month = "0"
     } else if (month == "February") {
@@ -137,7 +181,9 @@ export class CalendarPage {
       month = "11"
     }
 
-    
+    console.log(month)
+
+
     let counter = 0;
 
     //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -146,11 +192,11 @@ export class CalendarPage {
 
       //Get all elements
       for (let i = 0; i < elementsOne.length; i++) {
-          if (elementsOne[i].textContent.trim() !== "") {
-            elementsAll.push(elementsOne[i].getElementsByTagName("span"));
-            elementsAll = elementsAll.filter(value => Object.keys(value).length !== 0)
-          }
+        if (elementsOne[i].textContent.trim() !== "") {
+          elementsAll.push(elementsOne[i].getElementsByTagName("span"));
+          elementsAll = elementsAll.filter(value => Object.keys(value).length !== 0)
         }
+      }
 
       //Show all event blips
       for (let i = (elementsAll.length - 1); i > -1; i--) {
@@ -199,18 +245,18 @@ export class CalendarPage {
       //Generate Sporting Element Array
       for (let i = 0; i < this.formattedForCSS.length; i++) {
         if (this.formattedForCSS[i].category == "sporting" && this.formattedForCSS[i].month == month)
-          sportingArray.push(this.formattedForCSS[i].date)
+          this.sportingArray.push(this.formattedForCSS[i].date)
       }
 
       //Get all elements that do not contain an sporting event
       for (let i = 0; i < elementsOne.length; i++) {
-        for (let j = 0; j < sportingArray.length; j++) {
-          if (elementsOne[i].textContent.trim() == sportingArray[j]) {
+        for (let j = 0; j < this.sportingArray.length; j++) {
+          if (elementsOne[i].textContent.trim() == this.sportingArray[j]) {
             elementsSports.push(elementsOne[i].getElementsByTagName("span"));
             elementsSports = elementsSports.filter(value => Object.keys(value).length !== 0)
             counter = 0;
           } else {
-            if (counter == sportingArray.length) {
+            if (counter == this.sportingArray.length) {
               elementsNotSports.push(elementsOne[i].getElementsByTagName("span"));
               elementsNotSports = elementsNotSports.filter(value => Object.keys(value).length !== 0)
               counter = 0
@@ -287,18 +333,18 @@ export class CalendarPage {
       //Generate Community Element Array
       for (let i = 0; i < this.formattedForCSS.length; i++) {
         if (this.formattedForCSS[i].category == "community" && this.formattedForCSS[i].month == month)
-          communityArray.push(this.formattedForCSS[i].date)
+          this.communityArray.push(this.formattedForCSS[i].date)
       }
 
       //Get all elements that do not contain an community event
       for (let i = 0; i < elementsOne.length; i++) {
-        for (let j = 0; j < communityArray.length; j++) {
-          if (elementsOne[i].textContent.trim() == communityArray[j]) {
+        for (let j = 0; j < this.communityArray.length; j++) {
+          if (elementsOne[i].textContent.trim() == this.communityArray[j]) {
             elementsCommunity.push(elementsOne[i].getElementsByTagName("span"));
             elementsCommunity = elementsCommunity.filter(value => Object.keys(value).length !== 0)
             counter = 0;
           } else {
-            if (counter == communityArray.length) {
+            if (counter == this.communityArray.length) {
               elementsNotCommunity.push(elementsOne[i].getElementsByTagName("span"));
               elementsNotCommunity = elementsNotCommunity.filter(value => Object.keys(value).length !== 0)
               counter = 0
@@ -359,18 +405,18 @@ export class CalendarPage {
       //Generate Business Element Array
       for (let i = 0; i < this.formattedForCSS.length; i++) {
         if (this.formattedForCSS[i].category == "business" && this.formattedForCSS[i].month == month)
-          businessArray.push(this.formattedForCSS[i].date)
+          this.businessArray.push(this.formattedForCSS[i].date)
       }
 
       //Get all elements that do not contain an business event
       for (let i = 0; i < elementsOne.length; i++) {
-        for (let j = 0; j < businessArray.length; j++) {
-          if (elementsOne[i].textContent.trim() == businessArray[j]) {
+        for (let j = 0; j < this.businessArray.length; j++) {
+          if (elementsOne[i].textContent.trim() == this.businessArray[j]) {
             elementsBusiness.push(elementsOne[i].getElementsByTagName("span"));
             elementsBusiness = elementsBusiness.filter(value => Object.keys(value).length !== 0)
             counter = 0;
           } else {
-            if (counter == businessArray.length) {
+            if (counter == this.businessArray.length) {
               elementsNotBusiness.push(elementsOne[i].getElementsByTagName("span"));
               elementsNotBusiness = elementsNotBusiness.filter(value => Object.keys(value).length !== 0)
               counter = 0
@@ -432,18 +478,18 @@ export class CalendarPage {
       //Generate Art Element Array
       for (let i = 0; i < this.formattedForCSS.length; i++) {
         if (this.formattedForCSS[i].category == "art" && this.formattedForCSS[i].month == month)
-          artArray.push(this.formattedForCSS[i].date)
+          this.artArray.push(this.formattedForCSS[i].date)
       }
 
       //Get all elements that do not contain an art event
       for (let i = 0; i < elementsOne.length; i++) {
-        for (let j = 0; j < artArray.length; j++) {
-          if (elementsOne[i].textContent.trim() == artArray[j]) {
+        for (let j = 0; j < this.artArray.length; j++) {
+          if (elementsOne[i].textContent.trim() == this.artArray[j]) {
             elementsArt.push(elementsOne[i].getElementsByTagName("span"));
             elementsArt = elementsArt.filter(value => Object.keys(value).length !== 0)
             counter = 0;
           } else {
-            if (counter == artArray.length) {
+            if (counter == this.artArray.length) {
               elementsNotArt.push(elementsOne[i].getElementsByTagName("span"));
               elementsNotArt = elementsNotArt.filter(value => Object.keys(value).length !== 0)
               counter = 0
@@ -512,6 +558,7 @@ export class CalendarPage {
 
 
   ionViewDidLoad() {
+    
   };
 
   ionViewWillEnter() {
@@ -519,6 +566,7 @@ export class CalendarPage {
   }
 
   ionViewDidEnter() {
+    document.getElementById("suggestedEventOrigin").className="sliderOrigin item item-block item-md";
     this.presentLoadingDefault()
   }
 
@@ -676,4 +724,3 @@ export class CalendarPage {
 
 
 }
-
