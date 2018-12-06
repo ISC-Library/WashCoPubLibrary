@@ -136,8 +136,8 @@
 
   <!-- Event List Slider -->
   <ion-list>
-    <ion-item-sliding #slidingItem *ngFor="let event of events | async" style="background-color:rgba(52,52,52,1)" ion-long-press>
-      <ion-item id="adminModifySlide">
+    <ion-item-sliding #slidingItem *ngFor="let event of events | async" style="background-color:rgba(52,52,52,1)" ion-long-press (ionDrag)="adminModifyDrag($event)">
+      <ion-item id="adminModifySlider">
 
         <!-- Event Icon (avatar) -->
         <ion-avatar item-start>
@@ -187,7 +187,7 @@
       <!-- Dont make the button able to activate when slid really far, instead force clicking of add button -->
       <!-- <ion-item-options side="left" (ionSwipe)="addSuggestedEvent(item)"></ion-item-options> -->
 
-      <ion-item-options *ngIf="isAdmin()" side="left">
+      <ion-item-options *ngIf="isAdmin()" side="left" (ionSwpie)="modifyEvent(event)">
         <button ion-button class="modifyEventsButton" color="dark" expandable (click)="modifyEvent(event)">
           <ion-icon name="create"></ion-icon>
           Modify
