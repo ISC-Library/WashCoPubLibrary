@@ -17,6 +17,7 @@ page-add-event {
 
 //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 
+    // Check Title
     .titleInputInvalid {
         color: red;
     }
@@ -27,5 +28,19 @@ page-add-event {
 
     #titleErrorIcon {
         color: rgba(180,0,0,1);
+    }
+
+    // Check Start Time
+    .sameTime {
+        color: orange;
+    }
+
+    .differentTime {
+        color: black;
+    }
+
+    #startTimeWarningIcon {
+        color: rgba(255, 165, 0, 1);
+        z-index: 20;
     }
 }

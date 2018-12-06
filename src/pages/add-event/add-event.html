@@ -50,9 +50,21 @@
 
       <!-- Start Date -->
       <ion-item>
-        <ion-label floating>Start Date</ion-label>
+        <!-- Check to see if the start Time is the same (true means it is the same) -->
+        <ion-label floating *ngIf="checkStartTime(true); else startTimeDifferent">Potential Time Conflict!</ion-label>
+          <!-- Create the *ng template to load if the startTime is the same -->
+          <ng-template #startTimeDifferent>
+            <ion-label floating>Start Date</ion-label>
+          </ng-template>
+        
+        <!-- Error Icon if the title is the same -->
+        <ion-icon id="startTimeWarningIcon" *ngIf="checkStartTime(true)" item-right name="help-circle-outline" (click)="startTimeWarningHelpButton()"></ion-icon>
+        
+        
+        
+        
         <!-- https://ionicframework.com/docs/api/components/datetime/DateTime/ -->
-        <ion-datetime displayFormat="MMM DD, YYYY h:mm A" pickerFormat="MMM-DD-YYYY h:mm:A" [(ngModel)]="event.startDate" (ngModelChange)="checkTitle()" name="startDate"></ion-datetime>
+        <ion-datetime id="startDatePicker" displayFormat="MMM DD, YYYY h:mm A" pickerFormat="MMM-DD-YYYY h:mm:A" [(ngModel)]="event.startDate" (ngModelChange)="checkTitle(); checkStartTime();" name="startDate"></ion-datetime>
       </ion-item>
 
       <!-- End Date -->
@@ -70,5 +82,6 @@
 
   <p>{{this.event.title}}</p>
   <p *ngFor="let event of events | async">{{event.title}}</p>
+  <p *ngFor="let event of events | async">{{event.startTime}}</p>
 
 </ion-content>

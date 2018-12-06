@@ -31,6 +31,9 @@ export class AddEventPage {
   //Array to hold titles converted from the observable 
   titlesArray: any;
 
+  //Array to hold start Times convered from the observable
+  startTimeArray: any;
+
   //Declare the databaseFilter variable
   databaseFilter: BehaviorSubject<string | null> = new BehaviorSubject('');
   
@@ -61,12 +64,16 @@ export class AddEventPage {
     //Convert titlesArray from type "any" to array[]
     this.titlesArray = []
 
+    //Convert startTimeARray from type "any" to array[]
+    this.startTimeArray = []
+
     //Get all the events
     this.events = this.EventTitleCheckSvc.getEvents(this.databaseFilter);
   
-    this.events.subscribe((data) => {
-      //Set the .subscription "data" values that are returned to the array "titlesArray[]"
+    this.events.subscribe((data)=> {
+      //Set the .subscription "data" values that are returned to the array "titlesArray[]" and "starTimeArray[]"
       this.titlesArray = data
+      this.startTimeArray = data
     });
   }
 
@@ -98,6 +105,20 @@ export class AddEventPage {
   
     toast.present();
   }
+
+  startTimeWarningHelpButton() {
+    let toast = this.toastCtrl.create({
+      message: 'This event starts at the same time as another event on the same day, you may want to consider modifying it.',
+      duration: 4000,
+      position: 'middle'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present();
+  }
   
   //Check the title the user is entering 
   checkTitle() {
@@ -109,17 +130,35 @@ export class AddEventPage {
       let convertedEventTitle = (this.event.title).replace(/\s/g,'').toLowerCase();
       
       //Re-declare the "event.startDate" and "event.endDate" to be just the date, not removing the time portion
-      this.event.startDate= this.event.startDate.split("T", 1).pop();
-      this.event.endDate = this.event.endDate.split("T", 1).pop();
-
+      let convertedStartDateFromArray = this.event.startDate.split("T", 1).pop();
+    
       //If the title they are typing is matches any given title in the events array...
         //And the startDates are the same 
           //Meaning they cannot have an event with the same title as another event on that day
-      if (convertedTitleFromArray.includes(convertedEventTitle) && this.titlesArray[i].startDate == this.event.startDate) {
+      if (convertedTitleFromArray.includes(convertedEventTitle) && this.titlesArray[i].startDate == convertedStartDateFromArray) {
         document.getElementById("titleInput").className = "titleInputInvalid"
         return true
       } else {
         document.getElementById("titleInput").className = "titleInputValid"
+      }
+    }
+  }
+
+  checkStartTime() {
+   //Seperate the date and time in the "event.startTime"  variable
+   let convertedStartTimeFromArray = this.event.startDate.split("T").pop()
+
+   //For now we are not dealing with the timezone offset
+     //Which is currently appending itself to the dateTime as "00Z"
+       //For now we will just cut that off
+   //convertedStartTimeFromArray = convertedStartTimeFromArray.substring(0, convertedStartTimeFromArray.length - 4);
+   
+   for (let i = 0; i < this.startTimeArray.length; i++) {
+      if (convertedStartTimeFromArray == this.startTimeArray[i].startTime) {
+        document.getElementById("startDatePicker").className = "sameTime"
+        return true
+      } else {
+        document.getElementById("startDatePicker").className = "differentTime"
       }
     }
   }
