@@ -8,19 +8,7 @@ page-calendar {
 
     //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
     
-    //NavBar
-    .toolbar-background-ios {
-        background: linear-gradient(180deg, rgba(0, 68, 136, .9));
-        color:white;
-    }
-
-    .toolbar-title {
-        color: white;
-    }
-
-    .icon {
-        color: white;
-    }
+   
 
     //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
     
@@ -161,7 +149,7 @@ page-calendar {
     
 
     // Sliders
-    .suggestEventSlider {
+    .suggestEventSliderMain {
         margin: 0;
     }
 
@@ -177,6 +165,100 @@ page-calendar {
         text-align: center;
     }
 
+
+    
+    //The original state of the 'Suggest Event Button'
+
+    .sliderOrigin{
+
+    }
+
+    //
+    .sliderSuggest01{
+    background: linear-gradient(
+    90deg, 
+    rgba(0,68,136,.1),
+    rgba(255, 255, 255,1) 1%)
+    }
+
+    .sliderSuggest05{
+    background: linear-gradient(
+    90deg, 
+    rgba(0,68,136,.1),
+    rgba(255, 255, 255,1) 5%)
+    }
+
+    .sliderSuggest10{
+    background: linear-gradient(
+    90deg, 
+    rgba(0,68,136,.1),
+    rgba(255, 255, 255,1) 10%)
+    }
+
+    .sliderSuggest15{
+    background: linear-gradient(
+    90deg, 
+    rgba(0,68,136,.1),
+    rgba(255, 255, 255,1) 15%)
+    }
+
+    .sliderSuggest20{
+    background: linear-gradient(
+    -90deg, 
+    rgba(255, 255, 255,1), 
+    rgba(255, 255, 255,1), 
+    rgba(255, 255, 255,1), 
+    rgba(255, 255, 255,1), 
+    rgba(255, 255, 255,1), 
+    rgba(255, 255, 255,.8), 
+    rgba(255, 255, 255,.5),
+    rgba(255, 255, 255,.2), 
+    rgba(0,68,136,0));
+    }
+
+        .SliderAdminAddEvent01{
+    background: linear-gradient(
+    90deg, 
+    rgba(255, 255, 255, .1) 100%
+    rgba(0,68,136,1) 99%)
+    }
+
+    .SliderAdminAddEvent05{
+    background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, .1) 100%
+    rgba(0,68,136,1) 95%)
+    }
+
+    .SliderAdminAddEvent10{
+    background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, .1) 100%
+    rgba(0,68,136,1) 90%)
+    }
+
+    .SliderAdminAddEvent15{
+    background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255,.1) 100%
+    rgba(0,68,136,1) 85%)
+    }
+
+    .SliderAdminAddEvent20{
+    background: linear-gradient(
+    90deg, 
+    rgba(255, 255, 255,.2), 
+    rgba(255, 255, 255,.5), 
+    rgba(255, 255, 255,.8), 
+    rgba(255, 255, 255,1), 
+    rgba(255, 255, 255,1), 
+    rgba(255, 255, 255,1), 
+    rgba(255, 255, 255,1),
+    rgba(255, 255, 255,1), 
+    rgba(0,68,136,0));
+    }
+
+
     //This element is not needed currently, but serves the purpose of keeping the slide aligned
     .sliderArrowsPlaceholder {
         visibility: hidden;
@@ -189,6 +271,7 @@ page-calendar {
         min-height: 20px;
     }
 
+
     .modifyEventsButton {
         background-color: rgba(52,52,52,1);
     }
@@ -196,7 +279,6 @@ page-calendar {
 
     //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 
-    
     #calendarDiv{
         animation: cssAnimation 0s 2s forwards;
         visibility: hidden;
@@ -213,4 +295,5 @@ page-calendar {
     h1 {
         color:  Red;
     }
+
 }
