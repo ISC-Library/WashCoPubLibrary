@@ -125,21 +125,23 @@ export class AddEventPage {
     //Compare the title being entered to all event titles (which are now stored in titleArray)
     for (let i = 0; i < this.titlesArray.length; i++) {
       //Convert to lower and remove spaces
-        //This checks only that the characters linearly are not the same and ignores case and spacing
-      let convertedTitleFromArray = (this.titlesArray[i].title).replace(/\s/g,'').toLowerCase();
-      let convertedEventTitle = (this.event.title).replace(/\s/g,'').toLowerCase();
-      
+      //This checks only that the characters linearly are not the same and ignores case and spacing
+      let convertedTitleFromArray = (this.titlesArray[i].title).replace(/\s/g, '').toLowerCase();
+      let convertedEventTitle = (this.event.title).replace(/\s/g, '').toLowerCase();
+
       //Re-declare the "event.startDate" and "event.endDate" to be just the date, not removing the time portion
       let convertedStartDateFromArray = this.event.startDate.split("T", 1).pop();
-    
+
       //If the title they are typing is matches any given title in the events array...
-        //And the startDates are the same 
-          //Meaning they cannot have an event with the same title as another event on that day
-      if (convertedTitleFromArray.includes(convertedEventTitle) && this.titlesArray[i].startDate == convertedStartDateFromArray) {
-        document.getElementById("titleInput").className = "titleInputInvalid"
-        return true
-      } else {
-        document.getElementById("titleInput").className = "titleInputValid"
+      //And the startDates are the same 
+      //Meaning they cannot have an event with the same title as another event on that day
+      if (convertedEventTitle != "") {
+        if (convertedTitleFromArray.includes(convertedEventTitle) && this.titlesArray[i].startDate == convertedStartDateFromArray) {
+          document.getElementById("titleInput").className = "titleInputInvalid"
+          return true
+        } else {
+          document.getElementById("titleInput").className = "titleInputValid"
+        }
       }
     }
   }
