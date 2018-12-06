@@ -1,9 +1,12 @@
 
-<ion-header>
-  <ion-navbar no-border-bottom>
-    <ion-title>Events</ion-title>
-  </ion-navbar>
-</ion-header>
+  <ion-header>
+      <ion-toolbar>
+          <button ion-button [menuToggle]="activeMenu">
+            <ion-icon name="menu" color="secondary"></ion-icon>
+          </button>
+        <ion-title>Events</ion-title>
+      </ion-toolbar> 
+    </ion-header>
 
 <!-- https://devdactic.com/ionic-calendar-angular-calendar/ -->
 
@@ -67,7 +70,7 @@
   <!-- Suggest Event Slider -->
   <ion-list class="suggestEventSlider">
     <ion-item-sliding>
-      <ion-item>
+      <ion-item class="testItem">
         <!-- Backward Arrow -->
         <ion-avatar item-start> 
             <ion-icon class="sliderArrowsPlaceholder" name="arrow-back"></ion-icon>

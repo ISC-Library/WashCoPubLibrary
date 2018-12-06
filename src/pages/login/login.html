@@ -1,7 +1,10 @@
-<ion-header>
-    <ion-navbar color="primary">
+  <ion-header>
+    <ion-toolbar>
+        <button ion-button [menuToggle]="activeMenu">
+          <ion-icon name="menu" color="secondary"></ion-icon>
+        </button>
       <ion-title>Login</ion-title>
-    </ion-navbar>
+    </ion-toolbar> 
   </ion-header>
    
   <ion-content>
@@ -17,5 +20,5 @@
       </ion-item>
     </ion-list>
    
-    <button ion-button full (click)="loginUser()">Login</button>
+    <button ion-button full style="background-color: rgba(0,68,136,1)" (click)="loginUser()">Login</button>
   </ion-content>

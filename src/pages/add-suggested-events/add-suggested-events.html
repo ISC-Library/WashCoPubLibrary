@@ -1,11 +1,13 @@
 
-<ion-header>
-    <ion-navbar>
-      <ion-title>
-        Add Suggested Event Page
-      </ion-title>
-    </ion-navbar>
-  </ion-header>
+  <ion-header>
+      <ion-toolbar>
+          <button ion-button [menuToggle]="activeMenu">
+            <ion-icon name="menu" color="secondary"></ion-icon>
+          </button>
+        <ion-title>Suggest An Event</ion-title>
+      </ion-toolbar> 
+    </ion-header>
+
 
 <ion-content padding>
   <form  (ngSubmit)="save()">

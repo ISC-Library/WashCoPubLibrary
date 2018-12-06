@@ -1,12 +1,14 @@
-<!-- 
-  Generated template for the JoblinkPage page.
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation. -->
+
   <ion-header>
-      <ion-navbar color="primary">
-        <ion-title>Job Search</ion-title>
-      </ion-navbar>
-    </ion-header>
+    <ion-toolbar>
+        <button ion-button [menuToggle]="activeMenu">
+          <ion-icon name="menu" color="secondary"></ion-icon>
+        </button>
+      <ion-title>Job Search</ion-title>
+    </ion-toolbar> 
+  </ion-header>
+  
+
 <ion-content padding>
     <ion-list>
       <ion-item>
@@ -17,7 +19,7 @@
       </ion-item>
 
       <ion-item>
-        <ion-segment [(ngModel)]="$jobType" color="danger">
+        <ion-segment [(ngModel)]="$jobType">
           <ion-segment-button id=fullTime value="fullTime">Full Time</ion-segment-button>
           <ion-segment-button id=partTime value="partTime">Part Time</ion-segment-button>
           <ion-segment-button id=allJobs value="allJobs">All Jobs</ion-segment-button>
@@ -34,5 +36,5 @@
       </ion-range>
     </ion-item>
 
-    <button ion-button block color="danger" (click)="jobSearch($location, $keyword, $jobType, $radius)">Search</button>
+    <button ion-button block style="background-color: rgba(0,68,136,1)" (click)="jobSearch($location, $keyword, $jobType, $radius)">Search</button>
 </ion-content>
