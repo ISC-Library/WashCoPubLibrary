@@ -51,7 +51,7 @@
 
   <!-- Main Calendar Import // declaration -->
   <div id='calendarDiv' class='calendarBackground'>
-    <ion-calendar #calendar [events]="this.formattedForCSS" (onDaySelect)="onDaySelect($event)"></ion-calendar>
+    <ion-calendar #calendar [events]="this.formattedForCSS" (onload)="gatherChildren($event.all)" (onDaySelect)="onDaySelect($event)"></ion-calendar>
   </div>
 
   <!-- Navigate to suggested events pages respectively -->
@@ -69,8 +69,8 @@
 
   <!-- Suggest Event Slider -->
   <ion-list class="suggestEventSliderMain">
-    <ion-item-sliding #slidingItem ion-long-press style="background-color:rgba(0,68,136,1)" (onPressEnd)="onDragFalse($event)" 
-    (ionDrag)="suggestEventDrag($event)">
+    <ion-item-sliding #slidingItem ion-long-press style="background-color:rgba(0,68,136,1)" (onPressEnd)="onDragFalse($event)"
+      (ionDrag)="suggestEventDrag($event)">
       <ion-item id="suggestedEventOrigin">
         <!-- Backward Arrow -->
         <ion-avatar item-start>
@@ -97,8 +97,8 @@
   </ion-list>
 
   <!-- Administrator Options Slider -->
-  <ion-list *ngIf="isAdmin()" class="administratorSlider" no-padding>
-    <ion-item-sliding #slidingItem ion-long-press style="background-color:rgba(0,68,136,1)">
+  <ion-list *ngIf="isAdmin()" class="administratorSlider">
+    <ion-item-sliding #slidingItem ion-long-press>
       <ion-item>
         <!-- Backward Arrow -->
         <ion-avatar item-start>
