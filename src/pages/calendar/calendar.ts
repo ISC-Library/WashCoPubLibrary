@@ -34,19 +34,6 @@ export class CalendarPage {
   formattedForCSS: any;
 
 
-  //Sport to hold Sport Events
-  sportingArray = []
-
-  //Community to hold Community Events
-  communityArray = [];
-
-  //Business to hold Business Events
-  businessArray = [];
-
-  //ArtArray to hold Art Events
-  artArray = [];
-
-
   //Declare the database filter variable
   //Dynamic: Can change so that dynamic filters can be passed to the database 
   databaseFilterDynamic: BehaviorSubject<string | null> = new BehaviorSubject('');
@@ -112,6 +99,18 @@ export class CalendarPage {
     //Cuts the month from the month shown, gives it a value coresponding to the index of months
     let month = document.getElementById("displayMonthDiv").innerText.split("- ").pop();
 
+    //Sport to hold Sport Events
+    let sportingArray = []
+
+    //Community to hold Community Events
+    let communityArray = [];
+
+    //Business to hold Business Events
+    let businessArray = [];
+
+    //ArtArray to hold Art Events
+    let artArray = [];
+
     if (month == "January") {
       month = "0"
     } else if (month == "February") {
@@ -138,9 +137,7 @@ export class CalendarPage {
       month = "11"
     }
 
-    console.log(month)
-
-
+    
     let counter = 0;
 
     //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -202,18 +199,18 @@ export class CalendarPage {
       //Generate Sporting Element Array
       for (let i = 0; i < this.formattedForCSS.length; i++) {
         if (this.formattedForCSS[i].category == "sporting" && this.formattedForCSS[i].month == month)
-          this.sportingArray.push(this.formattedForCSS[i].date)
+          sportingArray.push(this.formattedForCSS[i].date)
       }
 
       //Get all elements that do not contain an sporting event
       for (let i = 0; i < elementsOne.length; i++) {
-        for (let j = 0; j < this.sportingArray.length; j++) {
-          if (elementsOne[i].textContent.trim() == this.sportingArray[j]) {
+        for (let j = 0; j < sportingArray.length; j++) {
+          if (elementsOne[i].textContent.trim() == sportingArray[j]) {
             elementsSports.push(elementsOne[i].getElementsByTagName("span"));
             elementsSports = elementsSports.filter(value => Object.keys(value).length !== 0)
             counter = 0;
           } else {
-            if (counter == this.sportingArray.length) {
+            if (counter == sportingArray.length) {
               elementsNotSports.push(elementsOne[i].getElementsByTagName("span"));
               elementsNotSports = elementsNotSports.filter(value => Object.keys(value).length !== 0)
               counter = 0
@@ -290,18 +287,18 @@ export class CalendarPage {
       //Generate Community Element Array
       for (let i = 0; i < this.formattedForCSS.length; i++) {
         if (this.formattedForCSS[i].category == "community" && this.formattedForCSS[i].month == month)
-          this.communityArray.push(this.formattedForCSS[i].date)
+          communityArray.push(this.formattedForCSS[i].date)
       }
 
       //Get all elements that do not contain an community event
       for (let i = 0; i < elementsOne.length; i++) {
-        for (let j = 0; j < this.communityArray.length; j++) {
-          if (elementsOne[i].textContent.trim() == this.communityArray[j]) {
+        for (let j = 0; j < communityArray.length; j++) {
+          if (elementsOne[i].textContent.trim() == communityArray[j]) {
             elementsCommunity.push(elementsOne[i].getElementsByTagName("span"));
             elementsCommunity = elementsCommunity.filter(value => Object.keys(value).length !== 0)
             counter = 0;
           } else {
-            if (counter == this.communityArray.length) {
+            if (counter == communityArray.length) {
               elementsNotCommunity.push(elementsOne[i].getElementsByTagName("span"));
               elementsNotCommunity = elementsNotCommunity.filter(value => Object.keys(value).length !== 0)
               counter = 0
@@ -362,18 +359,18 @@ export class CalendarPage {
       //Generate Business Element Array
       for (let i = 0; i < this.formattedForCSS.length; i++) {
         if (this.formattedForCSS[i].category == "business" && this.formattedForCSS[i].month == month)
-          this.businessArray.push(this.formattedForCSS[i].date)
+          businessArray.push(this.formattedForCSS[i].date)
       }
 
       //Get all elements that do not contain an business event
       for (let i = 0; i < elementsOne.length; i++) {
-        for (let j = 0; j < this.businessArray.length; j++) {
-          if (elementsOne[i].textContent.trim() == this.businessArray[j]) {
+        for (let j = 0; j < businessArray.length; j++) {
+          if (elementsOne[i].textContent.trim() == businessArray[j]) {
             elementsBusiness.push(elementsOne[i].getElementsByTagName("span"));
             elementsBusiness = elementsBusiness.filter(value => Object.keys(value).length !== 0)
             counter = 0;
           } else {
-            if (counter == this.businessArray.length) {
+            if (counter == businessArray.length) {
               elementsNotBusiness.push(elementsOne[i].getElementsByTagName("span"));
               elementsNotBusiness = elementsNotBusiness.filter(value => Object.keys(value).length !== 0)
               counter = 0
@@ -435,18 +432,18 @@ export class CalendarPage {
       //Generate Art Element Array
       for (let i = 0; i < this.formattedForCSS.length; i++) {
         if (this.formattedForCSS[i].category == "art" && this.formattedForCSS[i].month == month)
-          this.artArray.push(this.formattedForCSS[i].date)
+          artArray.push(this.formattedForCSS[i].date)
       }
 
       //Get all elements that do not contain an art event
       for (let i = 0; i < elementsOne.length; i++) {
-        for (let j = 0; j < this.artArray.length; j++) {
-          if (elementsOne[i].textContent.trim() == this.artArray[j]) {
+        for (let j = 0; j < artArray.length; j++) {
+          if (elementsOne[i].textContent.trim() == artArray[j]) {
             elementsArt.push(elementsOne[i].getElementsByTagName("span"));
             elementsArt = elementsArt.filter(value => Object.keys(value).length !== 0)
             counter = 0;
           } else {
-            if (counter == this.artArray.length) {
+            if (counter == artArray.length) {
               elementsNotArt.push(elementsOne[i].getElementsByTagName("span"));
               elementsNotArt = elementsNotArt.filter(value => Object.keys(value).length !== 0)
               counter = 0

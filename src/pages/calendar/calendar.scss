@@ -9,7 +9,7 @@ page-calendar {
     //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
     
     //NavBar
-    .toolbar-background-ios {
+    #toolbar .toolbar-background-ios {
         background: linear-gradient(180deg, rgba(0, 68, 136, .9));
         color:white;
     }
@@ -18,7 +18,7 @@ page-calendar {
         color: white;
     }
 
-    .icon {
+    #hamburgerMenu .icon{
         color: white;
     }
 
@@ -48,12 +48,14 @@ page-calendar {
     //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 
     // Segment Buttons
+  
+    .toolbar-ios .segment-button {
+        max-width: 500px;
+    }
+
+    //All
     #allSegmentBtn {
         color: rgba(0,0,0,1);
-        // border-top-color: purple;
-        // border-bottom-color: purple;
-        // border-left-color: purple;
-        // border-right-color: purple;
         border-color: rgba(0,0,0,1);
         border-width: 1px;
         border-left-width: 1px;
@@ -61,12 +63,6 @@ page-calendar {
         border-right-width: .5px; 
     }
 
-    .toolbar-ios .segment-button {
-        max-width: 500px;
-    }
-
-
-    //All
     //Have to get the right level of "specificity" to override the "main.css"
     .segment-ios  #allSegmentBtn.segment-activated {
         //RGBA allows you to convert a color to transparency

@@ -23,7 +23,7 @@
         <ion-item>
           <ion-label floating>Select Event Category</ion-label>
           <ion-select [(ngModel)]="event.category" interface="action-sheet" name="category">
-            <ion-option value="community">Community Event</ion-option>
+            <ion-option class="communityText" value="community">Community Event</ion-option>
             <ion-option value="sporting">Sporting Event</ion-option>
             <ion-option value="business">Business Event</ion-option>
             <ion-option value="art">Art Event</ion-option>
@@ -62,7 +62,7 @@
         </ion-item>
         
         <ion-item>
-          <button ion-button type="submit" full round>Update</button>
+          <button ion-button type="submit" style="background-color: rgba(0,68,136,1)" full round>Update</button>
         </ion-item>
       </ion-list>
     </form>

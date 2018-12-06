@@ -20,12 +20,14 @@ page-about {
 
 // Admin button and text styling.
     .adminButton{
-        left:10%;
-        right:10%;
-        top:10%;
-        width:75%;
+        // left:10%;
+        // right:10%;
+        // top:10%;
+        // width:75%;
+        background: rgba(0, 68, 136, 1);
     }
 
+    //Contact Admin Text
     .contactAdminShow{
         transition: ease .2s;
         padding:15px;
@@ -38,15 +40,16 @@ page-about {
     }
 
     .contactAdminText{
-        visibility: hidden;
+        display: none;
     }
 
-//Important Links Button
+    //Important Links Button
     .importantLinksButton{
-        left:10%;
-        right:10%;
-        top:10%;
-        width:75%;
+        // left:10%;
+        // right:10%;
+        // top:10%;
+        // width:75%;
+        background: rgba(0, 68, 136, 1);
     }
 
     .importantLinksShow{
@@ -65,26 +68,26 @@ page-about {
     }
 
 
-
+    //User manual button
     .userManualButton{
-        // position: absolute;
-        left:10%;
-        right:10%;
-        top:50%;
-        width:75%;
-    }
-    .aboutUsButton{
-        // position: absolute;
-        left:10%;
-        right:10%;
-        top:70%;
-        width:75%;
+        // left:10%;
+        // right:10%;
+        // top:50%;
+        // width:75%;
+        background: rgba(0, 68, 136, 1);
     }
 
-    
+    //About us button
+    .aboutUsButton{
+        // left:10%;
+        // right:10%;
+        // top:70%;
+        // width:75%;
+        background: rgba(0, 68, 136, 1);
+    }
 
     .aboutUsText{
-        visibility: hidden;
+        display: none;
     }
 
     .showAboutUsText{

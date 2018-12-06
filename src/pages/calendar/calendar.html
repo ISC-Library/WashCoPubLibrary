@@ -1,7 +1,7 @@
 
   <ion-header>
-      <ion-toolbar>
-          <button ion-button [menuToggle]="activeMenu">
+      <ion-toolbar id="toolbar">
+          <button ion-button id="hamburgerMenu" [menuToggle]="activeMenu">
             <ion-icon name="menu" color="secondary"></ion-icon>
           </button>
         <ion-title>Events</ion-title>
@@ -15,7 +15,7 @@
 
  <!-- Show All Segment -->
 <ion-toolbar no-border>
-  <ion-segment [(ngModel)]="categoryType" (ionChange)="gatherChildren($event)">
+  <ion-segment class="segmentToolbarBackground" [(ngModel)]="categoryType" (ionChange)="gatherChildren($event)">
     <ion-segment-button id="allSegmentBtn" value="all">
       All
     </ion-segment-button>
@@ -24,8 +24,8 @@
 
 
 <!-- Multiple Choice Segment -->
-<ion-toolbar no-border>
-  <ion-segment [(ngModel)]="categoryType" (ionChange)="gatherChildren($event)">
+<ion-toolbar no-border class="segmentToolbarBackground">
+  <ion-segment class="segmentToolbarBackground" [(ngModel)]="categoryType" (ionChange)="gatherChildren($event)">
 
     <!-- <ion-segment-button id="allSegmentBtn" value="all">
       All
