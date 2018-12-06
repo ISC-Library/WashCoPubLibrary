@@ -17,5 +17,15 @@ page-add-event {
 
 //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 
+    .titleInputInvalid {
+        color: red;
+    }
 
+    .titleInputValid {
+        color: black;
+    }
+
+    #titleErrorIcon {
+        color: rgba(180,0,0,1);
+    }
 }

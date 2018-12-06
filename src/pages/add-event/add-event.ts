@@ -3,12 +3,15 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { Calendar } from '@ionic-native/calendar';
 import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs/observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { ToastController } from 'ionic-angular';
 
 //Import AF2 
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
 //Import Providers
 import { AdminAuthProvider } from '../../providers/admin-auth/admin-auth';
+import { EventTitleCheckProvider } from '../../providers/event-title-check/event-title-check'
 
 //Import Pages
 import { CalendarPage } from '../calendar/calendar';
@@ -25,6 +28,12 @@ export class AddEventPage {
   //The events observable holds all the data pulled from the database 
   events: Observable<any[]>;
   
+  //Array to hold titles converted from the observable 
+  titlesArray: any;
+
+  //Declare the databaseFilter variable
+  databaseFilter: BehaviorSubject<string | null> = new BehaviorSubject('');
+  
   //The "event" is an object that is used to format the data being pushed into the database 
   event = { 
     title: "", 
@@ -39,13 +48,26 @@ export class AddEventPage {
 
   constructor(public alertCtrl: AlertController,
     public navCtrl: NavController,
+    private toastCtrl: ToastController,
     public navParams: NavParams,
     private calendar: Calendar,
     afDatabase:AngularFireDatabase,
-    public AdminAuthProvider: AdminAuthProvider) {
+    public AdminAuthProvider: AdminAuthProvider,
+    public EventTitleCheckSvc : EventTitleCheckProvider) {
       
     //This is the reference to which portion of the database you want to access 
     this.eventsRef = afDatabase.list('events');
+
+    //Convert titlesArray from type "any" to array[]
+    this.titlesArray = []
+
+    //Get all the events
+    this.events = this.EventTitleCheckSvc.getEvents(this.databaseFilter);
+  
+    this.events.subscribe((data) => {
+      //Set the .subscription "data" values that are returned to the array "titlesArray[]"
+      this.titlesArray = data
+    });
   }
 
   //Gatekeeper: Checks for authentication of admin
@@ -62,7 +84,48 @@ export class AddEventPage {
     //console.log(this.AdminAuthProvider.currentUser.name)
   }
 
+  //Popup Message for the help icon (title)
+  titleErrorHelpButton() {
+    let toast = this.toastCtrl.create({
+      message: 'The title of this event is the same as another event on the same day!',
+      duration: 4000,
+      position: 'top'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present();
+  }
+  
+  //Check the title the user is entering 
+  checkTitle() {
+    //Compare the title being entered to all event titles (which are now stored in titleArray)
+    for (let i = 0; i < this.titlesArray.length; i++) {
+      //Convert to lower and remove spaces
+        //This checks only that the characters linearly are not the same and ignores case and spacing
+      let convertedTitleFromArray = (this.titlesArray[i].title).replace(/\s/g,'').toLowerCase();
+      let convertedEventTitle = (this.event.title).replace(/\s/g,'').toLowerCase();
+      
+      //Re-declare the "event.startDate" and "event.endDate" to be just the date, not removing the time portion
+      this.event.startDate= this.event.startDate.split("T", 1).pop();
+      this.event.endDate = this.event.endDate.split("T", 1).pop();
+
+      //If the title they are typing is matches any given title in the events array...
+        //And the startDates are the same 
+          //Meaning they cannot have an event with the same title as another event on that day
+      if (convertedTitleFromArray.includes(convertedEventTitle) && this.titlesArray[i].startDate == this.event.startDate) {
+        document.getElementById("titleInput").className = "titleInputInvalid"
+        return true
+      } else {
+        document.getElementById("titleInput").className = "titleInputValid"
+      }
+    }
+  }
  
+
+
   //Create New Events 
   save() {
     //Seperate the date and time in the "event.startTime" and "event.endTime" variables 

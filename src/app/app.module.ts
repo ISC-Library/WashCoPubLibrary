@@ -33,6 +33,7 @@ import { TestProvider } from '../providers/test/test';
 import { SuggestedEventsServiceProvider } from '../providers/add-suggested-events/add-suggested-events';
 import { CalenderEventsServiceProvider } from '../providers/calendar-event-service/calendar-event-service';
 import { AdminAuthProvider } from '../providers/admin-auth/admin-auth';
+import { EventTitleCheckProvider } from '../providers/event-title-check/event-title-check';
 
 // Import the AF Module
 //Note, module has been updated... all angularfire2 references are now at '@angular/fire'
@@ -117,6 +118,7 @@ export const firebaseConfig = {
     CalenderEventsServiceProvider,
     SuggestedEventsServiceProvider,
     AdminAuthProvider,
+    EventTitleCheckProvider,
   ]
 })
 export class AppModule { }

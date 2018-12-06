@@ -12,16 +12,26 @@
   <form  (ngSubmit)="save()">
     <ion-list>
 
-      <ion-item >
-        <ion-label floating>Title</ion-label>
-        <ion-input type="text" [(ngModel)]="event.title" name="title"></ion-input>
+      <ion-item>
+        <!-- Check to see if the title is the same (true means it is the same) -->
+        <ion-label floating *ngIf="checkTitle(true); else titleDifferent">Please Choose Another Title!</ion-label>
+          <!-- Create the *ng template to load if the title is different -->
+          <ng-template #titleDifferent>
+            <ion-label floating>Title</ion-label>
+          </ng-template>
+        
+        <!-- Error Icon if the title is the same -->
+        <ion-icon id="titleErrorIcon" *ngIf="checkTitle(true)" item-right name="help-circle-outline" (click)="titleErrorHelpButton()"></ion-icon>
+        <ion-input id="titleInput" type="text" [(ngModel)]="event.title" (keyup)="checkTitle()" name="title"></ion-input>
       </ion-item>
 
+      <!-- Location -->
       <ion-item>
         <ion-label floating>Location</ion-label>
         <ion-input type="text" [(ngModel)]="event.location" name="location"></ion-input>
       </ion-item>
 
+      <!-- Category -->
       <ion-item>
           <ion-label floating>Select Event Category</ion-label>
           <ion-select [(ngModel)]="event.category" interface="action-sheet" name="category">
@@ -32,17 +42,20 @@
           </ion-select>
       </ion-item>
 
+      <!-- Notes -->
       <ion-item>
         <ion-label floating>Notes</ion-label>
-        <ion-input type="text" [(ngModel)]="event.notes" name="notes"></ion-input>
+        <ion-input  type="text" [(ngModel)]="event.notes" name="notes"></ion-input>
       </ion-item>
 
+      <!-- Start Date -->
       <ion-item>
         <ion-label floating>Start Date</ion-label>
         <!-- https://ionicframework.com/docs/api/components/datetime/DateTime/ -->
-        <ion-datetime displayFormat="MMM DD, YYYY h:mm A" pickerFormat="MMM-DD-YYYY h:mm:A" [(ngModel)]="event.startDate" name="startDate"></ion-datetime>
+        <ion-datetime displayFormat="MMM DD, YYYY h:mm A" pickerFormat="MMM-DD-YYYY h:mm:A" [(ngModel)]="event.startDate" (ngModelChange)="checkTitle()" name="startDate"></ion-datetime>
       </ion-item>
 
+      <!-- End Date -->
       <ion-item>
         <ion-label floating>End Date</ion-label>
         <ion-datetime displayFormat="MMM DD, YYYY h:mm A" pickerFormat="MMM-DD-YYYY h:mm:A" [(ngModel)]="event.endDate" name="endDate"></ion-datetime>
@@ -54,5 +67,8 @@
 
     </ion-list>
   </form>
+
+  <p>{{this.event.title}}</p>
+  <p *ngFor="let event of events | async">{{event.title}}</p>
 
 </ion-content>
