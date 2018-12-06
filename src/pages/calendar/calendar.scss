@@ -191,7 +191,76 @@ page-calendar {
     
 
     //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+//The original state of the 'Suggest Event Button'
 
+.sliderOrigin{
+    
+}
+//
+.sliderSuggest01{
+background: linear-gradient(
+90deg, 
+rgba(0,68,136,.1),
+rgba(255, 255, 255,1) 1%)
+}
+
+.sliderSuggest05{
+background: linear-gradient(
+90deg, 
+rgba(0,68,136,.1),
+rgba(255, 255, 255,1) 5%)
+}
+
+.sliderSuggest10{
+background: linear-gradient(
+90deg, 
+rgba(0,68,136,.1),
+rgba(255, 255, 255,1) 10%)
+}
+
+.sliderSuggest15{
+background: linear-gradient(
+90deg, 
+rgba(0,68,136,.1),
+rgba(255, 255, 255,1) 15%)
+}
+
+.sliderSuggest20{
+background: linear-gradient(
+-90deg, 
+rgba(255, 255, 255,1), 
+rgba(255, 255, 255,1), 
+rgba(255, 255, 255,1), 
+rgba(255, 255, 255,1), 
+rgba(255, 255, 255,1), 
+rgba(255, 255, 255,.8), 
+rgba(255, 255, 255,.5),
+rgba(255, 255, 255,.2), 
+rgba(0,68,136,0));
+}
+////////
+.sliderAdmin01{
+}
+
+.sliderAdmin05{
+}
+
+.sliderAdmin10{
+}
+
+.sliderAdmin15{
+}
+
+.sliderAdmin20{
+
+}
+
+//This element is not needed currently, but serves the purpose of keeping the slide aligned
+.sliderArrowsPlaceholder {
+    visibility: hidden;
+}
+
+//[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
     
     #calendarDiv{
         animation: cssAnimation 0s 2s forwards;

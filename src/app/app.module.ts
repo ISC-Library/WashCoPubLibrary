@@ -21,6 +21,9 @@ import { ModifySuggestedEventsPage } from '../pages/modify-suggested-events/modi
 import { JobLinksPage} from '../pages/joblinks/joblinks';
 import {NoneExistPage} from '../pages/none-exist/none-exist';
 
+//Import Loooooooooonnnggg Press
+import {LongPressModule} from 'ionic-long-press';
+
 //Import Calendar
 import { Calendar } from '@ionic-native/calendar'; //This is the native cordova portion that allows interaction with the devices 
 import { CalendarModule } from 'ionic3-calendar-en'; //This is the ionic3 calendar which has a view 
@@ -88,7 +91,9 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    CalendarModule
+    CalendarModule,
+    LongPressModule
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, LoadingController, NavParams, Platform, Loading } from 'ionic-angular';
+import { IonicPage, NavController, LoadingController, NavParams, Platform, Loading, ItemSliding } from 'ionic-angular';
 import { Calendar } from '@ionic-native/calendar';
 import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -67,26 +67,70 @@ export class CalendarPage {
   //////// Below are navigation functions  [][[][[][][][][][][][[][][]]]]
   // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
 
+// Navigate to the "HomePage" using the NavController 
+navigateToHomePage(slidingItem:ItemSliding) {
+  this.navCtrl.push(HomePage);
+  slidingItem.close();
+}
 
-  // Navigate to the "HomePage" using the NavController 
-  navigateToHomePage() {
-    this.navCtrl.push(HomePage);
+//Function to navigate to the "SuggestEventsPage"
+navigateToAddEventsPage(slidingItem: ItemSliding) {
+  this.navCtrl.push(AddEventPage);
+  slidingItem.close();
+}
+
+//Function to navigate to the "SuggestEventsPage"
+navigateToAddSuggestEventsPage(slidingItem: ItemSliding) {
+  this.navCtrl.push(AddSuggestedEventsPage);
+  slidingItem.close();
+}
+
+//Function to navigate to the "SuggestEventsPage"
+navigateToViewSuggestEventsPage(slidingItem: ItemSliding) {
+  this.navCtrl.push(ViewSuggestedEventsPage);
+  slidingItem.close()
+}
+
+onDragBoolean: boolean;
+percent: any;
+
+//The percentage shown is relative to the size of the button that becomes visible
+suggestEventDrag(item, slidingItem: ItemSliding) {
+  this.percent = item.getSlidingPercent();
+
+  //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+  //Everything here changes the CSS of the slider to give an increasing fade feature
+  //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+
+  if (this.percent < -.0000001) {
+    document.getElementById("suggestedEventOrigin").className = "sliderSuggest01 item item-block item-md"
   }
 
-  //Function to navigate to the "SuggestEventsPage"
-  navigateToAddEventsPage() {
-    this.navCtrl.push(AddEventPage);
+  if (this.percent < -.05) {
+    document.getElementById("suggestedEventOrigin").className = "sliderSuggest05 item item-block item-md"
   }
 
-  //Function to navigate to the "SuggestEventsPage"
-  navigateToAddSuggestEventsPage() {
-    this.navCtrl.push(AddSuggestedEventsPage);
+  if (this.percent < -.10) {
+    document.getElementById("suggestedEventOrigin").className = "sliderSuggest10 item item-block item-md"
   }
 
-  //Function to navigate to the "SuggestEventsPage"
-  navigateToViewSuggestEventsPage() {
-    this.navCtrl.push(ViewSuggestedEventsPage);
+  if (this.percent < -.15) {
+    document.getElementById("suggestedEventOrigin").className = "sliderSuggest15 item item-block item-md"
   }
+
+  if (this.percent < -.20) {
+    document.getElementById("suggestedEventOrigin").className = "sliderSuggest20 item item-block item-md"
+  }
+}
+
+//When the user does not drag the slider far enough to go over 50% of the button, it resets to it's original position
+onDragFalse() {
+  document.getElementById("suggestedEventOrigin").className = "sliderOrigin item item-block item-md";
+}
+//[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+
+
+
 
 
   // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
