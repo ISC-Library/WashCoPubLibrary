@@ -69,7 +69,7 @@
 
   <!-- Suggest Event Slider -->
   <ion-list class="suggestEventSlider">
-    <ion-item-sliding #slidingItem ion-long-press style="background-color:rgba(0,68,136,1)" (onPressEnd)="onDragFalse($event)"
+    <ion-item-sliding #slidingItem ion-long-press style="background-color:rgba(0,68,136,1)" (onPressEnd)="onSuggestDragFalse($event)"
       (ionDrag)="suggestEventDrag($event)">
       <ion-item id="suggestedEventOrigin">
         <!-- Backward Arrow -->
@@ -98,8 +98,8 @@
 
   <!-- Administrator Options Slider -->
   <ion-list *ngIf="isAdmin()" class="administratorSlider">
-    <ion-item-sliding #slidingItem ion-long-press>
-      <ion-item>
+    <ion-item-sliding id="adminSlider" #slidingItem ion-long-press (ionDrag)="adminEventDrag($event)" (onPressEnd)="onAdminDragFalse($event)">
+      <ion-item id="adminEventDrag">
         <!-- Backward Arrow -->
         <ion-avatar item-start>
           <ion-icon class="sliderArrows" name="arrow-back"></ion-icon>
@@ -135,9 +135,9 @@
   </ion-list>
 
   <!-- Event List Slider -->
-  <ion-list class="eventSlider">
-    <ion-item-sliding *ngFor="let event of events | async">
-      <ion-item>
+  <ion-list>
+    <ion-item-sliding #slidingItem *ngFor="let event of events | async" style="background-color:rgba(52,52,52,1)" ion-long-press>
+      <ion-item id="adminModifySlide">
 
         <!-- Event Icon (avatar) -->
         <ion-avatar item-start>

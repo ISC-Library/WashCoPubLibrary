@@ -1,5 +1,6 @@
+// #region Imports List
 import { Component } from '@angular/core';
-import { IonicPage, NavController, LoadingController, NavParams, Platform, Loading, ItemSliding } from 'ionic-angular';
+import { IonicPage, NavController, LoadingController, NavParams, Platform, Loading, ItemSliding, Item } from 'ionic-angular';
 import { Calendar } from '@ionic-native/calendar';
 import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -15,6 +16,8 @@ import { ViewSuggestedEventsPage } from '../view-suggested-events/view-suggested
 //Import Provider
 import { CalenderEventsServiceProvider } from '../../providers/calendar-event-service/calendar-event-service';
 import { AdminAuthProvider } from '../../providers/admin-auth/admin-auth';
+// #endregion
+
 
 @Component({
   selector: 'page-calendar',
@@ -124,18 +127,84 @@ suggestEventDrag(item, slidingItem: ItemSliding) {
 }
 
 //When the user does not drag the slider far enough to go over 50% of the button, it resets to it's original position
-onDragFalse() {
+onSuggestDragFalse() {
   document.getElementById("suggestedEventOrigin").className = "sliderOrigin item item-block item-md";
 }
-//[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+//[][][][][][][][][][][][][][][][][][][][][][][][]
+
+adminEventDrag(item, slidingItem: ItemSliding){
+  this.percent = item.getSlidingPercent();
+
+  if(this.percent > .01 ){
+    document.getElementById("adminEventDrag").className="sliderAdminBlue01 item item-block item-md"
+    document.getElementById("adminSlider").style.backgroundColor="rgba(0, 68, 136, 1)"
+  }
+  if(this.percent > .05 ){
+    document.getElementById("adminEventDrag").className="sliderAdminBlue05 item item-block item-md"
+  }
+  if(this.percent > .10 ){
+    document.getElementById("adminEventDrag").className="sliderAdminBlue10 item item-block item-md"
+  }
+  if(this.percent > .15 ){
+    document.getElementById("adminEventDrag").className="sliderAdminBlue15 item item-block item-md"
+  }
+  if(this.percent > .20){
+    document.getElementById("adminEventDrag").className="sliderAdminBlue20 item item-block item-md"
+  }
+  if(this.percent < -.01 ){
+    document.getElementById("adminEventDrag").className="sliderAdminGreen01 item item-block item-md"
+    document.getElementById("adminSlider").style.backgroundColor="rgba(0,136,68,1)"
+  }
+  if(this.percent < -.05 ){
+    document.getElementById("adminEventDrag").className="sliderAdminGreen05 item item-block item-md"
+  }
+  if(this.percent < -.10 ){
+    document.getElementById("adminEventDrag").className="sliderAdminGreen10 item item-block item-md"
+  }
+  if(this.percent < -.15 ){
+    document.getElementById("adminEventDrag").className="sliderAdminGreen15 item item-block item-md"
+  }
+  if(this.percent < -.20 ){
+    document.getElementById("adminEventDrag").className="sliderAdminGreen20 item item-block item-md"
+  }
+}
+
+onAdminDragFalse(){
+  document.getElementById("adminEventDrag").className="sliderOrigin item item-block item-md"
+}
+
+// #region ModifyButtonFader
+//[][][][][][][][][][][][][]Possible future to change Populated List of Items Fade[][][][][][][][][][][][][][]
+// adminModifyDrag(item, slidingItem: ItemSliding) {
+//   this.percent = item.getSlidingPercent();
+
+//   if (this.percent < -.0000001) {
+//     document.getElementById("adminModifySlide").className = "sliderAdminModify01 item item-block item-md"
+//   }
+
+//   if (this.percent < -.05) {
+//     document.getElementById("adminModifySlide").className = "sliderAdminModify05 item item-block item-md"
+//   }
+
+//   if (this.percent < -.10) {
+//     document.getElementById("adminModifySlide").className = "sliderAdminModify10 item item-block item-md"
+//   }
+
+//   if (this.percent < -.15) {
+//     document.getElementById("adminModifySlide").className = "sliderAdminModify15 item item-block item-md"
+//   }
+
+//   if (this.percent < -.20) {
+//     document.getElementById("adminModifySlide").className = "sliderAdminModify20 item item-block item-md"
+//   }
+// }
 
 
-
-
-
-  // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
-  //////// Everything below changes the event blips displayed (based on categories) [][[][[][][][][][][][[][][]]]]
-  // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
+// adminModifyDragFalse(){
+//   // document.getElementById("adminModifySlide").className="sliderOrigin item item-block item-md"
+// }
+//[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+// #endregion
 
   gatherChildren($event) {
     let elementsOne = document.getElementsByClassName("center calendar-col col this-month");
@@ -266,6 +335,7 @@ onDragFalse() {
 
 
 
+      //#region Loop Logic
       //****** Explanation:: for loop logic 
       //First: the lengths are calculated dynamically, so each time we change the class of an element in the collection...
       //...the length of the collection is reduced by 1.
@@ -279,7 +349,8 @@ onDragFalse() {
       //Finally: We will actually decrement "i" starting with the original length of the HTML collection
       //This allows "i" to start at high end of the index and count down so nothing is missed
       //We know all arrays begin indexing at "0" so once "i" is at a point where only -1 is below it, we stop
-
+      //#endregion
+      
       //Show all sporting blips
       for (let i = (elementsSports.length - 1); i > -1; i--) {
         if (elementsSports[i][0].className == "sportingBlipHidden") {
