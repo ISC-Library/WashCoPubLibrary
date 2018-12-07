@@ -5,6 +5,7 @@ import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs/observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ToastController } from 'ionic-angular';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 //Import AF2 
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
@@ -37,6 +38,9 @@ export class AddEventPage {
   //Declare the databaseFilter variable
   databaseFilter: BehaviorSubject<string | null> = new BehaviorSubject('');
   
+  //Declare "eventSubmission" as a FormGroup to use it for validation
+  eventSubmission: FormGroup;
+
   //The "event" is an object that is used to format the data being pushed into the database 
   event = { 
     title: "", 
@@ -56,7 +60,8 @@ export class AddEventPage {
     private calendar: Calendar,
     afDatabase:AngularFireDatabase,
     public AdminAuthProvider: AdminAuthProvider,
-    public EventTitleCheckSvc : EventTitleCheckProvider) {
+    public EventTitleCheckSvc : EventTitleCheckProvider,
+    public formBuilder: FormBuilder) {
       
     //This is the reference to which portion of the database you want to access 
     this.eventsRef = afDatabase.list('events');
@@ -70,6 +75,20 @@ export class AddEventPage {
     //Get all the events
     this.events = this.EventTitleCheckSvc.getEvents(this.databaseFilter);
   
+    //Setup the form builder group for validation of the eventSubmission form
+    this.eventSubmission = formBuilder.group({
+      //The following title example allows regex
+      // title: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+      title: ['', Validators.compose([Validators.maxLength(30), Validators.required])],
+      location: ['', Validators.compose([Validators.maxLength(30), Validators.required])],
+      category: [''],
+      notes: [''],
+      startDate: [''],
+      endDate: [''],
+      startTime: [''],
+      endTime: [''],
+    })
+
     this.events.subscribe((data)=> {
       //Set the .subscription "data" values that are returned to the array "titlesArray[]" and "starTimeArray[]"
       this.titlesArray = data
