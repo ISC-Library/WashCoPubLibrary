@@ -106,10 +106,11 @@ export class AddEventPage {
     toast.present();
   }
 
+  //Popup Message for the warning icon (startTime)
   startTimeWarningHelpButton() {
     let toast = this.toastCtrl.create({
       message: 'This event starts at the same time as another event on the same day, you may want to consider modifying it.',
-      duration: 4000,
+      duration: 5000,
       position: 'middle'
     });
   
@@ -147,24 +148,38 @@ export class AddEventPage {
   }
 
   checkStartTime() {
-   //Seperate the date and time in the "event.startTime"  variable
-   let convertedStartTimeFromArray = this.event.startDate.split("T").pop()
+    
+    //Seperate the date and time in the "event.startTime"  variable
+      //NOTE the "event" object is being bound to whatever the user is typing at the time
+    this.event.startTime = this.event.startDate.split("T").pop()
+    
+    //For now we are not dealing with the timezone offset
+      //Which is currently appending itself to the dateTime as "00Z"
+        //For now we will just cut that off
+    this.event.startTime = this.event.startTime.substring(0, this.event.startTime.length - 4);
+    
+    //The view is bound to the event.startDate, which by default holds both the date and time
+      //If we split the date off, the view will not be bound to a date / time... only a date so the time will now show
+        //Create a temp variable to use for comparison to avoid modifying the view
+    let startDate = this.event.startDate.split("T", 1).pop();
 
-   //For now we are not dealing with the timezone offset
-     //Which is currently appending itself to the dateTime as "00Z"
-       //For now we will just cut that off
-   //convertedStartTimeFromArray = convertedStartTimeFromArray.substring(0, convertedStartTimeFromArray.length - 4);
-   
-   for (let i = 0; i < this.startTimeArray.length; i++) {
-      if (convertedStartTimeFromArray == this.startTimeArray[i].startTime) {
-        document.getElementById("startDatePicker").className = "sameTime"
-        return true
-      } else {
-        document.getElementById("startDatePicker").className = "differentTime"
-      }
+    for (let i = 0; i < this.startTimeArray.length; i++) {
+        //If the day is the same
+        if (startDate == this.startTimeArray[i].startDate) {
+          //And the start time is the same
+          if (this.event.startTime == this.startTimeArray[i].startTime) {
+            //Throw it up
+            document.getElementById("startDatePicker").className = "sameTime"
+            document.getElementById("startTimeWarningIcon").style.visibility = "visible"
+            return true
+          } else {
+            document.getElementById("startDatePicker").className = "differentTime"
+            document.getElementById("startTimeWarningIcon").style.visibility = "hidden"
+          }
+        }
     }
   }
- 
+
 
 
   //Create New Events 

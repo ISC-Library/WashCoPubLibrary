@@ -2,7 +2,7 @@ page-add-event {
 //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
     
     //NavBar
-    .toolbar-background-ios {
+    .toolbar-background{
         background: linear-gradient(180deg, rgba(0, 68, 136, .9));
         color:white;
     }
@@ -19,7 +19,7 @@ page-add-event {
 
     // Check Title
     .titleInputInvalid {
-        color: red;
+        color: rgba(180,0,0,1);
     }
 
     .titleInputValid {
@@ -41,6 +41,6 @@ page-add-event {
 
     #startTimeWarningIcon {
         color: rgba(255, 165, 0, 1);
-        z-index: 20;
+        z-index: 25;
     }
 }
