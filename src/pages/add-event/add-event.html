@@ -9,7 +9,7 @@
 
 
 <ion-content padding>
-  <form  [formGroup]="eventSubmission" (ngSubmit)="save()">
+  <form  [formGroup]="eventSubmission" (ngSubmit)="validateInput()" #validState>
     <ion-list>
 
       <!-- Title -->
@@ -23,8 +23,9 @@
         
         <!-- Error Icon if the title is the same -->
         <ion-icon id="titleErrorIcon" *ngIf="checkTitle(true)" item-right name="help" (click)="titleErrorHelpButton()"></ion-icon>
-        <ion-input id="titleInput" type="text" formControlName="title" [class.titleInputInvalid]="!eventSubmission.controls.title.valid && (eventSubmission.controls.title.dirty || submitAttempt)"
-          [(ngModel)]="event.title" (keyup)="checkTitle()"></ion-input>
+        <!-- <ion-input id="titleInput" type="text" formControlName="title" [class.titleInputInvalid]="!eventSubmission.controls.title.valid && (eventSubmission.controls.title.dirty || submitAttempt)"
+                  [(ngModel)]="event.title" (keyup)="checkTitle()"></ion-input> -->
+        <ion-input id="titleInput" type="text" formControlName="title" [(ngModel)]="event.title" (keyup)="checkTitle()"></ion-input>
         </ion-item>
 
       <!-- Location -->

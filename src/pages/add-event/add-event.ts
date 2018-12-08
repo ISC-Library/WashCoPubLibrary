@@ -5,7 +5,7 @@ import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs/observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ToastController } from 'ionic-angular';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, AbstractControl, Validators, ValidatorFn } from '@angular/forms';
 
 //Import AF2 
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
@@ -40,6 +40,8 @@ export class AddEventPage {
   
   //Declare "eventSubmission" as a FormGroup to use it for validation
   eventSubmission: FormGroup;
+  submitAttempt: boolean = false;
+  control: FormControl;
 
   //The "event" is an object that is used to format the data being pushed into the database 
   event = { 
@@ -79,14 +81,12 @@ export class AddEventPage {
     this.eventSubmission = formBuilder.group({
       //The following title example allows regex
       // title: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      title: ['', Validators.compose([Validators.maxLength(30), Validators.required])],
-      location: ['', Validators.compose([Validators.maxLength(30), Validators.required])],
-      category: [''],
-      notes: [''],
-      startDate: [''],
-      endDate: [''],
-      startTime: [''],
-      endTime: [''],
+      title: ['', Validators.compose([Validators.maxLength(30),  Validators.pattern('^(?=.*[a-zA-Z0-9].*)[a-zA-Z0-9!@#$,%&*_ ]+$'), Validators.required])],
+      location: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('^(?=.*[a-zA-Z0-9].*)[a-zA-Z0-9!@#$,%&*_ ]+$'), Validators.required])],
+      category: ['', Validators.compose([Validators.pattern('^(?!\s*$).+'), Validators.required])],
+      notes: ['', Validators.compose([Validators.maxLength(250), Validators.pattern('^(?=.*[a-zA-Z0-9].*)[a-zA-Z0-9!@#$,%&*_ ]+$'), Validators.required])],
+      startDate: ['', Validators.compose([Validators.pattern('^(?!\s*$).+'), Validators.required])],
+      endDate: ['', Validators.compose([Validators.pattern('^(?!\s*$).+'), Validators.required])],
     })
 
     this.events.subscribe((data)=> {
@@ -165,9 +165,9 @@ export class AddEventPage {
       }
     }
   }
+  
 
   checkStartTime() {
-    
     //Seperate the date and time in the "event.startTime"  variable
       //NOTE the "event" object is being bound to whatever the user is typing at the time
     this.event.startTime = this.event.startDate.split("T").pop()
@@ -199,9 +199,18 @@ export class AddEventPage {
     }
   }
 
+validateInput() {
+  //If the titles are not the same
+    //&& the submit form has been modified by the user
+      //&& the submission form returns valid
+  if (!this.checkTitle() && this.eventSubmission.dirty && this.eventSubmission.status == "VALID") {
+    //Save the data
+    this.save()
+  }
+}
 
 
-  //Create New Events 
+  // Create New Events 
   save() {
     //Seperate the date and time in the "event.startTime" and "event.endTime" variables 
     this.event.startTime = this.event.startDate.split("T").pop()
