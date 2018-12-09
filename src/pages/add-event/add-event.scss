@@ -16,6 +16,16 @@ page-add-event {
     }
 
 //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+    
+    //All Events Required
+    #allEventsRequired {
+        color: black
+    }
+
+    #allEventsRequiredError {
+        color: rgba(180,0,0,1);
+        font-size: 150%;
+    }
 
     // Check Title
     .titleInputInvalid {

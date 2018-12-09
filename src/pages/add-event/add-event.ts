@@ -206,6 +206,35 @@ validateInput() {
   if (!this.checkTitle() && this.eventSubmission.dirty && this.eventSubmission.status == "VALID") {
     //Save the data
     this.save()
+  } else {
+    var message;
+    
+    //Check Title / Location Length (we already have custom css to show if the title is the same as another)
+    if (this.event.title.length > 30 || this.event.location.length > 30) {
+      message = "Your title and location must not be more than 30 characters."
+    }
+
+    if (this.event.title.length == 0 || this.event.location.length == 0 ||
+        this.event.notes.length == 0 || this.event.category.length == 0 || 
+        this.event.startDate.length == 0 || this.event.endDate.length == 0) {
+          //If the "all fields requried .. field" is not in an error state put it in one
+          console.log(this.event.category.length)
+          if (document.getElementById("allEventsRequired")) {
+          document.getElementById("allEventsRequired").id = "allEventsRequiredError"
+          }
+      } 
+   
+    let toast = this.toastCtrl.create({
+      message,
+      duration: 4000,
+      position: 'top'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present();
   }
 }
 

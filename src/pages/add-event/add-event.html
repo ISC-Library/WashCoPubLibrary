@@ -9,8 +9,11 @@
 
 
 <ion-content padding>
+  
   <form  [formGroup]="eventSubmission" (ngSubmit)="validateInput()" #validState>
     <ion-list>
+    <!-- Blank Fields -->
+    <ion-item id="allEventsRequired" style="text-align: center">All Fields Required.</ion-item>
 
       <!-- Title -->
       <ion-item>
@@ -47,7 +50,7 @@
 
       <!-- Notes -->
       <ion-item>
-        <ion-label floating>Notes</ion-label>
+        <ion-label floating>Notes {{ this.event.notes.length }} / 250</ion-label>
         <ion-input  type="text" formControlName="notes" [(ngModel)]="event.notes"></ion-input>
       </ion-item>
 
