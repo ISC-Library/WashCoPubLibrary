@@ -62,7 +62,6 @@ export class HomePage {
       //Once we know that "allEvents[]" has data, reformat the values 
       this.reformatAllEventsArray();
     });
-    
   }
 
   //Function to navigate to the "TestPage" using the NavController 
@@ -73,7 +72,7 @@ export class HomePage {
 
   goToCalendar() {
     //this.navCtrl.push(CalendarPage);
-    this.navCtrl.push(CalendarPage, {
+    this.navCtrl.setRoot(CalendarPage, {
       formattedForCSS: this.formattedForCSS
     });
   }

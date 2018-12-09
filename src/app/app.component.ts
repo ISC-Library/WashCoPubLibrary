@@ -31,7 +31,7 @@ export class MyApp {
   }
 
   goToHome() {
-    this.nav.push(HomePage);
+    this.nav.setRoot(HomePage);
   }
   goToHelp() {
     this.nav.push(AboutPage);

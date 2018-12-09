@@ -78,6 +78,7 @@ export class CalendarPage {
   //Function to navigate to the "SuggestEventsPage"
   navigateToAddEventsPage(slidingItem: ItemSliding) {
     slidingItem.close();
+    // this.navCtrl.popTo(AddEventPage)
     this.navCtrl.push(AddEventPage);
   }
 
@@ -132,7 +133,9 @@ export class CalendarPage {
 
   //When the user does not drag the slider far enough to go over 50% of the button, it resets to it's original position
   onSuggestDragFalse(item, slidingItem: ItemSliding) {
+    if (item) {
     document.getElementById("suggestedEventOrigin").className = "sliderOrigin item item-block item-md";
+    }
   }
   //#endregion
 
@@ -176,7 +179,10 @@ export class CalendarPage {
   }
 
   onAdminDragFalse(item, slidingItem: ItemSliding) {
-    document.getElementById("adminEventOrigin").className = "sliderOrigin item item-block item-md";
+    console.log(slidingItem)
+    if(slidingItem) {
+    document.getElementById("adminEventOrigin").className = "sliderOrigin item item-block item-md"
+    }
   }
   //#endregion
 
