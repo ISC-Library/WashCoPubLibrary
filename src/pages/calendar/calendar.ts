@@ -134,10 +134,14 @@ export class CalendarPage {
 
   //When the user does not drag the slider far enough to go over 50% of the button, it resets to it's original position
   onSuggestDragFalse(item, slidingItem: ItemSliding) {
-    if (item) {
-    document.getElementById("suggestedEventOrigin").className = "sliderOrigin item item-block item-md";
-    }
+    this.percent = item.getSlidingPercent();
+    setTimeout(function () {
+      item.close()
+      document.getElementById("suggestedEventOrigin").className = "sliderOrigin item item-block item-md";
+    }, 2000)
   }
+  // document.getElementById("suggestedEventOrigin").className = "sliderOrigin item item-block item-md";
+
   //#endregion
 
   //Contains styling for 'glass' Admin sliders
@@ -254,15 +258,15 @@ export class CalendarPage {
   // }
   //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
   // #endregion
-  
-  
+
+
   // [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
   // [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
-  
-  
-  
-  
-  
+
+
+
+
+
   //GatherChildren event to collect the <spans> that contain an event.
   gatherChildren($event) {
     let elementsOne = document.getElementsByClassName("center calendar-col col this-month");
