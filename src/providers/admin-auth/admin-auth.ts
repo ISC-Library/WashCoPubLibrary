@@ -1,4 +1,13 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+
+//Import Check Users Provider
+import { CheckUserProvider } from '../check-user/check-user'
+
+//Import AF2 
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+
 
 export interface User {
   name: string;
@@ -9,8 +18,29 @@ export interface User {
 export class AdminAuthProvider {
   currentUser: User;
  
-  constructor() { }
+  //The events observable holds all the data pulled from the database 
+  users: Observable<any[]>;
+  
+  //Declare the databaseFilter variable
+  databaseFilter: BehaviorSubject<string | null> = new BehaviorSubject('');
+  
+  //Array to hold users converted from the observable 
+  usersArray: any;
+
+  constructor(private UserCheckSvc: CheckUserProvider) { 
+    //Get all the users
+    this.users = this.UserCheckSvc.getUsers(this.databaseFilter);
+    
+    //Convert usersArray to an array
+    this.usersArray = []
+
+    this.users.subscribe((data)=> {
+      //Set the .subscription "data" values that are returned to the array "titlesArray[]" and "starTimeArray[]"
+      this.usersArray = data
+    });
+  }
  
+
   //Get authentication variables from firebase using database service... later
     //the userName ==== FB object.userName ... etc.
 
