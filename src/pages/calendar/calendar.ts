@@ -5,6 +5,7 @@ import { Calendar } from '@ionic-native/calendar';
 import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { getLocaleDateTimeFormat, getLocaleDateFormat } from '@angular/common';
+import { HammerGestureConfig } from "@angular/platform-browser";
 
 //Import Pages
 import { HomePage } from '../home/home';
@@ -178,9 +179,42 @@ export class CalendarPage {
     }
   }
 
-  onAdminDragFalse(item, slidingItem: ItemSliding) {
-    console.log(slidingItem)
-    if(slidingItem) {
+  public progress: number = 0;
+  public pressState: string = "released";
+
+  // Interval function
+  protected interval: any;
+
+  onPress($event) {
+    console.log("onPress", $event);
+    this.pressState = 'pressing';
+    this.startInterval();
+  }
+
+  onPressUp($event) {
+    console.log("onPressUp", $event);
+    this.pressState = 'released';
+    this.stopInterval();
+  }
+
+  startInterval() {
+    console.log("start")
+    const self = this;
+    this.interval = setInterval(function () {
+      self.progress = self.progress + 1;
+    }, 50);
+  }
+
+  stopInterval() {
+    console.log("stop")
+    clearInterval(this.interval);
+  }
+
+  onAdminDragFalse($event){
+    console.log("onPressUp", $event);
+    this.pressState = 'released';
+    this.stopInterval();
+    if($event) {
     document.getElementById("adminEventOrigin").className = "sliderOrigin item item-block item-md"
     }
   }
