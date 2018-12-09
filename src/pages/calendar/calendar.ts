@@ -133,13 +133,7 @@ export class CalendarPage {
   }
 
   //When the user does not drag the slider far enough to go over 50% of the button, it resets to it's original position
-  onSuggestDragFalse(item, slidingItem: ItemSliding) {
-    this.percent = item.getSlidingPercent();
-    setTimeout(function () {
-      item.close()
-      document.getElementById("suggestedEventOrigin").className = "sliderOrigin item item-block item-md";
-    }, 2000)
-  }
+
   // document.getElementById("suggestedEventOrigin").className = "sliderOrigin item item-block item-md";
 
   //#endregion
@@ -190,19 +184,16 @@ export class CalendarPage {
   protected interval: any;
 
   onPress($event) {
-    console.log("onPress", $event);
     this.pressState = 'pressing';
     this.startInterval();
   }
 
   onPressUp($event) {
-    console.log("onPressUp", $event);
     this.pressState = 'released';
     this.stopInterval();
   }
 
   startInterval() {
-    console.log("start")
     const self = this;
     this.interval = setInterval(function () {
       self.progress = self.progress + 1;
@@ -210,16 +201,22 @@ export class CalendarPage {
   }
 
   stopInterval() {
-    console.log("stop")
     clearInterval(this.interval);
   }
 
-  onAdminDragFalse($event){
-    console.log("onPressUp", $event);
+  onAdminDragFalse($event) {
     this.pressState = 'released';
     this.stopInterval();
-    if($event) {
-    document.getElementById("adminEventOrigin").className = "sliderOrigin item item-block item-md"
+    if ($event) {
+      document.getElementById("adminEventOrigin").className = "sliderOrigin item item-block item-md"
+    }
+  }
+
+  onSuggestDragFalse($event) {
+    this.pressState = 'released', $event;
+    this.stopInterval();
+    if ($event) {
+      document.getElementById("suggestedEventOrigin").className = "sliderOrigin item item-block item-md"
     }
   }
   //#endregion

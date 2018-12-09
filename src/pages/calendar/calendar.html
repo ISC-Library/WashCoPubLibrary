@@ -69,8 +69,8 @@
 
   <!-- Suggest Event Slider -->
   <ion-list class="suggestEventSlider">
-    <ion-item-sliding #slidingItem ion-long-press style="background-color:rgba(0,68,136,1)" (ionDrag)="onSuggestDragFalse($event)"
-      (ionDrag)="suggestEventDrag($event)">
+    <ion-item-sliding #slidingItem ion-long-press style="background-color:rgba(0,68,136,1)" (ionDrag)="suggestEventDrag($event)"
+      (press)="onPress($event)" (panend)="onSuggestDragFalse($event)">
       <ion-item id="suggestedEventOrigin">
         <!-- Backward Arrow -->
         <ion-avatar item-start>
@@ -98,8 +98,9 @@
 
   <!-- Administrator Options Slider -->
   <ion-list *ngIf="isAdmin()" class="administratorSlider">
-    <ion-item-sliding id="adminSlider" #slidingItem (ionDrag)="adminEventDrag($event)" (press)="onPress($event)" (panend)="onAdminDragFalse($event)" (onload) ="setStandardStyle()">
-    <!-- <ion-item-sliding id="adminSlider" #slidingItem ion-long-press (ionDrag)="adminEventDrag($event)" (ionDrag)="onAdminDragFalse($event)"> -->
+    <ion-item-sliding id="adminSlider" #slidingItem (ionDrag)="adminEventDrag($event)" (press)="onPress($event)"
+      (panend)="onAdminDragFalse($event)" (onload)="setStandardStyle()">
+      <!-- <ion-item-sliding id="adminSlider" #slidingItem ion-long-press (ionDrag)="adminEventDrag($event)" (ionDrag)="onAdminDragFalse($event)"> -->
       <ion-item id="adminEventOrigin">
         <!-- Backward Arrow -->
         <ion-avatar item-start>
@@ -137,7 +138,8 @@
 
   <!-- Event List Slider -->
   <ion-list>
-    <ion-item-sliding #slidingItem *ngFor="let event of events | async" style="background-color:rgba(52,52,52,1)" ion-long-press>
+    <ion-item-sliding #slidingItem *ngFor="let event of events | async" style="background-color:rgba(52,52,52,1)"
+      ion-long-press>
       <ion-item id="adminModifySlide">
 
         <!-- Event Icon (avatar) -->
@@ -198,10 +200,10 @@
     </ion-item-sliding>
   </ion-list>
 
-  
-    <h2> Button Progress: {{ progress }}</h2>
-    <h2> Presses State: {{ pressState }}</h2>
-    <button (press)="onPress($event)" (pressup)="onPressUp($event)">Press Me</button>
+
+  <!-- <h2> Button Progress: {{ progress }}</h2>
+  <h2> Presses State: {{ pressState }}</h2>
+  <button (press)="onPress($event)" (pressup)="onPressUp($event)">Press Me</button> -->
 
 
 
