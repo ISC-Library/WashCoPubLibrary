@@ -7,6 +7,13 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-header>
+  <ion-navbar>
+    Calendar Page
+  </ion-navbar>
+</ion-header>
+
+
 <!-- https://devdactic.com/ionic-calendar-angular-calendar/ -->
 
 <ion-content>
@@ -98,8 +105,8 @@
 
   <!-- Administrator Options Slider -->
   <ion-list *ngIf="isAdmin()" class="administratorSlider">
-    <ion-item-sliding id="adminSlider" #slidingItem ion-long-press (ionDrag)="adminEventDrag($event)" (onPressEnd)="onAdminDragFalse($event)">
-      <ion-item id="adminEventDrag">
+    <ion-item-sliding #slidingItem id="adminSlider" #slidingItem ion-long-press (ionDrag)="adminEventDrag($event)" (onPressEnd)="onAdminDragFalse($event)">
+      <ion-item>
         <!-- Backward Arrow -->
         <ion-avatar item-start>
           <ion-icon class="sliderArrows" name="arrow-back"></ion-icon>
@@ -114,7 +121,7 @@
       </ion-item>
 
       <!-- Left Side Options -->
-      <ion-item-options side="left" (ionSwipe)="navigateToAddEventsPage(slidingItem)">
+      <ion-item-options id="adminEventOrigin" side="left" (ionSwipe)="navigateToAddEventsPage(slidingItem)">
         <!-- <ion-item-options side="left"> -->
         <button ion-button style="background-color: rgba(0,136,68,1)" expandable (click)="navigateToAddEventsPage(slidingItem)">
           <ion-icon name="calendar"></ion-icon>

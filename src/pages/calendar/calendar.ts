@@ -70,142 +70,159 @@ export class CalendarPage {
   //////// Below are navigation functions  [][[][[][][][][][][][[][][]]]]
   // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
 
-// Navigate to the "HomePage" using the NavController 
-navigateToHomePage(slidingItem:ItemSliding) {
-  this.navCtrl.push(HomePage);
-  slidingItem.close();
-}
-
-//Function to navigate to the "SuggestEventsPage"
-navigateToAddEventsPage(slidingItem: ItemSliding) {
-  this.navCtrl.push(AddEventPage);
-  slidingItem.close();
-}
-
-//Function to navigate to the "SuggestEventsPage"
-navigateToAddSuggestEventsPage(slidingItem: ItemSliding) {
-  this.navCtrl.push(AddSuggestedEventsPage);
-  slidingItem.close();
-}
-
-//Function to navigate to the "SuggestEventsPage"
-navigateToViewSuggestEventsPage(slidingItem: ItemSliding) {
-  this.navCtrl.push(ViewSuggestedEventsPage);
-  slidingItem.close()
-}
-
-onDragBoolean: boolean;
-percent: any;
-
-//The percentage shown is relative to the size of the button that becomes visible
-suggestEventDrag(item, slidingItem: ItemSliding) {
-  this.percent = item.getSlidingPercent();
-
-  //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
-  //Everything here changes the CSS of the slider to give an increasing fade feature
-  //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
-
-  if (this.percent < -.0000001) {
-    document.getElementById("suggestedEventOrigin").className = "sliderSuggest01 item item-block item-md"
+  // Navigate to the "HomePage" using the NavController 
+  navigateToHomePage(slidingItem: ItemSliding) {
+    this.navCtrl.push(HomePage);
   }
 
-  if (this.percent < -.05) {
-    document.getElementById("suggestedEventOrigin").className = "sliderSuggest05 item item-block item-md"
+  //Function to navigate to the "SuggestEventsPage"
+  navigateToAddEventsPage(slidingItem: ItemSliding) {
+    slidingItem.close();
+    this.navCtrl.push(AddEventPage);
   }
 
-  if (this.percent < -.10) {
-    document.getElementById("suggestedEventOrigin").className = "sliderSuggest10 item item-block item-md"
+  //Function to navigate to the "SuggestEventsPage"
+  navigateToAddSuggestEventsPage(slidingItem: ItemSliding) {
+    slidingItem.close();
+    this.navCtrl.push(AddSuggestedEventsPage);
   }
 
-  if (this.percent < -.15) {
-    document.getElementById("suggestedEventOrigin").className = "sliderSuggest15 item item-block item-md"
+  //Function to navigate to the "SuggestEventsPage"
+  navigateToViewSuggestEventsPage(slidingItem: ItemSliding) {
+    slidingItem.close()
+    this.navCtrl.push(ViewSuggestedEventsPage);
   }
 
-  if (this.percent < -.20) {
-    document.getElementById("suggestedEventOrigin").className = "sliderSuggest20 item item-block item-md"
+  onDragBoolean: boolean;
+  percent: any;
+  // [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+  // [][][][][][][][][][][][][][] Suggest Event and Admin Sliders[][][][][][][][][][][][][][][][][][]
+  // [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+
+  //Contains styling for 'glass' Suggest Event sliders
+  //#region Suggest event slider
+  //The percentage shown is relative to the size of the button that becomes visible
+  suggestEventDrag(item, slidingItem: ItemSliding) {
+    this.percent = item.getSlidingPercent();
+
+    //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+    //Everything here changes the CSS of the slider to give an increasing fade feature
+    //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+
+    if (this.percent < -.0000001) {
+      document.getElementById("suggestedEventOrigin").className = "sliderSuggest01 item item-block item-md"
+    }
+
+    if (this.percent < -.05) {
+      document.getElementById("suggestedEventOrigin").className = "sliderSuggest05 item item-block item-md"
+    }
+
+    if (this.percent < -.10) {
+      document.getElementById("suggestedEventOrigin").className = "sliderSuggest10 item item-block item-md"
+    }
+
+    if (this.percent < -.15) {
+      document.getElementById("suggestedEventOrigin").className = "sliderSuggest15 item item-block item-md"
+    }
+
+    if (this.percent < -.20) {
+      document.getElementById("suggestedEventOrigin").className = "sliderSuggest20 item item-block item-md"
+    }
   }
-}
 
-//When the user does not drag the slider far enough to go over 50% of the button, it resets to it's original position
-onSuggestDragFalse() {
-  document.getElementById("suggestedEventOrigin").className = "sliderOrigin item item-block item-md";
-}
-//[][][][][][][][][][][][][][][][][][][][][][][][]
-
-adminEventDrag(item, slidingItem: ItemSliding){
-  this.percent = item.getSlidingPercent();
-
-  if(this.percent > .01 ){
-    document.getElementById("adminEventDrag").className="sliderAdminBlue01 item item-block item-md"
-    document.getElementById("adminSlider").style.backgroundColor="rgba(0, 68, 136, 1)"
+  //When the user does not drag the slider far enough to go over 50% of the button, it resets to it's original position
+  onSuggestDragFalse(item, slidingItem: ItemSliding) {
+    document.getElementById("suggestedEventOrigin").className = "sliderOrigin item item-block item-md";
   }
-  if(this.percent > .05 ){
-    document.getElementById("adminEventDrag").className="sliderAdminBlue05 item item-block item-md"
+  //#endregion
+
+  //Contains styling for 'glass' Admin sliders
+  //#region Admin Slider
+  adminEventDrag(item, slidingItem: ItemSliding) {
+    this.percent = item.getSlidingPercent();
+
+    if (this.percent > .01) {
+      document.getElementById("adminEventOrigin").className = "sliderAdminBlue01 item item-block item-md"
+      document.getElementById("adminSlider").style.backgroundColor = "rgba(0, 68, 136, 1)"
+    }
+    if (this.percent > .05) {
+      document.getElementById("adminEventOrigin").className = "sliderAdminBlue05 item item-block item-md"
+    }
+    if (this.percent > .10) {
+      document.getElementById("adminEventOrigin").className = "sliderAdminBlue10 item item-block item-md"
+    }
+    if (this.percent > .15) {
+      document.getElementById("adminEventOrigin").className = "sliderAdminBlue15 item item-block item-md"
+    }
+    if (this.percent > .20) {
+      document.getElementById("adminEventOrigin").className = "sliderAdminBlue20 item item-block item-md"
+    }
+    if (this.percent < -.01) {
+      document.getElementById("adminEventOrigin").className = "sliderAdminGreen01 item item-block item-md"
+      document.getElementById("adminSlider").style.backgroundColor = "rgba(0,136,68,1)"
+    }
+    if (this.percent < -.05) {
+      document.getElementById("adminEventOrigin").className = "sliderAdminGreen05 item item-block item-md"
+    }
+    if (this.percent < -.10) {
+      document.getElementById("adminEventOrigin").className = "sliderAdminGreen10 item item-block item-md"
+    }
+    if (this.percent < -.15) {
+      document.getElementById("adminEventOrigin").className = "sliderAdminGreen15 item item-block item-md"
+    }
+    if (this.percent < -.20) {
+      document.getElementById("adminEventOrigin").className = "sliderAdminGreen20 item item-block item-md"
+    }
   }
-  if(this.percent > .10 ){
-    document.getElementById("adminEventDrag").className="sliderAdminBlue10 item item-block item-md"
+
+  onAdminDragFalse(item, slidingItem: ItemSliding) {
+    document.getElementById("adminEventOrigin").className = "sliderOrigin item item-block item-md";
   }
-  if(this.percent > .15 ){
-    document.getElementById("adminEventDrag").className="sliderAdminBlue15 item item-block item-md"
-  }
-  if(this.percent > .20){
-    document.getElementById("adminEventDrag").className="sliderAdminBlue20 item item-block item-md"
-  }
-  if(this.percent < -.01 ){
-    document.getElementById("adminEventDrag").className="sliderAdminGreen01 item item-block item-md"
-    document.getElementById("adminSlider").style.backgroundColor="rgba(0,136,68,1)"
-  }
-  if(this.percent < -.05 ){
-    document.getElementById("adminEventDrag").className="sliderAdminGreen05 item item-block item-md"
-  }
-  if(this.percent < -.10 ){
-    document.getElementById("adminEventDrag").className="sliderAdminGreen10 item item-block item-md"
-  }
-  if(this.percent < -.15 ){
-    document.getElementById("adminEventDrag").className="sliderAdminGreen15 item item-block item-md"
-  }
-  if(this.percent < -.20 ){
-    document.getElementById("adminEventDrag").className="sliderAdminGreen20 item item-block item-md"
-  }
-}
+  //#endregion
 
-onAdminDragFalse(){
-  document.getElementById("adminEventDrag").className="sliderOrigin item item-block item-md"
-}
+  //Contains styling for 'glass' Modify Slider. Needs to finish/test more
+  // #region ModifyButtonFader
+  //[][][][][][][][][][][][][]Possible future to change Populated List of Items Fade[][][][][][][][][][][][][][]
+  // adminModifyDrag(item, slidingItem: ItemSliding) {
+  //   this.percent = item.getSlidingPercent();
 
-// #region ModifyButtonFader
-//[][][][][][][][][][][][][]Possible future to change Populated List of Items Fade[][][][][][][][][][][][][][]
-// adminModifyDrag(item, slidingItem: ItemSliding) {
-//   this.percent = item.getSlidingPercent();
+  //   if (this.percent < -.0000001) {
+  //     document.getElementById("adminModifySlide").className = "sliderAdminModify01 item item-block item-md"
+  //   }
 
-//   if (this.percent < -.0000001) {
-//     document.getElementById("adminModifySlide").className = "sliderAdminModify01 item item-block item-md"
-//   }
+  //   if (this.percent < -.05) {
+  //     document.getElementById("adminModifySlide").className = "sliderAdminModify05 item item-block item-md"
+  //   }
 
-//   if (this.percent < -.05) {
-//     document.getElementById("adminModifySlide").className = "sliderAdminModify05 item item-block item-md"
-//   }
+  //   if (this.percent < -.10) {
+  //     document.getElementById("adminModifySlide").className = "sliderAdminModify10 item item-block item-md"
+  //   }
 
-//   if (this.percent < -.10) {
-//     document.getElementById("adminModifySlide").className = "sliderAdminModify10 item item-block item-md"
-//   }
+  //   if (this.percent < -.15) {
+  //     document.getElementById("adminModifySlide").className = "sliderAdminModify15 item item-block item-md"
+  //   }
 
-//   if (this.percent < -.15) {
-//     document.getElementById("adminModifySlide").className = "sliderAdminModify15 item item-block item-md"
-//   }
-
-//   if (this.percent < -.20) {
-//     document.getElementById("adminModifySlide").className = "sliderAdminModify20 item item-block item-md"
-//   }
-// }
+  //   if (this.percent < -.20) {
+  //     document.getElementById("adminModifySlide").className = "sliderAdminModify20 item item-block item-md"
+  //   }
+  // }
 
 
-// adminModifyDragFalse(){
-//   // document.getElementById("adminModifySlide").className="sliderOrigin item item-block item-md"
-// }
-//[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
-// #endregion
-
+  // adminModifyDragFalse(){
+  //   // document.getElementById("adminModifySlide").className="sliderOrigin item item-block item-md"
+  // }
+  //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+  // #endregion
+  
+  
+  // [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+  // [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+  
+  
+  
+  
+  
+  //GatherChildren event to collect the <spans> that contain an event.
   gatherChildren($event) {
     let elementsOne = document.getElementsByClassName("center calendar-col col this-month");
 
@@ -250,7 +267,7 @@ onAdminDragFalse(){
       month = "11"
     }
 
-    
+
     let counter = 0;
 
     //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -259,11 +276,11 @@ onAdminDragFalse(){
 
       //Get all elements
       for (let i = 0; i < elementsOne.length; i++) {
-          if (elementsOne[i].textContent.trim() !== "") {
-            elementsAll.push(elementsOne[i].getElementsByTagName("span"));
-            elementsAll = elementsAll.filter(value => Object.keys(value).length !== 0)
-          }
+        if (elementsOne[i].textContent.trim() !== "") {
+          elementsAll.push(elementsOne[i].getElementsByTagName("span"));
+          elementsAll = elementsAll.filter(value => Object.keys(value).length !== 0)
         }
+      }
 
       //Show all event blips
       for (let i = (elementsAll.length - 1); i > -1; i--) {
@@ -350,7 +367,7 @@ onAdminDragFalse(){
       //This allows "i" to start at high end of the index and count down so nothing is missed
       //We know all arrays begin indexing at "0" so once "i" is at a point where only -1 is below it, we stop
       //#endregion
-      
+
       //Show all sporting blips
       for (let i = (elementsSports.length - 1); i > -1; i--) {
         if (elementsSports[i][0].className == "sportingBlipHidden") {
@@ -612,6 +629,7 @@ onAdminDragFalse(){
     }
   }
 
+
   // Navigate to the "ModifyEvent" page
   //The user selects modify button on the event which they wish to modify 
   //The event data for that specific event is passed, which we will forward to the "ModifyEvent" page
@@ -621,9 +639,9 @@ onAdminDragFalse(){
     });
   }
 
-  // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
+  // [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]][][][][][][][][][]
   //////// Below this are the portions to display event data  [][[][[][][][][][][][[][][]]]]
-  // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
+  // [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]][][][][][][][][][]
 
 
   ionViewDidLoad() {
@@ -636,6 +654,8 @@ onAdminDragFalse(){
   ionViewDidEnter() {
     this.presentLoadingDefault()
   }
+
+
 
   isAdmin() {
     // if (this.AdminAuthProvider.isLoggedIn()) {
