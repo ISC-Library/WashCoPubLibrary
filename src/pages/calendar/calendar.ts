@@ -19,6 +19,7 @@ import { AdminAuthProvider } from '../../providers/admin-auth/admin-auth';
 @Component({
   selector: 'page-calendar',
   templateUrl: 'calendar.html',
+  styleUrls: ['/calendar.scss']
 })
 export class CalendarPage {
 
