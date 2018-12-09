@@ -524,18 +524,17 @@ export class CalendarPage {
   }
 
   isAdmin() {
-    // if (this.AdminAuthProvider.isLoggedIn()) {
+    if (this.AdminAuthProvider.isLoggedIn()) {
+      console.log(this.AdminAuthProvider.currentUser)
 
-    // } 
-    //console.log(this.AdminAuthProvider.currentUser.name)
-    // if (this.AdminAuthProvider.isAdmin()) {
-    //   console.log("true")
-    //   return true;
-    // } else {
-    //   console.log("false")
-    //   return false;
-    // }
-    return true;
+      if (this.AdminAuthProvider.currentUser.role === 0) {
+        console.log("true")
+        return true;
+      } else {
+        console.log("false")
+        return false;
+      }
+    } 
   }
 
   //Loading Spinner

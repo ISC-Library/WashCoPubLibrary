@@ -39,9 +39,7 @@ export class AdminAuthProvider {
   }
  
   isAdmin() {
-    if (this.isLoggedIn()) {
     return this.currentUser.role === 0;
-    }
   }
  
   logout() {

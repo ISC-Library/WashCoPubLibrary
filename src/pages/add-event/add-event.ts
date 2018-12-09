@@ -16,6 +16,7 @@ import { EventTitleCheckProvider } from '../../providers/event-title-check/event
 
 //Import Pages
 import { CalendarPage } from '../calendar/calendar';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'page-add-event',
@@ -96,20 +97,47 @@ export class AddEventPage {
     });
   }
 
+
+  // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
+  ////////  Below are the NavGaurds []][[][[][][][][][][][[][][]]]]
+  // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
+
   //Gatekeeper: Checks for authentication of admin
   ionViewWillEnter() {
-    if (this.AdminAuthProvider.isLoggedIn()) {
-      if (this.AdminAuthProvider.isAdmin()) {
-        //console.log("admin")
-        this.navCtrl.push(AddEventPage);
-      } else {
-        console.log("user")
-        this.navCtrl.push(CalendarPage);
-      }
-    } 
-    //console.log(this.AdminAuthProvider.currentUser.name)
+
   }
 
+  ionViewCanEnter() {
+    console.log("can enter")
+    if (this.isAdmin() == false) {
+      return false
+    }
+  }
+
+  //Check if user is administrator 
+  isAdmin() {
+    if (this.AdminAuthProvider.isLoggedIn()) {
+      console.log(this.AdminAuthProvider.currentUser)
+
+      //If logged in and an admin return true
+      if (this.AdminAuthProvider.currentUser.role === 0) {
+        console.log("true")
+        return true;
+      }
+      //If logged in but not an admin return false
+      else {
+        console.log("false")
+        return false;
+      }
+    }
+    //If not logged in at all return false
+    else {
+      console.log("false")
+      return false;
+    }
+  }
+
+  
   //Popup Message for the help icon (title)
   titleErrorHelpButton() {
     let toast = this.toastCtrl.create({
