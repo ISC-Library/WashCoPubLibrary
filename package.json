@@ -30,7 +30,7 @@
     "angular-calendar": "^0.26.4",
     "angularfire2": "^5.1.0",
     "cordova": "^8.1.2",
-    "cordova-android": "7.1.1",
+    "cordova-android": "^7.1.4",
     "cordova-browser": "5.0.4",
     "cordova-ios": "^4.5.5",
     "cordova-plugin-calendar": "^5.1.2",
@@ -80,8 +80,8 @@
     },
     "platforms": [
       "browser",
-      "ios",
-      "android"
+      "android",
+      "ios"
     ]
   }
 }
