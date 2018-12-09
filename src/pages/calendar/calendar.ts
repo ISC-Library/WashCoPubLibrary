@@ -21,7 +21,7 @@ import { AdminAuthProvider } from '../../providers/admin-auth/admin-auth';
 
 @Component({
   selector: 'page-calendar',
-  templateUrl: 'calendar.html',
+  templateUrl: 'calendar.html'
 })
 export class CalendarPage {
 
@@ -179,6 +179,7 @@ export class CalendarPage {
     document.getElementById("adminEventOrigin").className = "sliderOrigin item item-block item-md";
   }
   //#endregion
+
 
   //Contains styling for 'glass' Modify Slider. Needs to finish/test more
   // #region ModifyButtonFader
