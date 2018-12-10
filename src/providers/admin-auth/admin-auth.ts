@@ -40,30 +40,41 @@ export class AdminAuthProvider {
     });
   }
  
-
   //Get authentication variables from firebase using database service... later
     //the userName ==== FB object.userName ... etc.
 
-  login(userName: string, password: string) : Promise<boolean> {
+  login(userName: string, password: string): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      if (userName === 'admin' && password === 'whodis') {
-        this.currentUser = {
-          name: userName,
-          role: 0
-        };
-        resolve(true);
-      } else if (userName === 'user' && password === 'user') {
-        this.currentUser = {
-          name: name,
-          role: 1
-        };
-        resolve(true);
-      }  else {
-        resolve(false);
+      //Loop through the array of users
+      for (let i = 0; i < this.usersArray.length; i++) {
+        //If their role in the database is a "0" they are admin
+        if (this.usersArray[i].role == 0) {
+          //Check their credentials against any admin stored in the database
+            //If it matches any one of them they will be logged in as an admin
+          if (userName === this.usersArray[i].userName && password === this.usersArray[i].password) {
+            this.currentUser = {
+              name: userName,
+              role: 0
+            };
+            resolve(true);
+          }
+        } else if (this.usersArray[i].role == 1) {
+          if (userName === this.usersArray[i].userName && password === this.usersArray[i].password) {
+            this.currentUser = {
+              name: name,
+              role: 1
+            };
+            resolve(true);
+          } else {
+            resolve(false);
+          }
+        }
       }
-    });
-  }
- 
+      //Empty the array so that no credentials are stored within the application lifecycle
+      this.usersArray = []
+    }); 
+  } 
+
   isLoggedIn() {
     return this.currentUser != null;
   }
