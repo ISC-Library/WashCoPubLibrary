@@ -516,11 +516,13 @@ export class CalendarPage {
   };
 
   ionViewWillEnter() {
+    this.presentLoadingDefault()
     this.isAdmin()
   }
 
+  //If the view had been entered
   ionViewDidEnter() {
-    this.presentLoadingDefault()
+    
   }
 
   isAdmin() {
