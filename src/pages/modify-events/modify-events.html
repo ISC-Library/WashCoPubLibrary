@@ -8,7 +8,7 @@
   </ion-header>
 
   <ion-content padding>
-    <form [formGroup]="modifyEventSubmission" (ngSubmit)="validateInput(eventID)" #validState>
+    <form [formGroup]="modifyEventSubmission" (ngSubmit)="validateInput(event.id)" #validState>
       <ion-list>
         <!-- Blank Fields -->
         <ion-item id="allEventsRequired" style="text-align: center">All Fields Required.</ion-item>

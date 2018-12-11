@@ -52,10 +52,13 @@
         <ion-input type="text" [(ngModel)]="event.notes" formControlName="notes"></ion-input>
       </ion-item>
 
-      <ion-item>
-          <ion-label floating>Start Date</ion-label>
-          <!-- https://ionicframework.com/docs/api/components/datetime/DateTime/ -->
-          <ion-datetime displayFormat="MMM DD, YYYY h:mm A" pickerFormat="MMM-DD-YYYY h:mm:A" [(ngModel)]="event.startDate" formControlName="startDate"></ion-datetime>
+       <!-- Start Date -->
+       <ion-item>
+        <ion-label floating>Start Date</ion-label>
+        <ion-icon id="startTimeWarningIcon" style="visibility:hidden" item-right name="help" (click)="startTimeWarningHelpButton()"></ion-icon>
+        <ion-datetime id="startDatePicker" formControlName="startDate" displayFormat="MMM DD, YYYY h:mm A" pickerFormat="MMM-DD-YYYY h:mm:A"
+          [(ngModel)]="event.startDate" (ngModelChange)="checkStartTime();">
+        </ion-datetime>
       </ion-item>
 
       <ion-item>
