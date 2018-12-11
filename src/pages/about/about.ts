@@ -4,7 +4,7 @@ import { NOT_FOUND_CHECK_ONLY_ELEMENT_INJECTOR } from '@angular/core/src/view/pr
 
 
 //Import Pages
-import {LoginPage} from '../login/login';
+import { LoginPage } from '../login/login';
 /**
  * Generated class for the AboutPage page.
  *
@@ -22,26 +22,19 @@ export class AboutPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AboutPage');
   }
 
-  showContactAdmin() {
-    // document.getElementById("contactAdminText").className = "contactAdminShow";
-    // if(document.getElementById("contactAdminText").className="contactAdminHide"){
-    //   document.getElementById("contactAdminText").className="contactAdminShow";}
-    //   else{document.getElementById("contactAdminText").className="contactAdminHide";}
-    if (document.getElementById('contactAdminText').innerHTML == '') { document.getElementById('contactAdminText').className = 'contactAdminText' };
-    document.getElementById('contactAdminText').innerHTML = 'Administrator: Jessica Ross <br> <a href="tel:251-847-2097">Contact Info: 251-847-2097</a><br><a href="mailto:info@wcpls.org">Email: info@wcpls.org</a>';
-    document.getElementById('contactAdminText').className = 'contactAdminShow'
-  };
-
-  goToLogin(){
-    this.navCtrl.push(LoginPage)
+  showAdmin() {
+    if (document.getElementById("adminTextId").style.display = "none") {
+      document.getElementById("adminTextId").style.display = "block";
+    }
   }
+
+
   showImportantLinks() {
-    if (document.getElementById('importantLinksText').innerHTML==''){document.getElementById('importantLinksText').className='showImportantLinksText'};
-    document.getElementById('importantLinksText').innerHTML='<a href="http://www.wcpls.net/">Washington County Public Library</a> <br> <br> <a href="https://chatom.org/">Town of Chatom</a>';
-    document.getElementById('importantLinksText').className='importantLinksShow';
+    if (document.getElementById("importantLinksText").style.display = "none") {
+      document.getElementById("importantLinksText").style.display = "block"
+    }
   }
 
   showUserManual() {
@@ -49,7 +42,13 @@ export class AboutPage {
   }
 
   showAboutUsText() {
-    document.getElementById("aboutUsText").className = "showAboutUsText";
+    if (document.getElementById("aboutUsText").style.display = "none") {
+      document.getElementById("aboutUsText").style.display = "block"
+    }
+  }
+
+  goToLogin() {
+    this.navCtrl.push(LoginPage)
   }
 
 }
