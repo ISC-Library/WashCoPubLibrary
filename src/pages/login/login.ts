@@ -13,6 +13,7 @@ import { AdminAuthProvider } from './../../providers/admin-auth/admin-auth';
 })
 export class LoginPage {
  
+  //Hold the information entered by the user
   user = {
     name: "",
     pw: ""
@@ -30,12 +31,11 @@ export class LoginPage {
  ionViewDidEnter() {
    if (this.adminAuthProvider.currentUser) {
    this.userName = (this.adminAuthProvider.currentUser.name)
-   console.log(this.userName)
    }
  }
 
   loginUser() {
-    this.adminAuthProvider.login(this.user.name, this.user.pw).then(success => {
+    this.adminAuthProvider.login(this.user.name.toLowerCase(), this.user.pw).then(success => {
       if (success) {
         //Save the username if successfull
         //this.userName=(this.adminAuthProvider.currentUser.name);
