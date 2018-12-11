@@ -1,35 +1,34 @@
 <ion-header>
-    <ion-toolbar>
-        <button ion-button [menuToggle]="activeMenu">
-          <ion-icon name="menu" color="secondary"></ion-icon>
-        </button>
-      <ion-title>Add Event</ion-title>
-    </ion-toolbar> 
-  </ion-header>
+  <ion-toolbar>
+    <button ion-button [menuToggle]="activeMenu">
+      <ion-icon name="menu" color="secondary"></ion-icon>
+    </button>
+    <ion-title>Add Event</ion-title>
+  </ion-toolbar>
+</ion-header>
 
 
 <ion-content padding>
-  
-  <form  [formGroup]="eventSubmission" (ngSubmit)="validateInput()" #validState>
+  <form [formGroup]="eventSubmission" (ngSubmit)="validateInput()" #validState>
     <ion-list>
-    <!-- Blank Fields -->
-    <ion-item id="allEventsRequired" style="text-align: center">All Fields Required.</ion-item>
+      <!-- Blank Fields -->
+      <ion-item id="allEventsRequired" style="text-align: center">All Fields Required.</ion-item>
 
       <!-- Title -->
       <ion-item>
         <!-- Check to see if the title is the same (true means it is the same) -->
         <ion-label floating *ngIf="checkTitle(true); else titleDifferent">Please Choose Another Title!</ion-label>
-          <!-- Create the *ng template to load if the title is different -->
-          <ng-template #titleDifferent>
-            <ion-label floating>Title</ion-label>
-          </ng-template>
-        
+        <!-- Create the *ng template to load if the title is different -->
+        <ng-template #titleDifferent>
+          <ion-label floating>Title</ion-label>
+        </ng-template>
+
         <!-- Error Icon if the title is the same -->
         <ion-icon id="titleErrorIcon" *ngIf="checkTitle(true)" item-right name="help" (click)="titleErrorHelpButton()"></ion-icon>
         <!-- <ion-input id="titleInput" type="text" formControlName="title" [class.titleInputInvalid]="!eventSubmission.controls.title.valid && (eventSubmission.controls.title.dirty || submitAttempt)"
                   [(ngModel)]="event.title" (keyup)="checkTitle()"></ion-input> -->
         <ion-input id="titleInput" type="text" formControlName="title" [(ngModel)]="event.title" (keyup)="checkTitle()"></ion-input>
-        </ion-item>
+      </ion-item>
 
       <!-- Location -->
       <ion-item>
@@ -39,19 +38,19 @@
 
       <!-- Category -->
       <ion-item>
-          <ion-label floating>Select Event Category</ion-label>
-          <ion-select formControlName="category" [(ngModel)]="event.category" interface="action-sheet">
-            <ion-option value="community">Community Event</ion-option>
-            <ion-option value="sporting">Sporting Event</ion-option>
-            <ion-option value="business">Business Event</ion-option>
-            <ion-option value="art">Art Event</ion-option>
-          </ion-select>
+        <ion-label floating>Select Event Category</ion-label>
+        <ion-select formControlName="category" [(ngModel)]="event.category" interface="action-sheet">
+          <ion-option value="community">Community Event</ion-option>
+          <ion-option value="sporting">Sporting Event</ion-option>
+          <ion-option value="business">Business Event</ion-option>
+          <ion-option value="art">Art Event</ion-option>
+        </ion-select>
       </ion-item>
 
       <!-- Notes -->
       <ion-item>
         <ion-label floating>Notes {{ this.event.notes.length }} / 250</ion-label>
-        <ion-input  type="text" formControlName="notes" [(ngModel)]="event.notes"></ion-input>
+        <ion-input type="text" formControlName="notes" [(ngModel)]="event.notes"></ion-input>
       </ion-item>
 
       <!-- Start Date -->
@@ -63,7 +62,6 @@
         </ion-datetime>
       </ion-item>
 
-      
       <!-- End Date -->
       <ion-item>
         <ion-label floating>End Date</ion-label>

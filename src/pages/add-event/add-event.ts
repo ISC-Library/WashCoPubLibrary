@@ -27,8 +27,12 @@ export class AddEventPage {
   
   //Create the eventsRef variable: give it the type of "AngularFireList" 
   eventsRef: AngularFireList<any>;
+
   //The events observable holds all the data pulled from the database 
   events: Observable<any[]>;
+  
+  //Declare the databaseFilter variable
+  databaseFilter: BehaviorSubject<string | null> = new BehaviorSubject('');
   
   //Array to hold titles converted from the observable 
   titlesArray: any;
@@ -36,9 +40,6 @@ export class AddEventPage {
   //Array to hold start Times convered from the observable
   startTimeArray: any;
 
-  //Declare the databaseFilter variable
-  databaseFilter: BehaviorSubject<string | null> = new BehaviorSubject('');
-  
   //Declare "eventSubmission" as a FormGroup to use it for validation
   eventSubmission: FormGroup;
   submitAttempt: boolean = false;
@@ -56,6 +57,7 @@ export class AddEventPage {
     endTime: "" 
   };
 
+  //#region constructor
   constructor(public alertCtrl: AlertController,
     public navCtrl: NavController,
     private toastCtrl: ToastController,
@@ -98,6 +100,10 @@ export class AddEventPage {
   }
 
 
+  //#endregion
+
+
+  //#region navGaurds
   // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
   ////////  Below are the NavGaurds []][[][[][][][][][][][[][][]]]]
   // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
@@ -136,8 +142,10 @@ export class AddEventPage {
       return false;
     }
   }
+  //#endregion
 
-  
+
+  //#region DataValidation
   //Popup Message for the help icon (title)
   titleErrorHelpButton() {
     let toast = this.toastCtrl.create({
@@ -265,9 +273,10 @@ validateInput() {
     toast.present();
   }
 }
+//#endregion
 
 
-  // Create New Events 
+  //#region SaveEvent
   save() {
     //Seperate the date and time in the "event.startTime" and "event.endTime" variables 
     this.event.startTime = this.event.startDate.split("T").pop()
@@ -342,4 +351,7 @@ validateInput() {
       }
     );
     }
+  //#endregion
+
+
   }
