@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 //Import Provider
 import { TestProvider } from '../../providers/test/test';
-
+import { CheckUserProvider } from '../../providers/check-user/check-user'
 
 @Component({
   selector: 'test-component',
@@ -37,7 +37,7 @@ export class TestComponent {
   
 
   //Inject the Provider into the constructor *****
-  constructor(public testSvc: TestProvider) {}
+  constructor(public testSvc: CheckUserProvider) {}
 
 
 

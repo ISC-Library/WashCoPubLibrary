@@ -1,13 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-/*
-  Generated class for the UsersServiceProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
-
 import { AngularFireDatabase } from '@angular/fire/database';
 
 import { Observable } from 'rxjs';
@@ -16,9 +9,10 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/debounceTime'
 import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/switchMap';
 
 @Injectable()
-export class TestProvider {
+export class CheckUserProvider {
 
   constructor(private db: AngularFireDatabase) {}
 
@@ -44,3 +38,5 @@ export class TestProvider {
     });
   }
 }
+
+

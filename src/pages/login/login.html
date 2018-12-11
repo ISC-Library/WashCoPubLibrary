@@ -1,24 +1,36 @@
-  <ion-header>
-    <ion-toolbar>
-        <button ion-button [menuToggle]="activeMenu">
-          <ion-icon name="menu" color="secondary"></ion-icon>
-        </button>
-      <ion-title>Login</ion-title>
-    </ion-toolbar> 
-  </ion-header>
-   
-  <ion-content>
-    <ion-list>
-      <ion-item>
-        <ion-label fixed>Username</ion-label>
-        <ion-input type="text" [(ngModel)]="user.name"></ion-input>
-      </ion-item>
-   
-      <ion-item>
-        <ion-label fixed>Password</ion-label>
-        <ion-input type="password" [(ngModel)]="user.pw"></ion-input>
-      </ion-item>
-    </ion-list>
-   
+<ion-header>
+  <ion-toolbar>
+    <button ion-button [menuToggle]="activeMenu">
+      <ion-icon name="menu" color="secondary"></ion-icon>
+    </button>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- If user is not logged in, show credential input -->
+  <ion-list *ngIf="isLoggedIn()==true">
+    <ion-item class="fuck" fixed>Logged In As: {{this.userName}}</ion-item>
+  </ion-list>
+  
+  <!-- If user not logged in, show credential input -->
+  <ion-list *ngIf="isLoggedIn()==false">
+    <ion-item>
+      <ion-label fixed>Username</ion-label>
+      <ion-input type="text" [(ngModel)]="user.name"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label fixed>Password</ion-label>
+      <ion-input type="password" [(ngModel)]="user.pw"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <!-- IF the user is logged in, display the logout button -->
+  <button *ngIf="isLoggedIn(); else isLoggedOut" ion-button full style="background-color: rgba(0,68,136,1)" (click)="logout()">Logout</button>
+  
+  <!-- IF the user is logged out, display the logout button -->
+  <ng-template #isLoggedOut>
     <button ion-button full style="background-color: rgba(0,68,136,1)" (click)="loginUser()">Login</button>
-  </ion-content>
+  </ng-template>
+</ion-content>

@@ -13,21 +13,33 @@ import { AdminAuthProvider } from './../../providers/admin-auth/admin-auth';
 })
 export class LoginPage {
  
+  //Hold the information entered by the user
   user = {
     name: "",
     pw: ""
   };
+
+  //Hold the username of the current logged in user
+  userName: string;
  
   constructor(public navCtrl: NavController, 
     private adminAuthProvider: AdminAuthProvider, 
     private alertCtrl: AlertController) {
       //Constructor body
     }
- 
+
+ ionViewDidEnter() {
+   if (this.adminAuthProvider.currentUser) {
+   this.userName = (this.adminAuthProvider.currentUser.name)
+   }
+ }
+
   loginUser() {
-    this.adminAuthProvider.login(this.user.name, this.user.pw).then(success => {
+    this.adminAuthProvider.login(this.user.name.toLowerCase(), this.user.pw).then(success => {
       if (success) {
-        this.navCtrl.push(HomePage);
+        //Save the username if successfull
+        //this.userName=(this.adminAuthProvider.currentUser.name);
+        this.navCtrl.pop();
       } else {
         let alert = this.alertCtrl.create({
           title: 'Login failed',
@@ -37,5 +49,17 @@ export class LoginPage {
         alert.present();
       }
     });
+  }
+
+  isLoggedIn() {
+    if (this.adminAuthProvider.isLoggedIn()) {
+      return true 
+    } else {
+      return false
+    }
+  }
+
+  logout() {
+    this.adminAuthProvider.logout()
   }
 }
