@@ -9,7 +9,7 @@ page-calendar {
     //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
     
     //NavBar
-    #toolbar .toolbar-background-ios {
+    #toolbar .toolbar-background {
         background: linear-gradient(180deg, rgba(0, 68, 136, .9));
         color:white;
     }
@@ -49,7 +49,7 @@ page-calendar {
 
     // Segment Buttons
   
-    .toolbar-ios .segment-button {
+    .toolbar .segment-button {
         max-width: 500px;
     }
 
@@ -64,7 +64,7 @@ page-calendar {
     }
 
     //Have to get the right level of "specificity" to override the "main.css"
-    .segment-ios  #allSegmentBtn.segment-activated {
+    .segment #allSegmentBtn.segment-activated {
         //RGBA allows you to convert a color to transparency
         background-color: rgba(0,0,0,.3);
     }
@@ -78,7 +78,7 @@ page-calendar {
         border-right-width: .5px;
     }
 
-    .segment-ios  #sportingSegmentBtn.segment-activated {
+    .segment #sportingSegmentBtn.segment-activated {
         background-color: rgba(0,136,68,.3);
     }
 
@@ -91,7 +91,7 @@ page-calendar {
         border-right-width: .5px;
     }
 
-    .segment-ios  #communitySegmentBtn.segment-activated {
+    .segment  #communitySegmentBtn.segment-activated {
         background-color: rgba(200,0,0,.3);
     }
 
@@ -104,7 +104,7 @@ page-calendar {
         border-right-width: .5px;
     }
 
-    .segment-ios  #businessSegmentBtn.segment-activated {
+    .segment  #businessSegmentBtn.segment-activated {
         background-color: rgba(255,78,0,.3);
     }
 
@@ -116,7 +116,7 @@ page-calendar {
         border-left-width: .5px;
     }
 
-    .segment-ios  #artSegmentBtn.segment-activated {
+    .segment  #artSegmentBtn.segment-activated {
         background-color: rgba(0,68,136, 0.3);
     }
 
@@ -184,7 +184,7 @@ page-calendar {
 
     //Slider Arrows
         //We must reposition them here to override the specificity set by default from the ionic main.css
-    .item-ios ion-avatar {
+    .item ion-avatar {
         min-width: 20px;
         min-height: 20px;
     }

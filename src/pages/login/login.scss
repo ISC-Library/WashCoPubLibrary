@@ -2,7 +2,7 @@ page-login {
 //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
     
     //NavBar
-    .toolbar-background-ios {
+    .toolbar-background {
         background: linear-gradient(180deg, rgba(0, 68, 136, .9));
         color:white;
     }
@@ -13,6 +13,11 @@ page-login {
 
     .icon {
         color: white;
+    }
+
+    .fuck {
+        color: rgba(0, 136, 68, 1);
+        text-align: center;
     }
 
 //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]

@@ -28,7 +28,7 @@ export class TestProvider {
       return this.db
         .list('/users', ref =>
           ref
-            .orderByChild('lastName') 
+            .orderByChild('userName') 
             .limitToFirst(10)
             .startAt(startText)
             .endAt(endText)

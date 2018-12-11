@@ -142,12 +142,15 @@ constructor(public alertCtrl: AlertController,
   };
   
   displayMore() {
-   // let elements = document.getElementsByClassName("additionalInfo")
+    document.getElementById("arrowDropdown").style.display = "none"
+    document.getElementById("additionalInfo").style.display = "block"
+    document.getElementById("arrowDropup").style.display = "block"
+  }
 
-  //   for(var i=0; i<elements.length; i++) {
-  //     elements[i].hidden = false 
-  // }
-  document.getElementById("additionalInfo").hidden = false 
+  displayLess() {
+    document.getElementById("arrowDropdown").style.display = "block"
+    document.getElementById("additionalInfo").style.display = "none"
+    document.getElementById("arrowDropup").style.display = "none"
   }
 
   //Create New Events 

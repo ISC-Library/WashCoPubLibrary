@@ -12,22 +12,18 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 
 @Injectable()
-export class CalenderEventsServiceProvider {
+export class CheckUserProvider {
 
   constructor(private db: AngularFireDatabase) {}
 
-  getEvents(start: BehaviorSubject<string>): Observable<any[]> {
+  getUsers(start: BehaviorSubject<string>): Observable<any[]> {
      return start.switchMap(startText => {
       const endText = startText + '\uf8ff';
       return this.db
-        .list('/events', ref =>
+        .list('/users', ref =>
           ref
-            .orderByChild('startDate')
-            //To the best of my knowledge:
-              //We will either need all events (unfiltered) 
-                //Or the filters will need a full list as it applies to the filter
-                  //So we need not limit the amount of events displayed
-            //.limitToFirst(10)
+            .orderByChild('userName') 
+            .limitToFirst(10)
             .startAt(startText)
             .endAt(endText)
         )
@@ -42,3 +38,5 @@ export class CalenderEventsServiceProvider {
     });
   }
 }
+
+

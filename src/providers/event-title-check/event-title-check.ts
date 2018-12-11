@@ -12,7 +12,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 
 @Injectable()
-export class CalenderEventsServiceProvider {
+export class EventTitleCheckProvider {
 
   constructor(private db: AngularFireDatabase) {}
 
@@ -22,7 +22,7 @@ export class CalenderEventsServiceProvider {
       return this.db
         .list('/events', ref =>
           ref
-            .orderByChild('startDate')
+            .orderByChild('title')
             //To the best of my knowledge:
               //We will either need all events (unfiltered) 
                 //Or the filters will need a full list as it applies to the filter
@@ -42,3 +42,5 @@ export class CalenderEventsServiceProvider {
     });
   }
 }
+
+
