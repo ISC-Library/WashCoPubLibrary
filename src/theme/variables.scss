@@ -34,9 +34,20 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
-  danger:     #f53d3d,
+  //Ionic default colors 
+  // primary:    #488aff,
+  // secondary:  #32db64,
+  // danger:     #f53d3d,
+  // light:      #f4f4f4,
+  // dark:       #222
+
+  //WashCoPub Color Scheme
+    //The scheme is saved as hex, but we have converted it to rgb to use rgba in some places
+      //It maintains as rgb here for consistency
+  primary:    rgb(0, 68, 136),
+  secondary:  rgb(0,138,68),
+  danger:     rgb(180,0,0),
+  //The following two remained the same
   light:      #f4f4f4,
   dark:       #222
 );

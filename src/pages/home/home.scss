@@ -3,7 +3,7 @@ page-home {
 //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
     
     //NavBar
-    .toolbar-background-ios {
+    .toolbar-background {
         background: linear-gradient(180deg, rgba(0, 68, 136, .9));
         color:white;
     }
@@ -15,6 +15,20 @@ page-home {
     .icon {
         color: white;
     }
+
+      .navBarImage {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 90%;
+        //Height
+        min-height: 70%;
+        max-height: 40px;
+        //width
+        min-width: 10%;
+        max-width: 10%;
+        transform: translate(-50%, -50%);
+      }
 
 //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 

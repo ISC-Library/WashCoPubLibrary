@@ -1,42 +1,64 @@
-<  <ion-header>
-    <ion-toolbar>
-        <button ion-button [menuToggle]="activeMenu">
-          <ion-icon name="menu" color="secondary"></ion-icon>
-        </button>
-      <ion-title>Help</ion-title>
-    </ion-toolbar> 
+< <ion-header>
+  <ion-toolbar>
+    <button ion-button [menuToggle]="activeMenu">
+      <ion-icon name="menu" color="secondary"></ion-icon>
+    </button>
+    <ion-title>Help</ion-title>
+  </ion-toolbar>
   </ion-header>
 
-<ion-content padding>
-
-  <body>
-    <button ion-button round class="adminButton" id="contactAdmin"  (click)="showContactAdmin()" >Contact Administrator</button>
-    <br>
-
-    <div id="contactAdminText" class="contactAdminText"></div>
-
-    <br>
-
-    <button id="importantLinks" (click)="showImportantLinks()" ion-button round class="importantLinksButton">Important Links</button>
-
-    <div id="importantLinksText" class="importantLinksText"></div>
-
-    <br>
-    <button id="userManual" ion-button round class="userManualButton">User Manual</button>
-    <div id="userManualText" class="userManualText"></div>
-    <br>
-    <button id="aboutUs" ion-button round class="aboutUsButton" (click)="showAboutUsText()">About Us</button>
-    <br>
-    <div id="aboutUsText" class="aboutUsText">
-      Hello and thank you for using our app!
-      <br>
-      This app was designed by students from the University of South Alabama as a means of a rural community event
-      sharing platform.
-      <br>
-      The Washington County Public Library approached us with an idea to draw rural communities, such as those in
-      Washington County, even closer, and this was the result.
+  <ion-content padding>
+    <div class="adminButtonDiv">
+      <button ion-button round class="adminButton" id="contactAdmin" (click)="showAdmin()">Contact Administrator</button>
     </div>
 
-    <button id="adminLogin" ion-button round class="adminButton" (click)="goToLogin()">Administrator Login</button>
-  </body>
-</ion-content>
+    <ion-list>
+      <ion-item id="adminTextId" class="adminText">
+        Administrator: Jessica Ross
+        <br>
+        <a href="tel:251-847-2097">Contact Info: 251-847-2097</a><br>
+        <br>
+        <a href="mailto:info@wcpls.org">Email: info@wcpls.org</a>'
+      </ion-item>
+    </ion-list>
+
+    <div class="importantLinksDiv">
+      <button id="importantLinks" ion-button round class="importantLinksButton" (click)="showImportantLinks()">Important Links</button>
+    </div>
+
+    <ion-list>
+      <ion-item id="importantLinksText" class="importantLinksText">
+        <br>
+        <a href="http://www.wcpls.net/">Washington County Public Library</a>
+        <br>
+        <a href="https://chatom.org/">Town of Chatom</a>'
+      </ion-item>
+    </ion-list>
+
+    <div class="userManualButtonDiv">
+      <button id="userManual" ion-button round class="userManualButton">User Manual</button>
+    </div>
+    <br>
+    <br>
+    <div class="aboutUsButtonDiv">
+      <button id="aboutUs" ion-button round (click)="showAboutUsText()" class="aboutUsButton">About Us</button>
+    </div>
+
+    <div>
+      <ion-list>
+        <ion-item text-wrap id ="aboutUsText" class="aboutUsText">
+          Hello and thank you for using our app!
+          <br>
+          This app was designed by students from the University of South Alabama as a means of a rural community event
+          sharing platform.
+          <br>
+          The Washington County Public Library approached us with an idea to draw rural communities, such as those in
+          Washington County, even closer, and this was the result.
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <div class="adminLoginButton">
+      <button id="adminLogin" ion-button round class="adminButton" (click)="goToLogin()">Administrator Login</button>
+    </div>
+  </ion-content>

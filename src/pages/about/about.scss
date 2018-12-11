@@ -3,7 +3,7 @@ page-about {
 //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
     
     //NavBar
-    .toolbar-background-ios {
+    .toolbar-background {
         background: linear-gradient(180deg, rgba(0, 68, 136, .9));
         color:white;
     }
@@ -18,86 +18,77 @@ page-about {
 
 //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 
-// Admin button and text styling.
+
+
+// Admin button and text styling
+
+.adminButtonDiv{
+    text-align:center;
+}
+
     .adminButton{
-        // left:10%;
-        // right:10%;
-        // top:10%;
-        // width:75%;
         background: rgba(0, 68, 136, 1);
+        
     }
 
-    //Contact Admin Text
-    .contactAdminShow{
-        transition: ease .2s;
-        padding:15px;
-        text-align:center;
+    .adminText{
         border-radius:20px;
-        background-color: whitesmoke;
-        box-shadow: 4px 4px 4px royalblue;
-        visibility:visible;
-        width:90%;
+        text-align:center;
+        display:none;
     }
 
-    .contactAdminText{
-        display: none;
+    .adminTextHide{
+        display:none;
     }
 
-    //Important Links Button
-    .importantLinksButton{
-        // left:10%;
-        // right:10%;
-        // top:10%;
-        // width:75%;
-        background: rgba(0, 68, 136, 1);
+    .administratorDiv{
+
     }
 
-    .importantLinksShow{
-            transition: ease .2s;
-            padding:15px;
-            text-align:center;
-            border-radius:20px;
-            background-color: whitesmoke;
-            box-shadow: 4px 4px 4px royalblue;
-            visibility:visible;
-            width:90%;
-    }
-
-    .importantLinksText{
-        visibility: visible;
-    }
-
-
-    //User manual button
+//User manual button
     .userManualButton{
-        // left:10%;
-        // right:10%;
-        // top:50%;
-        // width:75%;
         background: rgba(0, 68, 136, 1);
     }
 
-    //About us button
+    .userManualButtonDiv{
+        text-align: center;
+    }
+
+//About us button
     .aboutUsButton{
-        // left:10%;
-        // right:10%;
-        // top:70%;
-        // width:75%;
         background: rgba(0, 68, 136, 1);
+    }
+
+    .aboutUsButtonDiv{
+        text-align:center;
     }
 
     .aboutUsText{
-        display: none;
+        border-radius:20px;
+        text-align:center;
+        display:none;
+        
     }
 
-    .showAboutUsText{
-        transition: ease .5s;
-        padding:15px;
+//Important Links Button
+    .importantLinksButton{
+        background: rgba(0, 68, 136, 1);
+    }
+
+    .importantLinksDiv{
         text-align:center;
+    }
+
+    .importantLinksText{
         border-radius:20px;
-        background-color: whitesmoke;
-        box-shadow: 4px 4px 4px royalblue;
-        visibility:visible;
-        width:90%;
+        text-align:center;
+        display:none;
+    }
+
+
+    //Admin Login Button
+
+    .adminLoginButton{
+        text-align:center;
     }
 }

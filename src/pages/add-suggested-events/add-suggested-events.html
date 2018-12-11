@@ -9,22 +9,37 @@
     </ion-header>
 
 
-<ion-content padding>
-  <form  (ngSubmit)="save()">
-    <ion-list>
-      <ion-item >
-        <ion-label floating>Title</ion-label>
-        <ion-input type="text" [(ngModel)]="event.title" name="title"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label floating>Location</ion-label>
-        <ion-input type="text" [(ngModel)]="event.location" name="location"></ion-input>
-      </ion-item>
+    <ion-content padding>
+      <form [formGroup]="suggestedEventSubmission" (ngSubmit)="validateInput()" #validState>
+        <ion-list>
+          <!-- Blank Fields -->
+          <ion-item id="allEventsRequired" style="text-align: center">All Fields Required.</ion-item>
+    
+          <!-- Title -->
+          <ion-item>
+            <!-- Check to see if the title is the same (true means it is the same) -->
+            <ion-label floating *ngIf="checkTitle(true); else titleDifferent">Please Choose Another Title!</ion-label>
+            <!-- Create the *ng template to load if the title is different -->
+            <ng-template #titleDifferent>
+              <ion-label floating>Title</ion-label>
+            </ng-template>
+    
+            <!-- Error Icon if the title is the same -->
+            <ion-icon id="titleErrorIcon" *ngIf="checkTitle(true)" item-right name="help" (click)="titleErrorHelpButton()"></ion-icon>
+            <!-- <ion-input id="titleInput" type="text" formControlName="title" [class.titleInputInvalid]="!eventSubmission.controls.title.valid && (eventSubmission.controls.title.dirty || submitAttempt)"
+                      [(ngModel)]="event.title" (keyup)="checkTitle()"></ion-input> -->
+            <ion-input id="titleInput" type="text" formControlName="title" [(ngModel)]="event.title" (keyup)="checkTitle()"></ion-input>
+          </ion-item>
+    
+          <!-- Location -->
+          <ion-item>
+            <ion-label floating>Location</ion-label>
+            <ion-input type="text" formControlName="location" [(ngModel)]="event.location"></ion-input>
+          </ion-item>
   
       <ion-item>
         <ion-label floating>Select Event Category</ion-label>
-        <ion-select [(ngModel)]="event.category" interface="action-sheet" name="category">
+        <ion-select [(ngModel)]="event.category" interface="action-sheet" formControlName="category">
           <ion-option value="community">Community Event</ion-option>
           <ion-option value="sporting">Sporting Event</ion-option>
           <ion-option value="business">Business Event</ion-option>
@@ -34,33 +49,33 @@
       
       <ion-item>
         <ion-label floating>Notes</ion-label>
-        <ion-input type="text" [(ngModel)]="event.notes" name="notes"></ion-input>
+        <ion-input type="text" [(ngModel)]="event.notes" formControlName="notes"></ion-input>
       </ion-item>
 
       <ion-item>
           <ion-label floating>Start Date</ion-label>
           <!-- https://ionicframework.com/docs/api/components/datetime/DateTime/ -->
-          <ion-datetime displayFormat="MMM DD, YYYY h:mm A" pickerFormat="MMM-DD-YYYY h:mm:A" [(ngModel)]="event.startDate" name="startDate"></ion-datetime>
+          <ion-datetime displayFormat="MMM DD, YYYY h:mm A" pickerFormat="MMM-DD-YYYY h:mm:A" [(ngModel)]="event.startDate" formControlName="startDate"></ion-datetime>
       </ion-item>
 
       <ion-item>
           <ion-label floating>End Date</ion-label>
-          <ion-datetime displayFormat="MMM DD, YYYY h:mm A" pickerFormat="MMM-DD-YYYY h:mm:A" [(ngModel)]="event.endDate" name="endDate"></ion-datetime>
+          <ion-datetime displayFormat="MMM DD, YYYY h:mm A" pickerFormat="MMM-DD-YYYY h:mm:A" [(ngModel)]="event.endDate" formControlName="endDate"></ion-datetime>
       </ion-item>
 
       <ion-item>
         <ion-label floating>Contact Name</ion-label>
-        <ion-input type="text" [(ngModel)]="event.contactName" name="contactName"></ion-input>
+        <ion-input type="text" [(ngModel)]="event.contactName" formControlName="contactName"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label floating>Contact Email</ion-label>
-        <ion-input type="text" [(ngModel)]="event.contactEmail" name="contactEmail"></ion-input>
+        <ion-input type="text" [(ngModel)]="event.contactEmail" formControlName="contactEmail"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label floating>Contact Phone Number</ion-label>
-        <ion-input type="text" [(ngModel)]="event.contactPhone" name="contactPhone"></ion-input>
+        <ion-input type="text" [(ngModel)]="event.contactPhone" formControlName="contactPhone"></ion-input>
       </ion-item>
 
       <ion-item>
