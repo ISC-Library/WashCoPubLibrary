@@ -72,7 +72,7 @@ export class HomePage {
 
   goToCalendar() {
     //this.navCtrl.push(CalendarPage);
-    this.navCtrl.push(CalendarPage, {
+    this.navCtrl.setRoot(CalendarPage, {
       formattedForCSS: this.formattedForCSS
     });
   }

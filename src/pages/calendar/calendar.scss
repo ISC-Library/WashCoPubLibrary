@@ -165,6 +165,10 @@ page-calendar {
         margin: 0;
     }
 
+    .modifyEventSlider{
+        margin:0;
+    }
+
     .eventSlider {
         margin: 0;
     }
@@ -191,7 +195,185 @@ page-calendar {
     
 
     //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+//The original state of the 'Suggest Event Button'
 
+.sliderOrigin{
+
+}
+
+.sliderSuggest01{
+background: linear-gradient(
+90deg, 
+rgba(0,68,136,.1),
+rgba(255, 255, 255,1) 1%)
+}
+
+.sliderSuggest05{
+background: linear-gradient(
+90deg, 
+rgba(0,68,136,.1),
+rgba(255, 255, 255,1) 5%)
+}
+
+.sliderSuggest10{
+background: linear-gradient(
+90deg, 
+rgba(0,68,136,.1),
+rgba(255, 255, 255,1) 10%)
+}
+
+.sliderSuggest15{
+background: linear-gradient(
+90deg, 
+rgba(0,68,136,.1),
+rgba(255, 255, 255,1) 15%)
+}
+
+.sliderSuggest20{
+background: linear-gradient(
+-90deg, 
+rgba(255, 255, 255,1), 
+rgba(255, 255, 255,1), 
+rgba(255, 255, 255,1), 
+rgba(255, 255, 255,1), 
+rgba(255, 255, 255,1), 
+rgba(255, 255, 255,.8), 
+rgba(255, 255, 255,.5),
+rgba(255, 255, 255,.2), 
+rgba(0,68,136,0));
+}
+////////
+.sliderAdminBlue01{
+    background: linear-gradient(
+        -90deg, 
+        rgba(0,68,136,.1),
+        rgba(255, 255, 255,1) 1%)
+}
+
+.sliderAdminBlue05{
+    background: linear-gradient(
+        -90deg, 
+        rgba(0,68,136,.1),
+        rgba(255, 255, 255,1) 5%)
+}
+
+.sliderAdminBlue10{
+    background: linear-gradient(
+        -90deg, 
+        rgba(0,68,136,.1),
+        rgba(255, 255, 255,1) 10%)
+}
+
+.sliderAdminBlue15{
+    background: linear-gradient(
+        -90deg, 
+        rgba(0,68,136,.1),
+        rgba(255, 255, 255,1) 15%)
+}
+
+.sliderAdminBlue20{
+    background: linear-gradient(
+        90deg, 
+        rgba(255, 255, 255,1), 
+        rgba(255, 255, 255,1), 
+        rgba(255, 255, 255,1), 
+        rgba(255, 255, 255,1), 
+        rgba(255, 255, 255,1), 
+        rgba(255, 255, 255,.8), 
+        rgba(255, 255, 255,.5),
+        rgba(255, 255, 255,.2), 
+        rgba(0,68,136,0));
+        }
+////////
+.sliderAdminGreen01{
+    background: linear-gradient(
+        90deg, 
+        rgba(0,68,136,.1),
+        rgba(255, 255, 255,1) 1%)
+}
+
+.sliderAdminGreen05{
+    background: linear-gradient(
+        90deg, 
+        rgba(0,136,68,.1),
+        rgba(255, 255, 255,1) 5%)
+}
+
+.sliderAdminGreen10{
+    background: linear-gradient(
+        90deg, 
+        rgba(0,136,68,.1),
+        rgba(255, 255, 255,1) 10%)
+}
+
+.sliderAdminGreen15{
+    background: linear-gradient(
+        90deg, 
+        rgba(0,136,68,.1),
+        rgba(255, 255, 255,1) 15%)
+}
+
+.sliderAdminGreen20{
+    background: linear-gradient(
+        -90deg, 
+        rgba(255, 255, 255,1), 
+        rgba(255, 255, 255,1), 
+        rgba(255, 255, 255,1), 
+        rgba(255, 255, 255,1), 
+        rgba(255, 255, 255,1), 
+        rgba(255, 255, 255,.8), 
+        rgba(255, 255, 255,.5),
+        rgba(255, 255, 255,.2), 
+        rgba(0,136,68,.0));
+        }
+////////
+.sliderAdminModify01{
+    background: linear-gradient(
+        90deg, 
+        rgba(0,68,136,.1),
+        rgba(255, 255, 255,1) 1%)
+}
+
+.sliderAdminModify05{
+    background: linear-gradient(
+        90deg, 
+        rgba(0,136,68,.1),
+        rgba(255, 255, 255,1) 5%)
+}
+
+.sliderAdminModify10{
+    background: linear-gradient(
+        90deg, 
+        rgba(0,136,68,.1),
+        rgba(255, 255, 255,1) 10%)
+}
+
+.sliderAdminModify15{
+    background: linear-gradient(
+        90deg, 
+        rgba(0,136,68,.1),
+        rgba(255, 255, 255,1) 15%)
+}
+
+.sliderAdminModify20{
+    background: linear-gradient(
+        -90deg, 
+        rgba(255, 255, 255,1), 
+        rgba(255, 255, 255,1), 
+        rgba(255, 255, 255,1), 
+        rgba(255, 255, 255,1), 
+        rgba(255, 255, 255,1), 
+        rgba(255, 255, 255,.8), 
+        rgba(255, 255, 255,.5),
+        rgba(255, 255, 255,.2), 
+        rgba(0,136,68,.0));
+        }
+//This element is not needed currently, but serves the purpose of keeping the slide aligned
+.sliderArrowsPlaceholder {
+    visibility: hidden;
+}
+
+//[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
     
     #calendarDiv{
         animation: cssAnimation 0s 2s forwards;

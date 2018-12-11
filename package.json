@@ -30,7 +30,7 @@
     "angular-calendar": "^0.26.4",
     "angularfire2": "^5.1.0",
     "cordova": "^8.1.2",
-    "cordova-android": "7.1.1",
+    "cordova-android": "^7.1.4",
     "cordova-browser": "5.0.4",
     "cordova-ios": "^4.5.5",
     "cordova-plugin-calendar": "^5.1.2",
@@ -44,11 +44,14 @@
     "cordova-plugin-whitelist": "^1.3.3",
     "date-fns": "^1.29.0",
     "firebase": "^5.5.7",
+    "hammerjs": "^2.0.8",
     "ionic-angular": "^3.9.2",
+    "ionic-long-press": "^1.5.0",
     "ionic3-calendar-en": "^1.1.3",
     "ionicons": "^4.4.6",
     "loud-rejection": "^1.6.0",
     "moment": "^2.22.2",
+    "package-lock.json": "^1.0.0",
     "rxjs": "^6.3.3",
     "rxjs-compat": "^6.3.3",
     "sw-toolbox": "3.6.0",
@@ -77,8 +80,8 @@
     },
     "platforms": [
       "browser",
-      "ios",
-      "android"
+      "android",
+      "ios"
     ]
   }
 }

@@ -19,7 +19,16 @@ import { AddSuggestedEventsPage } from '../pages/add-suggested-events/add-sugges
 import { ModifyEventsPage } from '../pages/modify-events/modify-events';
 import { ModifySuggestedEventsPage } from '../pages/modify-suggested-events/modify-suggested-events';
 import { JobLinksPage} from '../pages/joblinks/joblinks';
-import {NoneExistPage} from '../pages/none-exist/none-exist';
+import { NoneExistPage } from '../pages/none-exist/none-exist';
+
+//Import Loooooooooonnnggg Press
+import {LongPressModule} from 'ionic-long-press';
+
+//Import Gesture Stuff from tutorial 
+// import {RouteReuseStrategy} from '@angular/';
+// import { IonicRouteStrategy } from '@ionic/angular';
+// import {IonicGestureConfig} from "./gestures/ionic-gesture-config";
+// import {AppRoutingModule} from './app-routing.module';
 
 //Import Calendar
 import { Calendar } from '@ionic-native/calendar'; //This is the native cordova portion that allows interaction with the devices 
@@ -33,6 +42,7 @@ import { TestProvider } from '../providers/test/test';
 import { SuggestedEventsServiceProvider } from '../providers/add-suggested-events/add-suggested-events';
 import { CalenderEventsServiceProvider } from '../providers/calendar-event-service/calendar-event-service';
 import { AdminAuthProvider } from '../providers/admin-auth/admin-auth';
+import { IonicGestureConfigProvider } from '../providers/ionic-gesture-config/ionic-gesture-config'
 import { EventTitleCheckProvider } from '../providers/event-title-check/event-title-check';
 import { CheckUserProvider } from '../providers/check-user/check-user'
 
@@ -90,7 +100,8 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    CalendarModule
+    CalendarModule,
+    LongPressModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -119,8 +130,9 @@ export const firebaseConfig = {
     CalenderEventsServiceProvider,
     SuggestedEventsServiceProvider,
     AdminAuthProvider,
+    IonicGestureConfigProvider,
     EventTitleCheckProvider,
-    CheckUserProvider,
+    CheckUserProvider
   ]
 })
 export class AppModule { }

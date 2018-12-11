@@ -1,9 +1,11 @@
+// #region Imports List
 import { Component } from '@angular/core';
-import { IonicPage, NavController, LoadingController, NavParams, Platform, Loading } from 'ionic-angular';
+import { IonicPage, NavController, LoadingController, NavParams, Platform, Loading, ItemSliding, Item } from 'ionic-angular';
 import { Calendar } from '@ionic-native/calendar';
 import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { getLocaleDateTimeFormat, getLocaleDateFormat } from '@angular/common';
+import { HammerGestureConfig } from "@angular/platform-browser";
 
 //Import Pages
 import { HomePage } from '../home/home';
@@ -15,11 +17,13 @@ import { ViewSuggestedEventsPage } from '../view-suggested-events/view-suggested
 //Import Provider
 import { CalenderEventsServiceProvider } from '../../providers/calendar-event-service/calendar-event-service';
 import { AdminAuthProvider } from '../../providers/admin-auth/admin-auth';
+// #endregion
+
 
 @Component({
   selector: 'page-calendar',
-  templateUrl: 'calendar.html',
-  styleUrls: ['/calendar.scss']
+  templateUrl: 'calendar.html'
+
 })
 export class CalendarPage {
 
@@ -68,32 +72,200 @@ export class CalendarPage {
   //////// Below are navigation functions  [][[][[][][][][][][][[][][]]]]
   // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
 
-
   // Navigate to the "HomePage" using the NavController 
-  navigateToHomePage() {
+  navigateToHomePage(slidingItem: ItemSliding) {
     this.navCtrl.push(HomePage);
   }
 
   //Function to navigate to the "SuggestEventsPage"
-  navigateToAddEventsPage() {
+  navigateToAddEventsPage(slidingItem: ItemSliding) {
+    slidingItem.close();
+    // this.navCtrl.popTo(AddEventPage)
     this.navCtrl.push(AddEventPage);
   }
 
   //Function to navigate to the "SuggestEventsPage"
-  navigateToAddSuggestEventsPage() {
+  navigateToAddSuggestEventsPage(slidingItem: ItemSliding) {
+    slidingItem.close();
     this.navCtrl.push(AddSuggestedEventsPage);
   }
 
   //Function to navigate to the "SuggestEventsPage"
-  navigateToViewSuggestEventsPage() {
+  navigateToViewSuggestEventsPage(slidingItem: ItemSliding) {
+    slidingItem.close()
     this.navCtrl.push(ViewSuggestedEventsPage);
   }
 
+  onDragBoolean: boolean;
+  percent: any;
+  // [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+  // [][][][][][][][][][][][][][] Suggest Event and Admin Sliders[][][][][][][][][][][][][][][][][][]
+  // [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 
-  // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
-  //////// Everything below changes the event blips displayed (based on categories) [][[][[][][][][][][][[][][]]]]
-  // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
+  //Contains styling for 'glass' Suggest Event sliders
+  //#region Suggest event slider
+  //The percentage shown is relative to the size of the button that becomes visible
+  suggestEventDrag(item, slidingItem: ItemSliding) {
+    this.percent = item.getSlidingPercent();
 
+    //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+    //Everything here changes the CSS of the slider to give an increasing fade feature
+    //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+
+    if (this.percent < -.0000001) {
+      document.getElementById("suggestedEventOrigin").className = "sliderSuggest01 item item-block item-md"
+    }
+
+    if (this.percent < -.05) {
+      document.getElementById("suggestedEventOrigin").className = "sliderSuggest05 item item-block item-md"
+    }
+
+    if (this.percent < -.10) {
+      document.getElementById("suggestedEventOrigin").className = "sliderSuggest10 item item-block item-md"
+    }
+
+    if (this.percent < -.15) {
+      document.getElementById("suggestedEventOrigin").className = "sliderSuggest15 item item-block item-md"
+    }
+
+    if (this.percent < -.20) {
+      document.getElementById("suggestedEventOrigin").className = "sliderSuggest20 item item-block item-md"
+    }
+  }
+
+  //When the user does not drag the slider far enough to go over 50% of the button, it resets to it's original position
+
+  // document.getElementById("suggestedEventOrigin").className = "sliderOrigin item item-block item-md";
+
+  //#endregion
+
+  //Contains styling for 'glass' Admin sliders
+  //#region Admin Slider
+  adminEventDrag(item, slidingItem: ItemSliding) {
+    this.percent = item.getSlidingPercent();
+
+    if (this.percent > .01) {
+      document.getElementById("adminEventOrigin").className = "sliderAdminBlue01 item item-block item-md"
+      document.getElementById("adminSlider").style.backgroundColor = "rgba(0, 68, 136, 1)"
+    }
+    if (this.percent > .05) {
+      document.getElementById("adminEventOrigin").className = "sliderAdminBlue05 item item-block item-md"
+    }
+    if (this.percent > .10) {
+      document.getElementById("adminEventOrigin").className = "sliderAdminBlue10 item item-block item-md"
+    }
+    if (this.percent > .15) {
+      document.getElementById("adminEventOrigin").className = "sliderAdminBlue15 item item-block item-md"
+    }
+    if (this.percent > .20) {
+      document.getElementById("adminEventOrigin").className = "sliderAdminBlue20 item item-block item-md"
+    }
+    if (this.percent < -.01) {
+      document.getElementById("adminEventOrigin").className = "sliderAdminGreen01 item item-block item-md"
+      document.getElementById("adminSlider").style.backgroundColor = "rgba(0,136,68,1)"
+    }
+    if (this.percent < -.05) {
+      document.getElementById("adminEventOrigin").className = "sliderAdminGreen05 item item-block item-md"
+    }
+    if (this.percent < -.10) {
+      document.getElementById("adminEventOrigin").className = "sliderAdminGreen10 item item-block item-md"
+    }
+    if (this.percent < -.15) {
+      document.getElementById("adminEventOrigin").className = "sliderAdminGreen15 item item-block item-md"
+    }
+    if (this.percent < -.20) {
+      document.getElementById("adminEventOrigin").className = "sliderAdminGreen20 item item-block item-md"
+    }
+  }
+
+  public progress: number = 0;
+  public pressState: string = "released";
+
+  // Interval function
+  protected interval: any;
+
+  onPress($event) {
+    this.pressState = 'pressing';
+    this.startInterval();
+  }
+
+  onPressUp($event) {
+    this.pressState = 'released';
+    this.stopInterval();
+  }
+
+  startInterval() {
+    const self = this;
+    this.interval = setInterval(function () {
+      self.progress = self.progress + 1;
+    }, 50);
+  }
+
+  stopInterval() {
+    clearInterval(this.interval);
+  }
+
+  onAdminDragFalse($event) {
+    this.pressState = 'released';
+    this.stopInterval();
+    if ($event) {
+      document.getElementById("adminEventOrigin").className = "sliderOrigin item item-block item-md"
+    }
+  }
+
+  onSuggestDragFalse($event) {
+    this.pressState = 'released', $event;
+    this.stopInterval();
+    if ($event) {
+      document.getElementById("suggestedEventOrigin").className = "sliderOrigin item item-block item-md"
+    }
+  }
+  //#endregion
+
+
+  //Contains styling for 'glass' Modify Slider. Needs to finish/test more
+  // #region ModifyButtonFader
+  //[][][][][][][][][][][][][]Possible future to change Populated List of Items Fade[][][][][][][][][][][][][][]
+  // adminModifyDrag(item, slidingItem: ItemSliding) {
+  //   this.percent = item.getSlidingPercent();
+
+  //   if (this.percent < -.0000001) {
+  //     document.getElementById("adminModifySlide").className = "sliderAdminModify01 item item-block item-md"
+  //   }
+
+  //   if (this.percent < -.05) {
+  //     document.getElementById("adminModifySlide").className = "sliderAdminModify05 item item-block item-md"
+  //   }
+
+  //   if (this.percent < -.10) {
+  //     document.getElementById("adminModifySlide").className = "sliderAdminModify10 item item-block item-md"
+  //   }
+
+  //   if (this.percent < -.15) {
+  //     document.getElementById("adminModifySlide").className = "sliderAdminModify15 item item-block item-md"
+  //   }
+
+  //   if (this.percent < -.20) {
+  //     document.getElementById("adminModifySlide").className = "sliderAdminModify20 item item-block item-md"
+  //   }
+  // }
+
+
+  // adminModifyDragFalse(){
+  //   // document.getElementById("adminModifySlide").className="sliderOrigin item item-block item-md"
+  // }
+  //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+  // #endregion
+
+
+  // [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+  // [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+
+
+
+
+
+  //GatherChildren event to collect the <spans> that contain an event.
   gatherChildren($event) {
     let elementsOne = document.getElementsByClassName("center calendar-col col this-month");
 
@@ -138,7 +310,7 @@ export class CalendarPage {
       month = "11"
     }
 
-    
+
     let counter = 0;
 
     //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -147,11 +319,11 @@ export class CalendarPage {
 
       //Get all elements
       for (let i = 0; i < elementsOne.length; i++) {
-          if (elementsOne[i].textContent.trim() !== "") {
-            elementsAll.push(elementsOne[i].getElementsByTagName("span"));
-            elementsAll = elementsAll.filter(value => Object.keys(value).length !== 0)
-          }
+        if (elementsOne[i].textContent.trim() !== "") {
+          elementsAll.push(elementsOne[i].getElementsByTagName("span"));
+          elementsAll = elementsAll.filter(value => Object.keys(value).length !== 0)
         }
+      }
 
       //Show all event blips
       for (let i = (elementsAll.length - 1); i > -1; i--) {
@@ -223,6 +395,7 @@ export class CalendarPage {
 
 
 
+      //#region Loop Logic
       //****** Explanation:: for loop logic 
       //First: the lengths are calculated dynamically, so each time we change the class of an element in the collection...
       //...the length of the collection is reduced by 1.
@@ -236,6 +409,7 @@ export class CalendarPage {
       //Finally: We will actually decrement "i" starting with the original length of the HTML collection
       //This allows "i" to start at high end of the index and count down so nothing is missed
       //We know all arrays begin indexing at "0" so once "i" is at a point where only -1 is below it, we stop
+      //#endregion
 
       //Show all sporting blips
       for (let i = (elementsSports.length - 1); i > -1; i--) {
@@ -498,6 +672,7 @@ export class CalendarPage {
     }
   }
 
+
   // Navigate to the "ModifyEvent" page
   //The user selects modify button on the event which they wish to modify 
   //The event data for that specific event is passed, which we will forward to the "ModifyEvent" page
@@ -507,9 +682,9 @@ export class CalendarPage {
     });
   }
 
-  // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
+  // [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]][][][][][][][][][]
   //////// Below this are the portions to display event data  [][[][[][][][][][][][[][][]]]]
-  // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
+  // [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]][][][][][][][][][]
 
 
   ionViewDidLoad() {
@@ -524,6 +699,8 @@ export class CalendarPage {
   ionViewDidEnter() {
     
   }
+
+
 
   isAdmin() {
     if (this.AdminAuthProvider.isLoggedIn()) {
