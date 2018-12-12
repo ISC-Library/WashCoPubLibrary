@@ -72,6 +72,8 @@ export class CalendarPage {
   //////// Below are navigation functions  [][[][[][][][][][][][[][][]]]]
   // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
 
+
+
   // Navigate to the "HomePage" using the NavController 
   navigateToHomePage(slidingItem: ItemSliding) {
     this.navCtrl.push(HomePage);
