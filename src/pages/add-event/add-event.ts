@@ -334,12 +334,12 @@ validateInput() {
                   startTime: this.event.startTime,
                   endTime: this.event.endTime
                 });
+                this.navCtrl.pop();
               }
             }
           ]
         });
         alert.present();
-        this.navCtrl.pop();
       },
       (err) => {
         let alert = this.alertCtrl.create({
