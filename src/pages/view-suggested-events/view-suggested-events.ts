@@ -141,16 +141,17 @@ constructor(public alertCtrl: AlertController,
     this.suggestedEventsRef.remove(event.id);
   };
   
-  displayMore() {
-    document.getElementById("arrowDropdown").style.display = "none"
-    document.getElementById("additionalInfo").style.display = "block"
-    document.getElementById("arrowDropup").style.display = "block"
+  displayMore($event) {
+
+    document.getElementById($event.id + 'show').style.display = "none"
+    document.getElementById($event.id + 'hide').style.display = "block"
+    document.getElementById($event.id + 'list').style.display = "block"
   }
 
-  displayLess() {
-    document.getElementById("arrowDropdown").style.display = "block"
-    document.getElementById("additionalInfo").style.display = "none"
-    document.getElementById("arrowDropup").style.display = "none"
+  displayLess($event) {
+    document.getElementById($event.id + 'show').style.display = "block"
+    document.getElementById($event.id + 'list').style.display = "none"
+    document.getElementById($event.id + 'hide').style.display = "none"
   }
 
   //Create New Events 
