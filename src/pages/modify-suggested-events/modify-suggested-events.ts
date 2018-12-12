@@ -276,6 +276,12 @@ validateInput(suggestedEventID) {
     this.suggestedEvent.startTime = this.suggestedEvent.startDate.split("T").pop();
     this.suggestedEvent.endTime = this.suggestedEvent.endDate.split("T").pop();
 
+    //For now we are not dealing with the timezone offset
+      //Which is currently appending itself to the dateTime as "00Z"
+        //For now we will just cut that off
+        this.suggestedEvent.startTime = this.suggestedEvent.startTime.substring(0, this.suggestedEvent.startTime.length - 4);
+        this.suggestedEvent.endTime = this.suggestedEvent.endTime.substring(0, this.suggestedEvent.endTime.length - 4);
+
     //Re-declare the "suggestedEvent.startDate" and "suggestedEvent.endDate" to be just the date, not removing the time portion
     this.suggestedEvent.startDate= this.suggestedEvent.startDate.split("T", 1).pop();
     this.suggestedEvent.endDate = this.suggestedEvent.endDate.split("T", 1).pop();
