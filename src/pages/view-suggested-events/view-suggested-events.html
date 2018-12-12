@@ -38,8 +38,8 @@
 
           <!-- Display Additional Info Button -->
           <ion-avatar item-end>
-              <ion-icon [attr.id] = "event.key + 'show'" name="arrow-dropdown" (click)="displayMore(event)"></ion-icon>
-              <ion-icon [attr.id] = "event.key + 'hide'" style="display: none" name="arrow-dropup" (click)="displayLess(event)"></ion-icon>
+              <ion-icon [attr.id] = "suggestedEvent.key + 'show'" name="arrow-dropdown" (click)="displayMore(suggestedEvent)"></ion-icon>
+              <ion-icon [attr.id] = "suggestedEvent.key + 'hide'" style="display: none" name="arrow-dropup" (click)="displayLess(suggestedEvent)"></ion-icon>
           </ion-avatar>
           
           <h2 text-wrap>
@@ -49,7 +49,7 @@
           <h4 class="startInfo">{{suggestedEvent.startDate}} &nbsp;&nbsp;&nbsp; {{suggestedEvent.startTime}}</h4>
           <h4 class="endInfo">{{suggestedEvent.endDate}} &nbsp;&nbsp;&nbsp; {{suggestedEvent.endTime}}</h4>
 
-          <div [attr.id] = "event.key + 'list'" style="display: none" padding-top padding-bottom>
+          <div [attr.id] = "suggestedEvent.key + 'list'" style="display: none" padding-top padding-bottom>
             <h2>Contact Info</h2>
             <p>{{ suggestedEvent.contactName }}</p>
             <p>{{ suggestedEvent.contactEmail }}</p> 

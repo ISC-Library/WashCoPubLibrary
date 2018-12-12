@@ -124,17 +124,19 @@ constructor(public alertCtrl: AlertController,
   };
 //#endregion
   
-  displayMore($event) {
+  displayMore($suggestedEvent) {
 
-    document.getElementById($event.id + 'show').style.display = "none"
-    document.getElementById($event.id + 'hide').style.display = "block"
-    document.getElementById($event.id + 'list').style.display = "block"
+    console.log($suggestedEvent)
+
+    document.getElementById($suggestedEvent.id + 'show').style.display = "none"
+    document.getElementById($suggestedEvent.id + 'hide').style.display = "block"
+    document.getElementById($suggestedEvent.id + 'list').style.display = "block"
   }
 
-  displayLess($event) {
-    document.getElementById($event.id + 'show').style.display = "block"
-    document.getElementById($event.id + 'list').style.display = "none"
-    document.getElementById($event.id + 'hide').style.display = "none"
+  displayLess($suggestedEvent) {
+    document.getElementById($suggestedEvent.id + 'show').style.display = "block"
+    document.getElementById($suggestedEvent.id + 'list').style.display = "none"
+    document.getElementById($suggestedEvent.id + 'hide').style.display = "none"
   }
 
   //Create New Events 
