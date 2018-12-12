@@ -72,30 +72,28 @@ export class CalendarPage {
   //////// Below are navigation functions  [][[][[][][][][][][][[][][]]]]
   // []][][][][]][][][][][][][[]][][][][][][][][]]][][][][][][][][][][][][][][][][]]][][][]][][][][][]][]]][][]][]
 
-
-
   // Navigate to the "HomePage" using the NavController 
   navigateToHomePage(slidingItem: ItemSliding) {
-    this.navCtrl.push(HomePage);
+    this.navCtrl.setRoot(HomePage);
   }
 
   //Function to navigate to the "SuggestEventsPage"
   navigateToAddEventsPage(slidingItem: ItemSliding) {
     slidingItem.close();
     // this.navCtrl.popTo(AddEventPage)
-    this.navCtrl.push(AddEventPage);
+    this.navCtrl.setRoot(AddEventPage);
   }
 
   //Function to navigate to the "SuggestEventsPage"
   navigateToAddSuggestEventsPage(slidingItem: ItemSliding) {
     slidingItem.close();
-    this.navCtrl.push(AddSuggestedEventsPage);
+    this.navCtrl.setRoot(AddSuggestedEventsPage);
   }
 
   //Function to navigate to the "SuggestEventsPage"
   navigateToViewSuggestEventsPage(slidingItem: ItemSliding) {
     slidingItem.close()
-    this.navCtrl.push(ViewSuggestedEventsPage);
+    this.navCtrl.setRoot(ViewSuggestedEventsPage);
   }
 
   onDragBoolean: boolean;
