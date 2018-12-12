@@ -13,8 +13,22 @@ page-view-suggested-events {
     }
 
     .toolbar .icon {
-        color: rgb(252, 221, 221);
+        color: rgb(255, 255, 255);
     }
+
+    .navBarImage {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 90%;
+        //Height
+        min-height: 40px;
+        max-height: 40px;
+        //width
+        min-width: 40px;
+        max-width: 40px;
+        transform: translate(-50%, -50%);
+      }
 
 
     //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]

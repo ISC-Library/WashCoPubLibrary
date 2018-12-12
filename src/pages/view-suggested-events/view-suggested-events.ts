@@ -26,8 +26,8 @@ export class ViewSuggestedEventsPage {
 eventsRef: AngularFireList<any>;
 suggestedEventsRef: AngularFireList<any>;
 
-//The events observable holds all the data pulled from the database 
-events: Observable<any[]>;
+//The suggestedEvents observable holds all the data pulled from the database 
+suggestedEvents: Observable<any[]>;
 //Declare the database filter variable
     //Dynamic: Can change so that dynamic filters can be passed to the database 
 databaseFilter: BehaviorSubject<string | null> = new BehaviorSubject('');
@@ -50,6 +50,7 @@ suggestedEvent = {
     contactPhone: ""
 };
 
+//#region constructor
 constructor(public alertCtrl: AlertController,
   public navCtrl: NavController,
   public navParams: NavParams,
@@ -65,26 +66,27 @@ constructor(public alertCtrl: AlertController,
     this.eventsRef = afDatabase.list('events');
     this.suggestedEventsRef = afDatabase.list('suggestedEvents');
 
-    //Set the "events" Observable equal to a call to the database unfiltered (all events)
+    //Set the "suggestedEvents" Observable equal to a call to the database unfiltered (all events)
       //Use the "databaseFilter" to allow it to retrieve the default / unfiltered set (all events)
-    this.events = this.SuggestedEventSvc.addEvents(this.databaseFilter)
+    this.suggestedEvents = this.SuggestedEventSvc.addEvents(this.databaseFilter)
 
-    //We must .subscribe to the "eventsForCSS" Observable before attempting to do anything with its values
-      //This is because the code is being run asynchronously... meaning the line of code may not complete directly after it is called
-        //.Subscribe will let us know when the code is finished executing, by not allowing its inner portion to execute until then
-          //This allows us to only attempt to access "eventsForCSS" data once it has "promised" us that the data is now there  
-          this.events.subscribe((data) => {
-            //Set the .subscription "data" values that are returned to the array "allEvents[]"
-            this.allEvents = data;
-            console.log(this.allEvents)
-          });
-}
+    this.suggestedEvents.subscribe((data) => {
+      //Set the .subscription "data" values that are returned to the array "allEvents[]"
+      this.allEvents = data;
+      console.log(this.allEvents)
+    });
+  }
+  //#endregion
 
+//#region NavGaurds
   ionViewDidLoad() {
-    //Show a loading spinner to ensure the data is loaded rather than just coming into a blank page 
-    this.presentLoadingDefault()
-    console.log("suggested load")
+  
   };
+
+  ionViewDidEnter() {
+    this.presentLoadingDefault()
+  }
+//#endregion
 
   //Loading Spinner
   presentLoadingDefault() {
@@ -99,47 +101,28 @@ constructor(public alertCtrl: AlertController,
     }, 1000);
   };
 
-  //Custom Spinner code for when we decide to tailor make one.
-  // presentLoadingCustom() {
-  //   let loading = this.loadingCtrl.create({
-  //     spinner: 'hide',
-  //     content: `
-  //       <div class="custom-spinner-container">
-  //         <div class="custom-spinner-box"></div>
-  //       </div>`,
-  //     duration: 5000
-  //   });
-  
-  //   loading.onDidDismiss(() => {
-  //     console.log('Dismissed loading');
-  //   });
-  
-  //   loading.present();
-  // };
-
-
-  addSuggestedEvent(event) {
-    console.log("Add");
+//#region EventInteraction
+  addSuggestedEvent(suggestedEvent) {
     //Call the save function, passing in the newly calculated index for the array 
-    this.save(event);
+    this.save(suggestedEvent);
   };
 
   // Navigate to the "ModifyEvent" page
-    //The user selects modify button on the event which they wish to modify 
-      //The event data for that specific event is passed, which we will forward to the "ModifyEvent" page
-      modifySuggestedEvent(event) {
+    //The user selects modify button on the suggestedEvent which they wish to modify 
+      //The event data for that specific suggestedEvent is passed, which we will forward to the "ModifyEvent" page
+      modifySuggestedEvent(suggestedEvent) {
         this.navCtrl.push(ModifySuggestedEventsPage, {
-          event
+          suggestedEvent
         });
-        //console.log(event)
       }
 
 
-  deleteSuggestedEvent(event) {
+  deleteSuggestedEvent(suggestedEvent) {
     console.log("Delete");
-    //Call the database via the "suggestedEventsRef" and delete the item corresponding to the event.id passed
-    this.suggestedEventsRef.remove(event.id);
+    //Call the database via the "suggestedEventsRef" and delete the item corresponding to the suggestedEvent.id passed
+    this.suggestedEventsRef.remove(suggestedEvent.id);
   };
+//#endregion
   
   displayMore() {
     document.getElementById("arrowDropdown").style.display = "none"
@@ -154,22 +137,26 @@ constructor(public alertCtrl: AlertController,
   }
 
   //Create New Events 
-  save(event) {
+  save(suggestedEvent) {
 
-  console.log(event.id)
+  console.log(suggestedEvent.id)
 
   for (let i = 0; i < this.allEvents.length; i++) {
 
-    if (event.id == this.allEvents[i].id) {
-      //Set the values of event object to those of the "allEvents" array...
-      //Specified by the re-calculated "index" passed in from the user selection when they chose to add an event
+    if (suggestedEvent.id == this.allEvents[i].id) {
+      //Set the values of suggestedEvent object to those of the "allEvents" array...
+      //Specified by the re-calculated "index" passed in from the user selection when they chose to add an suggestedEvent
       this.suggestedEvent.title = this.allEvents[i].title, 
       this.suggestedEvent.location = this.allEvents[i].location, 
+      this.suggestedEvent.category = this.allEvents[i].category,
       this.suggestedEvent.notes = this.allEvents[i].notes, 
       this.suggestedEvent.startDate = this.allEvents[i].startDate,
       this.suggestedEvent.endDate = this.allEvents[i].endDate, 
       this.suggestedEvent.startTime = this.allEvents[i].startTime, 
-      this.suggestedEvent.endTime = this.allEvents[i].endTime
+      this.suggestedEvent.endTime = this.allEvents[i].endTime,
+      this.suggestedEvent.contactName = this.allEvents[i].contactName,
+      this.suggestedEvent.contactEmail = this.allEvents[i].contactEmail,
+      this.suggestedEvent.contactPhone = this.allEvents[i].contactPhone
     }
   };
     
@@ -195,6 +182,7 @@ constructor(public alertCtrl: AlertController,
               //Pushing the data to firebase!!!
               text: 'Save',
               handler: data => {
+                //Push the data into the "events" portion of the database
                 const newEventsRef = this.eventsRef.push({});
        
                 newEventsRef.set({
@@ -212,13 +200,13 @@ constructor(public alertCtrl: AlertController,
                 });
 
                 //Call the database via the "suggestedEventsRef" and delete the item corresponding to the event.id passed
-                this.suggestedEventsRef.remove(event.id);
+                this.suggestedEventsRef.remove(suggestedEvent.id);
+                this.navCtrl.pop()
               }
             }
           ]
         });
-        alert.present();
-        this.navCtrl.pop();
+        alert.present() ;
       },
       (err) => {
         let alert = this.alertCtrl.create({
@@ -229,5 +217,5 @@ constructor(public alertCtrl: AlertController,
         alert.present();
       }
     );
-    }
+  }
 };

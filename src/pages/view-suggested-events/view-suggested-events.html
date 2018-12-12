@@ -3,6 +3,9 @@
         <button ion-button [menuToggle]="activeMenu">
           <ion-icon name="menu" color="secondary"></ion-icon>
         </button>
+        <div class="navBarImageWrapper" >
+          <img class="navBarImage" src="assets/imgs/WaCoLibrary_LogoWhite.png" >
+        </div>
       <ion-title>Suggested Events</ion-title>
     </ion-toolbar> 
   </ion-header>
@@ -12,23 +15,23 @@
     
     <ion-list class="event-sliding-demo">
     
-      <ion-item-sliding *ngFor="let event of events | async" #item>
+      <ion-item-sliding *ngFor="let suggestedEvent of suggestedEvents | async" #item>
         <ion-item>
           <!-- Event Icon (avatar) -->
         <ion-avatar item-start>
-            <span *ngIf="event.category === 'sporting'">
+            <span *ngIf="suggestedEvent.category === 'sporting'">
                 <ion-icon name="american-football" class="sportingDot"></ion-icon>
             </span>
 
-            <span *ngIf="event.category === 'community'">
+            <span *ngIf="suggestedEvent.category === 'community'">
                 <ion-icon name="contacts" class="communityDot"></ion-icon>
             </span>
 
-            <span *ngIf="event.category === 'business'">
+            <span *ngIf="suggestedEvent.category === 'business'">
                 <ion-icon name="briefcase" class="businessDot"></ion-icon>
             </span>
 
-            <span *ngIf="event.category === 'art'">
+            <span *ngIf="suggestedEvent.category === 'art'">
               <ion-icon name="brush" class="artDot"></ion-icon>
             </span>
         </ion-avatar>
@@ -40,27 +43,27 @@
           </ion-avatar>
           
           <h2 text-wrap>
-            {{event.title}}
+            {{suggestedEvent.title}}
           </h2>
 
-          <h4 class="startInfo">{{event.startDate}} &nbsp;&nbsp;&nbsp; {{event.startTime}}</h4>
-          <h4 class="endInfo">{{event.endDate}} &nbsp;&nbsp;&nbsp; {{event.endTime}}</h4>
+          <h4 class="startInfo">{{suggestedEvent.startDate}} &nbsp;&nbsp;&nbsp; {{suggestedEvent.startTime}}</h4>
+          <h4 class="endInfo">{{suggestedEvent.endDate}} &nbsp;&nbsp;&nbsp; {{suggestedEvent.endTime}}</h4>
 
           <div id ="additionalInfo" style="display: none" padding-top padding-bottom>
             <h2>Contact Info</h2>
-            <p>{{ event.contactName }}</p>
-            <p>{{ event.contactEmail }}</p> 
-            <p>{{ event.contactPhone }}</p>  
+            <p>{{ suggestedEvent.contactName }}</p>
+            <p>{{ suggestedEvent.contactEmail }}</p> 
+            <p>{{ suggestedEvent.contactPhone }}</p>  
           </div>
 
-          <p text-wrap>{{event.notes}}</p>
+          <p text-wrap>{{suggestedEvent.notes}}</p>
         </ion-item>
 
         <!-- Right Side Options -->
         <!-- Dont make the button able to activate when slid really far, instead force clicking of add button -->
-        <!-- <ion-item-options side="left" (ionSwipe)="deleteSuggestedEvent(event)"></ion-item-options> -->
+        <!-- <ion-item-options side="left" (ionSwipe)="deleteSuggestedEvent(suggestedEvent)"></ion-item-options> -->
         <ion-item-options side="right">
-          <button ion-button color="danger" expandable (click)="deleteSuggestedEvent(event)">
+          <button ion-button color="danger" expandable (click)="deleteSuggestedEvent(suggestedEvent)">
             <ion-icon name="trash"></ion-icon>
             Delete
           </button>
@@ -68,15 +71,15 @@
   
         <!-- Left Side Options -->
         <!-- Dont make the button able to activate when slid really far, instead force clicking of add button -->
-        <!-- <ion-item-options side="left" (ionSwipe)="addSuggestedEvent(event)"></ion-item-options> -->
+        <!-- <ion-item-options side="left" (ionSwipe)="addSuggestedEvent(suggestedEvent)"></ion-item-options> -->
         <ion-item-options side="left">
-          <button ion-button id="addButton" color="secondary" expandable (click)="addSuggestedEvent(event)">
+          <button ion-button id="addButton" color="secondary" expandable (click)="addSuggestedEvent(suggestedEvent)">
             <ion-icon name="calendar" class="expand-hide"></ion-icon>
             <div class="expand-hide">Add</div>
             <!-- <ion-spinner name="crescent"></ion-spinner> -->
           </button>
 
-          <button ion-button id="modifyButton" color="dark" (click)="modifySuggestedEvent(event)">
+          <button ion-button id="modifyButton" color="dark" (click)="modifySuggestedEvent(suggestedEvent)">
             <ion-icon name="create"></ion-icon>
             <div>Modify</div>
           </button>

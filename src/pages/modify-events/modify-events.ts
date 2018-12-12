@@ -99,9 +99,9 @@ export class ModifyEventsPage {
       //The following title example allows regex
       // title: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
       title: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('^(?=.*[a-zA-Z0-9].*)[a-zA-Z0-9!@#$,%&*_ ]+$'), Validators.required])],
-      location: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('^(?=.*[a-zA-Z0-9].*)[a-zA-Z0-9!@#$,%&*_ ]+$'), Validators.required])],
+      location: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('^(?=.*[a-zA-Z0-9].*)[a-zA-Z0-9,_ ]+$'), Validators.required])],
       category: ['', Validators.compose([Validators.pattern('^(?!\s*$).+'), Validators.required])],
-      notes: ['', Validators.compose([Validators.maxLength(250), Validators.pattern('^(?=.*[a-zA-Z0-9].*)[a-zA-Z0-9!@#$,%&*_ ]+$'), Validators.required])],
+      notes: ['', Validators.compose([Validators.maxLength(250), Validators.pattern('^(?=.*[a-zA-Z0-9].*)[a-zA-Z0-9!@#$,%&*_. ]+$'), Validators.required])],
       startDate: ['', Validators.compose([Validators.pattern('^(?!\s*$).+'), Validators.required])],
       endDate: ['', Validators.compose([Validators.pattern('^(?!\s*$).+'), Validators.required])],
     })
