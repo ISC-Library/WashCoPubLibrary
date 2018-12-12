@@ -71,7 +71,7 @@ export class ModifySuggestedEventsPage {
     public formBuilder: FormBuilder) {
     
     //Set the value of the class variable "suggestedEvent" to the suggestedEvent passed 
-    this.suggestedEvent = this.navParams.get('event');
+    this.suggestedEvent = this.navParams.get('suggestedEvent');
 
     //This is the reference to which portion of the database you want to access 
     this.suggestedEventsRef = afDatabase.list('suggestedEvents');
@@ -100,9 +100,9 @@ export class ModifySuggestedEventsPage {
       // title: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
       //You have to use the slash twice "\\" to escape regex in javascript
       title: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('^(?=.*[a-zA-Z0-9].*)[a-zA-Z0-9!@#$,%&*_ ]+$'), Validators.required])],
-      location: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('^(?=.*[a-zA-Z0-9].*)[a-zA-Z0-9!@#$,%&*_ ]+$'), Validators.required])],
+      location: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('^(?=.*[a-zA-Z0-9].*)[a-zA-Z0-9,_ ]+$'), Validators.required])],
       category: ['', Validators.compose([Validators.pattern('^(?!\\s*$).+'), Validators.required])],
-      notes: ['', Validators.compose([Validators.maxLength(250), Validators.pattern('^(?=.*[a-zA-Z0-9].*)[a-zA-Z0-9!@#$,%&*_ ]+$'), Validators.required])],
+      notes: ['', Validators.compose([Validators.maxLength(250), Validators.pattern('^(?=.*[a-zA-Z0-9].*)[a-zA-Z0-9!@#$,%&*_. ]+$'), Validators.required])],
       startDate: ['', Validators.compose([Validators.pattern('^(?!\\s*$).+'), Validators.required])],
       endDate: ['', Validators.compose([Validators.pattern('^(?!\\s*$).+'), Validators.required])],
       contactName: ['', Validators.compose([Validators.pattern('^(?!\\s*$).+'), Validators.required])],

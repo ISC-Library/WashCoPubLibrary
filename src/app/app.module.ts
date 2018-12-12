@@ -10,7 +10,6 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { TestPage } from '../pages/test/test';
 import { CalendarPage } from '../pages/calendar/calendar';
-import { AdminPage } from '../pages/admin/admin';
 import { LoginPage } from '../pages/login/login';
 import { AboutPage } from '../pages/about/about';
 import { AddEventPage} from '../pages/add-event/add-event';
@@ -80,7 +79,6 @@ export const firebaseConfig = {
     HomePage,
     TestPage,
     CalendarPage,
-    AdminPage,
     LoginPage,
     AboutPage,
     AddEventPage,
@@ -109,7 +107,6 @@ export const firebaseConfig = {
     HomePage,
     TestPage,
     CalendarPage,
-    AdminPage,
     LoginPage,
     AboutPage,
     AddEventPage,

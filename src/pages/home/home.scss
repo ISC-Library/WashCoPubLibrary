@@ -16,17 +16,23 @@ page-home {
         color: white;
     }
 
-      .navBarImage {
+    // .navBarImageWrapper {
+    //     position: absolute;
+    //     bottom: 50%;
+    //     left: 90%
+    // }
+    
+    .navBarImage {
         display: block;
         position: absolute;
         top: 50%;
         left: 90%;
         //Height
-        min-height: 70%;
+        min-height: 40px;
         max-height: 40px;
         //width
-        min-width: 10%;
-        max-width: 10%;
+        min-width: 40px;
+        max-width: 40px;
         transform: translate(-50%, -50%);
       }
 
