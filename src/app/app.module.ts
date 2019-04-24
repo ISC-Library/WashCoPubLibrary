@@ -19,6 +19,7 @@ import { ModifyEventsPage } from '../pages/modify-events/modify-events';
 import { ModifySuggestedEventsPage } from '../pages/modify-suggested-events/modify-suggested-events';
 import { JobLinksPage} from '../pages/joblinks/joblinks';
 import { NoneExistPage } from '../pages/none-exist/none-exist';
+import { SchoolDistrictsPage } from '../pages/school-districts/school-districts'
 
 //Import Loooooooooonnnggg Press
 import {LongPressModule} from 'ionic-long-press';
@@ -87,9 +88,8 @@ export const firebaseConfig = {
     ModifyEventsPage,
     ModifySuggestedEventsPage,
     JobLinksPage,
-    NoneExistPage
-    // //Delcare the directive for the ionic 3 input mask
-    // Directive
+    NoneExistPage,
+    SchoolDistrictsPage
   ],
   imports: [
     BrowserModule,
@@ -115,7 +115,8 @@ export const firebaseConfig = {
     ModifyEventsPage,
     ModifySuggestedEventsPage,
     JobLinksPage,
-    NoneExistPage
+    NoneExistPage,
+    SchoolDistrictsPage
   ],
   providers: [
     StatusBar,

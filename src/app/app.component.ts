@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { NavController } from 'ionic-angular';
 
 //Import Pages
 import { HomePage } from '../pages/home/home';
@@ -11,7 +11,7 @@ import { AboutPage } from '../pages/about/about';
 import { JobLinksPage } from '../pages/joblinks/joblinks';
 import { LoginPage } from '../pages/login/login';
 import { NoneExistPage } from '../pages/none-exist/none-exist';
-
+import { SchoolDistrictsPage } from  '../pages/school-districts/school-districts'
 
 @Component({
   templateUrl: 'app.html'
@@ -192,6 +192,13 @@ export class MyApp {
   }
 
 
+ //
+
+
+  //School Districts Page
+  schoolDistricts() {
+    this.nav.push(SchoolDistrictsPage);
+  }
 
   //Links inside Chatom Category
   chatomWebsite() {
