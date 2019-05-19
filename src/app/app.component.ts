@@ -11,6 +11,7 @@ import { AboutPage } from '../pages/about/about';
 import { JobLinksPage } from '../pages/joblinks/joblinks';
 import { LoginPage } from '../pages/login/login';
 import { NoneExistPage } from '../pages/none-exist/none-exist';
+import { CommissionPage } from '../pages/commission/commission';
 
 
 @Component({
