@@ -9,9 +9,11 @@ import { AboutPage } from '../about/about';
 import { CalendarPage } from '../calendar/calendar';
 import { LoginPage } from '../login/login';
 import { JobLinksPage } from '../joblinks/joblinks';
+import { CommissionPage } from '../commission/commission';
 
 //Import Provider
 import { CalenderEventsServiceProvider } from '../../providers/calendar-event-service/calendar-event-service';
+
 
  @Component({
   selector: 'page-home',
@@ -79,6 +81,11 @@ export class HomePage {
 
   goToHelp() {
     this.navCtrl.push(AboutPage);
+  }
+
+  goToCommission() {
+    this.navCtrl.push(CommissionPage);
+    console.log("What")
   }
 
   goToJobLinks(){
