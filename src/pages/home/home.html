@@ -1,7 +1,7 @@
 <ion-header>
     <ion-toolbar>
         <button ion-button [menuToggle]="activeMenu">
-          <ion-icon name="menu" color="secondary"></ion-icon>
+          <ion-icon name="menu" style="color:white" ></ion-icon>
         </button>
         <div class="navBarImageWrapper" >
         <img class="navBarImage" src="assets/imgs/WaCoLibrary_LogoWhite.png" >
@@ -12,6 +12,7 @@
 
 <ion-content  padding>
   <button ion-button (click) = "goToCommission()">Commission Page</button>
+  <button ion-button (click) = "goToSchool()">School Page</button>
 
   <img src="assets/imgs/WaCoLib_btnEvents.png" class="eventsButtonClass" (click)="goToCalendar()">
   

@@ -10,6 +10,7 @@ import { CalendarPage } from '../calendar/calendar';
 import { LoginPage } from '../login/login';
 import { JobLinksPage } from '../joblinks/joblinks';
 import { CommissionPage } from '../commission/commission';
+import { SchoolDistrictsPage} from '../school-districts/school-districts'
 
 //Import Provider
 import { CalenderEventsServiceProvider } from '../../providers/calendar-event-service/calendar-event-service';
@@ -87,6 +88,12 @@ export class HomePage {
     this.navCtrl.push(CommissionPage);
     console.log("What")
   }
+
+  goToSchool() {
+    this.navCtrl.push(SchoolDistrictsPage);
+    console.log("How")
+  }
+
 
   goToJobLinks(){
     this.navCtrl.push(JobLinksPage)

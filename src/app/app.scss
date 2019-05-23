@@ -66,6 +66,66 @@ ion-content{background-image: url(../../assets/imgs/WaCoLibHome_Background.png);
        color:black;
     }
 
+
+    //#region McIntosh
+   .mcintoshInfoShown{
+    color:rgba(0,68,136,1);
+    background:
+    linear-gradient(
+        rgb(255, 255, 255), 
+        rgb(255, 255, 255),
+        rgba(0,68,136,.2)), 
+        white;
+     text-align:right;
+     display:block;
+     font-size:1.7rem;
+   }
+
+   .mcintoshInfoHidden{
+    display:none;
+   }
+   //#endregion
+
+    //#region Leroy
+   .leroyInfoShown{
+    color:rgba(0,68,136,1);
+    background:
+    linear-gradient(
+        rgb(255, 255, 255), 
+        rgb(255, 255, 255),
+        rgba(0,68,136,.2)), 
+        white;
+     text-align:right;
+     display:block;
+     font-size:1.7rem;
+   }
+
+   .leroyInfoHidden{
+       display:none
+   }
+   //#endregion
+    
+    //#region Fruitdale
+   .fruitdaleInfoShown{
+    color:rgba(0,68,136,1);
+    background:
+    linear-gradient(
+        rgb(255, 255, 255), 
+        rgb(255, 255, 255),
+        rgba(0,68,136,.2)), 
+        white;
+     text-align:right;
+     display:block;
+     font-size:1.7rem;
+ }
+ 
+ .fruitdaleInfoHidden{
+     text-align:right;
+     display:none;
+ }
+ //#endregion
+
+    //#region Chatom
     .chatomInfoShown{
         color:rgba(0,68,136,1);
         background:
@@ -84,42 +144,9 @@ ion-content{background-image: url(../../assets/imgs/WaCoLibHome_Background.png);
     .chatomInfoHidden{
         display:none;
     }
+    //#endregion
 
-   .fruitdaleInfoShown{
-       color:rgba(0,68,136,1);
-       background:
-       linear-gradient(
-           rgb(255, 255, 255), 
-           rgb(255, 255, 255),
-           rgba(0,68,136,.2)), 
-           white;
-        text-align:right;
-        display:block;
-        font-size:1.7rem;
-    }
-    
-    .fruitdaleInfoHidden{
-        text-align:right;
-        display:none;
-    }
-
-   .mcintoshInfoShown{
-    color:rgba(0,68,136,1);
-    background:
-    linear-gradient(
-        rgb(255, 255, 255), 
-        rgb(255, 255, 255),
-        rgba(0,68,136,.2)), 
-        white;
-     text-align:right;
-     display:block;
-     font-size:1.7rem;
-   }
-
-   .mcintoshInfoHidden{
-    display:none;
-   }
-
+    //#region Millry
    .millryInfoShown{
     color:rgba(0,68,136,1);
     background:
@@ -136,20 +163,4 @@ ion-content{background-image: url(../../assets/imgs/WaCoLibHome_Background.png);
    .millryInfoHidden{
        display:none;
    }
-
-   .leroyInfoShown{
-    color:rgba(0,68,136,1);
-    background:
-    linear-gradient(
-        rgb(255, 255, 255), 
-        rgb(255, 255, 255),
-        rgba(0,68,136,.2)), 
-        white;
-     text-align:right;
-     display:block;
-     font-size:1.7rem;
-   }
-
-   .leroyInfoHidden{
-       display:none
-   }
+   //#endregion

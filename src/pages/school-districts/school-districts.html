@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
       <button ion-button [menuToggle]="activeMenu">
-        <ion-icon name="menu" color="secondary"></ion-icon>
+        <ion-icon name="menu" style="color:white"></ion-icon>
       </button>
       <div class="navBarImageWrapper" >
       <img class="navBarImage" src="assets/imgs/WaCoLibrary_LogoWhite.png" >
@@ -12,10 +12,72 @@
 
 <ion-content>
 
-<ion-card>
+
+<!-- D1 -->
+<ion-card class="districtCard">
   <ion-card-content>
     <ion-card-title>
-      District One
+      District One - McIntosh
+    </ion-card-title>
+    <p>
+      Jason Boothe
+    </p>
+  </ion-card-content>
+  <ion-avatar>
+      <ion-icon id="fourShow" name="arrow-dropdown" (click)="displayMore('fourMore')"></ion-icon>
+      <ion-icon id="fourHide" style="display: none" name="arrow-dropup" (click)="displayLess('fourLess')"></ion-icon>
+  </ion-avatar>
+
+  <img class="districtMap" *ngIf="districtSelection == 'mcintosh'" src="../../assets/WaCo Maps/School Districts Maps/SD_Map_D1.png">
+
+</ion-card>
+
+
+<!-- D2 -->
+<ion-card class="districtCard">
+  <ion-card-content>
+    <ion-card-title>
+      District Two - Leroy
+    </ion-card-title>
+    <p>
+      Termite Beasley
+    </p>
+  </ion-card-content>
+  <ion-avatar>
+      <ion-icon id="threeShow" name="arrow-dropdown" (click)="displayMore('threeMore')"></ion-icon>
+      <ion-icon id="threeHide" style="display: none" name="arrow-dropup" (click)="displayLess('threeLess')"></ion-icon>
+  </ion-avatar>
+
+  <img class="districtMap" *ngIf="districtSelection == 'leroy'" src="../../assets/WaCo Maps/School Districts Maps/SD_Map_D2.png">
+
+</ion-card>
+
+
+<!-- D3 -->
+<ion-card class="districtCard"> 
+  <ion-card-content>
+    <ion-card-title>
+      District Three - Fruitdale
+    </ion-card-title>
+    <p>
+      Allan Bailey
+    </p>
+  </ion-card-content>
+  <ion-avatar>
+      <ion-icon id="twoShow" name="arrow-dropdown" (click)="displayMore('twoMore')"></ion-icon>
+      <ion-icon id="twoHide" style="display: none" name="arrow-dropup" (click)="displayLess('twoLess')"></ion-icon>
+  </ion-avatar>
+
+  <img class="districtMap" *ngIf="districtSelection == 'fruitdale'" src="../../assets/WaCo Maps/School Districts Maps/SD_Map_D3.png">
+
+</ion-card>
+
+
+<!-- D4 -->
+<ion-card class="districtCard">
+  <ion-card-content>
+    <ion-card-title>
+      District Four - Chatom
     </ion-card-title>
     <p>
       Brad Johnston
@@ -26,61 +88,17 @@
       <ion-icon id="oneShow" name="arrow-dropdown" (click)="displayMore('oneMore')"></ion-icon>
       <ion-icon id="oneHide" style="display: none" name="arrow-dropup" (click)="displayLess('oneLess')"></ion-icon>
   </ion-avatar>
+
+  <img class="districtMap"  *ngIf="districtSelection == 'chatom'" src="../../assets/WaCo Maps/School Districts Maps/SD_Map_D4.png">
+
 </ion-card>
 
 
-<ion-card>
+<!-- D5 -->
+<ion-card class="districtCard"> 
   <ion-card-content>
     <ion-card-title>
-      District Two
-    </ion-card-title>
-    <p>
-      Allan Bailey
-    </p>
-  </ion-card-content>
-  <ion-avatar>
-      <ion-icon id="twoShow" name="arrow-dropdown" (click)="displayMore('twoMore')"></ion-icon>
-      <ion-icon id="twoHide" style="display: none" name="arrow-dropup" (click)="displayLess('twoLess')"></ion-icon>
-  </ion-avatar>
-</ion-card>
-
-
-<ion-card>
-  <ion-card-content>
-    <ion-card-title>
-      District Three
-    </ion-card-title>
-    <p>
-      Termite Beasley
-    </p>
-  </ion-card-content>
-  <ion-avatar>
-      <ion-icon id="threeShow" name="arrow-dropdown" (click)="displayMore('threeMore')"></ion-icon>
-      <ion-icon id="threeHide" style="display: none" name="arrow-dropup" (click)="displayLess('threeLess')"></ion-icon>
-  </ion-avatar>
-</ion-card>
-
-
-<ion-card>
-  <ion-card-content>
-    <ion-card-title>
-      District Four
-    </ion-card-title>
-    <p>
-      Jason Boothe
-    </p>
-  </ion-card-content>
-  <ion-avatar>
-      <ion-icon id="fourShow" name="arrow-dropdown" (click)="displayMore('fourMore')"></ion-icon>
-      <ion-icon id="fourHide" style="display: none" name="arrow-dropup" (click)="displayLess('fourLess')"></ion-icon>
-  </ion-avatar>
-</ion-card>
-
-
-<ion-card>
-  <ion-card-content>
-    <ion-card-title>
-      District Five
+      District Five - Millry
     </ion-card-title>
     <p>
       Joe Abston
@@ -90,6 +108,9 @@
       <ion-icon id="fiveShow" name="arrow-dropdown" (click)="displayMore('fiveMore')"></ion-icon>
       <ion-icon id="fiveHide" style="display: none" name="arrow-dropup" (click)="displayLess('fiveLess')"></ion-icon>
   </ion-avatar>
+
+  <img class="districtMap" *ngIf="districtSelection == 'millry'" src="../../assets/WaCo Maps/School Districts Maps/SD_Map_D5.png">
+
 </ion-card>
 
 

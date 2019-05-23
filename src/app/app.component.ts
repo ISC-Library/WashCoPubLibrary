@@ -13,6 +13,7 @@ import { LoginPage } from '../pages/login/login';
 import { NoneExistPage } from '../pages/none-exist/none-exist';
 import { CommissionPage } from '../pages/commission/commission';
 import { SchoolDistrictsPage } from  '../pages/school-districts/school-districts'
+import { LocalGovernmentAndServicesPage } from '../pages/local-government-and-services/local-government-and-services'
 
 @Component({
   templateUrl: 'app.html'
@@ -34,21 +35,156 @@ export class MyApp {
   goToHome() {
     this.nav.setRoot(HomePage);
   }
-  goToHelp() {
-    this.nav.push(AboutPage);
+
+  goToBookShelf() {
+    window.open("https://abdodigital.com/?tk=A8A412886D6FFCA174EA2F2E90A6169D", '_system', 'location=yes');
   }
 
   goToJobLinks() {
     this.nav.push(JobLinksPage);
   }
 
+  goToLocalGovernmentAndServices() {
+    this.nav.push(LocalGovernmentAndServicesPage);
+  }
+
+  goToHelp() {
+    this.nav.push(AboutPage);
+  }
+
   goToLogin() {
     this.nav.push(LoginPage);
   }
 
-  goToBookShelf() {
-    window.open("https://abdodigital.com/?tk=A8A412886D6FFCA174EA2F2E90A6169D", '_system', 'location=yes');
+  
+
+  //School Districts Page
+  schoolDistricts(districtSelection) {
+    this.nav.push(SchoolDistrictsPage, {districtSelection});
   }
+
+
+  //#region McIntosh
+
+  openMcintosh() {
+    document.getElementById("mcintoshInfoShown").style.display = "block";
+    document.getElementById("mcintoshInfoHidden").style.display = "none";
+
+    let elementsListMcintoshHidden = document.getElementsByClassName("mcintoshInfoHidden");
+    if (elementsListMcintoshHidden.length > 0) {
+      let mcintoshLengthHidden = elementsListMcintoshHidden.length
+      //Show Mcintosh :: If not already shown
+      for (let i = (mcintoshLengthHidden - 1); i > -1; i--) {
+        elementsListMcintoshHidden[i].className = "mcintoshInfoShown";
+      }
+    }
+  }
+
+  closeMcintosh() {
+    document.getElementById("mcintoshInfoShown").style.display = "none";
+    document.getElementById("mcintoshInfoHidden").style.display = "block";
+
+    let elementsListMcintoshShown = document.getElementsByClassName("mcintoshInfoShown");
+    if (elementsListMcintoshShown.length > 0) {
+      let mcintoshLengthShown = elementsListMcintoshShown.length
+      //Show Mcintosh :: If not already shown
+      for (let i = (mcintoshLengthShown - 1); i > -1; i--) {
+        elementsListMcintoshShown[i].className = "mcintoshInfoHidden";
+      }
+    }
+  }
+
+  //Links inside McIntosh Category
+  mcintoshWebsite() {
+    window.open("https://mcintoshal.com/", '_system', 'location=yes');
+  }
+
+  mcintoshFacebook() {
+    window.open("https://www.facebook.com/places/Things-to-do-in-McIntosh-Alabama/104057586296349/", '_system', 'location=yes')
+  }
+  //#endregion
+
+  //#region Leroy
+
+  openLeroy() {
+    document.getElementById("leroyInfoShown").style.display = "block";
+    document.getElementById("leroyInfoHidden").style.display = "none";
+
+    let elementsListLeroyHidden = document.getElementsByClassName("leroyInfoHidden");
+    if (elementsListLeroyHidden.length > 0) {
+      let leroyLengthHidden = elementsListLeroyHidden.length
+      //Show Leroy :: If not already shown
+      for (let i = (leroyLengthHidden - 1); i > -1; i--) {
+        elementsListLeroyHidden[i].className = "leroyInfoShown";
+      }
+    }
+  }
+
+  closeLeroy() {
+    document.getElementById("leroyInfoShown").style.display = "none";
+    document.getElementById("leroyInfoHidden").style.display = "block";
+
+    let elementsListLeroyShown = document.getElementsByClassName("leroyInfoShown");
+    if (elementsListLeroyShown.length > 0) {
+      let leroyLengthShown = elementsListLeroyShown.length
+      //Show Leroy :: If not already shown
+      for (let i = (leroyLengthShown - 1); i > -1; i--) {
+        elementsListLeroyShown[i].className = "leroyInfoHidden";
+      }
+    }
+  }
+
+  //Links inside Leroy Category
+  leroyWebsite() {
+    this.nav.push(NoneExistPage);
+  }
+
+  leroyFacebook() {
+    window.open("https://www.facebook.com/places/Things-to-do-in-Leroy-Alabama/108550659166642/", '_system', 'location=yes')
+  }
+  //#endregion
+
+  //#region Fruitdale
+
+  openFruitdale() {
+    document.getElementById("fruitdaleInfoShown").style.display = "block";
+    document.getElementById("fruitdaleInfoHidden").style.display = "none";
+
+    let elementsListFruitdaleHidden = document.getElementsByClassName("fruitdaleInfoHidden");
+    if (elementsListFruitdaleHidden.length > 0) {
+      let fruitdaleLengthHidden = elementsListFruitdaleHidden.length
+      //Show Fruitdale :: If not already shown
+      for (let i = (fruitdaleLengthHidden - 1); i > -1; i--) {
+        elementsListFruitdaleHidden[i].className = "fruitdaleInfoShown";
+      }
+    }
+  }
+
+  closeFruitdale() {
+    document.getElementById("fruitdaleInfoShown").style.display = "none";
+    document.getElementById("fruitdaleInfoHidden").style.display = "block";
+
+    let elementsListFruitdaleShown = document.getElementsByClassName("fruitdaleInfoShown");
+    if (elementsListFruitdaleShown.length > 0) {
+      let fruitdaleLengthShown = elementsListFruitdaleShown.length
+      //Show Fruitdale :: If not already shown
+      for (let i = (fruitdaleLengthShown - 1); i > -1; i--) {
+        elementsListFruitdaleShown[i].className = "fruitdaleInfoHidden";
+      }
+    }
+  }
+
+  //Links inside Fruitdale Category
+  fruitdaleWebsite() {
+    this.nav.push(NoneExistPage);
+  }
+
+  fruitdaleFacebook() {
+    window.open("https://www.facebook.com/places/Things-to-do-in-Fruitdale-Alabama/104904699545501/", '_system', 'location=yes')
+  }
+  //#endregion
+
+  //#region Chatom
 
   //HTML is reformated to show the "Chatom" element with sections on function init
   openChatom() {
@@ -80,89 +216,17 @@ export class MyApp {
     }
   }
 
-  openFruitdale() {
-    document.getElementById("fruitdaleInfoShown").style.display = "block";
-    document.getElementById("fruitdaleInfoHidden").style.display = "none";
-
-    let elementsListFruitdaleHidden = document.getElementsByClassName("fruitdaleInfoHidden");
-    if (elementsListFruitdaleHidden.length > 0) {
-      let fruitdaleLengthHidden = elementsListFruitdaleHidden.length
-      //Show Fruitdale :: If not already shown
-      for (let i = (fruitdaleLengthHidden - 1); i > -1; i--) {
-        elementsListFruitdaleHidden[i].className = "fruitdaleInfoShown";
-      }
-    }
+  //Links inside Chatom Category
+  chatomWebsite() {
+    window.open("https://www.chatom.org", '_system', 'location=yes');
   }
 
-  closeFruitdale() {
-    document.getElementById("fruitdaleInfoShown").style.display = "none";
-    document.getElementById("fruitdaleInfoHidden").style.display = "block";
-
-    let elementsListFruitdaleShown = document.getElementsByClassName("fruitdaleInfoShown");
-    if (elementsListFruitdaleShown.length > 0) {
-      let fruitdaleLengthShown = elementsListFruitdaleShown.length
-      //Show Fruitdale :: If not already shown
-      for (let i = (fruitdaleLengthShown - 1); i > -1; i--) {
-        elementsListFruitdaleShown[i].className = "fruitdaleInfoHidden";
-      }
-    }
+  chatomFacebook() {
+    window.open("https://www.facebook.com/places/Things-to-do-in-Chatom-Alabama/108413832512293/", '_system', 'location=yes')
   }
+  //#endregion
 
-  openMcintosh() {
-    document.getElementById("mcintoshInfoShown").style.display = "block";
-    document.getElementById("mcintoshInfoHidden").style.display = "none";
-
-    let elementsListMcintoshHidden = document.getElementsByClassName("mcintoshInfoHidden");
-    if (elementsListMcintoshHidden.length > 0) {
-      let mcintoshLengthHidden = elementsListMcintoshHidden.length
-      //Show Mcintosh :: If not already shown
-      for (let i = (mcintoshLengthHidden - 1); i > -1; i--) {
-        elementsListMcintoshHidden[i].className = "mcintoshInfoShown";
-      }
-    }
-  }
-
-  closeMcintosh() {
-    document.getElementById("mcintoshInfoShown").style.display = "none";
-    document.getElementById("mcintoshInfoHidden").style.display = "block";
-
-    let elementsListMcintoshShown = document.getElementsByClassName("mcintoshInfoShown");
-    if (elementsListMcintoshShown.length > 0) {
-      let mcintoshLengthShown = elementsListMcintoshShown.length
-      //Show Mcintosh :: If not already shown
-      for (let i = (mcintoshLengthShown - 1); i > -1; i--) {
-        elementsListMcintoshShown[i].className = "mcintoshInfoHidden";
-      }
-    }
-  }
-
-  openLeroy() {
-    document.getElementById("leroyInfoShown").style.display = "block";
-    document.getElementById("leroyInfoHidden").style.display = "none";
-
-    let elementsListLeroyHidden = document.getElementsByClassName("leroyInfoHidden");
-    if (elementsListLeroyHidden.length > 0) {
-      let leroyLengthHidden = elementsListLeroyHidden.length
-      //Show Leroy :: If not already shown
-      for (let i = (leroyLengthHidden - 1); i > -1; i--) {
-        elementsListLeroyHidden[i].className = "leroyInfoShown";
-      }
-    }
-  }
-
-  closeLeroy() {
-    document.getElementById("leroyInfoShown").style.display = "none";
-    document.getElementById("leroyInfoHidden").style.display = "block";
-
-    let elementsListLeroyShown = document.getElementsByClassName("leroyInfoShown");
-    if (elementsListLeroyShown.length > 0) {
-      let leroyLengthShown = elementsListLeroyShown.length
-      //Show Leroy :: If not already shown
-      for (let i = (leroyLengthShown - 1); i > -1; i--) {
-        elementsListLeroyShown[i].className = "leroyInfoHidden";
-      }
-    }
-  }
+  //#region Millry
 
   openMillry() {
     document.getElementById("millryInfoShown").style.display = "block";
@@ -192,51 +256,6 @@ export class MyApp {
     }
   }
 
-
- //
-
-
-  //School Districts Page
-  schoolDistricts() {
-    this.nav.push(SchoolDistrictsPage);
-  }
-
-  //Links inside Chatom Category
-  chatomWebsite() {
-    window.open("https://www.chatom.org", '_system', 'location=yes');
-  }
-
-  chatomFacebook() {
-    window.open("https://www.facebook.com/places/Things-to-do-in-Chatom-Alabama/108413832512293/", '_system', 'location=yes')
-  }
-
-  //Links inside Fruitdale Category
-  fruitdaleWebsite() {
-    this.nav.push(NoneExistPage);
-  }
-
-  fruitdaleFacebook() {
-    window.open("https://www.facebook.com/places/Things-to-do-in-Fruitdale-Alabama/104904699545501/", '_system', 'location=yes')
-  }
-
-  //Links inside Leroy Category
-  leroyWebsite() {
-    this.nav.push(NoneExistPage);
-  }
-
-  leroyFacebook() {
-    window.open("https://www.facebook.com/places/Things-to-do-in-Leroy-Alabama/108550659166642/", '_system', 'location=yes')
-  }
-
-  //Links inside McIntosh Category
-  mcintoshWebsite() {
-    window.open("https://mcintoshal.com/", '_system', 'location=yes');
-  }
-
-  mcintoshFacebook() {
-    window.open("https://www.facebook.com/places/Things-to-do-in-McIntosh-Alabama/104057586296349/", '_system', 'location=yes')
-  }
-
   //Links inside Millry Category
   millryWebsite() {
     this.nav.push(NoneExistPage);
@@ -245,4 +264,5 @@ export class MyApp {
   millryFacebook() {
     window.open("https://www.facebook.com/places/Things-to-do-in-Millry-Alabama/103997982970453/", '_system', 'location=yes')
   }
+  //#endregion
 }
