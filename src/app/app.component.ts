@@ -63,6 +63,10 @@ export class MyApp {
     this.nav.push(SchoolDistrictsPage, {districtSelection});
   }
 
+  commissionDistricts(districtSelection) {
+    this.nav.push(CommissionPage, {districtSelection});
+  }
+
 
   //#region McIntosh
 

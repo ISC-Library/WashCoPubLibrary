@@ -1,5 +1,4 @@
 page-commission {
-
     //#region NavBar
     //NavBar
     .toolbar-background {
@@ -11,15 +10,6 @@ page-commission {
         color: white;
     }
 
-    .icon  {
-        color: white;
-    }
-
-    // .navBarImageWrapper {
-    //     position: absolute;
-    //     bottom: 50%;
-    //     left: 90%
-    // }
 
     .navBarImage {
         display: block;
@@ -36,9 +26,26 @@ page-commission {
     }
     //#endregion
 
-    
-
-    ion-avatar{
-        text-align:center;
+    ion-avatar {
+        text-align: center;
+        padding-bottom: 5px;
     }
+
+    //#region DistrictMaps
+
+    //#region CardStyling
+    .districtCard {
+        line-height: 50%;
+        text-align: center;
+        background: rgb(255, 255, 245);
+        box-shadow: 4px 4px 4px 2px rgba(0,0,0, .45);
+    }
+
+    //.districtMap Class applied to all map images 
+    .districtMap {
+        width: 80%;
+        display: inline-block;
+    }
+
+    //#endregion
 }

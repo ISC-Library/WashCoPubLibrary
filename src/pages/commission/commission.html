@@ -1,79 +1,117 @@
 <ion-header>
   <ion-toolbar>
       <button ion-button [menuToggle]="activeMenu">
-        <ion-icon name="menu" color="secondary"></ion-icon>
+        <ion-icon name="menu" style="color:white"></ion-icon>
       </button>
       <div class="navBarImageWrapper" >
-        <img class="navBarImage" src="assets/imgs/WaCoLibrary_LogoWhite.png" >
+      <img class="navBarImage" src="assets/imgs/WaCoLibrary_LogoWhite.png" >
       </div>
-    <ion-title>Commission</ion-title>
+    <ion-title>Washington County Commission</ion-title>
   </ion-toolbar> 
 </ion-header>
 
-
 <ion-content>
-  <ion-card>
-    <ion-card-header text-center>
-      Washington County Commission
-    </ion-card-header>
 
-    <ion-list>
-      <ion-item>
-        District 1
-        <br>
-        Marvin Johnstons
-      </ion-item>
-      <br>
-      <ion-item>
-        District 2
-        <br>
-        Allen Bailey (Chairman)
-      </ion-item>
-      <br>
-      <ion-item>
-        District 3
-        <br>
-        William (Termite) Beasley
-      </ion-item>
-      <br>
-      <ion-item>
-        District 4
-        <br>
-        Jason Boothe
-      </ion-item>
-      <br>
-      <ion-item>
-        District 5
-        <br>
-        Joseph Abston
-      </ion-item>
-      <br>
-      <ion-item>
-        Probate Judge
-        <br>
-        Nick Williams
-      </ion-item>
-      <br>
-      <ion-item text-center>
-        Washington County Commission
-        <br>
-        PO Box 146
-        <br>
-        Chatom, AL., 36518
-        <br>
-        251-847-2208
-      </ion-item>
-    </ion-list>
-  </ion-card>
-  <br>
-  <ion-card>
-    <ion-card-header text-center>
-      Unsure of which District you're in?
-    </ion-card-header>
-    <ion-list>
-      <ion-item text-center>
-        Press here to see our district maps!
-      </ion-item>
-    </ion-list>
-  </ion-card>
-</ion-content>
+
+<!-- D1 -->
+<ion-card class="districtCard">
+  <ion-card-content>
+    <ion-card-title>
+      District One
+    </ion-card-title>
+    <p>
+     Marvin Johnston
+    </p>
+  </ion-card-content>
+  <ion-avatar>
+      <ion-icon id="fourShow" name="arrow-dropdown" (click)="displayMore('fourMore')"></ion-icon>
+      <ion-icon id="fourHide" style="display: none" name="arrow-dropup" (click)="displayLess('fourLess')"></ion-icon>
+  </ion-avatar>
+
+  <img class="districtMap" *ngIf="districtSelection == 'mcintosh'" src="../../assets/WaCo Maps/Comissioner Districts Maps/CD_Map_D1.png">
+
+</ion-card>
+
+
+<!-- D2 -->
+<ion-card class="districtCard">
+  <ion-card-content>
+    <ion-card-title>
+      District Two
+    </ion-card-title>
+    <p>
+      Allen Bailey (Chairman)
+    </p>
+  </ion-card-content>
+  <ion-avatar>
+      <ion-icon id="threeShow" name="arrow-dropdown" (click)="displayMore('threeMore')"></ion-icon>
+      <ion-icon id="threeHide" style="display: none" name="arrow-dropup" (click)="displayLess('threeLess')"></ion-icon>
+  </ion-avatar>
+
+  <img class="districtMap" *ngIf="districtSelection == 'leroy'" src="../../assets/WaCo Maps/Comissioner Districts Maps/CD_Map_D2.png">
+
+</ion-card>
+
+
+<!-- D3 -->
+<ion-card class="districtCard"> 
+  <ion-card-content>
+    <ion-card-title>
+      District Three
+    </ion-card-title>
+    <p>
+      William (Termite) Beasley
+    </p>
+  </ion-card-content>
+  <ion-avatar>
+      <ion-icon id="twoShow" name="arrow-dropdown" (click)="displayMore('twoMore')"></ion-icon>
+      <ion-icon id="twoHide" style="display: none" name="arrow-dropup" (click)="displayLess('twoLess')"></ion-icon>
+  </ion-avatar>
+
+  <img class="districtMap" *ngIf="districtSelection == 'fruitdale'" src="../../assets/WaCo Maps/Comissioner Districts Maps/CD_Map_D3.png">
+
+</ion-card>
+
+
+<!-- D4 -->
+<ion-card class="districtCard">
+  <ion-card-content>
+    <ion-card-title>
+      District Four
+    </ion-card-title>
+    <p>
+      Jason Boothe
+    </p>
+  </ion-card-content>
+  <!-- Display Additional Info Button -->
+  <ion-avatar>
+      <ion-icon id="oneShow" name="arrow-dropdown" (click)="displayMore('oneMore')"></ion-icon>
+      <ion-icon id="oneHide" style="display: none" name="arrow-dropup" (click)="displayLess('oneLess')"></ion-icon>
+  </ion-avatar>
+
+  <img class="districtMap"  *ngIf="districtSelection == 'chatom'" src="../../assets/WaCo Maps/Comissioner Districts Maps/CD_Map_D4.png">
+
+</ion-card>
+
+
+<!-- D5 -->
+<ion-card class="districtCard"> 
+  <ion-card-content>
+    <ion-card-title>
+      District Five
+    </ion-card-title>
+    <p>
+      Joseph Abston
+    </p>
+  </ion-card-content>
+  <ion-avatar>
+      <ion-icon id="fiveShow" name="arrow-dropdown" (click)="displayMore('fiveMore')"></ion-icon>
+      <ion-icon id="fiveHide" style="display: none" name="arrow-dropup" (click)="displayLess('fiveLess')"></ion-icon>
+  </ion-avatar>
+
+  <img class="districtMap" *ngIf="districtSelection == 'millry'" src="../../assets/WaCo Maps/Comissioner Districts Maps/CD_Map_D5.png">
+
+</ion-card>
+
+
+</ion-content>>
