@@ -66,6 +66,24 @@ ion-content{background-image: url(../../assets/imgs/WaCoLibHome_Background.png);
        color:black;
     }
 
+    //#region CommissionerDistricts
+    .commissionerInfoShown{
+        color:rgba(0,68,136,1);
+        background:
+        linear-gradient(
+            rgb(255, 255, 255), 
+            rgb(255, 255, 255),
+            rgba(0,68,136,.2)), 
+            white;
+        text-align:right;
+        display:block;
+        font-size:1.7rem;
+    }
+
+   .commissionerInfoHidden{
+    display:none;
+   }
+   //#endregion
 
     //#region McIntosh
    .mcintoshInfoShown{

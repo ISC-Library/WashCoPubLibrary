@@ -57,17 +57,46 @@ export class MyApp {
   }
 
   
-
   //School Districts Page
   schoolDistricts(districtSelection) {
     this.nav.push(SchoolDistrictsPage, {districtSelection});
     // this.nav.push(SchoolDistrictsPage)
   }
 
-  commissionDistricts(districtSelection) {
+  commissionerDistricts(districtSelection) {
     this.nav.push(CommissionPage, {districtSelection});
   }
 
+  //#region commissionerDistricts
+
+  openCommissionerDistricts() {
+    document.getElementById("commissionerInfoShown").style.display = "block";
+    document.getElementById("commissionerInfoHidden").style.display = "none";
+
+    let elementsListcommissionerHidden = document.getElementsByClassName("commissionerInfoHidden");
+    if (elementsListcommissionerHidden.length > 0) {
+      let commissionerLengthHidden = elementsListcommissionerHidden.length
+      //Show commissioner :: If not already shown
+      for (let i = (commissionerLengthHidden - 1); i > -1; i--) {
+        elementsListcommissionerHidden[i].className = "commissionerInfoShown";
+      }
+    }
+  }
+
+  closeCommissionerDistricts() {
+    document.getElementById("commissionerInfoShown").style.display = "none";
+    document.getElementById("commissionerInfoHidden").style.display = "block";
+
+    let elementsListcommissionerShown = document.getElementsByClassName("commissionerInfoShown");
+    if (elementsListcommissionerShown.length > 0) {
+      let commissionerLengthShown = elementsListcommissionerShown.length
+      //Show commissioner :: If not already shown
+      for (let i = (commissionerLengthShown - 1); i > -1; i--) {
+        elementsListcommissionerShown[i].className = "commissionerInfoHidden";
+      }
+    }
+  }
+  //#endregion
 
   //#region McIntosh
 

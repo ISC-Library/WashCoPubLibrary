@@ -12,7 +12,6 @@
 
 <ion-content>
 
-
 <!-- D1 -->
 <ion-card class="districtCard">
   <ion-card-content>
@@ -20,15 +19,15 @@
       District One
     </ion-card-title>
     <p>
-     Marvin Johnston
+        Marvin Johnston
     </p>
   </ion-card-content>
   <ion-avatar>
-      <ion-icon id="fourShow" name="arrow-dropdown" (click)="displayMore('fourMore')"></ion-icon>
-      <ion-icon id="fourHide" style="display: none" name="arrow-dropup" (click)="displayLess('fourLess')"></ion-icon>
+      <ion-icon *ngIf="districtSelection != 'd1'" name="arrow-dropdown" (click)="toggleDisplay('d1')"></ion-icon>
+      <ion-icon *ngIf="districtSelection == 'd1'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
   </ion-avatar>
 
-  <img class="districtMap" *ngIf="districtSelection == 'mcintosh'" src="../../assets/WaCo Maps/Comissioner Districts Maps/CD_Map_D1.png">
+  <img class="districtMap" *ngIf="districtSelection == 'd1'" src="../../assets/WaCo Maps/School Districts Maps/SD_Map_D1.png">
 
 </ion-card>
 
@@ -37,18 +36,18 @@
 <ion-card class="districtCard">
   <ion-card-content>
     <ion-card-title>
-      District Two
+      District Two 
     </ion-card-title>
     <p>
-      Allen Bailey (Chairman)
+        Allen Bailey (Chairman)
     </p>
   </ion-card-content>
   <ion-avatar>
-      <ion-icon id="threeShow" name="arrow-dropdown" (click)="displayMore('threeMore')"></ion-icon>
-      <ion-icon id="threeHide" style="display: none" name="arrow-dropup" (click)="displayLess('threeLess')"></ion-icon>
+      <ion-icon *ngIf="districtSelection != 'd2'" name="arrow-dropdown" (click)="toggleDisplay('d2')"></ion-icon>
+      <ion-icon *ngIf="districtSelection == 'd2'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
   </ion-avatar>
 
-  <img class="districtMap" *ngIf="districtSelection == 'leroy'" src="../../assets/WaCo Maps/Comissioner Districts Maps/CD_Map_D2.png">
+  <img class="districtMap" *ngIf="districtSelection == 'd2'" src="../../assets/WaCo Maps/School Districts Maps/SD_Map_D2.png">
 
 </ion-card>
 
@@ -57,18 +56,18 @@
 <ion-card class="districtCard"> 
   <ion-card-content>
     <ion-card-title>
-      District Three
+      District Three 
     </ion-card-title>
     <p>
-      William (Termite) Beasley
+        Jason Boothe
     </p>
   </ion-card-content>
   <ion-avatar>
-      <ion-icon id="twoShow" name="arrow-dropdown" (click)="displayMore('twoMore')"></ion-icon>
-      <ion-icon id="twoHide" style="display: none" name="arrow-dropup" (click)="displayLess('twoLess')"></ion-icon>
+      <ion-icon *ngIf="districtSelection != 'd3'" name="arrow-dropdown" (click)="toggleDisplay('d3')"></ion-icon>
+      <ion-icon *ngIf="districtSelection == 'd3'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
   </ion-avatar>
 
-  <img class="districtMap" *ngIf="districtSelection == 'fruitdale'" src="../../assets/WaCo Maps/Comissioner Districts Maps/CD_Map_D3.png">
+  <img class="districtMap" *ngIf="districtSelection == 'd3'" src="../../assets/WaCo Maps/School Districts Maps/SD_Map_D3.png">
 
 </ion-card>
 
@@ -77,19 +76,19 @@
 <ion-card class="districtCard">
   <ion-card-content>
     <ion-card-title>
-      District Four
+      District Four 
     </ion-card-title>
     <p>
-      Jason Boothe
+      Brad Johnston
     </p>
   </ion-card-content>
   <!-- Display Additional Info Button -->
   <ion-avatar>
-      <ion-icon id="oneShow" name="arrow-dropdown" (click)="displayMore('oneMore')"></ion-icon>
-      <ion-icon id="oneHide" style="display: none" name="arrow-dropup" (click)="displayLess('oneLess')"></ion-icon>
+      <ion-icon *ngIf="districtSelection != 'd4'" name="arrow-dropdown" (click)="toggleDisplay('d4')"></ion-icon>
+      <ion-icon *ngIf="districtSelection == 'd4'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
   </ion-avatar>
 
-  <img class="districtMap"  *ngIf="districtSelection == 'chatom'" src="../../assets/WaCo Maps/Comissioner Districts Maps/CD_Map_D4.png">
+  <img class="districtMap"  *ngIf="districtSelection == 'd4'" src="../../assets/WaCo Maps/School Districts Maps/SD_Map_D4.png">
 
 </ion-card>
 
@@ -98,18 +97,18 @@
 <ion-card class="districtCard"> 
   <ion-card-content>
     <ion-card-title>
-      District Five
+      District Five 
     </ion-card-title>
     <p>
       Joseph Abston
     </p>
   </ion-card-content>
   <ion-avatar>
-      <ion-icon id="fiveShow" name="arrow-dropdown" (click)="displayMore('fiveMore')"></ion-icon>
-      <ion-icon id="fiveHide" style="display: none" name="arrow-dropup" (click)="displayLess('fiveLess')"></ion-icon>
+      <ion-icon *ngIf="districtSelection != 'd5'" name="arrow-dropdown" (click)="toggleDisplay('d5')"></ion-icon>
+      <ion-icon *ngIf="districtSelection == 'd5'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
   </ion-avatar>
 
-  <img class="districtMap" *ngIf="districtSelection == 'millry'" src="../../assets/WaCo Maps/Comissioner Districts Maps/CD_Map_D5.png">
+  <img class="districtMap" *ngIf="districtSelection == 'd5'" src="../../assets/WaCo Maps/School Districts Maps/SD_Map_D5.png">
 
 </ion-card>
 
