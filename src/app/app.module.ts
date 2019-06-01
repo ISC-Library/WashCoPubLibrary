@@ -21,7 +21,7 @@ import { JobLinksPage} from '../pages/joblinks/joblinks';
 import { NoneExistPage } from '../pages/none-exist/none-exist';
 import { CommissionPage } from '../pages/commission/commission';
 import { SchoolDistrictsPage } from '../pages/school-districts/school-districts'
-import { LocalGovernmentAndServicesPage } from '../pages/local-government-and-services/local-government-and-services'
+import { CountyInformationPage } from '../pages/county-information/county-information'
 
 //Import Loooooooooonnnggg Press
 import {LongPressModule} from 'ionic-long-press';
@@ -93,9 +93,7 @@ export const firebaseConfig = {
     NoneExistPage,
     CommissionPage,
     SchoolDistrictsPage,
-    LocalGovernmentAndServicesPage
-    // //Delcare the directive for the ionic 3 input mask
-    // Directive
+    CountyInformationPage
   ],
   imports: [
     BrowserModule,
@@ -124,7 +122,7 @@ export const firebaseConfig = {
     NoneExistPage,
     CommissionPage,
     SchoolDistrictsPage,
-    LocalGovernmentAndServicesPage
+    CountyInformationPage
   ],
   providers: [
     StatusBar,

@@ -26,15 +26,34 @@
             </ion-item>
 
 
-            <!-- Local Government and Services Link -->
-            <ion-item menuClose (click)="goToLocalGovernmentAndServices()">
-                    Local Government and Services
+            <!-- #region County Information-->
+            <!-- Button before Child Elements are shown -->
+            <ion-item id="countyInformationInfoHidden" (click)="openCountyInformation()">
+                County Information
+                <ion-icon class="dropArrowUp" name="arrow-dropdown" item-right></ion-icon>
             </ion-item>
+            
+            <!-- Button after Child Elements are Shown -->
+            <ion-item id="countyInformationInfoShown" class="itemListHidden" (click)="closeCountyInformation()">
+                County Information
+                <ion-icon name="arrow-dropup" item-right></ion-icon>
+            </ion-item>
+            <ion-item class="countyInformationInfoHidden" menuClose (click)="countyInformation()">
+                Local Government
+            </ion-item>
+            <ion-item class="countyInformationInfoHidden" menuClose (click)="countyInformation()">
+                School Board
+            </ion-item>
+            <ion-item class="countyInformationInfoHidden" menuClose (click)="countyInformation()">
+                Services
+            </ion-item>
+            <!-- #endregion -->
+
 
             <!-- #region Commissioner Districts-->
             <!-- Button before Child Elements are shown -->
             <ion-item id="commissionerInfoHidden" (click)="openCommissionerDistricts()">
-                commissioner Districts
+                Commissioner Districts
                 <ion-icon class="dropArrowUp" name="arrow-dropdown" item-right></ion-icon>
             </ion-item>
 
@@ -82,10 +101,6 @@
             <ion-item class="mcintoshInfoHidden" menuClose (click)="schoolDistricts('mcintosh')">
                 School Districts
             </ion-item>
-
-            <ion-item class="mcintoshInfoHidden" menuClose (click)="commissionDistricts('mcintosh')">
-                Commission Districts
-            </ion-item>
             <!-- #endregion -->
 
 
@@ -109,9 +124,6 @@
             </ion-item>
             <ion-item class="leroyInfoHidden" menuClose (click)="schoolDistricts('leroy')">
                 School Districts
-            </ion-item>
-            <ion-item class="leroyInfoHidden" menuClose (click)="commissionDistricts('leroy')">
-                Commission Districts
             </ion-item>
             <!-- #endregion -->
 
@@ -137,9 +149,6 @@
             <ion-item class="fruitdaleInfoHidden" menuClose (click)="schoolDistricts('fruitdale')">
                 School Districts
             </ion-item>
-            <ion-item class="fruitdaleInfoHidden" menuClose (click)="commissionDistricts('district1')">
-                Commission Districts
-            </ion-item>
             <!-- #endregion -->
 
 
@@ -164,9 +173,6 @@
             <ion-item class="chatomInfoHidden" menuClose (click)="schoolDistricts('chatom')">
                 School Districts
             </ion-item>
-            <ion-item class="chatomInfoHidden" menuClose (click)="commissionDistricts('district2')">
-                Commission Districts
-            </ion-item>
             <!-- #endregion -->
 
 
@@ -190,9 +196,6 @@
             </ion-item>
             <ion-item class="millryInfoHidden" menuClose (click)="schoolDistricts('millry')">
                 School Districts
-            </ion-item>
-            <ion-item class="millryInfoHidden" menuClose (click)="commissionDistricts('millry')">
-                Commission Districts
             </ion-item>
             <!-- #endregion -->
 

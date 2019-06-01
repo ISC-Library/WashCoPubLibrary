@@ -65,6 +65,25 @@ ion-content{background-image: url(../../assets/imgs/WaCoLibHome_Background.png);
    .arrowDown{
        color:black;
     }
+    
+    //#region countyInformationDistricts
+    .countyInformationInfoShown{
+        color:rgba(0,68,136,1);
+        background:
+        linear-gradient(
+            rgb(255, 255, 255), 
+            rgb(255, 255, 255),
+            rgba(0,68,136,.2)), 
+            white;
+        text-align:right;
+        display:block;
+        font-size:1.7rem;
+    }
+
+    .countyInformationInfoHidden{
+    display:none;
+    }
+    //#endregion
 
     //#region CommissionerDistricts
     .commissionerInfoShown{
@@ -83,6 +102,8 @@ ion-content{background-image: url(../../assets/imgs/WaCoLibHome_Background.png);
    .commissionerInfoHidden{
     display:none;
    }
+
+
    //#endregion
 
     //#region McIntosh

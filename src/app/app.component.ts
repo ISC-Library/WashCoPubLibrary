@@ -13,7 +13,7 @@ import { LoginPage } from '../pages/login/login';
 import { NoneExistPage } from '../pages/none-exist/none-exist';
 import { CommissionPage } from '../pages/commission/commission';
 import { SchoolDistrictsPage } from  '../pages/school-districts/school-districts'
-import { LocalGovernmentAndServicesPage } from '../pages/local-government-and-services/local-government-and-services'
+import { CountyInformationPage } from '../pages/county-information/county-information'
 
 @Component({
   templateUrl: 'app.html'
@@ -44,10 +44,6 @@ export class MyApp {
     this.nav.push(JobLinksPage);
   }
 
-  goToLocalGovernmentAndServices() {
-    this.nav.push(LocalGovernmentAndServicesPage);
-  }
-
   goToHelp() {
     this.nav.push(AboutPage);
   }
@@ -63,9 +59,46 @@ export class MyApp {
     // this.nav.push(SchoolDistrictsPage)
   }
 
+  //Comissioner Districts Page
+  countyInformation(districtSelection) {
+    this.nav.push(CountyInformationPage);
+  }
+
+  //Comissioner Districts Page
   commissionerDistricts(districtSelection) {
     this.nav.push(CommissionPage, {districtSelection});
   }
+
+  //#region countyInformationDistricts
+
+  openCountyInformation() {
+    document.getElementById("countyInformationInfoShown").style.display = "block";
+    document.getElementById("countyInformationInfoHidden").style.display = "none";
+
+    let elementsListcountyInformationHidden = document.getElementsByClassName("countyInformationInfoHidden");
+    if (elementsListcountyInformationHidden.length > 0) {
+      let countyInformationLengthHidden = elementsListcountyInformationHidden.length
+      //Show countyInformation :: If not already shown
+      for (let i = (countyInformationLengthHidden - 1); i > -1; i--) {
+        elementsListcountyInformationHidden[i].className = "countyInformationInfoShown";
+      }
+    }
+  }
+
+  closeCountyInformation() {
+    document.getElementById("countyInformationInfoShown").style.display = "none";
+    document.getElementById("countyInformationInfoHidden").style.display = "block";
+
+    let elementsListcountyInformationShown = document.getElementsByClassName("countyInformationInfoShown");
+    if (elementsListcountyInformationShown.length > 0) {
+      let countyInformationLengthShown = elementsListcountyInformationShown.length
+      //Show countyInformation :: If not already shown
+      for (let i = (countyInformationLengthShown - 1); i > -1; i--) {
+        elementsListcountyInformationShown[i].className = "countyInformationInfoHidden";
+      }
+    }
+  }
+  //#endregion
 
   //#region commissionerDistricts
 
