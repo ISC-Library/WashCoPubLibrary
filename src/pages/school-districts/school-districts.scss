@@ -31,8 +31,6 @@ page-school-districts {
         padding-bottom: 5px;
     }
 
-    //#region DistrictMaps
-
     //#region CardStyling
     .districtCard {
         line-height: 50%;
@@ -40,13 +38,17 @@ page-school-districts {
         background: rgb(255, 255, 245);
         box-shadow: 4px 4px 4px 2px rgba(0,0,0, .45);
     }
+    //#endregion
 
+
+    //#region DistrictMaps
     //.districtMap Class applied to all map images 
     .districtMap {
         width: 80%;
+        height: 80%;
         display: inline-block;
     }
-
     //#endregion
+
 
 }

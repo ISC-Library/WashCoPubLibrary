@@ -61,6 +61,7 @@ export class MyApp {
   //School Districts Page
   schoolDistricts(districtSelection) {
     this.nav.push(SchoolDistrictsPage, {districtSelection});
+    // this.nav.push(SchoolDistrictsPage)
   }
 
   commissionDistricts(districtSelection) {

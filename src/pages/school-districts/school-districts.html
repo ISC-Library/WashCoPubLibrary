@@ -24,8 +24,8 @@
     </p>
   </ion-card-content>
   <ion-avatar>
-      <ion-icon id="fourShow" name="arrow-dropdown" (click)="displayMore('fourMore')"></ion-icon>
-      <ion-icon id="fourHide" style="display: none" name="arrow-dropup" (click)="displayLess('fourLess')"></ion-icon>
+      <ion-icon *ngIf="districtSelection != 'mcintosh'" name="arrow-dropdown" (click)="toggleDisplay('mcintosh')"></ion-icon>
+      <ion-icon *ngIf="districtSelection == 'mcintosh'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
   </ion-avatar>
 
   <img class="districtMap" *ngIf="districtSelection == 'mcintosh'" src="../../assets/WaCo Maps/School Districts Maps/SD_Map_D1.png">
@@ -44,8 +44,8 @@
     </p>
   </ion-card-content>
   <ion-avatar>
-      <ion-icon id="threeShow" name="arrow-dropdown" (click)="displayMore('threeMore')"></ion-icon>
-      <ion-icon id="threeHide" style="display: none" name="arrow-dropup" (click)="displayLess('threeLess')"></ion-icon>
+      <ion-icon *ngIf="districtSelection != 'leroy'" name="arrow-dropdown" (click)="toggleDisplay('leroy')"></ion-icon>
+      <ion-icon *ngIf="districtSelection == 'leroy'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
   </ion-avatar>
 
   <img class="districtMap" *ngIf="districtSelection == 'leroy'" src="../../assets/WaCo Maps/School Districts Maps/SD_Map_D2.png">
@@ -64,8 +64,8 @@
     </p>
   </ion-card-content>
   <ion-avatar>
-      <ion-icon id="twoShow" name="arrow-dropdown" (click)="displayMore('twoMore')"></ion-icon>
-      <ion-icon id="twoHide" style="display: none" name="arrow-dropup" (click)="displayLess('twoLess')"></ion-icon>
+      <ion-icon *ngIf="districtSelection != 'fruitdale'" name="arrow-dropdown" (click)="toggleDisplay('fruitdale')"></ion-icon>
+      <ion-icon *ngIf="districtSelection == 'fruitdale'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
   </ion-avatar>
 
   <img class="districtMap" *ngIf="districtSelection == 'fruitdale'" src="../../assets/WaCo Maps/School Districts Maps/SD_Map_D3.png">
@@ -85,8 +85,8 @@
   </ion-card-content>
   <!-- Display Additional Info Button -->
   <ion-avatar>
-      <ion-icon id="oneShow" name="arrow-dropdown" (click)="displayMore('oneMore')"></ion-icon>
-      <ion-icon id="oneHide" style="display: none" name="arrow-dropup" (click)="displayLess('oneLess')"></ion-icon>
+      <ion-icon *ngIf="districtSelection != 'chatom'" name="arrow-dropdown" (click)="toggleDisplay('chatom')"></ion-icon>
+      <ion-icon *ngIf="districtSelection == 'chatom'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
   </ion-avatar>
 
   <img class="districtMap"  *ngIf="districtSelection == 'chatom'" src="../../assets/WaCo Maps/School Districts Maps/SD_Map_D4.png">
@@ -105,8 +105,8 @@
     </p>
   </ion-card-content>
   <ion-avatar>
-      <ion-icon id="fiveShow" name="arrow-dropdown" (click)="displayMore('fiveMore')"></ion-icon>
-      <ion-icon id="fiveHide" style="display: none" name="arrow-dropup" (click)="displayLess('fiveLess')"></ion-icon>
+      <ion-icon *ngIf="districtSelection != 'millry'" name="arrow-dropdown" (click)="toggleDisplay('millry')"></ion-icon>
+      <ion-icon *ngIf="districtSelection == 'millry'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
   </ion-avatar>
 
   <img class="districtMap" *ngIf="districtSelection == 'millry'" src="../../assets/WaCo Maps/School Districts Maps/SD_Map_D5.png">

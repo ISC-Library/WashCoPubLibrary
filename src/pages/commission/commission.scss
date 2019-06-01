@@ -31,8 +31,7 @@ page-commission {
         padding-bottom: 5px;
     }
 
-    //#region DistrictMaps
-
+    
     //#region CardStyling
     .districtCard {
         line-height: 50%;
@@ -40,12 +39,16 @@ page-commission {
         background: rgb(255, 255, 245);
         box-shadow: 4px 4px 4px 2px rgba(0,0,0, .45);
     }
+    //#endregion
 
+
+    //#region DistrictMaps
     //.districtMap Class applied to all map images 
     .districtMap {
         width: 80%;
         display: inline-block;
+        //Commission maps are slightly larger than the school maps, so they need some padding to make them not so close to the bottom of their card
+        margin-bottom: 5%
     }
-
     //#endregion
 }
