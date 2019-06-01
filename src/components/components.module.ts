@@ -4,10 +4,12 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 //Custom Component Imports
 import { TestComponent } from './test/test';
+import { Navbar } from './navbar/navbar';
 
 @NgModule({
 	declarations: [
-		TestComponent
+		TestComponent,
+    Navbar
 	],
 	imports: [
 		BrowserModule,
@@ -15,7 +17,8 @@ import { TestComponent } from './test/test';
 		IonicModule
 	],
 	exports: [
-		TestComponent
+		TestComponent,
+    Navbar
 	]
 })
 

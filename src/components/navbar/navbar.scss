@@ -1,0 +1,34 @@
+navbar {
+//[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+    
+    #header {
+        display: block;
+    }
+    
+    //NavBar
+    .toolbar-background {
+        background: linear-gradient(180deg, rgba(0, 68, 136, .9));
+        color:white;
+    }
+
+    .toolbar-title {
+        color: white;
+    }
+    
+    .navBarImage {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 90%;
+        //Height
+        min-height: 40px;
+        max-height: 40px;
+        //width
+        min-width: 40px;
+        max-width: 40px;
+        transform: translate(-50%, -50%);
+      }
+
+//[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+
+}

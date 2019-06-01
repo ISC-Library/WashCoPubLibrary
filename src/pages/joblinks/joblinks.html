@@ -1,43 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <button ion-button [menuToggle]="activeMenu">
+      <ion-icon name="menu" color="secondary"></ion-icon>
+    </button>
+    <div class="navBarImageWrapper">
+      <img class="navBarImage" src="assets/imgs/WaCoLibrary_LogoWhite.png">
+    </div>
+    <ion-title>Job Search</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-  <ion-header>
-    <ion-toolbar>
-        <button ion-button [menuToggle]="activeMenu">
-          <ion-icon name="menu" color="secondary"></ion-icon>
-        </button>
-        <div class="navBarImageWrapper" >
-          <img class="navBarImage" src="assets/imgs/WaCoLibrary_LogoWhite.png" >
-        </div>
-      <ion-title>Job Search</ion-title>
-    </ion-toolbar> 
-  </ion-header>
-  
+
 
 <ion-content padding>
-    <ion-list>
-      <ion-item>
-        <ion-input [(ngModel)]="$location"  placeholder="Search by Location"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input [(ngModel)]="$keyword" placeholder="Search by Keyword"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-segment [(ngModel)]="$jobType">
-          <ion-segment-button id=fullTime value="fullTime">Full Time</ion-segment-button>
-          <ion-segment-button id=partTime value="partTime">Part Time</ion-segment-button>
-          <ion-segment-button id=allJobs value="allJobs">All Jobs</ion-segment-button>
-        </ion-segment>
-      </ion-item>
-    </ion-list>
-
-
+  <ion-list>
     <ion-item>
-        <ion-label>Distance</ion-label>
-      <ion-range [(ngModel)]="$radius" min="0" max="100" color="danger" pin="true" value="range">
-        <ion-label range-left>0m</ion-label>
-        <ion-label range-right>100 miles</ion-label>
-      </ion-range>
+      <ion-input [(ngModel)]="$location" placeholder="Search by Location"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="$keyword" placeholder="Search by Keyword"></ion-input>
     </ion-item>
 
-    <button ion-button block style="background-color: rgba(0,68,136,1)" (click)="jobSearch($location, $keyword, $jobType, $radius)">Search</button>
+    <ion-item>
+      <ion-segment [(ngModel)]="$jobType">
+        <ion-segment-button id=fullTime value="fullTime">Full Time</ion-segment-button>
+        <ion-segment-button id=partTime value="partTime">Part Time</ion-segment-button>
+        <ion-segment-button id=allJobs value="allJobs">All Jobs</ion-segment-button>
+      </ion-segment>
+    </ion-item>
+  </ion-list>
+
+
+  <ion-item>
+    <ion-label>Distance</ion-label>
+    <ion-range [(ngModel)]="$radius" min="0" max="100" color="danger" pin="true" value="range">
+      <ion-label range-left>0m</ion-label>
+      <ion-label range-right>100 miles</ion-label>
+    </ion-range>
+  </ion-item>
+
+  <button ion-button block style="background-color: rgba(0,68,136,1)"
+    (click)="jobSearch($location, $keyword, $jobType, $radius)">Search</button>
 </ion-content>

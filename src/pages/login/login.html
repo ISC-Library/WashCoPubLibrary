@@ -11,6 +11,7 @@
 </ion-header>
 
 <ion-content>
+
   <!-- If user is not logged in, show credential input -->
   <ion-list *ngIf="isLoggedIn()==true">
     <ion-item class="loggedInAs" fixed>Logged In As: {{this.userName}}</ion-item>

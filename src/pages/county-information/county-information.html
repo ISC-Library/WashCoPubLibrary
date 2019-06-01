@@ -1,18 +1,70 @@
-<!--
-  Generated template for the CountyInformationPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
+    <ion-toolbar>
+      <button ion-button [menuToggle]="activeMenu">
+        <ion-icon name="menu" style="color:white"></ion-icon>
+      </button>
+      <div class="navBarImageWrapper">
+        <img class="navBarImage" src="assets/imgs/WaCoLibrary_LogoWhite.png">
+      </div>
+      <ion-title>County Information</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
 
-  <ion-navbar>
-    <ion-title>county information</ion-title>
-  </ion-navbar>
 
-</ion-header>
+<ion-content>
 
+  <!-- Local Government -->
+<ion-card class="districtCard">
+    <ion-card-content>
+      <ion-card-title>
+        Local Government
+      </ion-card-title>
+      <p>
+          Nipples
+      </p>
+    </ion-card-content>
+    <ion-avatar>
+        <ion-icon *ngIf="districtSelection != 'localGovernment'" name="arrow-dropdown" (click)="toggleDisplay('localGovernment')"></ion-icon>
+        <ion-icon *ngIf="districtSelection == 'localGovernment'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
+    </ion-avatar>
 
-<ion-content padding>
+  </ion-card>
+  
+  
+  <!-- SchoolBoard -->
+  <ion-card class="districtCard">
+    <ion-card-content>
+      <ion-card-title>
+        School Board
+      </ion-card-title>
+      <p>
+          Asshair
+      </p>
+    </ion-card-content>
+    <ion-avatar>
+        <ion-icon *ngIf="districtSelection != 'schoolBoard'" name="arrow-dropdown" (click)="toggleDisplay('schoolBoard')"></ion-icon>
+        <ion-icon *ngIf="districtSelection == 'schoolBoard'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
+    </ion-avatar>
+  
+  </ion-card>
+  
+  
+  <!-- Services -->
+  <ion-card class="districtCard"> 
+    <ion-card-content>
+      <ion-card-title>
+        Services
+      </ion-card-title>
+      <p>
+          Male Prostitution
+      </p>
+    </ion-card-content>
+    <ion-avatar>
+        <ion-icon *ngIf="districtSelection != 'services'" name="arrow-dropdown" (click)="toggleDisplay('services')"></ion-icon>
+        <ion-icon *ngIf="districtSelection == 'services'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
+    </ion-avatar>
+  
+  </ion-card>
 
 </ion-content>

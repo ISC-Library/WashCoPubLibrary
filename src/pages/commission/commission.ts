@@ -8,8 +8,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 export class CommissionPage {
 
-
-  
   //Class variable for which district map to display in the dropdown of its card
   districtSelection: any;
 

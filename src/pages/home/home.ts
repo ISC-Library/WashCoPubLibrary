@@ -12,6 +12,9 @@ import { JobLinksPage } from '../joblinks/joblinks';
 import { CommissionPage } from '../commission/commission';
 import { SchoolDistrictsPage} from '../school-districts/school-districts'
 
+//Import Components
+import { Navbar } from '../../components/navbar/navbar'
+
 //Import Provider
 import { CalenderEventsServiceProvider } from '../../providers/calendar-event-service/calendar-event-service';
 
@@ -82,25 +85,6 @@ export class HomePage {
 
   goToHelp() {
     this.navCtrl.push(AboutPage);
-  }
-
-  goToCommission() {
-    this.navCtrl.push(CommissionPage);
-    console.log("What")
-  }
-
-  goToSchool() {
-    this.navCtrl.push(SchoolDistrictsPage);
-    console.log("How")
-  }
-
-
-  goToJobLinks(){
-    this.navCtrl.push(JobLinksPage)
-  }
-
-  goToLogin(){
-    this.navCtrl.push(LoginPage)
   }
 
   goToBookShelf(){
