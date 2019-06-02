@@ -54,7 +54,7 @@ page-county-information {
         box-shadow: inset 2px 2px 3px 1px rgba(0,0,0, .45) !important;
     }
 
-    .segment #schoolBoard.segment-activated {
+    .segment #boardOfEducation.segment-activated {
         color: rgba(255,255,255, 1) !important;
         border-color: rgba(255,255,255,1) !important;
         background-color: rgba(255, 255, 255, .2) !important;
@@ -86,20 +86,44 @@ page-county-information {
         font-weight: 400;
     }
 
+    .cardTitleBoardMembersVisible {
+       font-size: 130%;
+        font-weight: 400;
+        border-bottom: 2px dashed rgba(0,0,0,.45);
+    }
+
     .cardDivider {
         background-color: rgba(0,0,0,.05);
         box-shadow: inset 2px 2px 3px 1px rgba(0,0,0, .45);
         border-radius: 0px 10px 10px 10px;
     }
 
-    .cardLabel {
+    //Divider for the board of education needed its own settings as there are multiple ones on one card
+    .boardOfEducationCardDivider {
+        background-color: rgba(0,0,0,.05);
+        box-shadow: inset 2px 2px 3px 1px rgba(0,0,0, .45);
+        border-radius: 0px 10px 10px 10px;
+    }
+
+    //Div that contains the board memeber district and their mame 
+    .boardMemberContainer {
+        margin-top: 25px;
+    }
+
+    //lable containing district name
+    .districtLabel {
+        margin-bottom: 8px;
+        color: rgba(0,136,68,1);
+    }
+
+    //label containing member's name
+    .nameLabel {
         padding: 7px;
         color: rgba(0, 68, 136, 1)
     }
 
     .cardEmailAddress {
         color: rgba(0, 68, 136, 1);
-        
         text-decoration: underline;
     }
 
