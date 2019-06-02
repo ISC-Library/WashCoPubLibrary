@@ -60,8 +60,8 @@ export class MyApp {
   }
 
   //Comissioner Districts Page
-  countyInformation(districtSelection) {
-    this.nav.push(CountyInformationPage);
+  countyInformation(informationSelection) {
+    this.nav.push(CountyInformationPage, {informationSelection});
   }
 
   //Comissioner Districts Page

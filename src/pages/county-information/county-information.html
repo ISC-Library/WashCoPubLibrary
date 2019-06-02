@@ -8,39 +8,53 @@
       </div>
       <ion-title>County Information</ion-title>
     </ion-toolbar>
+
+    <!-- Card Group Selection Segment -->
+    <ion-toolbar>
+        <ion-segment [(ngModel)]="informationSelection">
+            <ion-segment-button id="localGovernment" class="segmentButton" value="localGovernment">Local Gov.</ion-segment-button>
+            <ion-segment-button id="schoolBoard" class="segmentButton" value="schoolBoard">School Board</ion-segment-button>
+            <ion-segment-button id="services" class="segmentButton" value="services">Services</ion-segment-button>
+          </ion-segment>
+        </ion-toolbar>
   </ion-header>
   
 
-
 <ion-content>
 
-  <!-- Local Government -->
-<ion-card class="districtCard">
-    <ion-card-content>
-      <ion-card-title>
-        Local Government
-      </ion-card-title>
-      <p>
-          Nipples
-      </p>
+  <!-- Probate Judge -->
+  <ion-card class="districtCard" *ngIf="informationSelection == 'localGovernment'">
+    <ion-card-header>
+      <ion-card-title class="cardTitle">Probate Judge</ion-card-title>
+  
+      <ion-item-divider class="cardDivider" *ngIf="cardSelection == 'probateJudge'">
+        <ion-label class="cardLabel">Nick Williams</ion-label>
+      </ion-item-divider>
+    </ion-card-header>
+  
+    <ion-card-content *ngIf="cardSelection == 'probateJudge'">
+      <p>PO BOX 864</p>
+      <p>Chatom, AL. 36518</p>
+      <p>judgewilliams@washprobate.com</p>
+      <p>(251)847-2201</p>
     </ion-card-content>
+  
     <ion-avatar>
-        <ion-icon *ngIf="districtSelection != 'localGovernment'" name="arrow-dropdown" (click)="toggleDisplay('localGovernment')"></ion-icon>
-        <ion-icon *ngIf="districtSelection == 'localGovernment'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
+      <ion-icon *ngIf="cardSelection != 'probateJudge'" name="arrow-dropdown"(click)="toggleDisplay('probateJudge')"></ion-icon>
+      <ion-icon *ngIf="cardSelection == 'probateJudge'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
     </ion-avatar>
-
+  
   </ion-card>
-  
-  
+
+
+  <!-- #region SchoolBoardCards -->
   <!-- SchoolBoard -->
   <ion-card class="districtCard">
     <ion-card-content>
       <ion-card-title>
         School Board
       </ion-card-title>
-      <p>
-          Asshair
-      </p>
+
     </ion-card-content>
     <ion-avatar>
         <ion-icon *ngIf="districtSelection != 'schoolBoard'" name="arrow-dropdown" (click)="toggleDisplay('schoolBoard')"></ion-icon>
@@ -48,17 +62,17 @@
     </ion-avatar>
   
   </ion-card>
+  <!-- #endregion -->
   
   
+  <!-- #region ServicesCards -->
   <!-- Services -->
   <ion-card class="districtCard"> 
     <ion-card-content>
       <ion-card-title>
         Services
       </ion-card-title>
-      <p>
-          Male Prostitution
-      </p>
+     
     </ion-card-content>
     <ion-avatar>
         <ion-icon *ngIf="districtSelection != 'services'" name="arrow-dropdown" (click)="toggleDisplay('services')"></ion-icon>
@@ -66,5 +80,7 @@
     </ion-avatar>
   
   </ion-card>
+  <!-- #endregion -->
+
 
 </ion-content>

@@ -78,6 +78,8 @@ page-calendar {
     }
 
     //Have to get the right level of "specificity" to override the "main.css"
+    //Update: 6/2/19 : You could use a CSS "!important" tag, however you would need someone way to change the class to that
+    //Instead, we just use the ".segment-activated" class that ionic already applies to a given segment but with added specificity
     .segment #allSegmentBtn.segment-activated {
         //RGBA allows you to convert a color to transparency
         background-color: rgba(0,0,0,.3);

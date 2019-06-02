@@ -27,12 +27,50 @@ page-county-information {
     }
     //#endregion
 
+
     ion-avatar {
         text-align: center;
         padding-bottom: 5px;
     }
 
-    
+
+    //#region SegmentButtons
+
+    .segmentButton {
+        color: rgba(255,255,255,1) !important;
+        border-color: rgba(255,255,255,1) !important;
+        background-color: rgba(0, 68, 136, 0) !important;
+    }
+
+    //Have to get the right level of "specificity" to override the "main.css"
+    //You could use a CSS "!important" tag, however you would need someone way to change the class to that still
+    //Instead, we just use the ".segment-activated" class that ionic already applies to a given segment but with added specificity
+    //** This prevents you from needing to either use *ngIf (someontimes flashes when loading elements this way) or manipulating the class in the backend 
+    //** The caveat of course being that you will need a section for each segment button being refered to by "id" in this way
+    .segment #localGovernment.segment-activated {
+        color: rgba(255,255,255, 1) !important;
+        border-color: rgba(255,255,255,1) !important;
+        background-color: rgba(255, 255, 255, .2) !important;
+        box-shadow: inset 2px 2px 3px 1px rgba(0,0,0, .45) !important;
+    }
+
+    .segment #schoolBoard.segment-activated {
+        color: rgba(255,255,255, 1) !important;
+        border-color: rgba(255,255,255,1) !important;
+        background-color: rgba(255, 255, 255, .2) !important;
+        box-shadow: inset 2px 2px 3px 1px rgba(0,0,0, .45) !important;
+    }
+
+    .segment #services.segment-activated {
+        color: rgba(255,255,255, 1) !important;
+        border-color: rgba(255,255,255,1) !important;
+        background-color: rgba(255, 255, 255, .2) !important;
+        box-shadow: inset 2px 2px 3px 1px rgba(0,0,0, .45) !important;
+    }
+
+    //#endregion
+
+
     //#region CardStyling
     .districtCard {
         line-height: 50%;
@@ -40,6 +78,25 @@ page-county-information {
         background: rgb(255, 255, 245);
         box-shadow: 4px 4px 4px 2px rgba(0,0,0, .45);
     }
+
+    .cardTitle {
+        //I'll be frank with you, I have no clue what this is a percent of
+        //Percent is meant to be of the direct parent... but this is the percentage the looked good so here we are
+        font-size: 130%;
+        font-weight: 400;
+    }
+
+    .cardDivider {
+        background-color: rgba(0,0,0,.05);
+        box-shadow: inset 2px 2px 3px 1px rgba(0,0,0, .45);
+        border-radius: 0px 10px 10px 10px;
+    }
+
+    .cardLabel {
+        padding: 4px;
+        color: rgba(0, 68, 136, 1)
+    }
+
     //#endregion
 
 
