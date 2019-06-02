@@ -22,6 +22,8 @@
 
 <ion-content>
 
+  <!-- #region LocalGovernment -->
+
   <!-- Probate Judge -->
   <ion-card class="districtCard" *ngIf="informationSelection == 'localGovernment'">
     <ion-card-header>
@@ -35,7 +37,6 @@
     <ion-card-content *ngIf="cardSelection == 'probateJudge'">
       <p>PO BOX 864</p>
       <p>Chatom, AL. 36518</p>
-      <p>judgewilliams@washprobate.com</p>
       <p>(251)847-2201</p>
     </ion-card-content>
   
@@ -43,43 +44,201 @@
       <ion-icon *ngIf="cardSelection != 'probateJudge'" name="arrow-dropdown"(click)="toggleDisplay('probateJudge')"></ion-icon>
       <ion-icon *ngIf="cardSelection == 'probateJudge'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
     </ion-avatar>
-  
   </ion-card>
+
+  <!-- County Engineer -->
+  <ion-card class="districtCard" *ngIf="informationSelection == 'localGovernment'">
+      <ion-card-header>
+        <ion-card-title class="cardTitle">County Engineer</ion-card-title>
+    
+        <ion-item-divider class="cardDivider" *ngIf="cardSelection == 'countyEngineer'">
+          <ion-label class="cardLabel">Danny Overton</ion-label>
+        </ion-item-divider>
+      </ion-card-header>
+    
+      <ion-card-content *ngIf="cardSelection == 'countyEngineer'">
+        <p>830 Antioch Rd.</p>
+        <p>Grove Hill, AL. 35451</p>
+        <p class="cardEmailAddress">wcdgo55@yahoo.com</p>
+        <p>(251)246-2612</p>
+      </ion-card-content>
+    
+      <ion-avatar>
+        <ion-icon *ngIf="cardSelection != 'countyEngineer'" name="arrow-dropdown"(click)="toggleDisplay('countyEngineer')"></ion-icon>
+        <ion-icon *ngIf="cardSelection == 'countyEngineer'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
+      </ion-avatar>
+    </ion-card>
+
+    <!-- EMA -->
+  <ion-card class="districtCard" *ngIf="informationSelection == 'localGovernment'">
+      <ion-card-header>
+        <ion-card-title class="cardTitle">EMA</ion-card-title>
+    
+        <ion-item-divider class="cardDivider" *ngIf="cardSelection == 'ema'">
+          <ion-label class="cardLabel">Mike Barnett</ion-label>
+        </ion-item-divider>
+      </ion-card-header>
+    
+      <ion-card-content *ngIf="cardSelection == 'ema'">
+        <p>2140 Bates Lake Rd.</p>
+        <p>Malcom, AL. 35556</p>
+        <p class="cardEmailAddress">mbarnett@gmail.com</p>
+        <p>(251)829-6750</p>
+        <p>Cell: (251)-802-9661</p>
+      </ion-card-content>
+    
+      <ion-avatar>
+        <ion-icon *ngIf="cardSelection != 'ema'" name="arrow-dropdown"(click)="toggleDisplay('ema')"></ion-icon>
+        <ion-icon *ngIf="cardSelection == 'ema'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
+      </ion-avatar>
+    </ion-card>
+
+    <!-- Sheriff -->
+  <ion-card class="districtCard" *ngIf="informationSelection == 'localGovernment'">
+      <ion-card-header>
+        <ion-card-title class="cardTitle">Sheriff</ion-card-title>
+    
+        <ion-item-divider class="cardDivider" *ngIf="cardSelection == 'sheriff'">
+          <ion-label class="cardLabel">Richard Stringer</ion-label>
+        </ion-item-divider>
+      </ion-card-header>
+    
+      <ion-card-content *ngIf="cardSelection == 'sheriff'">
+        <p>PO BOX 307</p>
+        <p>Chatom, AL. 36518</p>
+        <p class="cardEmailAddress">richard.stringer@washcoso.com</p>
+        <p>(251)847-2201</p>
+        <p>Cell: (251)-513-5752</p>
+      </ion-card-content>
+    
+      <ion-avatar>
+        <ion-icon *ngIf="cardSelection != 'sheriff'" name="arrow-dropdown"(click)="toggleDisplay('sheriff')"></ion-icon>
+        <ion-icon *ngIf="cardSelection == 'sheriff'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
+      </ion-avatar>
+    </ion-card>
+
+    <!-- County Administrator -->
+  <ion-card class="districtCard" *ngIf="informationSelection == 'localGovernment'">
+      <ion-card-header>
+        <ion-card-title class="cardTitle">County Administrator</ion-card-title>
+    
+        <ion-item-divider class="cardDivider" *ngIf="cardSelection == 'countyAdministrator'">
+          <ion-label class="cardLabel">Sonya Kirkwood</ion-label>
+        </ion-item-divider>
+      </ion-card-header>
+    
+      <ion-card-content *ngIf="cardSelection == 'countyAdministrator'">
+        <p>PO BOX 904</p>
+        <p>Chatom, AL. 36518</p>
+        <p class="cardEmailAddress" >sonyak@washingtoncountyal.org</p>
+        <p>(251)847-2208</p>
+        <p>Cell: (251)-509-2754</p>
+      </ion-card-content>
+    
+      <ion-avatar>
+        <ion-icon *ngIf="cardSelection != 'countyAdministrator'" name="arrow-dropdown"(click)="toggleDisplay('countyAdministrator')"></ion-icon>
+        <ion-icon *ngIf="cardSelection == 'countyAdministrator'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
+      </ion-avatar>
+    </ion-card>
+
+    <!-- Revenue Commissioner -->
+  <ion-card class="districtCard" *ngIf="informationSelection == 'localGovernment'">
+      <ion-card-header>
+        <ion-card-title class="cardTitle">Revenue Commissioner</ion-card-title>
+    
+        <ion-item-divider class="cardDivider" *ngIf="cardSelection == 'revenueCommissioner'">
+          <ion-label class="cardLabel">Mary Ann Dees</ion-label>
+        </ion-item-divider>
+      </ion-card-header>
+    
+      <ion-card-content *ngIf="cardSelection == 'revenueCommissioner'">
+        <p>PO BOX 847</p>
+        <p>Chatom, AL. 36518</p>
+        <p class="cardEmailAddress">mdees1956@outlook.com</p>
+        <p>(251)847-2780</p>
+        <p>Cell: 251-242-1487</p>
+      </ion-card-content>
+    
+      <ion-avatar>
+        <ion-icon *ngIf="cardSelection != 'revenueCommissioner'" name="arrow-dropdown"(click)="toggleDisplay('revenueCommissioner')"></ion-icon>
+        <ion-icon *ngIf="cardSelection == 'revenueCommissioner'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
+      </ion-avatar>
+    </ion-card>
+
+    <!-- #endregion -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   <!-- #region SchoolBoardCards -->
   <!-- SchoolBoard -->
-  <ion-card class="districtCard">
-    <ion-card-content>
-      <ion-card-title>
-        School Board
-      </ion-card-title>
-
-    </ion-card-content>
-    <ion-avatar>
-        <ion-icon *ngIf="districtSelection != 'schoolBoard'" name="arrow-dropdown" (click)="toggleDisplay('schoolBoard')"></ion-icon>
-        <ion-icon *ngIf="districtSelection == 'schoolBoard'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
-    </ion-avatar>
-  
-  </ion-card>
+  <!-- <ion-card class="districtCard" *ngIf="informationSelection == 'schoolBoard'">
+      <ion-card-header>
+        <ion-card-title class="cardTitle">School Board</ion-card-title>
+    
+        <ion-item-divider class="cardDivider" *ngIf="cardSelection == 'probateJudge'">
+          <ion-label class="cardLabel">Nick Williams</ion-label>
+        </ion-item-divider>
+      </ion-card-header>
+    
+      <ion-card-content *ngIf="cardSelection == 'probateJudge'">
+        <p>PO BOX 864</p>
+        <p>Chatom, AL. 36518</p>
+        <p>judgewilliams@washprobate.com</p>
+        <p>(251)847-2201</p>
+      </ion-card-content>
+    
+      <ion-avatar>
+        <ion-icon *ngIf="cardSelection != 'probateJudge'" name="arrow-dropdown"(click)="toggleDisplay('probateJudge')"></ion-icon>
+        <ion-icon *ngIf="cardSelection == 'probateJudge'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
+      </ion-avatar>
+    
+    </ion-card> -->
   <!-- #endregion -->
   
   
   <!-- #region ServicesCards -->
   <!-- Services -->
-  <ion-card class="districtCard"> 
-    <ion-card-content>
-      <ion-card-title>
-        Services
-      </ion-card-title>
-     
-    </ion-card-content>
-    <ion-avatar>
-        <ion-icon *ngIf="districtSelection != 'services'" name="arrow-dropdown" (click)="toggleDisplay('services')"></ion-icon>
-        <ion-icon *ngIf="districtSelection == 'services'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
-    </ion-avatar>
-  
-  </ion-card>
+  <!-- <ion-card class="districtCard" *ngIf="informationSelection == 'services'">
+      <ion-card-header>
+        <ion-card-title class="cardTitle">Services</ion-card-title>
+    
+        <ion-item-divider class="cardDivider" *ngIf="cardSelection == 'probateJudge'">
+          <ion-label class="cardLabel">Nick Williams</ion-label>
+        </ion-item-divider>
+      </ion-card-header>
+    
+      <ion-card-content *ngIf="cardSelection == 'probateJudge'">
+        <p>PO BOX 864</p>
+        <p>Chatom, AL. 36518</p>
+        <p>judgewilliams@washprobate.com</p>
+        <p>(251)847-2201</p>
+      </ion-card-content>
+    
+      <ion-avatar>
+        <ion-icon *ngIf="cardSelection != 'probateJudge'" name="arrow-dropdown"(click)="toggleDisplay('probateJudge')"></ion-icon>
+        <ion-icon *ngIf="cardSelection == 'probateJudge'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
+      </ion-avatar>
+    
+    </ion-card> -->
   <!-- #endregion -->
 
 

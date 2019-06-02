@@ -93,8 +93,14 @@ page-county-information {
     }
 
     .cardLabel {
-        padding: 4px;
+        padding: 7px;
         color: rgba(0, 68, 136, 1)
+    }
+
+    .cardEmailAddress {
+        color: rgba(0, 68, 136, 1);
+        
+        text-decoration: underline;
     }
 
     //#endregion
