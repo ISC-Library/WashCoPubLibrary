@@ -32,7 +32,7 @@
       <ion-card-title class="cardTitle">Probate Judge</ion-card-title>
 
       <ion-item-divider class="cardDivider" *ngIf="cardSelection == 'probateJudge'">
-        <ion-label class="cardLabel">Nick Williams</ion-label>
+        <ion-label class="nameLabel">Nick Williams</ion-label>
       </ion-item-divider>
     </ion-card-header>
 
@@ -57,7 +57,7 @@
       <ion-card-title class="cardTitle">County Engineer</ion-card-title>
 
       <ion-item-divider class="cardDivider" *ngIf="cardSelection == 'countyEngineer'">
-        <ion-label class="cardLabel">Danny Overton</ion-label>
+        <ion-label class="nameLabel">Danny Overton</ion-label>
       </ion-item-divider>
     </ion-card-header>
 
@@ -82,7 +82,7 @@
       <ion-card-title class="cardTitle">EMA</ion-card-title>
 
       <ion-item-divider class="cardDivider" *ngIf="cardSelection == 'ema'">
-        <ion-label class="cardLabel">Mike Barnett</ion-label>
+        <ion-label class="nameLabel">Mike Barnett</ion-label>
       </ion-item-divider>
     </ion-card-header>
 
@@ -107,7 +107,7 @@
       <ion-card-title class="cardTitle">Sheriff</ion-card-title>
 
       <ion-item-divider class="cardDivider" *ngIf="cardSelection == 'sheriff'">
-        <ion-label class="cardLabel">Richard Stringer</ion-label>
+        <ion-label class="nameLabel">Richard Stringer</ion-label>
       </ion-item-divider>
     </ion-card-header>
 
@@ -132,7 +132,7 @@
       <ion-card-title class="cardTitle">County Administrator</ion-card-title>
 
       <ion-item-divider class="cardDivider" *ngIf="cardSelection == 'countyAdministrator'">
-        <ion-label class="cardLabel">Sonya Kirkwood</ion-label>
+        <ion-label class="nameLabel">Sonya Kirkwood</ion-label>
       </ion-item-divider>
     </ion-card-header>
 
@@ -159,7 +159,7 @@
       <ion-card-title class="cardTitle">Revenue Commissioner</ion-card-title>
 
       <ion-item-divider class="cardDivider" *ngIf="cardSelection == 'revenueCommissioner'">
-        <ion-label class="cardLabel">Mary Ann Dees</ion-label>
+        <ion-label class="nameLabel">Mary Ann Dees</ion-label>
       </ion-item-divider>
     </ion-card-header>
 
@@ -181,8 +181,33 @@
 
   <!-- #endregion -->
 
-  
+
   <!-- #region BoardOfEducationCards -->
+
+  <!-- Superintendent -->
+  <ion-card class="districtCard" *ngIf="informationSelection == 'boardOfEducation'">
+      <ion-card-header>
+        <ion-card-title class="cardTitle">Superintendent</ion-card-title>
+  
+        <ion-item-divider class="cardDivider" *ngIf="cardSelection == 'superintendent'">
+          <ion-label class="nameLabel">John Dickey</ion-label>
+        </ion-item-divider>
+      </ion-card-header>
+  
+      <ion-card-content *ngIf="cardSelection == 'superintendent'">
+        <!-- <p>PO BOX 864</p>
+        <p>Chatom, AL. 36518</p>
+        <p class="cardEmailAddress">judgewilliams@washprobate.com</p>
+        <p>(251)847-2201</p> -->
+      </ion-card-content>
+  
+      <ion-avatar>
+        <ion-icon *ngIf="cardSelection != 'superintendent'" name="arrow-dropdown" (click)="toggleDisplay('superintendent')">
+        </ion-icon>
+        <ion-icon *ngIf="cardSelection == 'superintendent'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
+      </ion-avatar>
+    </ion-card>
+
 
   <!-- Board Members -->
   <ion-card class="districtCard" *ngIf="informationSelection == 'boardOfEducation'">
@@ -260,7 +285,7 @@
       <ion-card-title class="cardTitle">Address Information</ion-card-title>
 
       <!-- <ion-item-divider class="cardDivider" *ngIf="cardSelection == 'addressInformation'">
-        <ion-label class="cardLabel">Nick Williams</ion-label>
+        <ion-label class="nameLabel">Nick Williams</ion-label>
       </ion-item-divider> -->
     </ion-card-header>
 
@@ -287,7 +312,7 @@
         <ion-card-title class="cardTitle">Services</ion-card-title>
     
         <ion-item-divider class="cardDivider" *ngIf="cardSelection == 'probateJudge'">
-          <ion-label class="cardLabel">Nick Williams</ion-label>
+          <ion-label class="nameLabel">Nick Williams</ion-label>
         </ion-item-divider>
       </ion-card-header>
     
