@@ -26,8 +26,9 @@
 
   <!-- #region LocalGovernment -->
 
-  <!-- Probate Judge -->
-  <ion-card class="districtCard" *ngIf="informationSelection == 'localGovernment'">
+
+  <!--#region Probate Judge -->
+  <ion-card class="Card" *ngIf="informationSelection == 'localGovernment'">
     <ion-card-header>
       <ion-card-title class="cardTitle">Probate Judge</ion-card-title>
 
@@ -49,10 +50,11 @@
       <ion-icon *ngIf="cardSelection == 'probateJudge'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
     </ion-avatar>
   </ion-card>
+  <!-- #endregion -->
 
 
-  <!-- County Engineer -->
-  <ion-card class="districtCard" *ngIf="informationSelection == 'localGovernment'">
+  <!--#region County Engineer -->
+  <ion-card class="Card" *ngIf="informationSelection == 'localGovernment'">
     <ion-card-header>
       <ion-card-title class="cardTitle">County Engineer</ion-card-title>
 
@@ -74,10 +76,11 @@
       <ion-icon *ngIf="cardSelection == 'countyEngineer'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
     </ion-avatar>
   </ion-card>
+  <!-- #endregion -->
 
 
-  <!-- EMA -->
-  <ion-card class="districtCard" *ngIf="informationSelection == 'localGovernment'">
+  <!--#region EMA -->
+  <ion-card class="Card" *ngIf="informationSelection == 'localGovernment'">
     <ion-card-header>
       <ion-card-title class="cardTitle">EMA</ion-card-title>
 
@@ -99,10 +102,11 @@
       <ion-icon *ngIf="cardSelection == 'ema'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
     </ion-avatar>
   </ion-card>
+  <!-- #endregion -->
 
 
-  <!-- Sheriff -->
-  <ion-card class="districtCard" *ngIf="informationSelection == 'localGovernment'">
+  <!--#region Sheriff -->
+  <ion-card class="Card" *ngIf="informationSelection == 'localGovernment'">
     <ion-card-header>
       <ion-card-title class="cardTitle">Sheriff</ion-card-title>
 
@@ -124,10 +128,11 @@
       <ion-icon *ngIf="cardSelection == 'sheriff'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
     </ion-avatar>
   </ion-card>
+  <!-- #endregion -->
 
 
-  <!-- County Administrator -->
-  <ion-card class="districtCard" *ngIf="informationSelection == 'localGovernment'">
+  <!--#region CountyAdministrator -->
+  <ion-card class="Card" *ngIf="informationSelection == 'localGovernment'">
     <ion-card-header>
       <ion-card-title class="cardTitle">County Administrator</ion-card-title>
 
@@ -151,10 +156,11 @@
       </ion-icon>
     </ion-avatar>
   </ion-card>
+  <!--#endregion  -->
 
 
-  <!-- Revenue Commissioner -->
-  <ion-card class="districtCard" *ngIf="informationSelection == 'localGovernment'">
+  <!--#region Revenue Commissioner -->
+  <ion-card class="Card" *ngIf="informationSelection == 'localGovernment'">
     <ion-card-header>
       <ion-card-title class="cardTitle">Revenue Commissioner</ion-card-title>
 
@@ -178,39 +184,94 @@
       </ion-icon>
     </ion-avatar>
   </ion-card>
+ <!--#endregion -->
+
+
+  <!--#region National Representation -->
+  <ion-card class="Card" *ngIf="informationSelection == 'localGovernment'">
+    <!-- The main header always needs to display so the title can be shown -->
+    <ion-card-header>
+      <ion-card-title class="cardTitle">National Representation</ion-card-title>
+
+      <!-- Where as the divider needs to only display once the card is opened -->
+      <ion-item-divider class="cardDivider" *ngIf="cardSelection == 'nationalRepresentation'">
+        <ion-label class="nameLabel">Bradly Byrne</ion-label>
+      </ion-item-divider>
+    </ion-card-header>
+
+    <!-- Then the content respective to that divider goes under it  -->
+    <ion-card-content *ngIf="cardSelection == 'nationalRepresentation'">
+      <p>National Congressional District 1</p>
+    </ion-card-content>
+
+    <!-- Every other header in the card does not need to display until the card is opened or it will create random padding in the card when it is closed -->
+    <ion-card-header *ngIf="cardSelection == 'nationalRepresentation'">
+      <ion-item-divider class="cardDivider">
+        <ion-label class="nameLabel">Brett Eastbrook</ion-label>
+      </ion-item-divider>
+    </ion-card-header>
+
+    <ion-card-content *ngIf="cardSelection == 'nationalRepresentation'">
+      <p>State House Representative - 65</p>
+    </ion-card-content>
+
+    <!-- Every other header in the card does not need to display until the card is opened or it will create random padding in the card when it is closed -->
+    <ion-card-header *ngIf="cardSelection == 'nationalRepresentation'">
+        <ion-item-divider class="cardDivider">
+          <ion-label class="nameLabel">Greg Albritton</ion-label>
+        </ion-item-divider>
+      </ion-card-header>
+  
+      <ion-card-content *ngIf="cardSelection == 'nationalRepresentation'">
+        <p>Senate District - 22</p>
+      </ion-card-content>
+
+    <ion-avatar>
+      <ion-icon *ngIf="cardSelection != 'nationalRepresentation'" name="arrow-dropdown"
+        (click)="toggleDisplay('nationalRepresentation')"></ion-icon>
+      <ion-icon *ngIf="cardSelection == 'nationalRepresentation'" name="arrow-dropup" (click)="toggleDisplay('')">
+      </ion-icon>
+    </ion-avatar>
+  </ion-card>
+  <!--#endregion -->
+
 
   <!-- #endregion -->
 
 
-  <!-- #region BoardOfEducationCards -->
 
-  <!-- Superintendent -->
-  <ion-card class="districtCard" *ngIf="informationSelection == 'boardOfEducation'">
-      <ion-card-header>
-        <ion-card-title class="cardTitle">Superintendent</ion-card-title>
-  
-        <ion-item-divider class="cardDivider" *ngIf="cardSelection == 'superintendent'">
-          <ion-label class="nameLabel">John Dickey</ion-label>
-        </ion-item-divider>
-      </ion-card-header>
-  
-      <ion-card-content *ngIf="cardSelection == 'superintendent'">
-        <!-- <p>PO BOX 864</p>
+  <!--#region BoardOfEducationCards -->
+
+
+  <!--#region Superintendent -->
+  <ion-card class="Card" *ngIf="informationSelection == 'boardOfEducation'">
+    <ion-card-header>
+      <ion-card-title class="cardTitle">Superintendent</ion-card-title>
+
+      <ion-item-divider class="cardDivider" *ngIf="cardSelection == 'superintendent'">
+        <ion-label class="nameLabel">John Dickey</ion-label>
+      </ion-item-divider>
+    </ion-card-header>
+
+    <ion-card-content *ngIf="cardSelection == 'superintendent'">
+      <!-- <p>PO BOX 864</p>
         <p>Chatom, AL. 36518</p>
         <p class="cardEmailAddress">judgewilliams@washprobate.com</p>
         <p>(251)847-2201</p> -->
-      </ion-card-content>
-  
-      <ion-avatar>
-        <ion-icon *ngIf="cardSelection != 'superintendent'" name="arrow-dropdown" (click)="toggleDisplay('superintendent')">
-        </ion-icon>
-        <ion-icon *ngIf="cardSelection == 'superintendent'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
-      </ion-avatar>
-    </ion-card>
+    </ion-card-content>
+
+    <ion-avatar>
+      <ion-icon *ngIf="cardSelection != 'superintendent'" name="arrow-dropdown"
+        (click)="toggleDisplay('superintendent')">
+      </ion-icon>
+      <ion-icon *ngIf="cardSelection == 'superintendent'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
+    </ion-avatar>
+  </ion-card>
+  <!-- #endregion -->
 
 
-  <!-- Board Members -->
-  <ion-card class="districtCard" *ngIf="informationSelection == 'boardOfEducation'">
+  <!--#region Board Members -->
+  <ion-card class="Card" *ngIf="informationSelection == 'boardOfEducation'">
     <ion-card-header>
 
       <!-- Normally you would use *ngIf Else / template but for someone reason angular has a bug that was happening in this particular instance -->
@@ -277,10 +338,11 @@
       <ion-icon *ngIf="cardSelection == 'boardMembers'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
     </ion-avatar>
   </ion-card>
+  <!-- #endregion -->
 
 
-  <!-- Address Information -->
-  <ion-card class="districtCard" *ngIf="informationSelection == 'boardOfEducation'">
+  <!--#region Address Information -->
+  <ion-card class="Card" *ngIf="informationSelection == 'boardOfEducation'">
     <ion-card-header>
       <ion-card-title class="cardTitle">Address Information</ion-card-title>
 
@@ -305,30 +367,86 @@
   <!-- #endregion -->
 
 
-  <!-- #region ServicesCards -->
-  <!-- Services -->
-  <!-- <ion-card class="districtCard" *ngIf="informationSelection == 'services'">
+  <!-- #endregion -->
+
+
+
+  <!--#region ServicesCards -->
+
+
+  <!--#region Services -->
+  <ion-card class="Card" *ngIf="informationSelection == 'services'">
       <ion-card-header>
-        <ion-card-title class="cardTitle">Services</ion-card-title>
-    
-        <ion-item-divider class="cardDivider" *ngIf="cardSelection == 'probateJudge'">
-          <ion-label class="nameLabel">Nick Williams</ion-label>
-        </ion-item-divider>
+  
+        <!-- Normally you would use *ngIf Else / template but for someone reason angular has a bug that was happening in this particular instance -->
+        <!-- Instead we will just use two elements with seperate conditions -->
+        <ion-card-title class="cardTitle" *ngIf="cardSelection != 'services'; else servicesVisible">Services
+        </ion-card-title>
+  
+        <ng-template #servicesVisible>
+          <ion-card-title class="cardTitleServicesVisible">Services</ion-card-title>
+        </ng-template>
+  
+  
+        <div class="servicesContainer" *ngIf="cardSelection == 'services'">
+          <ion-label class="servicesLabel">- Hospital -</ion-label>
+          <p class="cardLink">http://www.wchnh.org/</p>
+          <br>
+        </div>
+  
+        <div class="servicesContainer" *ngIf="cardSelection == 'services'">
+            <ion-label class="servicesLabel">- The Arc -</ion-label>
+            <p class="cardLink">Http://arcofsouthwestal.org/</p>
+            <br>
+          </div>
+  
+          <div class="servicesContainer" *ngIf="cardSelection == 'services'">
+              <ion-label class="servicesLabel">- St. Stephens -</ion-label>
+              <p class="cardLink">http://www.oldststephens.net/</p>
+              <br>
+            </div>
+  
+            <div class="servicesContainer" *ngIf="cardSelection == 'services'">
+                <ion-label class="servicesLabel">- ADPH -</ion-label>
+                <p class="cardLink">http://www.alabamapublichealth.gov/washington/</p>
+                <br>
+              </div>
+  
+              <div class="servicesContainer" *ngIf="cardSelection == 'services'">
+                  <ion-label class="servicesLabel">- Extension Office -</ion-label>
+                  <p class="cardLink">http://www.aces.edu/counties/washington/</p>
+                  <br>
+                </div>
+
+                <div class="servicesContainer" *ngIf="cardSelection == 'services'">
+                    <ion-label class="servicesLabel">- Alta Point -</ion-label>
+                    <p class="cardLink">http://www.altapointe.org/locations/community-counseling-center-washington-county/</p>
+                    <br>
+                  </div>
+
+                  <div class="servicesContainer" *ngIf="cardSelection == 'services'">
+                      <ion-label class="servicesLabel">- Chatom Primary Care -</ion-label>
+                      <p class="cardLink">https://www.facebook.com/chatomprimarycare/</p>
+                      <br>
+                    </div>
       </ion-card-header>
-    
-      <ion-card-content *ngIf="cardSelection == 'probateJudge'">
-        <p>PO BOX 864</p>
-        <p>Chatom, AL. 36518</p>
-        <p>judgewilliams@washprobate.com</p>
-        <p>(251)847-2201</p>
+  
+      <ion-card-content *ngIf="cardSelection == 'services'">
+        <!-- <p>PO BOX 864</p>
+          <p>Chatom, AL. 36518</p>
+          <p class="cardEmailAddress">judgewilliams@washprobate.com</p>
+          <p>(251)847-2201</p> -->
       </ion-card-content>
-    
+  
       <ion-avatar>
-        <ion-icon *ngIf="cardSelection != 'probateJudge'" name="arrow-dropdown"(click)="toggleDisplay('probateJudge')"></ion-icon>
-        <ion-icon *ngIf="cardSelection == 'probateJudge'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
+        <ion-icon *ngIf="cardSelection != 'services'" name="arrow-dropdown" (click)="toggleDisplay('services')">
+        </ion-icon>
+        <ion-icon *ngIf="cardSelection == 'services'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
       </ion-avatar>
-    
-    </ion-card> -->
+    </ion-card>
+    <!-- #endregion -->
+
+
   <!-- #endregion -->
 
 
