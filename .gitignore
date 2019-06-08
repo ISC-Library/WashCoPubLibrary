@@ -17,11 +17,11 @@ npm-debug.log*
 .sourcemaps/
 .sass-cache/
 .tmp/
+/node_modules/
+node_modules/
 .versions/
 coverage/
 dist/
-/node_modules/
-node_modules/
 tmp/
 temp/
 platforms/
