@@ -184,7 +184,7 @@
       </ion-icon>
     </ion-avatar>
   </ion-card>
- <!--#endregion -->
+  <!--#endregion -->
 
 
   <!--#region National Representation -->
@@ -217,14 +217,14 @@
 
     <!-- Every other header in the card does not need to display until the card is opened or it will create random padding in the card when it is closed -->
     <ion-card-header *ngIf="cardSelection == 'nationalRepresentation'">
-        <ion-item-divider class="cardDivider">
-          <ion-label class="nameLabel">Greg Albritton</ion-label>
-        </ion-item-divider>
-      </ion-card-header>
-  
-      <ion-card-content *ngIf="cardSelection == 'nationalRepresentation'">
-        <p>Senate District - 22</p>
-      </ion-card-content>
+      <ion-item-divider class="cardDivider">
+        <ion-label class="nameLabel">Greg Albritton</ion-label>
+      </ion-item-divider>
+    </ion-card-header>
+
+    <ion-card-content *ngIf="cardSelection == 'nationalRepresentation'">
+      <p>Senate District - 22</p>
+    </ion-card-content>
 
     <ion-avatar>
       <ion-icon *ngIf="cardSelection != 'nationalRepresentation'" name="arrow-dropdown"
@@ -376,75 +376,75 @@
 
   <!--#region Services -->
   <ion-card class="Card" *ngIf="informationSelection == 'services'">
-      <ion-card-header>
-  
-        <!-- Normally you would use *ngIf Else / template but for someone reason angular has a bug that was happening in this particular instance -->
-        <!-- Instead we will just use two elements with seperate conditions -->
-        <ion-card-title class="cardTitle" *ngIf="cardSelection != 'services'; else servicesVisible">Services
-        </ion-card-title>
-  
-        <ng-template #servicesVisible>
-          <ion-card-title class="cardTitleServicesVisible">Services</ion-card-title>
-        </ng-template>
-  
-  
-        <div class="servicesContainer" *ngIf="cardSelection == 'services'">
-          <ion-label class="servicesLabel">- Hospital -</ion-label>
-          <p class="cardLink">http://www.wchnh.org/</p>
-          <br>
-        </div>
-  
-        <div class="servicesContainer" *ngIf="cardSelection == 'services'">
-            <ion-label class="servicesLabel">- The Arc -</ion-label>
-            <p class="cardLink">Http://arcofsouthwestal.org/</p>
-            <br>
-          </div>
-  
-          <div class="servicesContainer" *ngIf="cardSelection == 'services'">
-              <ion-label class="servicesLabel">- St. Stephens -</ion-label>
-              <p class="cardLink">http://www.oldststephens.net/</p>
-              <br>
-            </div>
-  
-            <div class="servicesContainer" *ngIf="cardSelection == 'services'">
-                <ion-label class="servicesLabel">- ADPH -</ion-label>
-                <p class="cardLink">http://www.alabamapublichealth.gov/washington/</p>
-                <br>
-              </div>
-  
-              <div class="servicesContainer" *ngIf="cardSelection == 'services'">
-                  <ion-label class="servicesLabel">- Extension Office -</ion-label>
-                  <p class="cardLink">http://www.aces.edu/counties/washington/</p>
-                  <br>
-                </div>
+    <ion-card-header>
 
-                <div class="servicesContainer" *ngIf="cardSelection == 'services'">
-                    <ion-label class="servicesLabel">- Alta Point -</ion-label>
-                    <p class="cardLink">http://www.altapointe.org/locations/community-counseling-center-washington-county/</p>
-                    <br>
-                  </div>
+      <!-- Normally you would use *ngIf Else / template but for someone reason angular has a bug that was happening in this particular instance -->
+      <!-- Instead we will just use two elements with seperate conditions -->
+      <ion-card-title class="cardTitle" *ngIf="cardSelection != 'services'; else servicesVisible">Services
+      </ion-card-title>
 
-                  <div class="servicesContainer" *ngIf="cardSelection == 'services'">
-                      <ion-label class="servicesLabel">- Chatom Primary Care -</ion-label>
-                      <p class="cardLink">https://www.facebook.com/chatomprimarycare/</p>
-                      <br>
-                    </div>
-      </ion-card-header>
-  
-      <ion-card-content *ngIf="cardSelection == 'services'">
-        <!-- <p>PO BOX 864</p>
+      <ng-template #servicesVisible>
+        <ion-card-title class="cardTitleServicesVisible">Services</ion-card-title>
+      </ng-template>
+
+
+      <div class="servicesContainer" *ngIf="cardSelection == 'services'">
+        <ion-label class="servicesLabel">- Hospital -</ion-label>
+        <p class="cardLink">http://www.wchnh.org/</p>
+        <br>
+      </div>
+
+      <div class="servicesContainer" *ngIf="cardSelection == 'services'">
+        <ion-label class="servicesLabel">- The Arc -</ion-label>
+        <p class="cardLink">Http://arcofsouthwestal.org/</p>
+        <br>
+      </div>
+
+      <div class="servicesContainer" *ngIf="cardSelection == 'services'">
+        <ion-label class="servicesLabel">- St. Stephens -</ion-label>
+        <p class="cardLink">http://www.oldststephens.net/</p>
+        <br>
+      </div>
+
+      <div class="servicesContainer" *ngIf="cardSelection == 'services'">
+        <ion-label class="servicesLabel">- ADPH -</ion-label>
+        <p class="cardLink">http://www.alabamapublichealth.gov/washington/</p>
+        <br>
+      </div>
+
+      <div class="servicesContainer" *ngIf="cardSelection == 'services'">
+        <ion-label class="servicesLabel">- Extension Office -</ion-label>
+        <p class="cardLink">http://www.aces.edu/counties/washington/</p>
+        <br>
+      </div>
+
+      <div class="servicesContainer" *ngIf="cardSelection == 'services'">
+        <ion-label class="servicesLabel">- Alta Point -</ion-label>
+        <p class="cardLink">http://www.altapointe.org/locations/community-counseling-center-washington-county/</p>
+        <br>
+      </div>
+
+      <div class="servicesContainer" *ngIf="cardSelection == 'services'">
+        <ion-label class="servicesLabel">- Chatom Primary Care -</ion-label>
+        <p class="cardLink">https://www.facebook.com/chatomprimarycare/</p>
+        <br>
+      </div>
+    </ion-card-header>
+
+    <ion-card-content *ngIf="cardSelection == 'services'">
+      <!-- <p>PO BOX 864</p>
           <p>Chatom, AL. 36518</p>
           <p class="cardEmailAddress">judgewilliams@washprobate.com</p>
           <p>(251)847-2201</p> -->
-      </ion-card-content>
-  
-      <ion-avatar>
-        <ion-icon *ngIf="cardSelection != 'services'" name="arrow-dropdown" (click)="toggleDisplay('services')">
-        </ion-icon>
-        <ion-icon *ngIf="cardSelection == 'services'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
-      </ion-avatar>
-    </ion-card>
-    <!-- #endregion -->
+    </ion-card-content>
+
+    <ion-avatar>
+      <ion-icon *ngIf="cardSelection != 'services'" name="arrow-dropdown" (click)="toggleDisplay('services')">
+      </ion-icon>
+      <ion-icon *ngIf="cardSelection == 'services'" name="arrow-dropup" (click)="toggleDisplay('')"></ion-icon>
+    </ion-avatar>
+  </ion-card>
+  <!-- #endregion -->
 
 
   <!-- #endregion -->

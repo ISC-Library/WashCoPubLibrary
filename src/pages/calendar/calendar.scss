@@ -83,6 +83,8 @@ page-calendar {
     .segment #allSegmentBtn.segment-activated {
         //RGBA allows you to convert a color to transparency
         background-color: rgba(0,0,0,.3);
+        background-color: rgba(0,0,0,.3);
+        box-shadow: inset 2px 2px 3px 1px rgba(0,0,0, .45) !important;
     }
 
     //Sporting
@@ -96,6 +98,8 @@ page-calendar {
 
     .segment #sportingSegmentBtn.segment-activated {
         background-color: rgba(0,136,68,.3);
+        background-color: rgba(0,136,68,.3);
+        box-shadow: inset 2px 2px 3px 1px rgba(0,0,0, .45) !important;
     }
 
     //Community
@@ -109,6 +113,8 @@ page-calendar {
 
     .segment  #communitySegmentBtn.segment-activated {
         background-color: rgba(200,0,0,.3);
+        background-color: rgba(200,0,0,.3);
+        box-shadow: inset 2px 2px 3px 1px rgba(0,0,0, .45) !important;
     }
 
     //Business
@@ -122,6 +128,8 @@ page-calendar {
 
     .segment  #businessSegmentBtn.segment-activated {
         background-color: rgba(255,78,0,.3);
+        background-color: rgba(255,78,0,.3);
+        box-shadow: inset 2px 2px 3px 1px rgba(0,0,0, .45) !important;
     }
 
     //Art
@@ -134,6 +142,8 @@ page-calendar {
 
     .segment  #artSegmentBtn.segment-activated {
         background-color: rgba(0,68,136, 0.3);
+        background-color: rgba(0,68,136,.3);
+        box-shadow: inset 2px 2px 3px 1px rgba(0,0,0, .45) !important;
     }
 
     //[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]

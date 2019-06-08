@@ -48,11 +48,16 @@ page-joblinks {
         border-bottom:silver;
     }
 
-    //Segment Buttons
+    //#region SegmentButtons
 
     #fullTime {
         color: rgba(0,136,68,1);
         border-color: rgba(0,136,68,1);
+    }
+
+    .segment #fullTime.segment-activated {
+        background-color: rgba(0,136,68,.3);
+        box-shadow: inset 2px 2px 3px 1px rgba(0,0,0, .45) !important;
     }
 
     #partTime {
@@ -60,14 +65,27 @@ page-joblinks {
         border-color: rgba(0,136,68,1);
     }
 
+    .segment #partTime.segment-activated {
+        background-color: rgba(0,136,68,.3);
+        box-shadow: inset 2px 2px 3px 1px rgba(0,0,0, .45) !important;
+    }
+
     #allJobs {
         color: rgba(0,136,68,1);
         border-color: rgba(0,136,68,1);
     }
 
+    .segment #allJobs.segment-activated {
+        background-color: rgba(0,136,68,.3);
+        box-shadow: inset 2px 2px 3px 1px rgba(0,0,0, .45) !important;
+    }
+    //#endregion
+
+
     //Range Bar
     .range-bar {
         color: rgba(0,136,68,1);
     }
+    
 
 }
