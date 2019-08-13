@@ -17,6 +17,7 @@ import { EventTitleCheckProvider } from '../../providers/event-title-check/event
 //Import Pages
 import { CalendarPage } from '../calendar/calendar';
 import { ThrowStmt } from '@angular/compiler';
+import { HomePage } from '../home/home';
 
 @Component({
   selector: 'page-add-event',
@@ -44,6 +45,10 @@ export class AddEventPage {
   eventSubmission: FormGroup;
   submitAttempt: boolean = false;
   control: FormControl;
+
+  //Declare a boolean to check if the saved button was clicked
+    //IT IS DONE THIS WAY BECAUSE THE NAVCTRL DID NOT WORK INSIDE THE SAVE DIALOG
+  savedState: any; 
 
   //The "event" is an object that is used to format the data being pushed into the database 
   event = { 
@@ -278,26 +283,6 @@ validateInput() {
 
   //#region SaveEvent
   save() {
-    //Seperate the date and time in the "event.startTime" and "event.endTime" variables 
-    this.event.startTime = this.event.startDate.split("T").pop()
-    this.event.endTime = this.event.endDate.split("T").pop()
-
-    //For now we are not dealing with the timezone offset
-      //Which is currently appending itself to the dateTime as "00Z"
-        //For now we will just cut that off
-    this.event.startTime = this.event.startTime.substring(0, this.event.startTime.length - 4);
-    this.event.endTime = this.event.endTime.substring(0, this.event.endTime.length - 4);
-
-    console.log(this.event.startTime)
-    console.log(this.event.endTime)
-
-    // this.event.startTime = this.event.startDate.split(0).pop();
-    // this.event.endTime = this.event.endDate.split("0").pop();
-
-    //Re-declare the "event.startDate" and "event.endDate" to be just the date, not removing the time portion
-    this.event.startDate= this.event.startDate.split("T", 1).pop();
-    this.event.endDate = this.event.endDate.split("T", 1).pop();
-
     console.log("save invoked");
     this.calendar.createEvent(
       this.event.title, 
@@ -319,10 +304,30 @@ validateInput() {
             },
             {
               //Pushing the data to firebase!!!
-              text: 'Save',
+              text: 'Confirm',
               handler: data => {
                 const newEventsRef = this.eventsRef.push({});
        
+                //Seperate the date and time in the "event.startTime" and "event.endTime" variables 
+                this.event.startTime = this.event.startDate.split("T").pop()
+                this.event.endTime = this.event.endDate.split("T").pop()
+
+                //For now we are not dealing with the timezone offset
+                  //Which is currently appending itself to the dateTime as "00Z"
+                    //For now we will just cut that off
+                this.event.startTime = this.event.startTime.substring(0, this.event.startTime.length - 4);
+                this.event.endTime = this.event.endTime.substring(0, this.event.endTime.length - 4);
+
+                console.log(this.event.startTime)
+                console.log(this.event.endTime)
+
+                // this.event.startTime = this.event.startDate.split(0).pop();
+                // this.event.endTime = this.event.endDate.split("0").pop();
+
+                //Re-declare the "event.startDate" and "event.endDate" to be just the date, not removing the time portion
+                this.event.startDate= this.event.startDate.split("T", 1).pop();
+                this.event.endDate = this.event.endDate.split("T", 1).pop();
+
                 newEventsRef.set({
                   id: newEventsRef.key,
                   title: this.event.title,
@@ -333,24 +338,32 @@ validateInput() {
                   endDate: this.event.endDate,
                   startTime: this.event.startTime,
                   endTime: this.event.endTime
-                });
-                this.navCtrl.pop();
+                })
+                console.log("tits")
+                this.navCtrl.setRoot(CalendarPage);
               }
             }
           ]
         });
         alert.present();
       },
-      (err) => {
-        let alert = this.alertCtrl.create({
-          title: 'Failed!',
-          subTitle: err,
-          buttons: ['OK']
-        });
-        alert.present();
-      }
+      // (err) => {
+      //   let alert = this.alertCtrl.create({
+      //     title: 'Failed!',
+      //     subTitle: err,
+      //     buttons: ['OK']
+      //   });
+      //   alert.present();
+      // }
     );
+    //After the save() function has finished, check the savedState
+      //In other words did the user click "save" or "cancel"
+      // if(this.savedState == "true") {
+      //   this.navCtrl.popTo(CalendarPage)
+      // }
     }
+
+    
   //#endregion
 
 
