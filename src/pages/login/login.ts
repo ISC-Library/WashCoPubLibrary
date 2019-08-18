@@ -35,7 +35,7 @@ export class LoginPage {
  }
 
   loginUser() {
-    this.adminAuthProvider.login(this.user.name.toLowerCase(), this.user.pw).then(success => {
+    this.adminAuthProvider.login(this.user.name.toLowerCase().trim(), this.user.pw.trim()).then(success => {
       if (success) {
         //Save the username if successfull
         //this.userName=(this.adminAuthProvider.currentUser.name);

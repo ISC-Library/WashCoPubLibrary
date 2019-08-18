@@ -12,6 +12,7 @@ import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
 //Import Provider
 import { EventTitleCheckProvider } from '../../providers/event-title-check/event-title-check'
+import { HomePage } from '../home/home';
 
 @Component({
   selector: 'page-add-suggested-events',
@@ -240,35 +241,6 @@ validateInput() {
   //#region SaveSuggestedEvent
   //Create New Events 
   save() {
-    //Seperate the date and time in the "event.startDate" and "event.endDate" variables 
-    //Seperate the date and time in the "event.startTime" and "event.endTime" variables 
-    this.event.startTime = this.event.startDate.split("T").pop()
-    this.event.endTime = this.event.endDate.split("T").pop()
-
-    //For now we are not dealing with the timezone offset
-      //Which is currently appending itself to the dateTime as "00Z"
-        //For now we will just cut that off
-    this.event.startTime = this.event.startTime.substring(0, this.event.startTime.length - 4);
-    this.event.endTime = this.event.endTime.substring(0, this.event.endTime.length - 4);
-
-    console.log(this.event.startTime)
-    console.log(this.event.endTime)
-
-    // this.event.startTime = this.event.startDate.split(0).pop();
-    // this.event.endTime = this.event.endDate.split("0").pop();
-
-    //Re-declare the "event.startDate" and "event.endDate" to be just the date, not removing the time portion
-    this.event.startDate= this.event.startDate.split("T", 1).pop();
-    this.event.endDate = this.event.endDate.split("T", 1).pop();
-
-    console.log(this.event.startDate)
-    console.log(this.event.startDate)
-
-    //Remove spaces from the email
-    this.event.contactEmail.replace(/\s/g, "")
-    //Remove spaces and special characters from the "contactPhone"
-    this.event.contactPhone.replace(/\+|-|\(|\)|\s/g, "")
-
     console.log("save invoked");
     this.calendar.createEvent(
       this.event.title, 
@@ -290,8 +262,38 @@ validateInput() {
             },
             {
               //Pushing the data to firebase!!!
-              text: 'Save',
+              text: 'Confirm',
               handler: data => {
+
+                //Seperate the date and time in the "event.startDate" and "event.endDate" variables 
+                //Seperate the date and time in the "event.startTime" and "event.endTime" variables 
+                this.event.startTime = this.event.startDate.split("T").pop()
+                this.event.endTime = this.event.endDate.split("T").pop()
+
+                //For now we are not dealing with the timezone offset
+                  //Which is currently appending itself to the dateTime as "00Z"
+                    //For now we will just cut that off
+                this.event.startTime = this.event.startTime.substring(0, this.event.startTime.length - 4);
+                this.event.endTime = this.event.endTime.substring(0, this.event.endTime.length - 4);
+
+                console.log(this.event.startTime)
+                console.log(this.event.endTime)
+
+                // this.event.startTime = this.event.startDate.split(0).pop();
+                // this.event.endTime = this.event.endDate.split("0").pop();
+
+                //Re-declare the "event.startDate" and "event.endDate" to be just the date, not removing the time portion
+                this.event.startDate= this.event.startDate.split("T", 1).pop();
+                this.event.endDate = this.event.endDate.split("T", 1).pop();
+
+                console.log(this.event.startDate)
+                console.log(this.event.startDate)
+
+                //Remove spaces from the email
+                this.event.contactEmail.replace(/\s/g, "")
+                //Remove spaces and special characters from the "contactPhone"
+                this.event.contactPhone.replace(/\+|-|\(|\)|\s/g, "")
+
                 const newEventsRef = this.eventsRef.push({});
        
                 newEventsRef.set({
@@ -308,7 +310,8 @@ validateInput() {
                   contactEmail: this.event.contactEmail,
                   contactPhone: this.event.contactPhone
                 });
-                this.navCtrl.pop();
+                //Navigate to the homepage
+                this.navCtrl.setRoot(HomePage);
               }
             }
           ]

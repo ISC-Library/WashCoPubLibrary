@@ -339,28 +339,16 @@ validateInput() {
                   startTime: this.event.startTime,
                   endTime: this.event.endTime
                 })
-                console.log("tits")
-                this.navCtrl.setRoot(CalendarPage);
+               
+                //Go Back to the home page 
+                this.navCtrl.setRoot(HomePage)      
               }
             }
           ]
         });
         alert.present();
       },
-      // (err) => {
-      //   let alert = this.alertCtrl.create({
-      //     title: 'Failed!',
-      //     subTitle: err,
-      //     buttons: ['OK']
-      //   });
-      //   alert.present();
-      // }
     );
-    //After the save() function has finished, check the savedState
-      //In other words did the user click "save" or "cancel"
-      // if(this.savedState == "true") {
-      //   this.navCtrl.popTo(CalendarPage)
-      // }
     }
 
     
