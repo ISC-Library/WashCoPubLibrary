@@ -44,6 +44,15 @@ page-modify-suggested-events {
         font-size: 150%;
     }
 
+      //Allowed symbols
+   #allowedSymbolsLabel {
+    color: rgb(155, 155, 155),
+    } 
+
+    #allowedSymbols {
+        color: rgb(155, 155, 155),
+    }
+
     // Check Title
     .titleInputInvalid {
         color: rgba(180,0,0,1);

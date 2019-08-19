@@ -17,6 +17,9 @@ import { ViewSuggestedEventsPage } from '../view-suggested-events/view-suggested
 //Import Provider
 import { CalenderEventsServiceProvider } from '../../providers/calendar-event-service/calendar-event-service';
 import { AdminAuthProvider } from '../../providers/admin-auth/admin-auth';
+
+//Import AF2 
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 // #endregion
 
 
@@ -38,6 +41,8 @@ export class CalendarPage {
   //holds formatted dates {year, month, date} abstracted from the "startDate" of the "allEvents" (array)
   formattedForCSS: any;
 
+  //Create the eventsRef variable: give it the type of "AngularFireList" 
+  eventsRef: AngularFireList<any>;
 
   //Declare the database filter variable
   //Dynamic: Can change so that dynamic filters can be passed to the database 
@@ -51,7 +56,8 @@ export class CalendarPage {
     private calendar: Calendar,
     public CalendarEventSvc: CalenderEventsServiceProvider,
     public loadingCtrl: LoadingController,
-    public AdminAuthProvider: AdminAuthProvider) {
+    public AdminAuthProvider: AdminAuthProvider,
+    afDatabase:AngularFireDatabase) {
 
     //This.formattedForCSS needs to be converted to any array 
     this.formattedForCSS = [];
@@ -59,6 +65,8 @@ export class CalendarPage {
     //Set the value of the class variable "event" to the event passed 
     this.formattedForCSS = this.navParams.get('formattedForCSS');
 
+    //This is the reference to which portion of the database you want to access 
+    this.eventsRef = afDatabase.list('events');
 
     //Set the "events" Observable equal to a call to the database unfiltered by default (all events)
     //Use the "databaseFilterDynamic" to allow it to retrieve data dynamically
@@ -265,7 +273,7 @@ export class CalendarPage {
 
 
 
-  //GatherChildren event to collect the <spans> that contain an event.
+  //#region GatherChildren event to collect the <spans> that contain an event.
   gatherChildren($event) {
     let elementsOne = document.getElementsByClassName("center calendar-col col this-month");
 
@@ -671,16 +679,23 @@ export class CalendarPage {
       }
     }
   }
-
+//#endregion
 
   // Navigate to the "ModifyEvent" page
   //The user selects modify button on the event which they wish to modify 
   //The event data for that specific event is passed, which we will forward to the "ModifyEvent" page
   modifyEvent(event) {
+    console.log(event)
     this.navCtrl.push(ModifyEventsPage, {
       event
     });
   }
+
+  deleteEvent(event) {
+    console.log("Delete");
+    //Call the database via the "suggestedEventsRef" and delete the item corresponding to the suggestedEvent.id passed
+    this.eventsRef.remove(event.id);
+  };
 
   // [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]][][][][][][][][][]
   //////// Below this are the portions to display event data  [][[][[][][][][][][][[][][]]]]
@@ -704,13 +719,13 @@ export class CalendarPage {
 
   isAdmin() {
     if (this.AdminAuthProvider.isLoggedIn()) {
-      console.log(this.AdminAuthProvider.currentUser)
+      //console.log(this.AdminAuthProvider.currentUser)
 
       if (this.AdminAuthProvider.currentUser.role === 0) {
-        console.log("true")
+        //console.log("true")
         return true;
       } else {
-        console.log("false")
+        //console.log("false")
         return false;
       }
     } 

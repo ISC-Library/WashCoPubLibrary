@@ -15,14 +15,16 @@
       <ion-list>
         <!-- Blank Fields -->
         <ion-item id="allEventsRequired" style="text-align: center">All Fields Required.</ion-item>
-  
+        <ion-item no-lines id="allowedSymbolsLabel" style="text-align: center">Accepted Symbols</ion-item>
+        <ion-item id="allowedSymbols" style="text-align: center">! . @ # $ & * - _ |  " ' ? /</ion-item>
+
         <!-- Title -->
         <ion-item>
           <!-- Check to see if the title is the same (true means it is the same) -->
           <ion-label floating *ngIf="checkTitle(true); else titleDifferent">Please Choose Another Title!</ion-label>
           <!-- Create the *ng template to load if the title is different -->
           <ng-template #titleDifferent>
-            <ion-label floating>Title</ion-label>
+            <ion-label floating>Title {{ this.suggestedEvent.title.length }} / 30</ion-label>
           </ng-template>
   
           <!-- Error Icon if the title is the same -->
@@ -34,7 +36,7 @@
   
         <!-- Location -->
         <ion-item>
-          <ion-label floating>Location</ion-label>
+          <ion-label floating>Location {{ this.suggestedEvent.location.length }} / 30</ion-label>
           <ion-input type="text" formControlName="location" [(ngModel)]="suggestedEvent.location"></ion-input>
         </ion-item>
 
@@ -68,6 +70,8 @@
       <ion-label floating>Contact Name</ion-label>
       <ion-input type="text" [(ngModel)]="suggestedEvent.contactName" formControlName="contactName"></ion-input>
     </ion-item>
+
+    <!-- <ion-item no-lines id="emailFormatExample" style="text-align: center">example.given@gmail.com</ion-item> -->
 
     <ion-item>
       <ion-label floating>Contact Email</ion-label>

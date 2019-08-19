@@ -98,10 +98,10 @@ export class ModifyEventsPage {
     this.modifyEventSubmission = formBuilder.group({
       //The following title example allows regex
       // title: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      title: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('^(?=.*[a-zA-Z0-9].*)[a-zA-Z0-9!@#$,%&*_ ]+$'), Validators.required])],
-      location: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('^(?=.*[a-zA-Z0-9].*)[a-zA-Z0-9,_ ]+$'), Validators.required])],
+      title: ['', Validators.compose([Validators.maxLength(30),  Validators.pattern(`^(?=.*[a-zA-Z0-9].*)[a-zA-Z0-9!.@#$&*-_|"'?/ ]+$`), Validators.required])],
+      location: ['', Validators.compose([Validators.maxLength(30), Validators.pattern(`^(?=.*[a-zA-Z0-9].*)[a-zA-Z0-9!.@#$&*-_|"'?/ ]+$`), Validators.required])],
       category: ['', Validators.compose([Validators.pattern('^(?!\s*$).+'), Validators.required])],
-      notes: ['', Validators.compose([Validators.maxLength(250), Validators.pattern('^(?=.*[a-zA-Z0-9].*)[a-zA-Z0-9!@#$,%&*_. ]+$'), Validators.required])],
+      notes: ['', Validators.compose([Validators.maxLength(250), Validators.pattern(`^(?=.*[a-zA-Z0-9].*)[a-zA-Z0-9!.@#$&*-_|"'?/ ]+$`), Validators.required])],
       startDate: ['', Validators.compose([Validators.pattern('^(?!\s*$).+'), Validators.required])],
       endDate: ['', Validators.compose([Validators.pattern('^(?!\s*$).+'), Validators.required])],
     })
@@ -128,7 +128,7 @@ export class ModifyEventsPage {
   }
 
   ionViewCanEnter() {
-    console.log("can enter")
+    //console.log("can enter")
     if (this.isAdmin() == false) {
       return false
     }
@@ -137,22 +137,22 @@ export class ModifyEventsPage {
   //Check if user is administrator 
   isAdmin() {
     if (this.AdminAuthProvider.isLoggedIn()) {
-      console.log(this.AdminAuthProvider.currentUser)
+      //console.log(this.AdminAuthProvider.currentUser)
 
       //If logged in and an admin return true
       if (this.AdminAuthProvider.currentUser.role === 0) {
-        console.log("true")
+        //console.log("true")
         return true;
       }
       //If logged in but not an admin return false
       else {
-        console.log("false")
+        //console.log("false")
         return false;
       }
     }
     //If not logged in at all return false
     else {
-      console.log("false")
+      //console.log("false")
       return false;
     }
   }
@@ -182,7 +182,7 @@ export class ModifyEventsPage {
     });
 
     toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
+      //console.log('Dismissed toast');
     });
 
     toast.present();
@@ -197,7 +197,7 @@ export class ModifyEventsPage {
     });
 
     toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
+      //console.log('Dismissed toast');
     });
 
     toast.present();
@@ -276,16 +276,21 @@ export class ModifyEventsPage {
     } else {
       var message;
 
-      //Check Title / Location Length (we already have custom css to show if the title is the same as another)
+        //Check Title / Location Length (we already have custom css to show if the title is the same as another)
       if (this.event.title.length > 30 || this.event.location.length > 30) {
-        message = "Your title and location must not be more than 30 characters."
+        message = "Neither your title nor location can be more than 30 characters."
+      }
+
+      //Check Notes Length 
+      if (this.event.notes.length > 250) {
+        message = "Your notes cannot be more than 250 characters."
       }
 
       if (this.event.title.length == 0 || this.event.location.length == 0 ||
         this.event.notes.length == 0 || this.event.category.length == 0 ||
         this.event.startDate.length == 0 || this.event.endDate.length == 0) {
         //If the "all fields requried .. field" is not in an error state put it in one
-        console.log(this.event.category.length)
+        //console.log(this.event.category.length)
         if (document.getElementById("allEventsRequired")) {
           document.getElementById("allEventsRequired").id = "allEventsRequiredError"
         }
@@ -298,7 +303,7 @@ export class ModifyEventsPage {
       });
 
       toast.onDidDismiss(() => {
-        console.log('Dismissed toast');
+        //console.log('Dismissed toast');
       });
 
       toast.present();
@@ -331,7 +336,7 @@ export class ModifyEventsPage {
         {
           text: 'Cancel',
           handler: data => {
-            console.log('Cancel clicked');
+            //console.log('Cancel clicked');
           }
         },
 

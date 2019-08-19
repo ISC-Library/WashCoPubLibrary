@@ -15,14 +15,16 @@
       <ion-list>
         <!-- Blank Fields -->
         <ion-item id="allEventsRequired" style="text-align: center">All Fields Required.</ion-item>
-  
+        <ion-item no-lines id="allowedSymbolsLabel" style="text-align: center">Accepted Symbols</ion-item>
+        <ion-item id="allowedSymbols" style="text-align: center">! . @ # $ & * - _ |  " ' ? /</ion-item>
+        
         <!-- Title -->
         <ion-item>
           <!-- Check to see if the title is the same (true means it is the same) -->
           <ion-label floating *ngIf="checkTitle(true); else titleDifferent">Please Choose Another Title!</ion-label>
           <!-- Create the *ng template to load if the title is different -->
           <ng-template #titleDifferent>
-            <ion-label floating>Title</ion-label>
+            <ion-label floating>Title {{ this.event.title.length }} / 30</ion-label>
           </ng-template>
   
           <!-- Error Icon if the title is the same -->
@@ -34,7 +36,7 @@
   
         <!-- Location -->
         <ion-item>
-          <ion-label floating>Location</ion-label>
+          <ion-label floating>Location {{ this.event.location.length }} / 30</ion-label>
           <ion-input type="text" formControlName="location" [(ngModel)]="event.location"></ion-input>
         </ion-item>
   

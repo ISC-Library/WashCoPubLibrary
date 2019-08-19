@@ -99,14 +99,14 @@ export class ModifySuggestedEventsPage {
       //The following title example allows regex
       // title: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
       //You have to use the slash twice "\\" to escape regex in javascript
-      title: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('^(?=.*[a-zA-Z0-9].*)[a-zA-Z0-9!@#$,%&*_ ]+$'), Validators.required])],
-      location: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('^(?=.*[a-zA-Z0-9].*)[a-zA-Z0-9,_ ]+$'), Validators.required])],
-      category: ['', Validators.compose([Validators.pattern('^(?!\\s*$).+'), Validators.required])],
-      notes: ['', Validators.compose([Validators.maxLength(250), Validators.pattern('^(?=.*[a-zA-Z0-9].*)[a-zA-Z0-9!@#$,%&*_. ]+$'), Validators.required])],
-      startDate: ['', Validators.compose([Validators.pattern('^(?!\\s*$).+'), Validators.required])],
-      endDate: ['', Validators.compose([Validators.pattern('^(?!\\s*$).+'), Validators.required])],
+      title: ['', Validators.compose([Validators.maxLength(30),  Validators.pattern(`^(?=.*[a-zA-Z0-9].*)[a-zA-Z0-9!.@#$&*-_|"'?/ ]+$`), Validators.required])],
+      location: ['', Validators.compose([Validators.maxLength(30), Validators.pattern(`^(?=.*[a-zA-Z0-9].*)[a-zA-Z0-9!.@#$&*-_|"'?/ ]+$`), Validators.required])],
+      category: ['', Validators.compose([Validators.pattern('^(?!\s*$).+'), Validators.required])],
+      notes: ['', Validators.compose([Validators.maxLength(250), Validators.pattern(`^(?=.*[a-zA-Z0-9].*)[a-zA-Z0-9!.@#$&*-_|"'?/ ]+$`), Validators.required])],
+      startDate: ['', Validators.compose([Validators.pattern('^(?!\s*$).+'), Validators.required])],
+      endDate: ['', Validators.compose([Validators.pattern('^(?!\s*$).+'), Validators.required])],
       contactName: ['', Validators.compose([Validators.pattern('^(?!\\s*$).+'), Validators.required])],
-      contactEmail: ['', Validators.compose([Validators.maxLength(40), Validators.pattern('^([a-zA-Z0-9_\\.-])+@([a-zA-Z0-9-])+\\.([a-zA-Z0-9-]){2,6}'), Validators.required])],
+      contactEmail: ['', Validators.compose([Validators.pattern('^([a-zA-Z0-9_\\.-])+@([a-zA-Z0-9-])+\\.([a-zA-Z0-9-]){2,6}'), Validators.required])],
       contactPhone: ['', Validators.compose([Validators.pattern('^(\\s*)?(\\+[0-9]{1,2}\\s)?\\(?[0-9]{3}\\)?[\\s.-]?[0-9]{3}[\\s.-]?[0-9]{4}(\\s*)?$'), Validators.required])]
     })
 
@@ -147,7 +147,7 @@ export class ModifySuggestedEventsPage {
     });
   
     toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
+      //console.log('Dismissed toast');
     });
   
     toast.present();
@@ -162,7 +162,7 @@ export class ModifySuggestedEventsPage {
     });
   
     toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
+      //console.log('Dismissed toast');
     });
   
     toast.present();
@@ -239,7 +239,12 @@ validateInput(suggestedEventID) {
     
     //Check Title / Location Length (we already have custom css to show if the title is the same as another)
     if (this.suggestedEvent.title.length > 30 || this.suggestedEvent.location.length > 30) {
-      message = "Your title and location must not be more than 30 characters."
+      message = "Neither your title nor location can be more than 30 characters."
+    }
+
+    //Check Notes Length 
+    if (this.suggestedEvent.notes.length > 250) {
+      message = "Your notes cannot be more than 250 characters."
     }
 
     if (this.suggestedEvent.title.length == 0 || this.suggestedEvent.location.length == 0 ||
@@ -260,7 +265,7 @@ validateInput(suggestedEventID) {
     });
   
     toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
+      //console.log('Dismissed toast');
     });
   
     toast.present();
@@ -271,7 +276,7 @@ validateInput(suggestedEventID) {
 
 //#region UpdateSuggestedEvent
   updateSuggestedEvent(suggestedEventID){
-    console.log(suggestedEventID)
+    //console.log(suggestedEventID)
     //Seperate the date and time in the "suggestedEvent.startDate" and "suggestedEvent.endDate" variables 
     this.suggestedEvent.startTime = this.suggestedEvent.startDate.split("T").pop();
     this.suggestedEvent.endTime = this.suggestedEvent.endDate.split("T").pop();
@@ -294,7 +299,7 @@ validateInput(suggestedEventID) {
         {
           text: 'Cancel',
           handler: data => {
-            console.log('Cancel clicked');
+            //console.log('Cancel clicked');
           }
         },
 

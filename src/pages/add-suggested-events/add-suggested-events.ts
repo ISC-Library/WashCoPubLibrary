@@ -82,14 +82,14 @@ export class AddSuggestedEventsPage {
       //The following title example allows regex
       // title: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
       //You have to use the slash twice "\\" to escape regex in javascript
-      title: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('^(?=.*[a-zA-Z0-9].*)[a-zA-Z0-9!@#$,%&*_ ]+$'), Validators.required])],
-      location: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('^(?=.*[a-zA-Z0-9].*)[a-zA-Z0-9,_ ]+$'), Validators.required])],
-      category: ['', Validators.compose([Validators.pattern('^(?!\\s*$).+'), Validators.required])],
-      notes: ['', Validators.compose([Validators.maxLength(250), Validators.pattern('^(?=.*[a-zA-Z0-9].*)[a-zA-Z0-9!@#$,%&*_. ]+$'), Validators.required])],
-      startDate: ['', Validators.compose([Validators.pattern('^(?!\\s*$).+'), Validators.required])],
-      endDate: ['', Validators.compose([Validators.pattern('^(?!\\s*$).+'), Validators.required])],
+      title: ['', Validators.compose([Validators.maxLength(30),  Validators.pattern(`^(?=.*[a-zA-Z0-9].*)[a-zA-Z0-9!.@#$&*-_|"'?/ ]+$`), Validators.required])],
+      location: ['', Validators.compose([Validators.maxLength(30), Validators.pattern(`^(?=.*[a-zA-Z0-9].*)[a-zA-Z0-9!.@#$&*-_|"'?/ ]+$`), Validators.required])],
+      category: ['', Validators.compose([Validators.pattern('^(?!\s*$).+'), Validators.required])],
+      notes: ['', Validators.compose([Validators.maxLength(250), Validators.pattern(`^(?=.*[a-zA-Z0-9].*)[a-zA-Z0-9!.@#$&*-_|"'?/ ]+$`), Validators.required])],
+      startDate: ['', Validators.compose([Validators.pattern('^(?!\s*$).+'), Validators.required])],
+      endDate: ['', Validators.compose([Validators.pattern('^(?!\s*$).+'), Validators.required])],
       contactName: ['', Validators.compose([Validators.pattern('^(?!\\s*$).+'), Validators.required])],
-      contactEmail: ['', Validators.compose([Validators.maxLength(40), Validators.pattern('^([a-zA-Z0-9_\\.-])+@([a-zA-Z0-9-])+\\.([a-zA-Z0-9-]){2,6}'), Validators.required])],
+      contactEmail: ['', Validators.compose([Validators.pattern('^([a-zA-Z0-9_\\.-])+@([a-zA-Z0-9-])+\\.([a-zA-Z0-9-]){2,6}'), Validators.required])],
       contactPhone: ['', Validators.compose([Validators.pattern('^(\\s*)?(\\+[0-9]{1,2}\\s)?\\(?[0-9]{3}\\)?[\\s.-]?[0-9]{3}[\\s.-]?[0-9]{4}(\\s*)?$'), Validators.required])]
     })
 
@@ -116,7 +116,7 @@ export class AddSuggestedEventsPage {
     });
   
     toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
+      //console.log('Dismissed toast');
     });
   
     toast.present();
@@ -131,7 +131,7 @@ export class AddSuggestedEventsPage {
     });
   
     toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
+      //console.log('Dismissed toast');
     });
   
     toast.present();
@@ -206,10 +206,15 @@ validateInput() {
   } else {
     var message;
     
-    //Check Title / Location Length (we already have custom css to show if the title is the same as another)
-    if (this.event.title.length > 30 || this.event.location.length > 30) {
-      message = "Your title and location must not be more than 30 characters."
-    }
+   //Check Title / Location Length (we already have custom css to show if the title is the same as another)
+   if (this.event.title.length > 30 || this.event.location.length > 30) {
+    message = "Neither your title nor location can be more than 30 characters."
+  }
+
+  //Check Notes Length 
+  if (this.event.notes.length > 250) {
+    message = "Your notes cannot be more than 250 characters."
+  }
 
     if (this.event.title.length == 0 || this.event.location.length == 0 ||
         this.event.notes.length == 0 || this.event.category.length == 0 || 
@@ -229,7 +234,7 @@ validateInput() {
     });
   
     toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
+      //console.log('Dismissed toast');
     });
   
     toast.present();
@@ -241,7 +246,7 @@ validateInput() {
   //#region SaveSuggestedEvent
   //Create New Events 
   save() {
-    console.log("save invoked");
+    //console.log("save invoked");
     this.calendar.createEvent(
       this.event.title, 
       this.event.location, 
@@ -257,7 +262,7 @@ validateInput() {
             {
               text: 'Cancel',
               handler: data => {
-                console.log('Cancel clicked');
+                //console.log('Cancel clicked');
               }
             },
             {
@@ -276,8 +281,8 @@ validateInput() {
                 this.event.startTime = this.event.startTime.substring(0, this.event.startTime.length - 4);
                 this.event.endTime = this.event.endTime.substring(0, this.event.endTime.length - 4);
 
-                console.log(this.event.startTime)
-                console.log(this.event.endTime)
+                //console.log(this.event.startTime)
+                //console.log(this.event.endTime)
 
                 // this.event.startTime = this.event.startDate.split(0).pop();
                 // this.event.endTime = this.event.endDate.split("0").pop();
@@ -286,8 +291,8 @@ validateInput() {
                 this.event.startDate= this.event.startDate.split("T", 1).pop();
                 this.event.endDate = this.event.endDate.split("T", 1).pop();
 
-                console.log(this.event.startDate)
-                console.log(this.event.startDate)
+                //console.log(this.event.startDate)
+                //console.log(this.event.startDate)
 
                 //Remove spaces from the email
                 this.event.contactEmail.replace(/\s/g, "")
