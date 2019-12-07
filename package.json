@@ -43,16 +43,32 @@
     "date-fns": "^1.29.0",
     "firebase": "^5.5.3",
     "ionic-angular": "^3.9.2",
+<<<<<<< Updated upstream
     "ionicons": "^4.4.4",
+=======
+    "ionic-long-press": "^1.5.0",
+    "ionic3-calendar-en": "^1.1.3",
+    "ionicons": "^4.4.6",
+    "loud-rejection": "^1.6.0",
+    "moment": "^2.22.2",
+    "node-sass": "^4.13.0",
+    "package-lock.json": "^1.0.0",
+>>>>>>> Stashed changes
     "rxjs": "^6.3.3",
     "rxjs-compat": "^6.3.3",
     "sw-toolbox": "3.6.0",
     "zone.js": "0.8.26"
   },
   "devDependencies": {
+<<<<<<< Updated upstream
     "@ionic/app-scripts": "^3.2.0",
     "@ionic/cli-plugin-proxy": "1.5.8",
     "typescript": "^3.1.1"
+=======
+    "@ionic/app-scripts": "^3.2.2",
+    "@ionic/cli-plugin-proxy": "^1.5.9",
+    "typescript": "^3.1.6"
+>>>>>>> Stashed changes
   },
   "description": "An Ionic project",
   "cordova": {
