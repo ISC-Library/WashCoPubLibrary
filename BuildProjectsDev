@@ -1,0 +1,10 @@
+#You have to rebuild the IOS and the Android project when you save any changes in order for them to reflect during emulation
+#This automates that process to some degree
+
+cordova build IOS
+echo ""
+echo "================ END IOS BUILD ==============="
+echo ""
+cordova build Android 
+echo ""
+echo "================ END ANDROID BUILD ==============="
