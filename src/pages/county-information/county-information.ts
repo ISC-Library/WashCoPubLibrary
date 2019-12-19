@@ -20,7 +20,7 @@ export class CountyInformationPage {
 
 
   ionViewDidEnter() {
-    //console.log(this.informationSelection)
+    
   }
 
   

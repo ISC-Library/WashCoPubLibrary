@@ -43,7 +43,7 @@ export class TestComponent {
 
  //Function to interact with the "TestProvider" via button
   callTestProvider(){
-    //console.log(this.textToUse);
+    
     this.databaseFilter.next(this.textToUse);
     this.users = this.testSvc.getUsers(this.databaseFilter);
   }
@@ -58,7 +58,7 @@ export class TestComponent {
     this.databaseFilter.next(this.keydownValue)
     
     
-    //console.log(this.databaseFilter);
+    
     //Then set the "users" object variable equal to what is returned from the following call to the provider...
       //The arguement being passed is the filter that was set to what the user typed in the box dynamically
     this.users = this.testSvc.getUsers(this.databaseFilter);

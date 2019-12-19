@@ -48,7 +48,7 @@ export class AdminAuthProvider {
 
         //Loop through the array of users
         for (let i = 0; i < this.usersArray.length; i++) {
-          //console.log(this.usersArray[i])
+          
           //If their role in the database is a "0" they are admin
           if (this.usersArray[i].role == 0) {
             //Check their credentials against any admin stored in the database

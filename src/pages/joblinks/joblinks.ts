@@ -17,7 +17,7 @@ jobType:any;
   }
 
   ionViewDidLoad() {
-    //console.log('ionViewDidLoad JoblinksPage');
+    
   }
 
 

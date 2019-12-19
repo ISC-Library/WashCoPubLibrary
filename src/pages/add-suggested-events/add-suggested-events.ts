@@ -116,7 +116,7 @@ export class AddSuggestedEventsPage {
     });
   
     toast.onDidDismiss(() => {
-      //console.log('Dismissed toast');
+      
     });
   
     toast.present();
@@ -131,7 +131,7 @@ export class AddSuggestedEventsPage {
     });
   
     toast.onDidDismiss(() => {
-      //console.log('Dismissed toast');
+      
     });
   
     toast.present();
@@ -234,7 +234,7 @@ validateInput() {
     });
   
     toast.onDidDismiss(() => {
-      //console.log('Dismissed toast');
+      
     });
   
     toast.present();
@@ -246,7 +246,7 @@ validateInput() {
   //#region SaveSuggestedEvent
   //Create New Events 
   save() {
-    //console.log("save invoked");
+    
     this.calendar.createEvent(
       this.event.title, 
       this.event.location, 
@@ -262,7 +262,7 @@ validateInput() {
             {
               text: 'Cancel',
               handler: data => {
-                //console.log('Cancel clicked');
+                
               }
             },
             {
@@ -281,8 +281,8 @@ validateInput() {
                 this.event.startTime = this.event.startTime.substring(0, this.event.startTime.length - 4);
                 this.event.endTime = this.event.endTime.substring(0, this.event.endTime.length - 4);
 
-                //console.log(this.event.startTime)
-                //console.log(this.event.endTime)
+                
+                
 
                 // this.event.startTime = this.event.startDate.split(0).pop();
                 // this.event.endTime = this.event.endDate.split("0").pop();
@@ -291,8 +291,8 @@ validateInput() {
                 this.event.startDate= this.event.startDate.split("T", 1).pop();
                 this.event.endDate = this.event.endDate.split("T", 1).pop();
 
-                //console.log(this.event.startDate)
-                //console.log(this.event.startDate)
+                
+                
 
                 //Remove spaces from the email
                 this.event.contactEmail.replace(/\s/g, "")

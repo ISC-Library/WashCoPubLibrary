@@ -136,7 +136,7 @@ export class ModifyEventsPage {
   }
 
   ionViewCanEnter() {
-    //console.log("can enter")
+    
     if (this.isAdmin() == false) {
       return false
     }
@@ -145,22 +145,22 @@ export class ModifyEventsPage {
   //Check if user is administrator 
   isAdmin() {
     if (this.AdminAuthProvider.isLoggedIn()) {
-      //console.log(this.AdminAuthProvider.currentUser)
+      
 
       //If logged in and an admin return true
       if (this.AdminAuthProvider.currentUser.role === 0) {
-        //console.log("true")
+        
         return true;
       }
       //If logged in but not an admin return false
       else {
-        //console.log("false")
+        
         return false;
       }
     }
     //If not logged in at all return false
     else {
-      //console.log("false")
+      
       return false;
     }
   }
@@ -190,7 +190,7 @@ export class ModifyEventsPage {
     });
 
     toast.onDidDismiss(() => {
-      //console.log('Dismissed toast');
+      
     });
 
     toast.present();
@@ -205,7 +205,7 @@ export class ModifyEventsPage {
     });
 
     toast.onDidDismiss(() => {
-      //console.log('Dismissed toast');
+      
     });
 
     toast.present();
@@ -299,7 +299,7 @@ export class ModifyEventsPage {
         this.event.notes.length == 0 || this.event.category.length == 0 ||
         this.event.startDate.length == 0 || this.event.endDate.length == 0) {
         //If the "all fields requried .. field" is not in an error state put it in one
-        //console.log(this.event.category.length)
+        
         if (document.getElementById("allEventsRequired")) {
           document.getElementById("allEventsRequired").id = "allEventsRequiredError"
         }
@@ -312,7 +312,7 @@ export class ModifyEventsPage {
       });
 
       toast.onDidDismiss(() => {
-        //console.log('Dismissed toast');
+        
       });
 
       toast.present();
@@ -352,7 +352,7 @@ export class ModifyEventsPage {
         {
           text: 'Cancel',
           handler: data => {
-            //console.log('Cancel clicked');
+            
           }
         },
 

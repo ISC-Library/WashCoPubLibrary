@@ -18,7 +18,7 @@ export class NoneExistPage {
   }
 
   ionViewDidLoad() {
-    //console.log('ionViewDidLoad NoneExistPage');
+    
   }
 
 }

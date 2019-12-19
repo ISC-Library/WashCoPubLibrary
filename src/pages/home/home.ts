@@ -64,7 +64,7 @@ export class HomePage {
     this.eventsForCSS.subscribe((data) => {
       //Set the .subscription "data" values that are returned to the array "allEvents[]"
       this.allEvents = data;
-      ////console.log(this.allEvents)
+      
       //Once we know that "allEvents[]" has data, reformat the values 
       this.reformatAllEventsArray();
     });
@@ -98,9 +98,9 @@ export class HomePage {
       //While "condition";
       //Increment "iteration variable"
     for (let i = 0; i < this.allEvents.length; i++) {
-      ////console.log(this.allEvents)
-      ////console.log(this.allEvents[i].startDate);
-      ////console.log(this.allEvents[i].startDate.split("-"))
+      
+      
+      
       
 
       //The "string.split" function creates an array for each value split via the delimiter
@@ -124,12 +124,12 @@ export class HomePage {
       //Use the ".push" method of array data types on the "formattedForCSS" array...
         //To push the formatted "dateObject" into the array, at the current index of
       // this.formattedForCSS.push({dateObject})
-      // //console.log(this.formattedForCSS);
+      
     } 
 
     //return this.formattedForCSS;  
     //this.formatCategoryArray();
-    ////console.log(this.formattedForCSS)
+    
   }
 }
 

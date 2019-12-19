@@ -685,14 +685,14 @@ export class CalendarPage {
   //The user selects modify button on the event which they wish to modify 
   //The event data for that specific event is passed, which we will forward to the "ModifyEvent" page
   modifyEvent(event) {
-    console.log(event)
+    
     this.navCtrl.push(ModifyEventsPage, {
       event
     });
   }
 
   deleteEvent(event) {
-    console.log("Delete");
+    
     //Call the database via the "suggestedEventsRef" and delete the item corresponding to the suggestedEvent.id passed
     this.eventsRef.remove(event.id);
   };
@@ -719,13 +719,13 @@ export class CalendarPage {
 
   isAdmin() {
     if (this.AdminAuthProvider.isLoggedIn()) {
-      //console.log(this.AdminAuthProvider.currentUser)
+      
 
       if (this.AdminAuthProvider.currentUser.role === 0) {
-        //console.log("true")
+        
         return true;
       } else {
-        //console.log("false")
+        
         return false;
       }
     } 
@@ -829,7 +829,7 @@ export class CalendarPage {
     //Call the database filtered by the selected day
     this.events = this.CalendarEventSvc.getEvents(this.databaseFilterDynamic);
 
-    //console.log(this.events)
+    
   }
 
 
@@ -857,7 +857,7 @@ export class CalendarPage {
         this.calendar.requestReadWritePermission().then((v) => {
           this.addNativeEvent();
         }, (r) => {
-          console.log("Rejected");
+          
         })
       }
       else {

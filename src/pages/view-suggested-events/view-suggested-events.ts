@@ -73,7 +73,7 @@ constructor(public alertCtrl: AlertController,
     this.suggestedEvents.subscribe((data) => {
       //Set the .subscription "data" values that are returned to the array "allEvents[]"
       this.allEvents = data;
-      //console.log(this.allEvents)
+      
     });
   }
   //#endregion
@@ -118,7 +118,7 @@ constructor(public alertCtrl: AlertController,
 
 
   deleteSuggestedEvent(suggestedEvent) {
-    //console.log("Delete");
+    
     //Call the database via the "suggestedEventsRef" and delete the item corresponding to the suggestedEvent.id passed
     this.suggestedEventsRef.remove(suggestedEvent.id);
   };
@@ -126,7 +126,7 @@ constructor(public alertCtrl: AlertController,
   
   displayMore($suggestedEvent) {
 
-    //console.log($suggestedEvent)
+    
 
     document.getElementById($suggestedEvent.id + 'show').style.display = "none"
     document.getElementById($suggestedEvent.id + 'hide').style.display = "block"
@@ -142,7 +142,7 @@ constructor(public alertCtrl: AlertController,
   //Create New Events 
   save(suggestedEvent) {
 
-  //console.log(suggestedEvent.id)
+  
 
   for (let i = 0; i < this.allEvents.length; i++) {
 
@@ -178,7 +178,7 @@ constructor(public alertCtrl: AlertController,
             {
               text: 'Cancel',
               handler: data => {
-                //console.log('Cancel clicked');
+                
               }
             },
             {

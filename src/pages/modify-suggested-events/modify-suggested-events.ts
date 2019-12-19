@@ -156,7 +156,7 @@ export class ModifySuggestedEventsPage {
     });
   
     toast.onDidDismiss(() => {
-      //console.log('Dismissed toast');
+      
     });
   
     toast.present();
@@ -171,7 +171,7 @@ export class ModifySuggestedEventsPage {
     });
   
     toast.onDidDismiss(() => {
-      //console.log('Dismissed toast');
+      
     });
   
     toast.present();
@@ -275,7 +275,7 @@ validateInput(suggestedEventID) {
     });
   
     toast.onDidDismiss(() => {
-      //console.log('Dismissed toast');
+      
     });
   
     toast.present();
@@ -315,7 +315,7 @@ updateSuggestedEvent(suggestedEventID) {
         {
           text: 'Cancel',
           handler: data => {
-            //console.log('Cancel clicked');
+            
           }
         },
 

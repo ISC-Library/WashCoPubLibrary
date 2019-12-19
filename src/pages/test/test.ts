@@ -56,7 +56,7 @@ export class TestPage {
         {
           text: 'Cancel',
           handler: data => {
-            //console.log('Cancel clicked');
+            
           }
         },
         {
