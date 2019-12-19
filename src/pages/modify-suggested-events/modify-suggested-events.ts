@@ -10,6 +10,7 @@ import { FormBuilder, FormGroup, FormControl, AbstractControl, Validators, Valid
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
 //Import Pages
+import { HomePage } from '../home/home';
 import { CalendarPage } from '../calendar/calendar';
 
 //Import Provider
@@ -42,6 +43,10 @@ export class ModifySuggestedEventsPage {
   modifySuggestedEventSubmission: FormGroup;
   submitAttempt: boolean = false;
   control: FormControl;
+
+  //Variable to see if the dates were modified in the form
+  startDateInitialValue: any;
+  endDateInitialValue: any;
 
   //Variable to hold the "suggestedEvent" passed from the "calendar" page
     //The "suggestedEvent" is an object that is used to format the data being pushed into the database 
@@ -86,12 +91,16 @@ export class ModifySuggestedEventsPage {
     this.startTimeArray = []
 
     //Reformat date time picker variables
-     //We had to re-merge the values of date / time as they come in from the database seperated
-      //We do this so the view will load the full date / time of the suggested event being modified 
-        //As [(ngModel)] can only model one value at a time, meaning it has to be a concatenated date/time
-    this.suggestedEvent.startDate=(this.suggestedEvent.startDate + "T" + this.suggestedEvent.startTime)
-  
-    this.suggestedEvent.endDate=(this.suggestedEvent.endDate + "T" + this.suggestedEvent.endTime)
+    //We had to re-merge the values of date / time as they come in from the database seperated
+    //We do this so the view will load the full date / time of the suggested suggestedEvent being modified 
+    //As [(ngModel)] can only model one value at a time, meaning it has to be a concatenated date/time
+    this.suggestedEvent.startDate = (this.suggestedEvent.startDate + "T" + this.suggestedEvent.startTime)
+    this.suggestedEvent.endDate = (this.suggestedEvent.endDate + "T" + this.suggestedEvent.endTime)
+
+    //Set the initial value of the Date Initial Value variables
+    //Used later to see if the dates were modified to determine if they need to have string formatting done
+    this.startDateInitialValue = this.suggestedEvent.startDate
+    this.endDateInitialValue = this.suggestedEvent.endDate
 
     
     //Setup the form builder group for validation of the suggestedEventSubmission form
@@ -196,34 +205,35 @@ export class ModifySuggestedEventsPage {
   
 
   checkStartTime() {
-    //Seperate the date and time in the "suggestedEvent.startTime"  variable
-      //NOTE the "suggestedEvent" object is being bound to whatever the user is typing at the time
-    let proposedStartTime = this.suggestedEvent.startDate.split("T").pop()
-    
+    //Create a temp variable to use for comparison to avoid update anomolies later
+    //Seperate the date and time in the "event.startTime"  variable and store in the temp variable
+    //NOTE the "event" object is being bound to whatever the user is typing at the time
+    let tempStartTime = this.suggestedEvent.startDate.split("T").pop()
+
     //For now we are not dealing with the timezone offset
-      //Which is currently appending itself to the dateTime as "00Z"
-        //For now we will just cut that off
-    proposedStartTime = this.suggestedEvent.startTime.substring(0, this.suggestedEvent.startTime.length - 4);
-    
-    //The view is bound to the suggestedEvent.startDate, which by default holds both the date and time
-      //If we split the date off, the view will not be bound to a date / time... only a date so the time will now show
-        //Create a temp variable to use for comparison to avoid modifying the view
-    let startDate = this.suggestedEvent.startDate.split("T", 1).pop();
+    //Which is currently appending itself to the dateTime as "00Z"
+    //For now we will just cut that off
+    tempStartTime = tempStartTime.substring(0, tempStartTime.length - 4);
+
+    //The view is bound to the event.startDate, which by default holds both the date and time
+    //If we split the date off, the view will not be bound to a date / time... only a date so the time will now show
+    //Create a temp variable to use for comparison to avoid modifying the view
+    let tempStartDate = this.suggestedEvent.startDate.split("T", 1).pop();
 
     for (let i = 0; i < this.startTimeArray.length; i++) {
-        //If the day is the same
-        if (startDate == this.startTimeArray[i].startDate) {
-          //And the start time is the same
-          if (proposedStartTime == this.startTimeArray[i].startTime) {
-            //Throw it up
-            document.getElementById("startDatePicker").className = "sameTime"
-            document.getElementById("startTimeWarningIcon").style.visibility = "visible"
-            return true
-          } else {
-            document.getElementById("startDatePicker").className = "differentTime"
-            document.getElementById("startTimeWarningIcon").style.visibility = "hidden"
-          }
+      //If the day is the same
+      if (tempStartDate == this.startTimeArray[i].startDate) {
+        //And the start time is the same
+        if (tempStartTime == this.startTimeArray[i].startTime) {
+          //Throw it up
+          document.getElementById("startDatePicker").className = "sameTime"
+          document.getElementById("startTimeWarningIcon").style.visibility = "visible"
+          return true
+        } else {
+          document.getElementById("startDatePicker").className = "differentTime"
+          document.getElementById("startTimeWarningIcon").style.visibility = "hidden"
         }
+      }
     }
   }
 
@@ -275,25 +285,31 @@ validateInput(suggestedEventID) {
 
 
 //#region UpdateSuggestedEvent
-  updateSuggestedEvent(suggestedEventID){
-    //console.log(suggestedEventID)
-    //Seperate the date and time in the "suggestedEvent.startDate" and "suggestedEvent.endDate" variables 
-    this.suggestedEvent.startTime = this.suggestedEvent.startDate.split("T").pop();
-    this.suggestedEvent.endTime = this.suggestedEvent.endDate.split("T").pop();
+updateSuggestedEvent(suggestedEventID) {
+  //Seperate the date and time in the "suggestedEvent.startDate" and "suggestedEvent.endDate" variables 
+  this.suggestedEvent.startTime = this.suggestedEvent.startDate.split("T").pop();
+  this.suggestedEvent.endTime = this.suggestedEvent.endDate.split("T").pop();
 
-    //For now we are not dealing with the timezone offset
-      //Which is currently appending itself to the dateTime as "00Z"
-        //For now we will just cut that off
-        this.suggestedEvent.startTime = this.suggestedEvent.startTime.substring(0, this.suggestedEvent.startTime.length - 4);
+
+  //For now we are not dealing with the timezone offset
+    //Which is currently appending itself to the dateTime as "00Z"
+      //For now we will just cut that off
+
+      if(this.suggestedEvent.startDate != this.startDateInitialValue) {
+        this.suggestedEvent.startTime = this.suggestedEvent.startTime.substring(0, this.suggestedEvent.startTime.length - 4)
+      }
+      
+      if(this.suggestedEvent.endDate != this.endDateInitialValue) {
         this.suggestedEvent.endTime = this.suggestedEvent.endTime.substring(0, this.suggestedEvent.endTime.length - 4);
+      }
+     
+  //Re-declare the "suggestedEvent.startDate" and "suggestedEvent.endDate" to be just the date, not removing the time portion
+  this.suggestedEvent.startDate = this.suggestedEvent.startDate.split("T", 1).pop();
+  this.suggestedEvent.endDate = this.suggestedEvent.endDate.split("T", 1).pop();
 
-    //Re-declare the "suggestedEvent.startDate" and "suggestedEvent.endDate" to be just the date, not removing the time portion
-    this.suggestedEvent.startDate= this.suggestedEvent.startDate.split("T", 1).pop();
-    this.suggestedEvent.endDate = this.suggestedEvent.endDate.split("T", 1).pop();
-
-    let prompt = this.alertCtrl.create({
-      // title: 'Song Name',
-      message: "Do you wish to make these changes?",
+  let prompt = this.alertCtrl.create({
+    // title: 'Song Name',
+    message: "Do you wish to make these changes?",
       
       buttons: [
         {
