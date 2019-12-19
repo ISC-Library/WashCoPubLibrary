@@ -10,6 +10,7 @@ import { FormBuilder, FormGroup, FormControl, AbstractControl, Validators, Valid
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
 //Import Pages
+import { HomePage } from '../home/home';
 import { CalendarPage } from '../calendar/calendar';
 
 //Import Provider
@@ -43,8 +44,11 @@ export class ModifyEventsPage {
   submitAttempt: boolean = false;
   control: FormControl;
 
-
   originalTitle: any;
+
+  //Variable to see if the dates were modified in the form
+  startDateInitialValue: any;
+  endDateInitialValue: any;
 
   //Variable to hold the "event" passed from the "calendar" page
   //The "event" is an object that is used to format the data being pushed into the database 
@@ -91,8 +95,12 @@ export class ModifyEventsPage {
     //We do this so the view will load the full date / time of the suggested event being modified 
     //As [(ngModel)] can only model one value at a time, meaning it has to be a concatenated date/time
     this.event.startDate = (this.event.startDate + "T" + this.event.startTime)
-
     this.event.endDate = (this.event.endDate + "T" + this.event.endTime)
+
+    //Set the initial value of the Date Initial Value variables
+    //Used later to see if the dates were modified to determine if they need to have string formatting done
+    this.startDateInitialValue = this.event.startDate
+    this.endDateInitialValue = this.event.endDate
 
     //Setup the form builder group for validation of the eventSubmission form
     this.modifyEventSubmission = formBuilder.group({
@@ -235,25 +243,26 @@ export class ModifyEventsPage {
 
 
   checkStartTime() {
-    //Seperate the date and time in the "event.startTime"  variable
+    //Create a temp variable to use for comparison to avoid update anomolies later
+    //Seperate the date and time in the "event.startTime"  variable and store in the temp variable
     //NOTE the "event" object is being bound to whatever the user is typing at the time
-    this.event.startTime = this.event.startDate.split("T").pop()
+    let tempStartTime = this.event.startDate.split("T").pop()
 
     //For now we are not dealing with the timezone offset
     //Which is currently appending itself to the dateTime as "00Z"
     //For now we will just cut that off
-    this.event.startTime = this.event.startTime.substring(0, this.event.startTime.length - 4);
+    tempStartTime = tempStartTime.substring(0, tempStartTime.length - 4);
 
     //The view is bound to the event.startDate, which by default holds both the date and time
     //If we split the date off, the view will not be bound to a date / time... only a date so the time will now show
     //Create a temp variable to use for comparison to avoid modifying the view
-    let startDate = this.event.startDate.split("T", 1).pop();
+    let tempStartDate = this.event.startDate.split("T", 1).pop();
 
     for (let i = 0; i < this.startTimeArray.length; i++) {
       //If the day is the same
-      if (startDate == this.startTimeArray[i].startDate) {
+      if (tempStartDate == this.startTimeArray[i].startDate) {
         //And the start time is the same
-        if (this.event.startTime == this.startTimeArray[i].startTime) {
+        if (tempStartTime == this.startTimeArray[i].startTime) {
           //Throw it up
           document.getElementById("startDatePicker").className = "sameTime"
           document.getElementById("startTimeWarningIcon").style.visibility = "visible"
@@ -318,12 +327,19 @@ export class ModifyEventsPage {
     this.event.startTime = this.event.startDate.split("T").pop();
     this.event.endTime = this.event.endDate.split("T").pop();
 
+
     //For now we are not dealing with the timezone offset
       //Which is currently appending itself to the dateTime as "00Z"
         //For now we will just cut that off
-        this.event.startTime = this.event.startTime.substring(0, this.event.startTime.length - 4);
-        this.event.endTime = this.event.endTime.substring(0, this.event.endTime.length - 4);
 
+        if(this.event.startDate != this.startDateInitialValue) {
+          this.event.startTime = this.event.startTime.substring(0, this.event.startTime.length - 4)
+        }
+        
+        if(this.event.endDate != this.endDateInitialValue) {
+          this.event.endTime = this.event.endTime.substring(0, this.event.endTime.length - 4);
+        }
+       
     //Re-declare the "event.startDate" and "event.endDate" to be just the date, not removing the time portion
     this.event.startDate = this.event.startDate.split("T", 1).pop();
     this.event.endDate = this.event.endDate.split("T", 1).pop();
@@ -352,9 +368,11 @@ export class ModifyEventsPage {
               endDate: this.event.endDate,
               startTime: this.event.startTime,
               endTime: this.event.endTime
-            });
+            })
+            //Go Back to the home page 
+            this.navCtrl.setRoot(HomePage)  
             //Build the nav control pop and the loading spinner into the save button
-            this.navCtrl.pop();
+            //this.navCtrl.pop();
           }
         }
       ]
